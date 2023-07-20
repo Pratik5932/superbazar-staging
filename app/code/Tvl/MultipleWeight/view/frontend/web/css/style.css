@@ -1,0 +1,34 @@
+#choose-weight-form {margin-bottom: 30px;}
+
+#choose-weight-form .weight-wrap input {
+    width: 80px;
+    padding-right: 21px;
+}
+#choose-weight-form .weight-wrap label {
+    display: block;
+    margin-bottom: 5px;
+}
+#choose-weight-form .weight-wrap .control {
+    position: relative;
+    float: left;
+}
+#choose-weight-form .weight-wrap .control .input-placeholder {
+    position: absolute;
+    right: 3px;
+    top: 5px;
+    color: #8e8e8e;
+}
+#choose-weight-form .row {
+    margin-bottom: 10px;
+}
+#choose-weight-form .row:after {
+    display: table;
+    content: ' ';
+    clear: both;
+}
+#choose-weight-form .row .left {float: left}
+#choose-weight-form .row .right {float: right}
+#choose-weight-form .row .price-wrapper {
+    font-weight: bold;
+    font-size: 18px;
+}

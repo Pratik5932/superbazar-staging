@@ -1,0 +1,280 @@
+<?php
+/**
+* BSS Commerce Co.
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://bsscommerce.com/Bss-Commerce-License.txt
+*
+* @category   BSS
+* @package    Bss_OrderDeliveryDate
+* @author     Extension Team
+* @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+* @license    http://bsscommerce.com/Bss-Commerce-License.txt
+*/
+
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var \Bss\OrderDeliveryDate\Block\System\Form\Field\Regex $block */ ?>
+<?php
+$_htmlId = $block->getHtmlId() ? $block->getHtmlId() : '_' . uniqid();
+$_colspan = $block->isAddAfter() ? 2 : 1;
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$sellerPostcode = $objectManager->get('Magento\Backend\Model\Auth\Session')->getUser()->getPostCode();
+$userRole = $objectManager->get('Magento\Backend\Model\Auth\Session')->getUser()->getRole()->getRoleName();
+$postCodes = array();
+if($sellerPostcode){
+    $postCodes = [];
+    $collection = $objectManager->create('Webkul\MpHyperLocal\Model\ShipAreaFactory')->create()
+    ->getCollection()
+    ->addFieldToSelect('seller_id')
+    #->addFieldToFilter('address_type', 'postcode')          
+    ->addFieldToFilter('postcode', $sellerPostcode);
+    # ->addFieldToFilter('postcode', array('in' => $storeLocation));
+
+    $sellerId = $collection->getColumnValues('seller_id');
+
+    #$collection->getFirstItem(); 
+
+    #print_r($sellerId);exit;   
+    if($sellerPostcode == "3024" ){
+        $sellerId = array("6637");
+    }
+    #print_r($sellerId);exit;
+    $collectionpostcode = $objectManager->create('Webkul\MpHyperLocal\Model\ShipAreaFactory')->create()
+    ->getCollection()
+    ->addFieldToSelect('postcode')
+    #->addFieldToFilter('address_type', 'postcode')          
+    ->addFieldToFilter('seller_id', $sellerId);
+    $postCodes = $collectionpostcode->getColumnValues('postcode');
+
+    #  echo $collectionpostcode->getSelect()->__toString();exit;
+    if($sellerPostcode == "3024" ){
+        $postCodes[] = "3024";
+
+    }
+    #print_r($postCodes);exit;
+    sort($postCodes);
+    #   $postCodes = implode(',', $postCodes);
+    #print_r($postCodes);exit;
+}
+?>
+
+<div class="design_theme_ua_regexp" id="grid<?php /* @escapeNotVerified */ echo $_htmlId; ?>">
+    <div class="admin__control-table-wrapper">
+        <table class="admin__control-table">
+            <thead>
+                <tr>
+                    <?php foreach ($block->getColumns() as $columnName => $column): ?>
+                        <th><?php /* @escapeNotVerified */ echo $column['label']; ?></th>
+                        <?php endforeach;?>
+                    <th class="col-actions" colspan="<?php /* @escapeNotVerified */ echo $_colspan; ?>">Action</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="<?php echo count($block->getColumns())+$_colspan; ?>" class="col-actions-add">
+                        <button id="addToEndBtn<?php /* @escapeNotVerified */ echo $_htmlId; ?>" class="action-add" title="<?php /* @escapeNotVerified */ echo __('Add'); ?>" type="button">
+                            <span><?php /* @escapeNotVerified */ echo $block->getAddButtonLabel(); ?><?php /* @escapeNotVerified */ echo __('Add'); ?></span>
+                        </button>
+                    </td>
+                </tr>
+            </tfoot>
+            <tbody id="addRow<?php /* @escapeNotVerified */ echo $_htmlId; ?>"></tbody>
+        </table>
+    </div>
+    <input type="hidden" name="<?php /* @escapeNotVerified */ echo $block->getElement()->getName(); ?>[__empty]" value="" />
+
+    <script>
+        require([
+            'mage/template',
+            'prototype'
+            ], function (mageTemplate) {
+                // create row creator
+                window.arrayRow<?php /* @escapeNotVerified */ echo $_htmlId ?> = {
+
+                    // define row prototypeJS template
+                    template: mageTemplate(
+                        '<tr id="<%- _id %>">'
+                        <?php foreach ($block->getColumns() as $columnName => $column): ?>
+                            <?php
+                            $columnName =='date' ?  $cell =  $block->renderCellTemplateDate($columnName)  :  $cell = $block->renderCellTemplate($columnName);
+                            ?>
+                            + '<td>'
+                            + '<?php /* @escapeNotVerified */ echo  $cell ?>'
+                            + '<\/td>'
+                            <?php endforeach; ?>
+
+                        <?php if ($block->isAddAfter()): ?>
+                            + '<td><button class="action-add" type="button" id="addAfterBtn<%- _id %>"><span><?php /* @escapeNotVerified */ echo __('Add after'); ?><\/span><\/button><\/td>'
+                            <?php endif; ?>
+
+                        + '<td class="col-actions"><button onclick="arrayRow<?php /* @escapeNotVerified */ echo $_htmlId ?>.del(\'<%- _id %>\')" class="action-delete" type="button"><span><?php /* @escapeNotVerified */ echo __('Delete'); ?><\/span><\/button><\/td>'
+                        +'<\/tr>'
+                    ),
+
+                    add: function(rowData, insertAfterId) {
+                        // generate default template data
+                        var templateValues;
+
+                        // Prepare template values
+                        if (rowData) {
+                            templateValues = rowData;
+                        } else {
+                            var d = new Date();
+                            templateValues = {
+                                <?php foreach ($block->getColumns() as $columnName => $column): ?>
+                                <?php /* @escapeNotVerified */ echo $columnName ?>: '',
+                                'option_extra_attrs': {},
+                            <?php endforeach; ?>
+                            _id: '_' + d.getTime() + '_' + d.getMilliseconds()
+                        };
+                    }
+
+                    // Insert new row after specified row or at the bottom
+                    if (insertAfterId) {
+                    Element.insert($(insertAfterId), {after: this.template(templateValues)});
+            } else {
+                Element.insert($('addRow<?php /* @escapeNotVerified */ echo $_htmlId ?>'), {bottom: this.template(templateValues)});
+            }
+
+            // Fill controls with data
+            if (rowData) {
+                var rowInputElementNames = Object.keys(rowData.column_values);
+                for (var i = 0; i < rowInputElementNames.length; i++) {
+                    if ($(rowInputElementNames[i])) {
+                        $(rowInputElementNames[i]).value = rowData.column_values[rowInputElementNames[i]];
+                    }
+                }
+            }
+
+            // Add event for {addAfterBtn} button
+            <?php if ($block->isAddAfter()): ?>
+                Event.observe('addAfterBtn' + templateValues._id, 'click', this.add.bind(this, false, templateValues._id));
+                <?php endif; ?>
+            require([
+                'jquery',
+                'mage/calendar'
+                ], function ( $ ) {
+                    jQuery(".holiday").datepicker({
+                        minDate: 0 ,
+                        infoTitle: "<?php /* @escapeNotVerified */ echo __('About the calendar');?>",
+                        firstDay: 0,
+                        closeText: "<?php /* @escapeNotVerified */ echo __('Close');?>",
+                        currentText: "<?php /* @escapeNotVerified */ echo __('Go Today'); ?>",
+                        prevText: "<?php /* @escapeNotVerified */ echo __('Previous');?>",
+                        nextText: "<?php /* @escapeNotVerified */ echo __('Next');?>",
+                        weekHeader: "<?php /* @escapeNotVerified */ echo __('WK'); ?>",
+                        timeText: "<?php /* @escapeNotVerified */ echo __('Time');?>",
+                        hourText: "<?php /* @escapeNotVerified */ echo __('Hour');?>",
+                        minuteText: "<?php /* @escapeNotVerified */ echo __('Minute');?>",
+                        showOn: "button",
+                        showAnim: "",
+                        changeMonth: true,
+                        changeYear: true,
+                        buttonImageOnly: null,
+                        buttonImage: null,
+                        showButtonPanel: true,
+                        showOtherMonths: true,
+                        showWeek: false,
+                        timeFormat: '',
+                        showTime: false,
+                        showHour: false,
+                        showMinute: false,
+                    });
+            });
+            },
+
+            del: function(rowId) {
+                $(rowId).remove();
+            }
+            }
+
+            // bind add action to "Add" button in last row
+            Event.observe('addToEndBtn<?php /* @escapeNotVerified */ echo $_htmlId ?>', 'click', arrayRow<?php /* @escapeNotVerified */ echo $_htmlId ?>.add.bind(arrayRow<?php /* @escapeNotVerified */ echo $_htmlId ?>, false, false));
+
+            // add existing rows
+            <?php
+            foreach ($block->getArrayRows() as $_rowId => $_row) {
+                /* @escapeNotVerified */ echo "arrayRow{$_htmlId}.add(" . $_row->toJson() . ");\n";
+            }
+            ?>
+
+            // Toggle the grid availability, if element is disabled (depending on scope)
+            <?php if ($block->getElement()->getDisabled()):?>
+                toggleValueElements({checked: true}, $('grid<?php /* @escapeNotVerified */ echo $_htmlId; ?>').parentNode);
+                <?php endif;?>
+        });
+    </script>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'mage/calendar'
+            ], function ( $ ) {
+                jQuery(".holiday").datepicker({
+                    minDate: 0 ,
+                    infoTitle: "About the calendar",
+                    firstDay: 0,
+                    closeText: "Close",
+                    currentText: "Go Today",
+                    prevText: "Previous",
+                    nextText: "Next",
+                    weekHeader: "WK",
+                    timeText: "Time",
+                    hourText: "Hour",
+                    minuteText: "Minute",
+                    showOn: "button",
+                    showAnim: "",
+                    changeMonth: true,
+                    changeYear: true,
+                    buttonImageOnly: null,
+                    buttonImage: null,
+                    showButtonPanel: true,
+                    showOtherMonths: true,
+                    showWeek: false,
+                    timeFormat: '',
+                    showTime: false,
+                    showHour: false,
+                    showMinute: false,
+                });
+                var sellerCode = "<?php echo $sellerPostcode ?>";
+                var userRole = "<?php echo $userRole ?>";
+                if(userRole == "Seller Access"){
+                    $(document).ready(function () {
+                        setTimeout(function () {
+                            jQuery("#orderdeliverydate_general_time_slots tbody tr").hide();
+                            jQuery("#row_orderdeliverydate_general_block_out_holidays tbody tr").hide();
+                            jQuery("#orderdeliverydate_general_cut_off_time tbody tr").hide();
+                            var myArray = <?php echo json_encode($postCodes); ?>;
+                            //var currPos =  jQuery("#orderdeliverydate_general_cut_off_time tr input[type='text']").val();
+                            console.log(myArray);
+                            jQuery.each(myArray, function(key, value) {  
+                                jQuery.each(jQuery("input[type='text']"), function() {
+                                    console.log(myArray.includes($(this).val().toString()));
+                                    var carr = $(this).val().toString().split(',');
+                                    //if($(this).val().toString().indexOf(sellerCode) !== -1){ 
+                                    //      console.log(carr);
+                                    var found = myArray.some(function(v) { return carr.indexOf(v) != -1; });
+
+                                    // console.log(found);  
+                                    if(found) {
+                                        //  console.log($(this));
+                                        $(this).parent().parent().show();
+                                        $(this).css("height","200px");   
+                                    }
+
+                                });
+
+                            });
+
+
+                            }, 2500);
+                    });
+                }
+        });
+
+    </script>
+</div>

@@ -1,0 +1,95 @@
+<?php
+$list = $block->getEnabledAttributes();
+$product_id=$this->getRequest()->getParam('id');
+$productData = $block->getProduct($product_id)->getData();
+foreach($list as $oneAttribute) {
+	if ($oneAttribute["frontend_input"] == "text") { ?>
+		<div class="field">
+			<label class="label"><?php echo  $oneAttribute["frontend_label"] ?>:</label>
+			<div class="control">
+				<input type="text" class="input-text" name="product[<?php echo $oneAttribute["attribute_code"] ?>]" id="<?php echo $oneAttribute["attribute_code"] ?>"  value="<?php echo $productData[$oneAttribute["attribute_code"]] ?? "" ?>" />
+			</div>
+		</div>
+	<?php }
+	if ($oneAttribute["frontend_input"] == "multiselect") { ?>
+		<div class="field">
+			<label class="label"><?php echo  $oneAttribute["frontend_label"] ?>:</label>
+			<div class="control">
+				<select id="<?php echo $oneAttribute["attribute_code"] ?>" multiple class="select multiple" name="product[<?php echo $oneAttribute["attribute_code"].'multiple' ?>]">
+					<?php foreach($block->getAttributeOptionAll($oneAttribute["attribute_id"]) as $option) { ?>
+						 <option value="<?php echo $option->getOptionId() ?>" <?php if(in_array($option->getOptionId(), explode(",", $productData[$oneAttribute["attribute_code"]] ?? ""))){ echo "selected='selected'";}?>><?php echo $option->getStoreDefaultValue()?></option>
+					<?php }
+					?>
+				</select>
+			</div>
+		</div>
+		<input type="hidden" name="product[<?php echo $oneAttribute["attribute_code"] ?>]" value="<?php echo $productData[$oneAttribute["attribute_code"]] ?? "" ?>" />
+		
+		<script>
+			require([
+				"jquery"
+			], function($){
+				var id = "<?php echo $oneAttribute["attribute_code"]; ?>";
+				$("#"+id).change(function () {
+				console.log($(this).val().join(","));
+					$("[name='product["+id+"]']").val($(this).val().join(","));
+				});
+			});
+		</script>
+	<?php }
+	if ($oneAttribute["frontend_input"] == "select") { ?>
+		<div class="field">
+			<label class="label"><?php echo  $oneAttribute["frontend_label"] ?>:</label>
+			<div class="control">
+				<select id="<?php echo $oneAttribute["attribute_code"] ?>" class="select" name="product[<?php echo $oneAttribute["attribute_code"] ?>]">
+					<?php foreach($block->getAttributeOptionAll($oneAttribute["attribute_id"]) as $option) { ?>
+						 <option value="<?php echo $option->getOptionId() ?>" <?php if($option->getOptionId() == ($productData[$oneAttribute["attribute_code"]] ?? "")){ echo "selected='selected'";}?>><?php echo $option->getStoreDefaultValue()?></option>
+					<?php }
+					?>
+				</select>
+			</div>
+		</div>
+	<?php }
+	if ($oneAttribute["frontend_input"] == "date") { ?>
+		<div class="field">
+			<label class="label"><?php echo  $oneAttribute["frontend_label"] ?>:</label>
+			<div class="control">
+				<?php 
+                    if(isset($productData[$oneAttribute["attribute_code"]])){
+                        $value = $block->formatDate($productData[$oneAttribute["attribute_code"]]); 
+                    }else{
+                        $value = '';
+                    } ?>
+				<input type="text" class="input-text" name="product[<?php echo $oneAttribute["attribute_code"] ?>]" id="<?php echo $oneAttribute["attribute_code"] ?>"  value="<?php echo $value ?? "" ?>" />
+			</div>
+		</div>
+		<script>
+			require([
+				"jquery",
+				"jquery/ui"
+			], function($){
+				var id = "<?php echo $oneAttribute["attribute_code"]; ?>";
+				$("#"+id).datepicker({
+					'dateFormat':'dd/mm/yy'
+				});
+			});
+		</script>
+	<?php }
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

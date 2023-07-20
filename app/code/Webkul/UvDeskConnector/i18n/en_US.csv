@@ -1,0 +1,72 @@
+"Some thing went wrong in the Uvdesk configuration. Please contact the administration","Some thing went wrong in the Uvdesk configuration. Please contact the administration"
+Tickets,Tickets
+"Success ! Ticket(s) removed successfully.","Success ! Ticket(s) removed successfully."
+"Error ! %1 Tickets not removed successfully.","Error ! %1 Tickets not removed successfully."
+"Attached file size issue.Please contact admin.","Attached file size issue.Please contact admin."
+"Attached file size issue.Please contact administration.","Attached file size issue.Please contact administration."
+error_description,error_description
+"Please properly filled the Uvdesk configuration.","Please properly filled the Uvdesk configuration."
+Enabled,Enabled
+Disabled,Disabled
+" Success ! Ticket has been created successfully."," Success ! Ticket has been created successfully."
+"We are not able to proceed your request. Please contact administration","We are not able to proceed your request. Please contact administration"
+"There is some error in getting the thread. Please check log.","There is some error in getting the thread. Please check log."
+"Success ! Reply added successfully.","Success ! Reply added successfully."
+"Due to some issue ticket thread cannot be fetched. Please contact administration.","Due to some issue ticket thread cannot be fetched. Please contact administration."
+" Error, request data not valid. (http-code: 400)."," Error, request data not valid. (http-code: 400)."
+"Error, resource not found (http-code: 404)","Error, resource not found (http-code: 404)"
+"Error, HTTP Status Code :%1","Error, HTTP Status Code :%1"
+"There is an error in getting ticket type. Please contact administration.","There is an error in getting ticket type. Please contact administration."
+"Due to some issue cannot get all members. Please contact administration.","Due to some issue cannot get all members. Please contact administration."
+"There is some error in getting the ticket details. Please contact administration.","There is some error in getting the ticket details. Please contact administration."
+"There is an error in adding reply to ticket","There is an error in adding reply to ticket"
+"We cannot proceed your request.","We cannot proceed your request."
+Labels,Labels
+"Filter Tickets","Filter Tickets"
+"Assigned To","Assigned To"
+Customer,Customer
+Group,Group
+Team,Team
+Priority,Priority
+Type,Type
+Tag,Tag
+Mailbox,Mailbox
+"Ticket List","Ticket List"
+Ticket,Ticket
+"Customer Name","Customer Name"
+Subject,Subject
+"Date Added","Date Added"
+Replies,Replies
+Agent,Agent
+Action,Action
+#,#
+View,View
+"No tickets Found!","No tickets Found!"
+"created a ticket","created a ticket"
+"Sort By .......","Sort By ......."
+"Ticket Id","Ticket Id"
+"Agent Name","Agent Name"
+"Create Ticket","Create Ticket"
+"please select filter priority","please select filter priority"
+"please select......","please select......"
+"please select filter status","please select filter status"
+"please select filter agent","please select filter agent"
+Submit,Submit
+"No Ticket Found","No Ticket Found"
+"Select type","Select type"
+"All Expanded","All Expanded"
+"Expand ","Expand "
+" More..."," More..."
+"UVdesk #","UVdesk #"
+"Ticket Thread","Ticket Thread"
+Collaborators,Collaborators
+"There is no collaborator available for this ticket.","There is no collaborator available for this ticket."
+replied,replied
+Webkul,Webkul
+"UVdesk Connector","UVdesk Connector"
+"UVdesk Configuration","UVdesk Configuration"
+"Company Domain","Company Domain"
+"Access Token","Access Token"
+Accounts,Accounts
+UVdesk,UVdesk
+"UvDesk Ticket List","UvDesk Ticket List"

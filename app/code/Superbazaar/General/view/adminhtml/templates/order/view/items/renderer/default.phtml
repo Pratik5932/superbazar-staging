@@ -1,0 +1,30 @@
+<?php
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+?>
+<?php /** @var \Magento\Sales\Block\Adminhtml\Order\View\Items\Renderer\DefaultRenderer $block */ ?>
+<?php $_item = $block->getItem() ?>
+<?php $block->setPriceDataObject($_item) ?>
+<tr>
+    <?php $i = 0;
+    $columns = $block->getColumns();
+    $lastItemNumber = count($columns) ?>
+    <?php foreach ($columns as $columnName => $columnClass) : ?>
+        <?php $i++; ?>
+        <?php if($columnName == "aisle") {
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProductId());
+            ?>
+            <td class="<?= /* @noEscape */ $columnClass ?>">
+                <?php echo $product->getAttributeText('aisle'); ?>
+            </td>
+            <?php } ?>
+        <?php if($columnName != "aisle") {?>
+            <td class="<?= /* @noEscape */ $columnClass ?><?= /* @noEscape */ ($i === $lastItemNumber ? ' last' : '') ?>">
+                <?= $block->getColumnHtml($_item, $columnName) ?>
+            </td>
+            <?php } ?>
+        <?php endforeach; ?>
+</tr>

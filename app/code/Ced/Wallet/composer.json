@@ -1,0 +1,20 @@
+ {
+  "name": "ced/module-wallet",
+  "description": "Enable Wallet functionality .",
+  "require": {
+       "php": "7.0.2|7.0.4|~7.0.6|~7.1.0",
+   "magento/magento-composer-installer": "*"
+  },
+  "type": "magento2-module",
+  "version": "0.0.2",
+  "license": [
+   "EULA"
+  ],
+  "autoload": {
+   "files": [ "registration.php" ],
+   "psr-4": {
+    "Ced\\Wallet\\": ""
+   }
+  }
+ }
+

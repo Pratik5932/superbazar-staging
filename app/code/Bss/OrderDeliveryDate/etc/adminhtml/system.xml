@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!--
+/**
+* BSS Commerce Co.
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://bsscommerce.com/Bss-Commerce-License.txt
+*
+* @category   BSS
+* @package    Bss_OrderDeliveryDate
+* @author     Extension Team
+* @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+* @license    http://bsscommerce.com/Bss-Commerce-License.txt
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="bss" translate="label" sortOrder="300">
+            <label>Bss Commerce</label>
+        </tab>
+        <section id="orderdeliverydate" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Order Delivery Date</label>
+            <tab>bss</tab>
+            <resource>Bss_OrderDeliveryDate::config_orderdeliverydate</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Version 1.3.3]]></comment>
+                </field>
+
+                <field id="on_which_page" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display At</label>
+                    <source_model>Bss\OrderDeliveryDate\Model\Config\Source\Option</source_model>
+                    <comment><![CDATA[Choose at which step delivery date should be captured.]]></comment>
+                </field>
+
+                <field id="process_time" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Processing Time</label>
+                    <comment><![CDATA[Delivery will be taken after(x) day(s) upon the date order(s) made.]]></comment>
+                    <validate>validate-digits</validate>
+                </field>
+
+                <field id="cut_off_time" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cut Off Time</label>
+                    <!-- <source_model>Magento\Config\Model\Config\Source\Yesno</source_model> -->
+                    <!--                    <comment><![CDATA[If customers place order after this time the date when orders made will be counted as the following day.]]></comment>-->
+                    <!--                    <frontend_model>Bss\OrderDeliveryDate\Block\System\Form\Field\Disable</frontend_model>-->
+                    <frontend_model>Bss\OrderDeliveryDate\Block\System\Form\Field\RegextsCutoff</frontend_model>
+                    <backend_model>Bss\OrderDeliveryDate\Model\Config\Backend\Serialized</backend_model>
+
+                    <comment><![CDATA[Please add this Cut off time value on Seller profile from frontend of website ]]></comment>
+                </field>
+
+                <field id="block_out_holidays" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Holidays/Exclude Days/Blackout Days</label>
+                    <frontend_model>Bss\OrderDeliveryDate\Block\System\Form\Field\Regex</frontend_model>
+                    <backend_model>Bss\OrderDeliveryDate\Model\Config\Backend\Serialized</backend_model>
+                    <comment><![CDATA[You can add holidays or exclude days or blackout certain dates from your deliver calendar.]]></comment>
+                </field>
+
+                <field id="time_slots" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Time Slots</label>
+                    <frontend_model>Bss\OrderDeliveryDate\Block\System\Form\Field\Regexts</frontend_model>
+                    <backend_model>Bss\OrderDeliveryDate\Model\Config\Backend\Serialized</backend_model>
+                    <comment><![CDATA[You can add time slots and customer only select one of selections.]]></comment>
+                </field>
+
+                <field id="shipping_comment" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Shipping Arrival Comment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+              <!--  <field id="deliverydate_day_off" translate="label" type="multiselect" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable Delivery Date</label>
+                    <source_model>Magento\Config\Model\Config\Source\Locale\Weekdays</source_model>
+                    
+                    <comment><![CDATA[Choose days on which shipping will not be available.]]></comment>
+                </field> -->
+
+                <field id="date_fields" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Date Fields</label>
+                    <source_model>Bss\OrderDeliveryDate\Model\Config\Source\Dateformat</source_model>
+                </field>
+
+                <field id="icon_calendar" translate="label" type="image" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Icon Calendar</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">bss/deliverydate</upload_dir>
+                    <base_url type="media" scope_info="1">bss/deliverydate</base_url>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png.]]></comment>
+                </field>
+
+                <field id="as_processing_days" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Exclude Holidays/Disable Day From Processing Day.]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="required_date" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Required Date Field</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="required_timeslot" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Required Time Slots Field</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="required_comment" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Required Comment Field</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

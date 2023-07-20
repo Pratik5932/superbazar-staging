@@ -1,0 +1,22 @@
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Mppaypalexpresscheckout
+ * @author    Webkul Software Private Limited
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+form.paypal-detail div.paypal-status{
+    display: inline-block;
+    padding-left: 15px;
+}
+form.paypal-detail span.paypal-status{
+    font-weight: bold;
+}
+form.paypal-detail span.paypal-status.approved{
+    color : green;
+}
+form.paypal-detail span.paypal-status.disapproved{
+    color : red;
+}

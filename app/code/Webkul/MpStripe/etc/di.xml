@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Webkul Software.
+*
+* @category  Webkul
+* @package   Webkul_MpStripe
+* @author    Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license   https://store.webkul.com/license.html
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Sales\Model\Order\Creditmemo\Total\Shipping" type="Webkul\MpStripe\Model\Order\Creditmemo\Total\Shipping"/>
+    <preference for="Webkul\Marketplace\Block\Order\Items" type="Webkul\MpStripe\Block\Order\Items"/>
+    <type name="Webkul\MpStripe\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Webkul\MpStripe\Logger\StripeLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">mpstripe</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Webkul\MpStripe\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="\Webkul\Marketplace\Helper\Data">
+       <plugin name="Webkul_MpStripe::updatedHelperDataFile"
+               type="Webkul\MpStripe\Plugin\Helper\Data"
+               sortOrder="100" />
+    </type>
+    <type name="\Magento\Backend\Block\Widget\Button\Toolbar">
+       <plugin name="Webkul_MpStripe::removeButtonList"
+               type="Webkul\MpStripe\Plugin\Backend\Block\Widget\Button\Toolbar"/>
+    </type>
+    <type name="Webkul\MpStripe\Model\ImageUploader">
+        <arguments>
+            <!-- Temporary file stored in pub/media/faq/tmp/icon -->
+            <argument name="baseTmpPath" xsi:type="string">idproof/tmp/idproof</argument>
+            <argument name="basePath" xsi:type="string">idproof/</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- API implementation -->
+    <preference for="Webkul\MpStripe\Api\WebhookInterface" type="Webkul\MpStripe\Model\Payment\WebHook" />
+
+</config>

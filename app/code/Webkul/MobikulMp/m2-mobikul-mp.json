@@ -1,0 +1,963 @@
+{
+    "main-domain": "",
+    "main-description": "",
+    "access": [
+        "ratnesh@webkul.com",
+        "rani.priya439@webkul.com",
+        "hemant.jain591@webkul.com",
+        "khushboo.sahu062@webkul.com"
+    ],
+    "group-list": [
+        {
+            "group": "Marketplace",
+            "description": "This Group contains all the apis related to Seller Information",
+            "api-list": [
+                {
+                    "api-name": "Dashboard",
+                    "api-description": "This api fetches the dashboard data like, Lifetime Sales, Average Order Amount, List of Latest Orders for the corresponding Seller.",
+                    "api-endpoint": "mobikulmphttp/marketplace/dashboard",
+                    "api-method": "POST",
+                    "api-params": [
+                        {
+                            "key-name": "storeId",
+                            "description": "This Parameter is required to filter the data by store",
+                            "data-type": "integer",
+                            "required": true,
+                            "possible-values": "1"
+                        },
+                        {
+                            "key-name": "customerToken",
+                            "description": "To check user logged or not",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "bklkhi63xrt4536ap5abhp16dcjmk674"
+                        },
+                        {
+                            "key-name": "mFactor",
+                            "description": "This parameter used for set image quality in terms sharpness and pixels per inch(ppi)",
+                            "data-type": "integer",
+                            "required": false,
+                            "possible-values": "1"
+                        },
+                        {
+                            "key-name": "width",
+                            "description": "This parameter used for Set image demension",
+                            "data-type": "integer",
+                            "required": false,
+                            "possible-values": "1000"
+                        }
+                    ],
+                    "api-response": [
+                        {
+                            "key-name": "success",
+                            "description": "This denote whether the api results in success or failure. If false, then check the messgae key for the error message.",
+                            "data-type": "boolean",
+                            "possible-values": "true OR false"
+                        },
+                        {
+                            "key-name": "message",
+                            "description": "It contains either success or error message of the current api.",
+                            "data-type": "string",
+                            "possible-values": "Any success or error message, mostly error message."
+                        },
+                        {
+                            "key-name": "reviewList",
+                            "description": "It contains list of review of the seller.",
+                            "data-type": "array of object",
+                            "possible-values": "[{\"name\":\"john doe\",\"date\":\"22/01/2019\",\"priceRating\":\"\",\"valueRating\":\"\",\"qualityRating\":\"\"}]",
+                            "child-object": {
+                                "explaination": [
+                                    {
+                                        "key-name": "name",
+                                        "description": "Name of customer who writes the review.",
+                                        "data-type": "string",
+                                        "possible-values": "John Doe."
+                                    },
+                                    {
+                                        "key-name": "date",
+                                        "description": "Date of Review.",
+                                        "data-type": "string",
+                                        "possible-values": "22 sep 2018"
+                                    },
+                                    {
+                                        "key-name": "priceRating",
+                                        "description": "It contains Rating of seller on price.",
+                                        "data-type": "integer",
+                                        "possible-values": "5"
+                                    },
+                                    {
+                                        "key-name": "valueRating",
+                                        "description": "It contains Rating of seller on value.",
+                                        "data-type": "integer",
+                                        "possible-values": "5"
+                                    },
+                                    {
+                                        "key-name": "priceRating",
+                                        "description": "It contains Rating of seller on quantity.",
+                                        "data-type": "integer",
+                                        "possible-values": "5"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "key-name": "totalPayout",
+                            "description": "It contains Total amount paid by admin to the seler till date.",
+                            "data-type": "integer",
+                            "possible-values": "$ 809"
+                        },
+                        {
+                            "key-name": "remainingAmount",
+                            "description": "It is the remaining amount to be paid by admin to the seler till date.",
+                            "data-type": "integer",
+                            "possible-values": "$809"
+                        },
+                        {
+                            "key-name": "lifetimeSale",
+                            "description": "It contains the Total worth of the products sold that belongs to that seller.",
+                            "data-type": "float",
+                            "possible-values": "$ 752"
+                        },
+                        {
+                            "key-name": "categoryChart",
+                            "description": "It contains url for category chart.",
+                            "data-type": "string",
+                            "possible-values": "http://thisisatesturl.com"
+                        },
+                        {
+                            "key-name": "recentOrderList",
+                            "description": "It contains recent list of Orders of the seller's products.",
+                            "data-type": "array of object",
+                            "possible-values": "[{\"orderId\":\"000000002\",\"status\":\"pending\",\"incrementId\":\"3\",\"productNames\":\"[{\"qty\": 1,\"name\":\"Pursuit Lumaflex&trade; Tone Band\",\"productId\": \"18\"}], \"customerDetails\":[{\"name\":\"test Webkul\",\"date\":\"24/02/2019\", \"baseTotal\":\"$754\",\"purchaseTotal\":\"$850\"}]"
+                        },
+                        {
+                            "key-name": "dailySalesStats",
+                            "description": "It contains graph Url of the statistics Graph on daily basis.",
+                            "data-type": "string",
+                            "possible-values": "http://thisisatesturl.com"
+                        },
+                        {
+                            "key-name": "weeklySalesStats",
+                            "description": "It contains graph Url of the statistics Graph on weekly basis.",
+                            "data-type": "string",
+                            "possible-values": "http://thisisatesturl.com"
+                        },
+                        {
+                            "key-name": "monthlySalesStats",
+                            "description": "It contains graph Url of the statistics Graph on monthly basis.",
+                            "data-type": "string",
+                            "possible-values": "http://thisisatesturl.com"
+                        },
+                        {
+                            "key-name": "yearlySalesStats",
+                            "description": "It contains graph Url of the statistics Graph on yearly basis.",
+                            "data-type": "string",
+                            "possible-values": "http://thisisatesturl.com"
+                        },
+                        {
+                            "key-name": "topSellingProducts",
+                            "description": "It contains list of 5 top sold products of the seller.",
+                            "data-type": "array of object",
+                            "possible-values": "[{\"id\":\"000000009\",\"qty\":\"2\",\"name\":\"joust duffle bag\",\"openable\":\"true\"}]"
+                        },
+                        {
+                            "key-name": "dailySalesLocationReport",
+                            "description": "it contains the daily sales report based on location",
+                            "data-type": "string",
+                            "possible-values": "http://192.168.15.107/magento/samp/marketplace/account/dashboard_tunnel/?encrypted_data=01efd0267e2f2c9625a14a7cb2134ed7&param_data=eyJjaHQiOiJtYXA6Zml4ZWQ9LTYwLCAtMTgwLCA4NSwgMTgwIiwiY2htYSI6IjAsIDExMCwgMCwgMCIsImNobSI6ImZVUy1HQTpPcmRlcnMtMSBTYWxlcy0xMi44MDAwLDAwMDAwMCwwLDAsMTAiLCJjaGxkIjoiVVMtR0EiLCJjaGRsIjoiVVMtR0EiLCJjaGNvIjoiQjNCQ0MwfDA4M0FBMCIsImNocyI6IjEwMDB4NTAwIn0%253D"
+                        },
+                        {
+                            "key-name": "weeklySalesLocationReport",
+                            "description": "it contains the weekly sales report based on location",
+                            "data-type": "string",
+                            "possible-values": "http://192.168.15.107/magento/samp/marketplace/account/dashboard_tunnel/?encrypted_data=01efd0267e2f2c9625a14a7cb2134ed7&param_data=eyJjaHQiOiJtYXA6Zml4ZWQ9LTYwLCAtMTgwLCA4NSwgMTgwIiwiY2htYSI6IjAsIDExMCwgMCwgMCIsImNobSI6ImZVUy1HQTpPcmRlcnMtMSBTYWxlcy0xMi44MDAwLDAwMDAwMCwwLDAsMTAiLCJjaGxkIjoiVVMtR0EiLCJjaGRsIjoiVVMtR0EiLCJjaGNvIjoiQjNCQ0MwfDA4M0FBMCIsImNocyI6IjEwMDB4NTAwIn0%253D"
+                        },
+                        {
+                            "key-name": "monthlySalesLocationReport",
+                            "description": "it contains the monthly sales report based on location",
+                            "data-type": "string",
+                            "possible-values": "http://192.168.15.107/magento/samp/marketplace/account/dashboard_tunnel/?encrypted_data=01efd0267e2f2c9625a14a7cb2134ed7&param_data=eyJjaHQiOiJtYXA6Zml4ZWQ9LTYwLCAtMTgwLCA4NSwgMTgwIiwiY2htYSI6IjAsIDExMCwgMCwgMCIsImNobSI6ImZVUy1HQTpPcmRlcnMtMSBTYWxlcy0xMi44MDAwLDAwMDAwMCwwLDAsMTAiLCJjaGxkIjoiVVMtR0EiLCJjaGRsIjoiVVMtR0EiLCJjaGNvIjoiQjNCQ0MwfDA4M0FBMCIsImNocyI6IjEwMDB4NTAwIn0%253D"
+                        },
+                        {
+                            "key-name": "yearSalesLocationReport",
+                            "description": "it contains the yealry sales report based on location",
+                            "data-type": "string",
+                            "possible-values": "http://192.168.15.107/magento/samp/marketplace/account/dashboard_tunnel/?encrypted_data=01efd0267e2f2c9625a14a7cb2134ed7&param_data=eyJjaHQiOiJtYXA6Zml4ZWQ9LTYwLCAtMTgwLCA4NSwgMTgwIiwiY2htYSI6IjAsIDExMCwgMCwgMCIsImNobSI6ImZVUy1HQTpPcmRlcnMtMSBTYWxlcy0xMi44MDAwLDAwMDAwMCwwLDAsMTAiLCJjaGxkIjoiVVMtR0EiLCJjaGRsIjoiVVMtR0EiLCJjaGNvIjoiQjNCQ0MwfDA4M0FBMCIsImNocyI6IjEwMDB4NTAwIn0%253D"
+                        }
+                    ],
+                    "request-header-params": [
+                        {
+                            "key-name": "authKey",
+                            "description": "This is the digest created at client end using simple logic, ((apiKey+:+apiPassword)+token received from server when failed to authenticate)",
+                            "data-type": "string",
+                            "possible-values": "745FAB89D175501ECFE2E9DC3D7DDD00"
+                        }
+                    ],
+                    "response-header-params": [
+                        {
+                            "key-name": "token",
+                            "description": "Check for response code, if the response code is 401, then you need to check for this token key in response header. And utilise this to create authkey, that is going to be used in next request.",
+                            "data-type": "string",
+                            "possible-values": "3dh73smv4k4qr157a65u6jun46"
+                        }
+                    ],
+                    "possible-values": {
+                        "success": true,
+                        "message": "",
+                        "dailySalesLocationReport": "http://192.168.15.107/magento/samp/marketplace/account/dashboard_tunnel/?encrypted_data=01efd0267e2f2c9625a14a7cb2134ed7&param_data=eyJjaHQiOiJtYXA6Zml4ZWQ9LTYwLCAtMTgwLCA4NSwgMTgwIiwiY2htYSI6IjAsIDExMCwgMCwgMCIsImNobSI6ImZVUy1HQTpPcmRlcnMtMSBTYWxlcy0xMi44MDAwLDAwMDAwMCwwLDAsMTAiLCJjaGxkIjoiVVMtR0EiLCJjaGRsIjoiVVMtR0EiLCJjaGNvIjoiQjNCQ0MwfDA4M0FBMCIsImNocyI6IjEwMDB4NTAwIn0%253D",
+                        "yearlySalesLocationReport": "http://192.168.15.107/magento/samp/marketplace/account/dashboard_tunnel/?encrypted_data=ec2db20726e1ece3d3e74b0e44d4b06d&param_data=eyJjaHQiOiJtYXA6Zml4ZWQ9LTYwLCAtMTgwLCA4NSwgMTgwIiwiY2htYSI6IjAsIDExMCwgMCwgMCIsImNobSI6ImZVUy1HQTpPcmRlcnMtMSBTYWxlcy0xMi44MDAwLDAwMDAwMCwwLDAsMTAiLCJjaGxkIjoiVVMtR0EiLCJjaGRsIjoiVVMtR0EiLCJjaGNvIjoiQjNCQ0MwfDQ0ODRCNCIsImNocyI6IjEwMDB4NTAwIn0%253D",
+                        "monthlySalesLocationReport": "http://192.168.15.107/magento/samp/marketplace/account/dashboard_tunnel/?encrypted_data=258a61885330a218008d7ee59298d3bc&param_data=eyJjaHQiOiJtYXA6Zml4ZWQ9LTYwLCAtMTgwLCA4NSwgMTgwIiwiY2htYSI6IjAsIDExMCwgMCwgMCIsImNobSI6ImZVUy1HQTpPcmRlcnMtMSBTYWxlcy0xMi44MDAwLDAwMDAwMCwwLDAsMTAiLCJjaGxkIjoiVVMtR0EiLCJjaGRsIjoiVVMtR0EiLCJjaGNvIjoiQjNCQ0MwfEE0ODAxNSIsImNocyI6IjEwMDB4NTAwIn0%253D",
+                        "dailySalesStats": "http://192.168.15.107/magento/samp/marketplace/account/dashboard_tunnel/?encrypted_data=15f07752265b227abd1d4547545891fa&param_data=eyJjaHQiOiJidnMiLCJjaG0iOiJOLDAwMDAwMCwwLC0xLDExIiwiY2hmIjoiYmcscyxmZmZmZmYiLCJjaHh0IjoieCx5IiwiY2hkcyI6ImEiLCJjaGJoIjoxMDAsImNoY28iOiJlZjY3MmYiLCJjaHhsIjoiMDp8MjowMCBQTXw1OjAwIFBNfDg6MDAgUE18MTE6MDAgUE0iLCJjaGQiOiJ0OjEwMCwwLDAsMCIsImNocyI6IjEwMDB4NTAwIn0%253D",
+                        "yearlySalesStats": "http://192.168.15.107/magento/samp/marketplace/account/dashboard_tunnel/?encrypted_data=c4a14a36e1bbb6ae3c112aa42c441c88&param_data=eyJjaHQiOiJidnMiLCJjaG0iOiJOLDAwMDAwMCwwLC0xLDExIiwiY2hmIjoiYmcscyxmZmZmZmYiLCJjaHh0IjoieCx5IiwiY2hkcyI6ImEiLCJjaGJoIjoxMDAsImNoY28iOiJlZjY3MmYiLCJjaHhsIjoiMDp8SmFudWFyeXxGZWJydWFyeXxNYXJjaHxBcHJpbCIsImNoZCI6InQ6MCwwLDAsMTIuOCIsImNocyI6IjEwMDB4NTAwIn0%253D",
+                        "monthlySalesStats": "http://192.168.15.107/magento/samp/marketplace/account/dashboard_tunnel/?encrypted_data=23b22cfe1fa09b30e1286acb79b0fb31&param_data=eyJjaHQiOiJidnMiLCJjaG0iOiJOLDAwMDAwMCwwLC0xLDExIiwiY2hmIjoiYmcscyxmZmZmZmYiLCJjaHh0IjoieCx5IiwiY2hkcyI6ImEiLCJjaGJoIjoxMDAsImNoY28iOiJlZjY3MmYiLCJjaHhsIjoiMDp8MDRcLzFcLzIwMTl8MDRcLzJcLzIwMTl8MDRcLzNcLzIwMTl8MDRcLzRcLzIwMTl8MDRcLzI5XC8yMDE5IiwiY2hkIjoidDowLDAsMCwwLDEyLjgiLCJjaHMiOiIxMDAweDUwMCJ9",
+                        "totalPayout": "$0.00",
+                        "lifetimeSale": "$0.00",
+                        "remainingAmount": "$0.00",
+                        "topSellingProducts": [
+                            {
+                                "id": "18",
+                                "qty": "1",
+                                "name": "Pursuit Lumaflex&trade; Tone Band",
+                                "openable": true
+                            }
+                        ],
+                        "categoryChart": "http://192.168.15.107/magento/samp/marketplace/account/dashboard_tunnel/?encrypted_data=8201ea9eb49504bc637483e52033c8ee&param_data=eyJjaHQiOiJwIiwiY2hsIjoiR2VhciIsImNoZCI6InQ6MTAwIiwiY2hjbyI6IkMwNzc5NCIsImNoZGwiOiIxMDAlIiwiY2hzIjoiMTAwMHg1MDAifQ%253D%253D",
+                        "recentOrderList": [
+                            {
+                                "orderId": "1",
+                                "incrementId": "000000002",
+                                "productNames": [
+                                    {
+                                        "qty": 1,
+                                        "name": "Pursuit Lumaflex&trade; Tone Band",
+                                        "productId": "18"
+                                    }
+                                ],
+                                "status": "PENDING",
+                                "customerDetails": {
+                                    "name": "test wekul",
+                                    "date": "4/29/19",
+                                    "baseTotal": "$12.80",
+                                    "purchaseTotal": "$12.80"
+                                }
+                            }
+                        ],
+                        "reviewList": [
+                            {
+                                "name": "Veronica Costello",
+                                "date": "2019-04-26 13:36:27",
+                                "comment": "this is a review from hemant Jain.\r\nThis is worth ignoring.",
+                                "priceRating": 20,
+                                "valueRating": 20,
+                                "qualityRating": 20
+                            }
+                        ],
+                        "weeklySalesStats": "http://192.168.15.107/magento/samp/marketplace/account/dashboard_tunnel/?encrypted_data=376a320b2b0ae14abb7cb89302e11806&param_data=eyJjaHQiOiJidnMiLCJjaG0iOiJOLDAwMDAwMCwwLC0xLDExIiwiY2hmIjoiYmcscyxmZmZmZmYiLCJjaHh0IjoieCx5IiwiY2hkcyI6ImEiLCJjaGJoIjoxMDAsImNoY28iOiJlZjY3MmYiLCJjaHhsIjoiMDp8MDRcLzI5XC8yMDE5IiwiY2hkIjoidDoxMi44IiwiY2hzIjoiMTAwMHg1MDAifQ%253D%253D",
+                        "weeklySalesLocationReport": "http://192.168.15.107/magento/samp/marketplace/account/dashboard_tunnel/?encrypted_data=783c05ba2ddd2e16eaee99c52d022e2b&param_data=eyJjaHQiOiJtYXA6Zml4ZWQ9LTYwLCAtMTgwLCA4NSwgMTgwIiwiY2htYSI6IjAsIDExMCwgMCwgMCIsImNobSI6ImZVUy1HQTpPcmRlcnMtMSBTYWxlcy0xMi44MDAwLDAwMDAwMCwwLDAsMTAiLCJjaGxkIjoiVVMtR0EiLCJjaGRsIjoiVVMtR0EiLCJjaGNvIjoiQjNCQ0MwfDJCQTMzNyIsImNocyI6IjEwMDB4NTAwIn0%253D"
+                    }
+                },
+                {
+                    "api-name": "Add Tracking Info",
+                    "api-description": "This api will be used to add the tracking info in the Order.",
+                    "api-endpoint": "mobikulmphttp/marketplace/addtrackinginfo",
+                    "api-method": "POST",
+                    "api-params": [
+                        {
+                            "key-name": "storeId",
+                            "description": "This Parameter is required to filter the data by store",
+                            "data-type": "integer",
+                            "required": true,
+                            "possible-values": "1"
+                        },
+                        {
+                            "key-name": "customerToken",
+                            "description": "To check user logged or not",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "bklkhi63xrt4536ap5abhp16dcjmk674"
+                        },
+                        {
+                            "key-name": "incrementId",
+                            "description": "To load the order with incrementId",
+                            "data-type": "integer",
+                            "required": true,
+                            "possible-values": "256"
+                        },
+                        {
+                            "key-name": "shipmentId",
+                            "description": "To update the corresponding shipment with the tracking info.",
+                            "data-type": "integer",
+                            "required": true,
+                            "possible-values": "362"
+                        },
+                        {
+                            "key-name": "carrier",
+                            "description": "Information about the carrier used for shipment.",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "DHL-expressway"
+                        },
+                        {
+                            "key-name": "number",
+                            "description": "Tracking number of the carrier used for shipment.",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "Dhl-95321478"
+                        },
+                        {
+                            "key-name": "title",
+                            "description": "Tracking title of the carrier used for shipment.",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "DHL"
+                        }
+                    ],
+                    "api-response": [
+                        {
+                            "key-name": "success",
+                            "description": "This denote whether the api results in success or failure. If false, then check the messgae key for the error message.",
+                            "data-type": "boolean",
+                            "possible-values": "true OR false"
+                        },
+                        {
+                            "key-name": "message",
+                            "description": "It contains either success or error message of the current api.",
+                            "data-type": "string",
+                            "possible-values": "Any success or error message, mostly error message."
+                        },
+                        {
+                            "key-name": "title",
+                            "description": "Tracking title of the carrier used for shipment.",
+                            "data-type": "string",
+                            "possible-values": "Dhl-95321478"
+                        },
+                        {
+                            "key-name": "carrier",
+                            "description": "Information about the carrier used for shipment.",
+                            "data-type": "string",
+                            "possible-values": "DHL-expressway"
+                        },
+                        {
+                            "key-name": "trackId",
+                            "description": "Information about the trackingId of the shipment.",
+                            "data-type": "string",
+                            "possible-values": "95321478"
+                        },
+                        {
+                            "key-name": "number",
+                            "description": "Tracking number of the carrier used for shipment.",
+                            "data-type": "string",
+                            "possible-values": "Dhl-95321478"
+                        },
+                        {
+                            "key-name": "numberClass",
+                            "description": "To decide whether to show the tracking or not.",
+                            "data-type": "string",
+                            "possible-values": "no-display"
+                        },
+                        {
+                            "key-name": "numberClassHref",
+                            "description": "This contains the Tracking popup url.",
+                            "data-type": "string",
+                            "possible-values": "http://trackingtseturl/shipping/tracking"
+                        },
+                        {
+                            "key-name": "trackingUrlHash",
+                            "description": "This contains the hash of the shipment.",
+                            "data-type": "string",
+                            "possible-values": "http://trackingtseturl/shipping/tracking"
+                        }
+                    ],
+                    "request-header-params": [
+                        {
+                            "key-name": "authKey",
+                            "description": "This is the digest created at client end using simple logic, ((apiKey+:+apiPassword)+token received from server when failed to authenticate)",
+                            "data-type": "string",
+                            "possible-values": "745FAB89D175501ECFE2E9DC3D7DDD00"
+                        }
+                    ],
+                    "response-header-params": [
+                        {
+                            "key-name": "token",
+                            "description": "Check for response code, if the response code is 401, then you need to check for this token key in response header. And utilise this to create authkey, that is going to be used in next request.",
+                            "data-type": "string",
+                            "possible-values": "3dh73smv4k4qr157a65u6jun46"
+                        }
+                    ],
+                    "possible-values": {
+                        "success": true,
+                        "message": "",
+                        "title": "DHL",
+                        "number": "DHL-568927549",
+                        "trackId": "379238fdk9320847",
+                        "carrier": "DHL EXPRESSWAY",
+                        "numberclass": "no-display",
+                        "numberclasshref": "http://thisisatesturl.com",
+                        "trackingUrlHash": "thnsmcljfoianovhvoidsvnbcnmxbcvyh"
+                    }
+                },
+                {
+                    "api-name": "Ask Question to Admin",
+                    "api-method": "POST",
+                    "api-endpoint": "mobikulmphttp/marketplace/askquestiontoadmin",
+                    "api-description": "This API will be used to send the admin an email regarding the query of a customer.",
+                    "api-response-type": "application/json",
+                    "api-params": [
+                        {
+                            "key-name": "storeId",
+                            "description": "This Parameter is required to filter the data by store",
+                            "data-type": "integer",
+                            "required": true,
+                            "possible-values": "1"
+                        },
+                        {
+                            "key-name": "customerToken",
+                            "description": "To check user logged or not",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "bklkhi63xrt4536ap5abhp16dcjmk674"
+                        },
+                        {
+                            "key-name": "query",
+                            "description": "This Parameter is the query of the seller form the admin",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "this is a test query"
+                        },
+                        {
+                            "key-name": "subject",
+                            "description": "This is the subject of the query from the seller to the admin.",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "what is your commission for my products?"
+                        }
+                    ],
+                    "api-response": [
+                        {
+                            "key-name": "success",
+                            "description": "This denote whether the api results in success or failure. If false, then check the messgae key for the error message.",
+                            "data-type": "boolean",
+                            "possible-values": "true OR false"
+                        },
+                        {
+                            "key-name": "message",
+                            "description": "It contains either success or error message of the current api.",
+                            "data-type": "string",
+                            "possible-values": "Any success or error message, mostly error message."
+                        }
+                    ],
+                    "request-header-params": [
+                        {
+                            "key-name": "authKey",
+                            "description": "This is the digest created at client end using simple logic, ((apiKey+:+apiPassword)+token received from server when failed to authenticate)",
+                            "data-type": "string",
+                            "possible-values": "745FAB89D175501ECFE2E9DC3D7DDD00"
+                        }
+                    ],
+                    "response-header-params": [
+                        {
+                            "key-name": "token",
+                            "description": "Check for response code, if the response code is 401, then you need to check for this token key in response header. And utilise this to create authkey, that is going to be used in next request.",
+                            "data-type": "string",
+                            "possible-values": "3dh73smv4k4qr157a65u6jun46"
+                        }
+                    ],
+                    "possible-values": {
+                        "success": true,
+                        "message": ""
+                    }
+                },
+                {
+                    "api-name": "Ask Question to Admin",
+                    "api-method": "POST",
+                    "api-endpoint": "mobikulmphttp/marketplace/askquestiontoadmin",
+                    "api-description": "This API will be used to send the admin an email regarding the query of a seller.",
+                    "api-response-type": "application/json",
+                    "api-params": [
+                        {
+                            "key-name": "storeId",
+                            "description": "This Parameter is required to filter the data by store",
+                            "data-type": "integer",
+                            "required": true,
+                            "possible-values": "1"
+                        },
+                        {
+                            "key-name": "customerToken",
+                            "description": "To check user logged or not",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "bklkhi63xrt4536ap5abhp16dcjmk674"
+                        },
+                        {
+                            "key-name": "shopUrl",
+                            "description": "This is the shop url requested by the customer while requesting to become a seller.",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "testshop"
+                        }
+                    ],
+                    "api-response": [
+                        {
+                            "key-name": "success",
+                            "description": "This denote whether the api results in success or failure. If false, then check the messgae key for the error message.",
+                            "data-type": "boolean",
+                            "possible-values": "true OR false"
+                        },
+                        {
+                            "key-name": "message",
+                            "description": "It contains either success or error message of the current api.",
+                            "data-type": "string",
+                            "possible-values": "Any success or error message, mostly error message."
+                        },
+                        {
+                            "key-name": "isPending",
+                            "description": "It contains the flag about the seller approval status. It is true if the seller has already applied but yet has not approved by the admin.",
+                            "data-type": "bool",
+                            "possible-values": "true."
+                        }
+                    ],
+                    "request-header-params": [
+                        {
+                            "key-name": "authKey",
+                            "description": "This is the digest created at client end using simple logic, ((apiKey+:+apiPassword)+token received from server when failed to authenticate)",
+                            "data-type": "string",
+                            "possible-values": "745FAB89D175501ECFE2E9DC3D7DDD00"
+                        }
+                    ],
+                    "response-header-params": [
+                        {
+                            "key-name": "token",
+                            "description": "Check for response code, if the response code is 401, then you need to check for this token key in response header. And utilise this to create authkey, that is going to be used in next request.",
+                            "data-type": "string",
+                            "possible-values": "3dh73smv4k4qr157a65u6jun46"
+                        }
+                    ],
+                    "possible-values": {
+                        "success": true,
+                        "message": "",
+                        "isPending": false
+                    }
+                },
+                {
+                    "api-name": "Contact Seller",
+                    "api-method": "POST",
+                    "api-endpoint": "mobikulmphttp/marketplace/contactseller",
+                    "api-description": "This API will be used to send the seller an email regarding the query of a customer.",
+                    "api-response-type": "application/json",
+                    "api-params": [
+                        {
+                            "key-name": "storeId",
+                            "description": "This Parameter is required to filter the data by store",
+                            "data-type": "integer",
+                            "required": true,
+                            "possible-values": "1"
+                        },
+                        {
+                            "key-name": "customerToken",
+                            "description": "To check user logged or not",
+                            "data-type": "string",
+                            "required": false,
+                            "possible-values": "bklkhi63xrt4536ap5abhp16dcjmk674"
+                        },
+                        {
+                            "key-name": "name",
+                            "description": "This is the name of the customer who is asking the query from the seller.",
+                            "data-type": "string",
+                            "required": false,
+                            "possible-values": "john doe"
+                        },
+                        {
+                            "key-name": "email",
+                            "description": "This is the email of the customer who is asking the query from the seller.",
+                            "data-type": "string",
+                            "required": false,
+                            "possible-values": "test@webkul.com"
+                        },
+                        {
+                            "key-name": "query",
+                            "description": "This is the query of the customer from the seller.",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "What is the height of this table, are there any other colors.? is this product available in pink green color."
+                        },
+                        {
+                            "key-name": "subject",
+                            "description": "This is the subject of the query by the customer from the seller.",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "information about teakwood table."
+                        },
+                        {
+                            "key-name": "sellerId",
+                            "description": "This is the id of the seller to whom the customer is having the query.",
+                            "data-type": "integer",
+                            "required": true,
+                            "possible-values": "132"
+                        },
+                        {
+                            "key-name": "productId",
+                            "description": "This is the id of the product about which the customer is having the query.",
+                            "data-type": "integer",
+                            "required": false,
+                            "possible-values": "2047"
+                        }
+                    ],
+                    "api-response": [
+                        {
+                            "key-name": "success",
+                            "description": "This denote whether the api results in success or failure. If false, then check the messgae key for the error message.",
+                            "data-type": "boolean",
+                            "possible-values": "true OR false"
+                        },
+                        {
+                            "key-name": "message",
+                            "description": "It contains either success or error message of the current api.",
+                            "data-type": "string",
+                            "possible-values": "Any success or error message, mostly error message."
+                        }
+                    ],
+                    "request-header-params": [
+                        {
+                            "key-name": "authKey",
+                            "description": "This is the digest created at client end using simple logic, ((apiKey+:+apiPassword)+token received from server when failed to authenticate)",
+                            "data-type": "string",
+                            "possible-values": "745FAB89D175501ECFE2E9DC3D7DDD00"
+                        }
+                    ],
+                    "response-header-params": [
+                        {
+                            "key-name": "token",
+                            "description": "Check for response code, if the response code is 401, then you need to check for this token key in response header. And utilise this to create authkey, that is going to be used in next request.",
+                            "data-type": "string",
+                            "possible-values": "3dh73smv4k4qr157a65u6jun46"
+                        }
+                    ],
+                    "possible-values": {
+                        "success": true,
+                        "message": "The email has been sent successfully"
+                    }
+                },
+                {
+                    "api-name": "Create Credit Memo",
+                    "api-method": "POST",
+                    "api-endpoint": "mobikulmphttp/marketplace/createcreditmemo",
+                    "api-description": "This API will be used to create a credit memo by the seller from the application.",
+                    "api-response-type": "application/json",
+                    "api-params": [
+                        {
+                            "required": false,
+                            "key-name": "commentCustomerNotify",
+                            "data-type": "integer",
+                            "description": "This parameter will represent, whether to notify the customer with the comment or not.",
+                            "possible-values": "0"
+                        },
+                        {
+                            "required": false,
+                            "key-name": "adjustmentPositive",
+                            "data-type": "float",
+                            "description": "This is the adjustment to be added in the amount of the credit memo.",
+                            "possible-values": "USD 12"
+                        },
+                        {
+                            "required": false,
+                            "key-name": "adjustmentNegative",
+                            "data-type": "float",
+                            "description": "This is the adjustment to be deducted in the amount of the credit memo.",
+                            "possible-values": "USD 12"
+                        },
+                        {
+                            "required": false,
+                            "key-name": "isVisibleOnFront",
+                            "data-type": "integer",
+                            "description": "This parameter will represent, whether to display the credit memo on frontend or not.",
+                            "possible-values": "0"
+                        },
+                        {
+                            "required": false,
+                            "key-name": "shippingAmount",
+                            "data-type": "float",
+                            "description": "This is the shipping amount of the order for which the credit memo is created.",
+                            "possible-values": "USD 36.7"
+                        },
+                        {
+                            "required": true,
+                            "key-name": "incrementId",
+                            "data-type": "integer",
+                            "description": "This is the increment Id corresponding the order for which the credit memo is being created.",
+                            "possible-values": "132"
+                        },
+                        {
+                            "required": true,
+                            "key-name": "invoiceId",
+                            "data-type": "integer",
+                            "description": "This is the invoice Id corresponding the order for which the credit memo is being created.",
+                            "possible-values": "0"
+                        },
+                        {
+                            "required": false,
+                            "key-name": "sendEmail",
+                            "data-type": "integer",
+                            "description": "This param represents whether to send email to the customer about the credit memo or not.",
+                            "possible-values": "0"
+                        },
+                        {
+                            "required": false,
+                            "key-name": "doOffline",
+                            "data-type": "integer",
+                            "description": "This param represents whether to credit memo online or off line.",
+                            "possible-values": "0"
+                        },
+                        {
+                            "required": true,
+                            "key-name": "itemsData",
+                            "data-type": "array of object",
+                            "description": "This is the items data of the order for while the seller is creating the credit memo.",
+                            "possible-values": "{\nname:joustduffle bag,\nproductId:1\nprice:USD 39\n}"
+                        },
+                        {
+                            "required": false,
+                            "key-name": "comment",
+                            "data-type": "string",
+                            "description": "This param will contain the comment text by the seller while creating a credit memo.",
+                            "possible-values": "This is a test comment"
+                        },
+                        {
+                            "required": true,
+                            "key-name": "customerToken",
+                            "data-type": "string",
+                            "description": "To check user logged or not and to verify if the customer is a seller",
+                            "possible-values": "bklkhi63xrt4536ap5abhp16dcjmk674"
+                        },
+                        {
+                            "required": true,
+                            "key-name": "storeId",
+                            "data-type": "integer",
+                            "description": "This Parameter is required to filter the data by store",
+                            "possible-values": "2"
+                        }
+                    ],
+                    "api-response": [
+                        {
+                            "key-name": "success",
+                            "description": "This denote whether the api results in success or failure. If false, then check the messgae key for the error message.",
+                            "data-type": "boolean",
+                            "possible-values": "true OR false"
+                        },
+                        {
+                            "key-name": "message",
+                            "description": "It contains either success or error message of the current api.",
+                            "data-type": "string",
+                            "possible-values": "Any success or error message, mostly error message."
+                        },
+                        {
+                            "key-name": "creditmemoId",
+                            "description": "It contains the creditmemoId of the creditmemo created..",
+                            "data-type": "integer",
+                            "possible-values": "125"
+                        }
+                    ],
+                    "request-header-params": [
+                        {
+                            "key-name": "authKey",
+                            "description": "This is the digest created at client end using simple logic, ((apiKey+:+apiPassword)+token received from server when failed to authenticate)",
+                            "data-type": "string",
+                            "possible-values": "745FAB89D175501ECFE2E9DC3D7DDD00"
+                        }
+                    ],
+                    "response-header-params": [
+                        {
+                            "key-name": "token",
+                            "description": "Check for response code, if the response code is 401, then you need to check for this token key in response header. And utilise this to create authkey, that is going to be used in next request.",
+                            "data-type": "string",
+                            "possible-values": "3dh73smv4k4qr157a65u6jun46"
+                        }
+                    ],
+                    "possible-values": {
+                        "success": true,
+                        "message": "The email has been sent successfully",
+                        "creditmemoId": 125
+                    }
+                }
+            ]
+        },
+        {
+            "group": "Chat",
+            "description": "This Group contains apis used for chat purpose.",
+            "api-list": [
+                {
+                    "api-name": "Seller List",
+                    "api-description": "This api will be used to display the list of sellers available for chatting.",
+                    "api-endpoint": "mobikulmphttp/chat/sellerlist",
+                    "api-method": "POST",
+                    "api-params": [
+                        {
+                            "key-name": "storeId",
+                            "description": "This Parameter is required to filter the data by store",
+                            "data-type": "integer",
+                            "required": true,
+                            "possible-values": "1"
+                        },
+                        {
+                            "key-name": "websiteId",
+                            "description": "This Parameter is required to filter the data by webisteId",
+                            "data-type": "integer",
+                            "required": true,
+                            "possible-values": "1"
+                        },
+                        {
+                            "key-name": "customerToken",
+                            "description": "To check user logged or not",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "bklkhi63xrt4536ap5abhp16dcjmk674"
+                        },
+                        {
+                            "key-name": "mFactor",
+                            "description": "This parameter used for set image quality in terms sharpness and pixels per inch(ppi)",
+                            "data-type": "integer",
+                            "required": false,
+                            "possible-values": "1"
+                        },
+                        {
+                            "key-name": "width",
+                            "description": "This parameter used for Set image demension",
+                            "data-type": "integer",
+                            "required": false,
+                            "possible-values": "1000"
+                        }
+                    ],
+                    "api-response": [
+                        {
+                            "key-name": "success",
+                            "description": "This denote whether the api results in success or failure. If false, then check the messgae key for the error message.",
+                            "data-type": "boolean",
+                            "possible-values": "true OR false"
+                        },
+                        {
+                            "key-name": "message",
+                            "description": "It contains either success or error message of the current api.",
+                            "data-type": "string",
+                            "possible-values": "Any success or error message, mostly error message."
+                        },
+                        {
+                            "key-name": "apiKey",
+                            "description": "This is the notification api key stored in admin configuration.",
+                            "data-type": "string",
+                            "possible-values": "ncxmbfospawripkjmcihrejcxnmzuirmxcuitnmdfgnxcytrughkjfhjdfgl"
+                        },
+                        {
+                            "key-name": "sellerList",
+                            "description": "It contains the list of the sellers whose device tokens are stored in the databse.",
+                            "data-type": "array of object",
+                            "possible-values": "{\"name\":\"john Doe\",\"email\":\"test@webkul.com\"}"
+                        }
+                    ],
+                    "request-header-params": [
+                        {
+                            "key-name": "authKey",
+                            "description": "This is the digest created at client end using simple logic, ((apiKey+:+apiPassword)+token received from server when failed to authenticate)",
+                            "data-type": "string",
+                            "possible-values": "745FAB89D175501ECFE2E9DC3D7DDD00"
+                        }
+                    ],
+                    "response-header-params": [
+                        {
+                            "key-name": "token",
+                            "description": "Check for response code, if the response code is 401, then you need to check for this token key in response header. And utilise this to create authkey, that is going to be used in next request.",
+                            "data-type": "string",
+                            "possible-values": "3dh73smv4k4qr157a65u6jun46"
+                        }
+                    ],
+                    "possible-values": {
+                        "success": true,
+                        "message": "",
+                        "apiKey": "qmnjikuhygtfdvctrescwmpoazdebcpalkaychislfhvrnjgskbnsovyfnsbk",
+                        "sellerList": [
+                            {
+                                "name": "John Doe",
+                                "email": "test@webkul.com"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "api-name": "Notify Admin",
+                    "api-description": "This api will be used to Notify the admin about the chat message.",
+                    "api-endpoint": "mobikulmphttp/chat/notifyadmin",
+                    "api-method": "POST",
+                    "api-params": [
+                        {
+                            "key-name": "storeId",
+                            "description": "This Parameter is required to filter the data by store",
+                            "data-type": "integer",
+                            "required": true,
+                            "possible-values": "1"
+                        },
+                        {
+                            "key-name": "websiteId",
+                            "description": "This Parameter is required to filter the data by webisteId",
+                            "data-type": "integer",
+                            "required": true,
+                            "possible-values": "1"
+                        },
+                        {
+                            "key-name": "customerToken",
+                            "description": "To check user logged or not",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "bklkhi63xrt4536ap5abhp16dcjmk674"
+                        },
+                        {
+                            "key-name": "message",
+                            "description": "The message that the customer wants to notify admin about.",
+                            "data-type": "string",
+                            "required": true,
+                            "possible-values": "This is a custom test message."
+                        }
+                    ],
+                    "api-response": [
+                        {
+                            "key-name": "success",
+                            "description": "This denote whether the api results in success or failure. If false, then check the messgae key for the error message.",
+                            "data-type": "boolean",
+                            "possible-values": "true OR false"
+                        },
+                        {
+                            "key-name": "message",
+                            "description": "It contains either success or error message of the current api.",
+                            "data-type": "string",
+                            "possible-values": "Any success or error message, mostly error message."
+                        },
+                        {
+                            "key-name": "otherError",
+                            "description": "It contains additional error message from the API.",
+                            "data-type": "string",
+                            "possible-values": "Customer does not exist."
+                        }
+                    ],
+                    "request-header-params": [
+                        {
+                            "key-name": "authKey",
+                            "description": "This is the digest created at client end using simple logic, ((apiKey+:+apiPassword)+token received from server when failed to authenticate)",
+                            "data-type": "string",
+                            "possible-values": "745FAB89D175501ECFE2E9DC3D7DDD00"
+                        }
+                    ],
+                    "response-header-params": [
+                        {
+                            "key-name": "token",
+                            "description": "Check for response code, if the response code is 401, then you need to check for this token key in response header. And utilise this to create authkey, that is going to be used in next request.",
+                            "data-type": "string",
+                            "possible-values": "3dh73smv4k4qr157a65u6jun46"
+                        }
+                    ],
+                    "possible-values": {
+                        "success": true,
+                        "message": "",
+                        "otherError": "Customer Does Not Exist"
+                    }
+                }
+            ]
+        }
+    ]
+}

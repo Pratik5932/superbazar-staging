@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Mexbs_AdditionalPromotions::css/rule-popup.css"/>
+    </head>
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="Mexbs\AdditionalPromotions\Block\DisplayRulePopup"
+                   name="ap.display.popup"
+                   template="Mexbs_AdditionalPromotions::display-popup.phtml"
+                    />
+        </referenceContainer>
+    </body>
+</page>

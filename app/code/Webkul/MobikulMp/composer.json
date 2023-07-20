@@ -1,0 +1,21 @@
+{
+    "name": "webkul/module-mobikulmp-singleapp",
+    "description": "Webkul Magento2 Mobikul Marketplace Module Based on single app",
+    "require": {
+        "webkul/module-marketplace": "3.0.*",
+        "webkul/module-mobikul-api": "3.0.*"
+    },
+    "type": "magento2-module",
+    "version": "3.1.0",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Webkul\\MobikulMp\\": ""
+        }
+    }
+}

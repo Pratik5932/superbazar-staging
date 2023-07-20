@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Solwin Infotech
+ * Solwin Featured Product Extension
+ * 
+ * @category   Solwin
+ * @package    Solwin_FeaturedPro
+ * @copyright  Copyright © 2006-2016 Solwin (https://www.solwininfotech.com)
+ * @license    https://www.solwininfotech.com/magento-extension-license/
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Solwin_FeaturedPro::base" title="Featured Products" module="Solwin_FeaturedPro" sortOrder="60" parent="Solwin_Extensions::extensions" resource="Solwin_FeaturedPro::base"/>
+        <add id="Solwin_FeaturedPro::basetitle" title="Featured Products" module="Solwin_FeaturedPro" sortOrder="60" parent="Solwin_Extensions::extensions" resource="Solwin_FeaturedPro::basetitle"/>
+        <add id="Solwin_FeaturedPro::config" title="Configuration" module="Solwin_FeaturedPro" sortOrder="20" parent="Solwin_FeaturedPro::base" action="adminhtml/system_config/edit/section/featuredpro_settings" resource="Solwin_FeaturedPro::config"/>
+    </menu>
+</config>

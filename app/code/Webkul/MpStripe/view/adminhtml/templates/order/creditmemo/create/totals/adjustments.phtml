@@ -1,0 +1,107 @@
+<?php
+/**
+ * Webkul Software
+ *
+ * @category  Webkul
+ * @package   Webkul_MpStripe
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php $helper = $block->getStripeHelper();?>
+<?php
+$requestData = $helper->getRequestData();
+if (isset($requestData['invoice_id'])) {
+    $invoiceData = $helper->checkInvoiceHaveShipping($requestData['invoice_id']);
+}
+?>
+<?php $_source  = $block->getSource() ?>
+<?php
+$payment = $_source->getOrder()->getPayment();
+$method = $payment->getMethodInstance();
+$methodTitle = $method->getTitle();
+?>
+<?php if ($_source): ?>
+    <tr>
+    <?php if ($methodTitle == 'MpStripe' && isset($requestData['invoice_id'])) { ?>
+            <td class="label"><?= $block->escapeHtml($block->getShippingLabel()) ?>
+            <div id="shipping_amount_adv"></div></td>
+            <td>
+                <input type="text"
+                    name="creditmemo[shipping_amount]"
+                    value="<?= $block->escapeHtml(number_format((float)$invoiceData['shipping_amount'], 2, '.', '')) ?>"
+                    class="input-text admin__control-text not-negative-amount"
+                    id="shipping_amount" />
+            </td>
+    <?php } else { ?>
+        <td class="label"><?= $block->escapeHtml($block->getShippingLabel()) ?><div id="shipping_amount_adv"></div></td>
+        <td>
+            <input type="text"
+                   name="creditmemo[shipping_amount]"
+                   value="<?= $block->escapeHtml($block->getShippingAmount()) ?>"
+                   class="input-text admin__control-text not-negative-amount"
+                   id="shipping_amount" />
+        </td>
+    <?php } ?>
+    </tr>
+    <tr>
+        <td class="label"><?= /* @noEscape */ __('Adjustment Refund') ?><div id="adjustment_positive_adv"></div></td>
+        <td>
+            <input type="text"
+                   name="creditmemo[adjustment_positive]"
+                   value="<?= $block->escapeHtml($_source->getBaseAdjustmentFeePositive()*1) ?>"
+                   class="input-text admin__control-text not-negative-amount"
+                   id="adjustment_positive" />
+        </td>
+    </tr>
+    <tr>
+        <td class="label"><?= /* @noEscape */ __('Adjustment Fee') ?><div id="adjustment_negative_adv"></div></td>
+        <td>
+            <input type="text"
+                   name="creditmemo[adjustment_negative]"
+                   value="<?= $block->escapeHtml($_source->getBaseAdjustmentFeeNegative()*1) ?>"
+                   class="input-text admin__control-text not-negative-amount"
+                   id="adjustment_negative"/>
+            <script>
+                require(['prototype'], function(){
+
+                //<![CDATA[
+                Validation.addAllThese([
+                    ['not-negative-amount',
+                    '<?= /* @noEscape */ __('Please enter a positive number in this field.') ?>',
+                    function(v) {
+                        if(v.length)
+                            return /^\s*\d+([,.]\d+)*\s*%?\s*$/.test(v);
+                        else
+                            return true;
+                    }]
+                ]);
+
+                if ($('shipping_amount')) {
+                    $('shipping_amount').advaiceContainer = $('shipping_amount_adv');
+                    unblockSubmit('shipping_amount');
+                }
+                if ($('adjustment_positive')) {
+                    $('adjustment_positive').advaiceContainer = $('adjustment_positive_adv');
+                    unblockSubmit('adjustment_positive');
+                }
+                if ($('adjustment_negative')) {
+                    $('adjustment_negative').advaiceContainer = $('adjustment_negative_adv');
+                    unblockSubmit('adjustment_negative');
+                }
+
+                function unblockSubmit(id) {
+                    $(id).observe('focus', function(event) {
+                        if ($$('button[class="scalable update-button disabled"]').size() > 0) {
+                            enableElements('submit-button');
+                        }
+                    });
+                }
+                //]]>
+
+                });
+            </script>
+        </td>
+    </tr>
+<?php endif; ?>

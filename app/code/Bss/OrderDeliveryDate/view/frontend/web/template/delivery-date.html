@@ -1,0 +1,59 @@
+<!-- ko if: bssDeliveryEnable() -->
+<li class="bss-delivery">
+    <div class="shipping_arrival_date" data-bind="css: errorDateRequiredValidate().length ? 'field _error' : ''">
+        <label for="shipping_arrival_date" data-bind="i18n: 'Delivery Date',css: dateRequired() ? 'required' : ''"></label>
+        <div class="control">
+            <input readonly="readonly" id="shipping_arrival_date" class="shipping_arrival_date"
+                   type="text" size="17" name="shipping_arrival_date"
+                   data-bind="afterRender: initDate()"/>
+            <div role="alert"
+                 if="errorDateRequiredValidate().length"
+                 class="field-error">
+                <span text="errorDateRequiredValidate()" />
+            </div>
+        </div>
+    </div>
+    <!-- ko if: bssDeliveryTimeSlot() -->
+    <div class="delivery_time_slot" data-bind="css: errorTimeRequiredValidate().length ? 'field _error' : ''">
+        <label for="delivery_time_slot" data-bind="i18n: 'Delivery Time Slot', css: timeRequired() ? 'required' : ''"></label>
+        <div class="delivery_time_slot">
+            <select id="delivery_time_slot" name="delivery_time_slot">
+                <!-- ko foreach: $data.listingTimeSlot() -->
+                    <!-- ko if: $data.disabled == 0 -->
+                    <!-- ko if: !$parent.isSelectedOptions($data.value) -->
+                    <option data-bind="text: $t($data.label), attr: {value: $data.value}"></option>
+                    <!-- /ko -->
+                    <!-- ko if: $parent.isSelectedOptions($data.value) -->
+                    <option data-bind="text: $t($data.label), attr: {value: $data.value, selected: 'selected'}"></option>
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: $data.disabled == 1 -->
+                    <option data-bind="text: $t($data.label), attr: {value: $data.value}" disabled="disabled"></option>
+                    <!-- /ko -->
+                <!-- /ko -->
+            </select>
+            <div role="alert"
+                 if="errorTimeRequiredValidate().length"
+                 class="field-error">
+                <span text="errorTimeRequiredValidate()" />
+            </div>
+        </div>
+
+    </div>
+    <!-- /ko -->
+    <!-- ko if: bssShippingComment() -->
+    <div class="shipping_arrival_comments" data-bind="css: errorCommentRequiredValidate().length ? 'field _error' : ''">
+        <label for="shipping_arrival_comments" data-bind="i18n: 'Shipping Arrival Comment',  css: commentRequired() ? 'required' : ''"></label>
+        <div class="datetime-delivery">
+            <textarea id="shipping_arrival_comments" class="shipping_arrival_comments"
+                      type="text" size="17" name="shipping_arrival_comments" data-bind="value: initArrivalComment()"></textarea>
+        </div>
+        <div role="alert"
+             if="errorCommentRequiredValidate().length"
+             class="field-error">
+            <span text="errorCommentRequiredValidate()" />
+        </div>
+    </div>
+    <!-- /ko -->
+</li>
+<!-- /ko -->

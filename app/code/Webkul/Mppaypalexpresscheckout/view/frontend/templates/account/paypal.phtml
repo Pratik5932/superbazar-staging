@@ -1,0 +1,118 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Mppaypalexpresscheckout
+ * @author    Webkul Software Private Limited
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+
+// @codingStandardsIgnoreFile
+/** @var \Webkul\Mppaypalexpresscheckout\Block\Account\PaypalInfo $block */
+?>
+<?php $helper = $this->helper('Webkul\Mppaypalexpresscheckout\Helper\Data'); ?>
+<?php //if($helper->checkIsAdminValidUser()): ?>
+    <form action="<?php /* @noEscape */ echo $block->getUrl('mppaypalexpresscheckout/savepaypal') ?>"
+        enctype="multipart/form-data" method="post" id="paypal-detail-express" class="paypal-detail">
+        <div class="wk-mp-page-title page-title">
+            <h2><?php /* @noEscape */ echo __('Set Paypal Detail') ?></h2>
+            <button class="button wk-mp-btn"
+                title="<?php /* @noEscape */ echo __('Save Paypal Detail') ?>" type="submit" id="save-btn">
+                <span><span><?php /* @noEscape */ echo __('Save Paypal Detail') ?></span></span>
+            </button>
+        </div>
+        <div class="wk-mp-design">
+            <fieldset class="fieldset info wk-mp-fieldset">
+                <legend class="legend">
+                    <span><?php /* @noEscape */ echo __('Paypal Detail') ?></span>
+                </legend>
+                <?php /* @noEscape */ echo $block->getBlockHtml('formkey');
+                $paypalid = '';
+                $paypalFname = '';
+                $paypalLname = '';
+                $paypalMerchantId = '';
+                $enabledStatus =  \Webkul\Mppaypalexpresscheckout\Model\Mppaypalexpresscheckout::STATUS_ENABLED;
+                $paypalStatus = \Webkul\Mppaypalexpresscheckout\Model\Mppaypalexpresscheckout::STATUS_DISABLED;
+                $status = __("Disapproved");
+                $statusClass = "disapproved";
+                $isSellerCreatedPaypalAccount = false;
+
+                $paypalInfoData = $block->getSellerPaypalData();
+                if ($paypalInfoData && $paypalInfoData->getSize() > 0) {
+                    $isSellerCreatedPaypalAccount = true;
+                    foreach ($paypalInfoData as $data) {
+                        $paypalid = $data['paypal_id'];
+                        $paypalFname = $data['paypal_fname'];
+                        $paypalLname = $data['paypal_lname'];
+                        $paypalMerchantId = $data['paypal_merchant_id'];
+                        $paypalStatus = $data['status'];
+                    }
+                }
+                
+                if ($paypalStatus == $enabledStatus){
+                    $status = __("Approved");
+                    $statusClass = "approved";
+                } ?>
+                <?php if ($isSellerCreatedPaypalAccount) : ?>
+                <div class="field profile">
+                    <label for="status"><?php /* @noEscape */ echo __('Status : ') ?></label>
+                    <div class="paypal-status">
+                        <span id="status"
+                            title="<?php /* @noEscape */ echo $status ?>"
+                            class="paypal-status <?php echo $statusClass ?>">
+                            <?php echo $status ?>
+                        </span>
+                    </div>
+                </div>
+                <?php endif; ?>
+                <div class="field profile">
+                    <label for="paypal_id"><?php /* @noEscape */ echo __('Paypal ID') ?></label>
+                    <div class="control">
+                        <input type="text" id="paypal_id" name="paypal_id"
+                            value="<?php /* @noEscape */ echo $paypalid; ?>"
+                            title="<?php /* @noEscape */ echo __('Paypal ID') ?>" class="input-text" />
+                    </div>
+                </div>
+                <div class="field profile">
+                    <label for="paypal_fname"><?php /* @noEscape */ echo __('Paypal First Name') ?></label>
+                    <div class="control">
+                        <input type="text" id="paypal_fname" name="paypal_fname"
+                            value="<?php /* @noEscape */ echo $paypalFname; ?>"
+                            title="<?php /* @noEscape */ echo __('Paypal First Name') ?>"
+                            class="input-text" />
+                    </div>
+                </div>
+                <div class="field profile">
+                    <label for="paypal_lname"><?php /* @noEscape */ echo __('Paypal Last Name') ?></label>
+                    <div class="control">
+                        <input type="text" id="paypal_lname" name="paypal_lname"
+                            value="<?php /* @noEscape */ echo $paypalLname; ?>"
+                            title="<?php /* @noEscape */ echo __('Paypal Last Name') ?>"
+                            class="input-text" />
+                    </div>
+                </div>
+                <div class="field profile">
+                    <label for="paypal_merchant_id"><?php /* @noEscape */ echo __('Paypal Merchant Account Id') ?></label>
+                    <div class="control">
+                        <input type="password" id="paypal_merchant_id" name="paypal_merchant_id"
+                            value="<?php /* @noEscape */ if($paypalMerchantId) { echo "*******"; } ?>"
+                            title="<?php /* @noEscape */ echo __('Paypal Merchant Account Id') ?>"
+                            class="input-text" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+    <br/><br/>
+    <script>
+        require([
+            "jquery",
+            "mage/mage"
+        ], function($){
+            var paypalDataForm = $('#paypal-detail-express');
+            paypalDataForm.mage('validation', {});
+        });
+    </script>
+<?php// endif; ?>

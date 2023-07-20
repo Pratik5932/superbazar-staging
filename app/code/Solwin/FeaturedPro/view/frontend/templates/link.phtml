@@ -1,0 +1,21 @@
+<?php
+/**
+ * Solwin Infotech
+ * Solwin Featured Product Extension
+ * 
+ * @category   Solwin
+ * @package    Solwin_FeaturedPro
+ * @copyright  Copyright © 2006-2016 Solwin (https://www.solwininfotech.com)
+ * @license    https://www.solwininfotech.com/magento-extension-license/
+ */
+$helper = $this->helper('Solwin\FeaturedPro\Helper\Data');
+$enable = $helper->getConfigValue('featuredpro_settings/featured_products/enable_toplink');
+if ($enable) {
+    ?>
+    <li class="solwin-featured-list-link">  
+        <a <?php echo $block->getLinkAttributes() ?>><?php echo $block->escapeHtml($block->getLabel()) ?>  
+            <?php echo($block->getCounter()) ? '<span class="counter qty">' . $block->escapeHtml($block->getCounter()) . '</span>' : ''; ?>  
+        </a>
+    </li>
+<?php
+}

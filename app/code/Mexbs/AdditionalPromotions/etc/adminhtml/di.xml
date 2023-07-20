@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\CatalogRule\Observer\ProcessAdminFinalPriceObserver">
+        <plugin name="apProcessAdminFinalPriceObserver" type="Mexbs\AdditionalPromotions\Model\Plugin\Observer\CatalogRule\ProcessAdminFinalPriceObserver"/>
+    </type>
+    <type name="Magento\SalesRule\Model\Rule\DataProvider">
+        <plugin name="apSalesRuleDataProvider" type="Mexbs\AdditionalPromotions\Model\Plugin\Rule\DataProvider"/>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product">
+        <plugin name="apProductResource" type="Mexbs\AdditionalPromotions\Model\Plugin\Indexer\Product\Save\ApplyRules"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product\Action">
+        <plugin name="apProductAction" type="Mexbs\AdditionalPromotions\Model\Plugin\Product\Action"/>
+    </type>
+</config>

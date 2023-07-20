@@ -1,0 +1,1 @@
+[29-Jan-2020 08:44:22 CST6CDT] PHP Fatal error:  require_once(): Failed opening required '/home/superbaz/public_html/pub/errors/../../app/bootstrap.php' (include_path='.:/usr/local/php72/pear') in /home/superbaz/public_html/pub/errors/processorFactory.php on line 8

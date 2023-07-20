@@ -1,0 +1,93 @@
+/**
+ * @category   Webkul
+ * @package    Webkul_SocialSignup
+ * @author     Webkul Software Private Limited
+ * @copyright  Copyright (c) 2010-2017 Webkul Software Private Limited (https://webkul.com)
+ * @license    https://store.webkul.com/license.html
+ */
+
+.wk_socialsignup_container .wk_social_choice h3{
+    margin-left: 7px;
+}
+.wk_socialsignup_container{
+    display: inline-block;
+    width: 100%;
+}
+#socialsignupcont{
+    position:fixed;
+    top:175px;
+    right:0px;
+    z-index:999999;
+}
+.wksocialsignup {
+    margin-left: 5px;
+    margin-top: -4px;
+    cursor: pointer;
+    float: left;
+    margin-bottom: 5px;
+}
+.welcome-msg img {
+    margin-left: 5px;
+}
+.wksocialopener{
+    background:#3399cc;
+    display:inline-block;
+    max-height: 30px;
+    padding: 4px;
+    width: 50px;
+    color:#FFFFFF;
+    text-decoration:none;
+}
+.wksocialclose{
+    background:#3399cc;
+    display:inline-block;
+    max-height: 30px;
+    padding: 4px;
+    width: 50px;
+    opacity:.7;
+    color:#FFFFFF;
+    text-decoration:none;
+}
+.wksocialclose:focus,.wksocialopener:focus{
+    outline:none;
+    color:#FFF;
+}
+.wksocialclose:hover,.wksocialopener:hover{
+    outline:none;
+    color:#FFF;
+    text-decoration: none;
+}
+
+.wksocialsignup .googlelogin-img {
+  border: 1px solid #4584f4;
+  width: 32px;
+  height: 25px;
+  text-align: center;
+  padding-top: 9px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  float:left;
+}
+
+.wksocialsignup .googlelogin-img img{
+  width:18px;
+}
+
+.wksocialsignup .googlelogin-text {
+  background-color: #4584f4;
+  width: 80px;
+  height: 36px;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+  line-height: 33px;
+  font-weight: 600;
+  float:right;
+}
+
+.wksocialsignup span {
+  clear: both;
+  display: inline-block;
+}

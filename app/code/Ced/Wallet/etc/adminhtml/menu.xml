@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Wallet
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Ced_Wallet::wallet" title="Wallet" translate="title" module="Ced_Wallet" sortOrder="20" dependsOnModule="Ced_Wallet" resource="Ced_Wallet::wallet" dependsOnConfig="ced_wallet/active/enable" />
+		<add id="Ced_Wallet::wallet_transactions" title="Transactions" translate="title" module="Ced_Wallet" sortOrder="10" parent="Ced_Wallet::wallet" action="wallet/wallet/transactions" resource="Ced_Wallet::wallet_transactions"/>
+		<add id="Ced_Wallet::wallet_configuration" title="Configuration" translate="title" module="Ced_Wallet" sortOrder="12" parent="Ced_Wallet::wallet" action="adminhtml/system_config/edit/section/ced_wallet" resource="Ced_Wallet::wallet_configuration"/>
+		<add id="Ced_Wallet::wallet_requests" title="Bank Transfer Requests" translate="title" module="Ced_Wallet" sortOrder="11" parent="Ced_Wallet::wallet" action="wallet/wallet/request" resource="Ced_Wallet::wallet_requests"/>
+	</menu>
+</config>

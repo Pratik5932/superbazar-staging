@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Reports\Block\Adminhtml\Shopcart\Abandoned\Grid" type="Superbazaar\General\Block\Adminhtml\Shopcart\Abandoned\Grid" />
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\Reporting">
+        <plugin name="customer_grid_collection" type="Superbazaar\General\Plugin\ResourceModel\Customer\Grid" />
+    </type>
+
+    <preference for="Magento\Customer\Ui\Component\DataProvider" type="Superbazaar\General\Ui\DataProvider\Customer\DataProvider" />
+
+ <!--<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <plugin name="grid_custom_column" type="Superbazaar\General\Plugin\GridJoinCollection" sortOrder="5"/>
+    </type>-->
+</config>

@@ -1,0 +1,254 @@
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_UvDeskConnector
+ * @author    Webkul Software Private Limited
+ * @copyright Copyright (c) 2010-2017 Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<?php
+  $customerDetail = $block->getTicketsAccToCustomer();
+  $customerDetail['priority'] = [['id'=>1, 'name'=>'Low'], ['id'=>2, 'name'=>'Medium'], ['id'=>3, 'name'=>'High'], ['id'=>4, 'name'=>'Urgent']];
+  $customerDetail['status'] = [['id'=>1, 'name'=>'Open'], ['id'=>2, 'name'=>'Pending'], ['id'=>6, 'name'=>'Answered'], ['id'=>3, 'name'=>'Resolved'], ['id'=>4, 'name'=>'Closed'], ['id'=>5, 'name'=>'Spam']];
+  $ticketTypes = $block->getTicketsTypes();
+  $allAgents = $block->getAllAgents();
+	$releventData = [
+		'getTicketListAjaxUrl'	=> $block->getUrl('uvdeskcon/ticketlist/index')
+	];
+	$serializedData = $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($releventData);
+?>
+<?php if (isset($customerDetail['error'])) { ?>
+    <div class="message message-error error"><div data-ui-id="messages-message-error"><?php echo $block->getErrorMessage($customerDetail); ?></div></div>
+<?php } else { ?>
+<div class="panell panel-default">
+  <div class="panel-heading uvhead">
+        <h3 class="panel-title pull-left"><?php /* @escapeNotVerified */ echo __('Ticket List') ?></h3>
+        <select class="pull-right" id="sort_ticket"  title="Sort by">
+            <option value=""><?php /* @escapeNotVerified */ echo __('Sort By .......'); ?></option>
+            <option value="t.id"><?php /* @escapeNotVerified */ echo __('Ticket Id'); ?></option>
+            <option value="name"><?php /* @escapeNotVerified */ echo __('Agent Name'); ?></option>
+        </select>
+        <select name="filter_status_res" id="filter_status_res"  title="<?php /* @escapeNotVerified */ echo __('please select filter status'); ?>" >
+            <option value=""><?php /* @escapeNotVerified */ echo __('All'); ?>
+            <?php foreach( $customerDetail['status'] as $status) { ?>
+                <option value="<?php echo $status['id']; ?>" > <?php echo $status['name']; ?> </option>
+            <?php } ?>
+        </select>
+        <button type="button" id="filter_button_res">Submit</button>
+        <button id="uvdesk_create_ticket"><?php /* @escapeNotVerified */ echo __('Create Ticket') ?></button>
+  </div>
+    <div class="panel-body">
+        <div class="table-wrapper orders-history">
+            <table class="data table table-order-items history">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col ticket id"><?php /* @escapeNotVerified */ echo __('Ticket Id'); ?></th>
+                        <th scope="col" class="col status"><?php /* @escapeNotVerified */ echo __('Status'); ?></th>
+                        <th scope="col" class="col subject"><?php /* @escapeNotVerified */ echo __('Subject'); ?></th>
+                        <th scope="col" class="col createdon"><?php /* @escapeNotVerified */ echo __('Created On'); ?></th>
+                        <th scope="col" class="col agent"><?php /* @escapeNotVerified */ echo __('Agent'); ?></th>
+                        <th scope="col" class="col action"><?php /* @escapeNotVerified */ echo __('Action'); ?></th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>
+                            <select name="filter_status" id="filter_status" title="<?php /* @escapeNotVerified */ echo __('please select filter status'); ?>" >
+                                <option value=""><?php /* @escapeNotVerified */ echo __('All'); ?>
+                                <?php foreach( $customerDetail['status'] as $status) { ?>
+                                    <option value="<?php echo $status['id']; ?>" > <?php echo $status['name']; ?> </option>
+                                <?php } ?>
+                            </select>
+                        </th>
+                        <th></th>
+                        <th></th>
+                        <th>
+                        </th>
+                        <th><button type="button" id="filter_button" ><?php /* @escapeNotVerified */ echo __('Submit'); ?></button></th>
+                    </tr>
+                </thead>
+                  <?php if(!empty($customerDetail['ticket_data'])) {   ?>
+                <tbody id="ticketBody">
+                    <?php foreach ($customerDetail['ticket_data'] as $key=>$value) { ?>
+                        <tr>
+                            <td data-th="Ticket Id" class="col ticket id"><?php echo $value['incrementId'] ;?></td>
+                            <td data-th="Status" class="col status" style="color:<?php echo $block->escapeHtml($value['status']['color']); ?>; font-weight: bold;"><?php echo $value['status']['name'] ;?></td>
+                            <td data-th="Subject" class="col subject"><?php echo $block->escapeHtml($value['subject']) ?></td>
+                            <td data-th="Created On" class="col createdon"><?php echo $block->escapeHtml($value['creation_date']) ?></td>
+                            <td data-th="Agent" class="col agent"><?php echo $block->escapeHtml(($value['agent'])) ?></td>
+                            <td data-th="Action" class="col action"><a href="<?php echo $block->getUrl('uvdeskcon/ticketview/index'); ?>id/<?php echo $value['id'] ?>/increment_id/<?php echo $value['incrementId']; ?>" target="_blank"><input type="button" class="uvdesk-frontend-thread-view" value="View"></a></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+                    <?php } else { ?>
+                <tbody id="ticketBody">
+                    <tr>
+                        <td colspan=6 style="text-align:center;vertical-align:middle;"><?php /* @escapeNotVerified */ echo __('No Ticket Found') ?></td>
+                    </tr>
+                </tbody>
+    <?php } ?>
+            </table>
+            <?php if($customerDetail['pagination_data'][0]['pageCount']> 1) { ?>
+                <div style="text-align:center;">
+                    <ul class="pagination">
+                        <?php if (isset($customerDetail['pagination_data'][0]['previous']) && $customerDetail['pagination_data'][0]['previous']!=0) { ?>
+                            <li class='pagination-list uvdpagination' data=<?php echo $customerDetail['pagination_data'][0]['previous']; ?>><a href="#">&laquo</a></li>
+                        <?php } ?>
+                        <?php if ($customerDetail['pagination_data'][0]['firstPageInRange']!=$customerDetail['pagination_data'][0]['first']) {?>
+                            <li class='pagination-list uvdpagination' data=<?php echo $customerDetail['pagination_data'][0]['first']; ?>><a href="#"><?php echo $customerDetail['pagination_data'][0]['first']; ?></a></li>
+                            <li class='pagination-list uvdpagination'><a href="#">...</a></li>
+                        <?php } ?>
+                        <?php foreach($customerDetail['pagination_data'][0]['pagesInRange'] as $page) {?>
+                            <li class='pagination-list uvdpagination' data=<?php echo $page ; ?>><a href="#"><?php echo $page ; ?></a></li>
+                        <?php } ?>
+                        <?php if ($customerDetail['pagination_data'][0]['lastPageInRange']!=$customerDetail['pagination_data'][0]['last']) {?>
+                            <li class='pagination-list uvdpagination'><a href="#">...</a></li>
+                            <li class='pagination-list uvdpagination' data=<?php echo $customerDetail['pagination_data'][0]['last']; ?>><a href="#"><?php echo $customerDetail['pagination_data'][0]['last']; ?></a></li>
+                        <?php } ?>
+                        <?php if (isset($customerDetail['pagination_data'][0]['next']) && $customerDetail['pagination_data'][0]['next']!=0) { ?>
+                            <li class='pagination-list uvdpagination' data=<?php echo $customerDetail['pagination_data'][0]['next']; ?>><a href="#">&raquo</a></li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</div>
+<?php if (!isset($ticketTypes['error'])) { ?>
+    <div id="popup-mpdal" style="display:none;">
+        <div class="row">
+            <div id="content" class="col-sm-12">
+                <div class="panell panel-default">
+                    <div class="panel-body">
+                            <form action="<?php echo $block->getUrl('uvdeskcon/createticket/index'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="uvdeskconnector-frontend-form" data-mage-init='{"validation":{}}'>
+                                <div class="form-group required">
+                                    <label for="input-type"><?php /* @escapeNotVerified */ echo __('Type') ?></label>
+                                    <br>
+                                    <select name="type" id="type" class="form-control" style="margin-bottom: 10px;" data-validate="{required:true}">
+                                    <option value=""><?php /* @escapeNotVerified */ echo __('Select type') ?></option>
+                                    <?php if(!empty($ticketTypes['types'])) { ?>
+                                        <?php foreach($ticketTypes['types'] as $key => $value) { ?>
+                                            <?php if($value['isActive']) { ?>
+                                                <option value=<?php echo $value['id'] ;?>><?php echo $value['name'];?></option>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="input-subject" class=""><?php /* @escapeNotVerified */ echo __('Subject') ?></label>
+                                    <br>
+                                    <input type="text" name="subject" id="subject" class="form-control" placeholder="Enter Subject" value="" style="
+                                    margin-bottom: 10px;" data-validate="{required:true}">
+                                </div>
+                                <div class="form-group required">
+                                    <label for="input-type">Message</label>
+                                    <br>
+                                    <textarea name="message" id="message" class="form-control" placeholder="Brief Description about your query" style="width:100%;" data-validate="{required:true}"></textarea>
+                                </div>
+                                <div class="wk-uvdesk-attachments">
+                                <div class="attachment-div">
+                                    <span class="download-attachment-ticket-creation upload-attachment"><i class="fa fa-upload"></i><span >×</span></span>
+                                    <input name="attachment[]" class="fileUpload" type="file">
+                                </div>
+                                </div>
+                                <span id="addFile">+ Attach File</span>
+                                <br><br>
+                                <button type="submit" id="new-ticket-data"  value="Create Ticket" style="display:none">
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } else { ?>
+    <div id="popup-mpdal" style="display:none;">
+        <div class="row">
+            <div id="content" class="col-sm-12">
+                <div class="panell panel-default">
+                    <div class="panel-body">
+                        <div class="message message-error error"><div data-ui-id="messages-message-error"><?php echo $ticketTypes['error_description']; ?></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+<div id="wait" class="loading-mask" data-role="loader" style="display: none;">
+    <div class="popup popup-loading">
+      <div class="popup-inner">
+        <img alt="Loading..." src="<?php echo $block->getViewFileUrl('Webkul_UvDeskConnector::images/aa1b406.gif'); ?>"/>
+        <br>
+      </div>
+  </div>
+</div>
+<?php } ?>
+<script id="ticket-template" type="text/x-magento-template">
+ <tr>
+    <td data-th="Ticket Id" class="col ticket id text-center">
+      #<%- data.incrementId %>
+    </td>
+
+    <td data-th="Status" class="col status text-center" style="color:<%- data.statusColor %>;font-weight: bold;">
+      <%- data.status %>
+    </td>
+
+    <td data-th="Subject" class="col subject text-center">
+      <%- data.subject %>
+    </td>
+
+    <td data-th="Created On" class="col createdon text-center">
+      <%- data.date %>
+    </td >
+
+    <td data-th="Agent" class="col agent text-center">
+      <%- data.agent %>
+    </td>
+
+    <td data-th="Action" class="col action text-center">
+      <a href="<?php echo $block->getUrl('uvdeskcon/ticketview/index'); ?>id/<%- data.ticket %>/increment_id/<%- data.incrementId %>" target="_blank" class="btn btn-info"><input type="button" class="uvdesk-frontend-thread-view" value="View"></a>
+    </td>
+ </tr>
+</script>
+<script id="ticketAttachment-template" type="text/x-magento-template">
+  <div class="attachment-div">
+    <span class="download-attachment-ticket-creation upload-attachment">
+      <i class="fa fa-upload"></i><span>×</span>
+    </span>
+    <input name="attachment[]" class="fileUpload" type="file">
+  </div>
+</script>
+<script id="ticketPagination-template" type="text/x-magento-template">
+    <%if (data.pageCount>1) {%>
+        <%if (data.previous!=0) {%>
+        <li class='pagination-list uvdpagination' data=<%- data.previous %>><a href="#">&laquo</a></li>
+        <%}%>
+        <%if (data.firstPageInRange!=data.first) {%>
+        <li class='pagination-list uvdpagination' data=<%- data.first %>><a href="#"><%- data.first %></a></li>
+        <li class='pagination-list uvdpagination'><a href="#">...</a></li>
+        <%}%>
+        <%_.forEach(data.pagesInRange, function (page,index) {%>
+                <% if(page == data.selectedPageNo) { %>
+                    <li class='pagination-list uvdpagination' data="<%- page %>"><a href="#" class="active"><%- page %></a></li>
+                <% } else { %>
+                    <li class='pagination-list uvdpagination' data="<%- page %>"><a href="#"><%- page %></a></li>
+                <% } %>
+        <%})%>
+        <%if (data.lastPageInRange!=data.last) {%>
+        <li class='pagination-list uvdpagination'><a href="#">...</a></li>
+        <li class='pagination-list uvdpagination' data=<%- data.last %>><a href="#"><%- data.last %></a></li>
+        <%}%>
+        <%if (data.next!=0) {%>
+        <li class='pagination-list uvdpagination' data=<%- data.next %>><a href="#">&raquo</a></li>
+        <%}%>
+    <%}%>
+</script>
+<script type="text/x-magento-init">
+    {
+        "*":{
+            "Webkul_UvDeskConnector/js/ticketList":<?php echo $serializedData ?>
+        }
+    }
+</script>

@@ -1,0 +1,217 @@
+<?php
+/**
+ * @var \Mexbs\AdditionalPromotions\Block\Cart\Add\ProductsSetDiscount $block
+ */
+?>
+<style>
+    .cart-add-promo-product-item-info{
+        width: 29%;
+        float: left;
+        margin: 5px 10px 0 10px;
+        padding: 2px;
+    }
+    .cart-add-promo-mouseover{
+        border: 2px solid #1979c3;
+        padding: 0;
+    }
+    .cart-add-promo-product-image{
+        max-height: 200px;
+        max-width: 100%;
+    }
+    .cart-add-promo-group-title, .cart-add-promo-group-chosen{
+        padding: 10px;
+        font-size: 18px;
+    }
+    .cart-add-promo-group-wrapper{
+        display: none;
+        float: left;
+        width: 100%;
+    }
+    .cart-add-promo-group-products-wrapper{
+        padding: 10px 10px 10px 30px;
+    }
+    /** custom checkbox **/
+    .cart-add-promo-product-checkbox-container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .cart-add-promo-product-checkbox-container{
+        float: left;
+    }
+
+    /* Create a custom checkbox */
+    .cart-add-promo-product-checkbox-checkmark {
+        float:left;
+        padding-left: 10px;
+        padding-top: 5px;
+        height: 24px;
+        width: 20px;
+        background-color: #eee;
+        border: 2px solid #999999;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .container:hover input ~ .cart-add-promo-product-checkbox-checkmark {
+        background-color: #ccc;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .cart-add-promo-product-checkbox-container input:checked ~ .cart-add-promo-product-checkbox-checkmark {
+        background-color: #2196F3;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .cart-add-promo-product-checkbox-checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .cart-add-promo-product-checkbox-container input:checked ~ .cart-add-promo-product-checkbox-checkmark:after {
+        display: block;
+    }
+
+        /* Style the checkmark/indicator */
+    .cart-add-promo-product-checkbox-container .cart-add-promo-product-checkbox-checkmark:after {
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    .cart-add-promo-wrapper-button-next.action.primary,
+    .cart-add-promo-wrapper-button-done.action.primary,
+    .cart-add-promo-wrapper-button-prev{
+        float: right;
+        margin: 25px 15px 15px 0px;
+        font-size: 20px;
+        padding: 17px;
+    }
+    .cart-add-promo-wrapper-button-next,
+    .cart-add-promo-wrapper-button-done{
+        clear: both;
+    }
+    .cart-add-promo-red-label{
+        background-color: #ff0000;
+        color: #ffffff;
+        font-size: 20px;
+        padding: 10px;
+    }
+    .cart-add-promo-wrapper-error-configurations,
+    .cart-add-promo-wrapper-error-products{
+        display: none;
+        float: right;
+        margin: 0px 15px 10px 0;
+    }
+    .cart-add-promo-product-item-qty input{
+        width: 54px;
+        float: left;
+        border: 2px solid #999999;
+    }
+    .cart-add-promo-product-item-qty{
+        margin-top: 10px;
+    }
+    .cart-add-promo-product-item-qty-label{
+        float: left;
+        margin-top: 5px;
+        color: #999999;
+        font-weight: 700;
+        margin-right: 5px;
+    }
+    .cart-add-promo-product-item-details{
+        min-height: 50px;
+    }
+</style>
+<div class="cart-add-promo-wrapper">
+    <?php
+    $stepIndex = 1;
+    $productGroups = $block->getRuleProductGroupsWithDisplayDataAndProducts();
+    $alreadyMatchingItemsPerGroup = $block->getAlreadyAddedMatchingRuleItemsWithDisplayData();
+    $alreadyMatchingQtysPerGroup = $block->getAlreadyAddedMatchingQtysPerGroup();
+
+    $totalStepsNumber = $block->getTotalStepsNumber($productGroups, $alreadyMatchingQtysPerGroup);
+
+    foreach($productGroups as $groupNumber => $productGroup): ?>
+        <?php
+        $qtyToMatchForGroup = (
+            isset(
+                $alreadyMatchingQtysPerGroup[$groupNumber]) ?
+                max(0, $productGroup['qty'] - $alreadyMatchingQtysPerGroup[$groupNumber]) :
+                $productGroup['qty']
+            );
+        if($qtyToMatchForGroup == 0){
+            continue;
+        }
+        ?>
+        <div class="cart-add-promo-group-wrapper" data-step-index="<?php echo $stepIndex; ?>"
+             data-group-qty="<?php echo $qtyToMatchForGroup; ?>"
+            <?php echo ($stepIndex==1 ? ' style="display:block;"' : ''); ?>>
+            <div class="cart-add-promo-group-title cart-promo-blue-label"><?php echo ($totalStepsNumber > 1 ? "Step ".$stepIndex.": " : "");?>Please Select <?php echo $qtyToMatchForGroup ?> <?php echo ($qtyToMatchForGroup == 1 ? $productGroup['title_singular'] : $productGroup['title_plural']); ?></div>
+            <div class="cart-add-promo-group-chosen cart-promo-grey-label">Selected 0 out of <?php echo $qtyToMatchForGroup ?></div>
+            <div class="cart-add-promo-group-products-wrapper">
+                <?php
+                $productIndex = 0;
+                foreach($productGroup['products'] as $productGroupProduct):
+                    ?>
+                    <div class="cart-add-promo-product-item-info<?php echo ($productIndex==0 ? " first" : "") ?>" data-product-id=<?php echo $productGroupProduct->getId(); ?>>
+                        <label class="cart-add-promo-product-checkbox-container">&nbsp;
+                            <input type="checkbox" />
+                            <span class="cart-add-promo-product-checkbox-checkmark"></span>
+                        </label>
+                        <?php
+                        $imageUrl = $block->getProductImageUrl($productGroupProduct);
+                        ?>
+                        <img src="<?php echo $imageUrl ?>" class="cart-add-promo-product-image" />
+                        <div class="cart-add-promo-product-item-details">
+                            <?php
+                            $productNameStripped = $block->stripTags($productGroupProduct->getName(), null, true);
+                            ?>
+                            <strong class="cart-add-promo-product-item-name">
+                                <a class="cart-add-promo-product-item-link"
+                                   href="<?php echo $productGroupProduct->getProductUrl() ?>"
+                                    target="_blank">
+                                    <?php echo $productGroupProduct->getName(); ?>
+                                </a>
+                            </strong>
+                            <?php echo $block->getProductDetailsHtml($productGroupProduct); ?>
+                            <div class="cart-add-promo-product-custom-options-wrapper">
+                                <?php
+                                echo $block->getLayout()->getBlock('product.info.options')->setProduct($productGroupProduct)->toHtml(); ?>
+                            </div>
+                        </div>
+                        <?php if($qtyToMatchForGroup > 1): ?>
+                        <div class="cart-add-promo-product-item-qty"><div class="cart-add-promo-product-item-qty-label">Quantity:&nbsp;</div> <input type="text" /></div>
+                        <?php endif; ?>
+                    </div>
+                <?php
+                    $productIndex++;
+                endforeach; ?>
+            </div>
+            <?php if($stepIndex < $totalStepsNumber): ?>
+            <button class="cart-add-promo-wrapper-button-next action primary" data-action="go-to-next-step">
+                <span>Next</span>
+            </button>
+            <?php elseif($stepIndex == $totalStepsNumber): ?>
+            <button class="cart-add-promo-wrapper-button-done action primary" data-action="steps-done">
+                <span>Done</span>
+            </button>
+            <?php endif; ?>
+            <?php if($stepIndex > 1): ?>
+                <button class="cart-add-promo-wrapper-button-prev" data-action="go-to-previous-step">
+                    <span>Previous</span>
+                </button>
+            <?php endif; ?>
+        </div>
+        <div class="cart-add-promo-wrapper-error-products cart-add-promo-red-label"
+             data-step-index="<?php echo $stepIndex; ?>"></div>
+        <div class="cart-add-promo-wrapper-error-configurations cart-add-promo-red-label"
+             data-step-index="<?php echo $stepIndex; ?>">Please select the configurations for your selected products</div>
+    <?php
+    $stepIndex++;
+    endforeach; ?>
+</div>

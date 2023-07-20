@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ * 
+ *
+ *
+ * @category  Webkul
+ * @package   Webkul_CustomSalesRule
+ * @author    Webkul <support@webkul.com>
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html ASL Licence
+ * @link      https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Webkul\MobikulApi\Controller\Checkout\ApplyCoupon" type="Webkul\CustomSalesRule\Controller\Checkout\ApplyCoupon" />
+    <type name="Magento\Quote\Model\CouponManagement">
+       <plugin name="super_bazaar_custom_coupon_message" type="Superbazaar\CustomWork\Plugin\CouponManagement" sortOrder="1" disabled="true"/>
+    </type>
+    <type name="Magento\Quote\Model\CouponManagement">
+        <plugin name="around_coupon" type="Webkul\CustomSalesRule\Plugin\CouponManagement" sortOrder="10" disabled="false"  />
+    </type>
+</config>

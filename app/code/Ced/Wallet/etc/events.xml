@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Wallet
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+     <event name="sales_order_save_after">
+       <observer name="ced_wallet_system" instance="Ced\Wallet\Observer\Discount" />
+    </event>
+    <event name="checkout_onepage_controller_success_action">
+       <observer name="ced_wallet_save_data" instance="Ced\Wallet\Observer\Updatewallet" />
+    </event>
+    <event name="sales_order_invoice_save_after">
+        <observer name="user_order_wallet_invoice" instance="Ced\Wallet\Observer\ChangeStatus" />
+    </event>
+      <event name="order_cancel_after">
+       <observer name="ced_wallet_order_cancel_data" instance="Ced\Wallet\Observer\CancelOrder" />
+    </event>
+	<event name="payment_method_is_active">
+        <observer name="ced_wallet_add_money" instance="Ced\Wallet\Observer\Filterpaymentmethod" />
+    </event>
+    <event name="controller_action_predispatch_checkout_cart_add">
+        <observer name="ced_addtocart_after" instance="Ced\Wallet\Observer\AddToCart" />
+    </event>
+    <event name="checkout_cart_product_add_after">
+        <observer name="customprice" instance="Ced\Wallet\Observer\Reorder" />
+    </event>
+</config>

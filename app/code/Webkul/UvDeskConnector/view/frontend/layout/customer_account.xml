@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_UvDeskConnector
+ * @author    Webkul Software Private Limited
+ * @copyright Copyright (c) 2010-2017 Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */ 
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Customer My Account (All Pages)" design_abstraction="custom">
+    <body>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-uvdesk-link" ifconfig="uvdesk_conn/uvdesk_config/uvdesk_status" after="-">
+                <arguments>
+                    <argument name="path" xsi:type="string">uvdeskcon/ticketlist/index</argument>
+                    <argument name="label" xsi:type="string" translate="true">UVdesk</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

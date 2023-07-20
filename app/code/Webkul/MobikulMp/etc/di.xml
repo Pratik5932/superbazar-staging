@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_MobikulMp
+ * @author    Webkul <support@webkul.com>
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html ASL Licence
+ * @link      https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Framework\Controller\Result\Json" type="Webkul\MobikulMp\Controller\Framework\Result\Json" />
+    <preference for="Webkul\MobikulApi\Controller\Checkout\AddToCart" type="Webkul\MobikulMp\Controller\Checkout\AddToCart" />
+    <type name="Webkul\Marketplace\Helper\Data">
+        <plugin name="MobikulHelperDataAfterPlugin" type="Webkul\MobikulMp\Plugin\Helper\Data" sortOrder="1"/>
+    </type>
+    <type name="Webkul\MobikulApi\Controller\Customer\Login">
+        <plugin name="MobikulLoginAfterPlugin" type="Webkul\MobikulMp\Plugin\Controller\Customer\Login" sortOrder="1"/>
+    </type>
+    <type name="Webkul\MobikulApi\Controller\Customer\CreateAccountFormData">
+        <plugin name="MobikulCreateAccountFormData" type="Webkul\MobikulMp\Plugin\Controller\Customer\CreateAccountFormData" sortOrder="1"/>
+    </type>
+    <type name="Webkul\MobikulApi\Controller\Customer\CreateAccount">
+        <plugin name="MobikulCreateAccountAroundPlugin" type="Webkul\MobikulMp\Plugin\Controller\Customer\CreateAccount" sortOrder="1"/>
+    </type>
+    <type name="Webkul\MobikulApi\Controller\Catalog\ProductPageData">
+        <plugin name="MobikulProductPageAfterPlugin" type="Webkul\MobikulMp\Plugin\Controller\Catalog\ProductPageData" sortOrder="1"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product\TypeTransitionManager">
+        <plugin name="mobikul_product_transition" type="Webkul\MobikulMp\Plugin\Model\Product\TypeTransitionManager" sortOrder="40" />
+    </type>
+    <type name="Webkul\MobikulApi\Controller\Catalog\HomePageData">
+        <plugin name="MobikulHomePageAfterPlugin" type="Webkul\MobikulMp\Plugin\Controller\Catalog\HomePageData" sortOrder="40" />
+    </type>
+    <type name="Webkul\MobikulApi\Controller\Catalog\ProductCollection">
+        <plugin name="MobikulProductCollectionAfterPlugin" type="Webkul\MobikulMp\Plugin\Controller\Catalog\ProductCollection" sortOrder="40" />
+    </type>
+    <type name="Webkul\MobikulApi\Controller\Customer\SaveReview">
+        <plugin name="MobikulSaveReviewAroundPlugin" type="Webkul\MobikulMp\Plugin\Controller\Customer\SaveReview" sortOrder="40" />
+    </type>
+</config>

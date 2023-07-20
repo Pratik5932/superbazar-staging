@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_MobikulMp
+ * @author    Webkul <support@webkul.com>
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html ASL Licence
+ * @link      https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add 
+            id="Webkul_MobikulMp::configuration" 
+            title="Seller Admin Chat" 
+            module="Webkul_MobikulMp" 
+            parent="Webkul_MobikulCore::mobikul" 
+            sortOrder="10" 
+            action="adminhtml/system_config/edit/section/mobikulmp/" 
+            resource="Webkul_MobikulMp::configuration"/>
+    </menu>
+</config>

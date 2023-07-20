@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Wallet
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+    <ced_wallet>
+      <active>
+         <enable>1</enable>
+         <min_amount>10</min_amount>
+         <max_amount>10000</max_amount>
+         <otp_required_for_transaction>1</otp_required_for_transaction>
+         <otp_template>WALLET-{{id}}{{rand 4}}</otp_template>
+         <mail_template_for_otp>ced_wallet_active_mail_template_for_otp</mail_template_for_otp>
+         <mail_template_for_transaction>ced_wallet_active_mail_template_for_transaction</mail_template_for_transaction>
+         <enable_transfer>1</enable_transfer>
+        <enable_redeem>1</enable_redeem>
+        <allowed_payment_methods>checkmo</allowed_payment_methods>
+      </active>
+      <cashback>
+        <enable_cashback>first_order</enable_cashback>
+        <order_amount>100</order_amount>
+        <max_cashback>20</max_cashback>
+        <cashback_percentage>30</cashback_percentage>
+        <cashback_time>30</cashback_time>
+        <cashback_interval>2</cashback_interval>
+        <cashback_payment>one_time</cashback_payment>
+      </cashback>
+       </ced_wallet>
+        <payment>
+            <wallet>
+                <active>1</active>
+                <title>Wallet System</title>
+                <model>Ced\Wallet\Model\Methodone</model>
+                <group>offline</group>
+                <payment_action>authorize_capture</payment_action>
+                <order_status>processing</order_status>
+                <sort_order>1</sort_order>
+            </wallet>
+        </payment>
+    </default>
+</config>

@@ -1,0 +1,12 @@
+<?php $dataHelper = $this->helper('MageArray\StorePickup\Helper\Data');?>
+<?php if($dataHelper->isEnabled() == 1):?>
+    <script type="text/javascript">
+        window.storeList = <?php echo $this->getStoreCollection()?>;
+        require([
+            'jquery',
+            'MageArray_StorePickup/js/storepickup'
+        ],function($){
+
+        });
+    </script>
+<?php endif;?>

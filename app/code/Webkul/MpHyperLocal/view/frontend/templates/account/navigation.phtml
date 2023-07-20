@@ -1,0 +1,60 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_MpHyperLocal
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+$helper = $this->helper('Webkul\Marketplace\Helper\Data');
+$isSellerGroup = $helper->isSellerGroupModuleInstalled();
+if ($helper->isSeller() && $block->isModuleEnable() && ( (($isSellerGroup && $helper->isAllowedAction('mphyperlocal/account/addshiparea')) || !$isSellerGroup) || (($isSellerGroup && $helper->isAllowedAction('mphyperlocal/account/addrate')) || !$isSellerGroup) || (($isSellerGroup && $helper->isAllowedAction('mphyperlocal/account/origin')) || !$isSellerGroup)) ){ ?>
+	<li class="mp-mphyperlocal nav item <?php /* @escapeNotVerified */ echo $block->getCurrentNavClass('mphyperlocal/account')?>">  
+		<?php if($block->getCurrentNavClass('mphyperlocal/account')){ ?>   
+		    <strong><?php /* @escapeNotVerified */ echo __('Hyperlocal') ?></strong>        
+		<?php 
+		} else { ?>    
+		    <a href="#"><?php /* @escapeNotVerified */ echo __('Hyperlocal') ?></a>                
+		<?php } ?>
+		<ul class="nav items">
+		<?php if(($isSellerGroup && $helper->isAllowedAction('mphyperlocal/account/addshiparea')) || !$isSellerGroup) { ?>
+			<li class="nav item <?php /* @escapeNotVerified */ echo $block->getCurrentNavClass('mphyperlocal/account/addshiparea');?>">
+				<?php if ($block->getCurrentNavClass('mphyperlocal/account/addshiparea')) { ?>   
+				    <strong><?php /* @escapeNotVerified */ echo __('Add Shipping Area') ?></strong>        
+				<?php 
+				} else { ?>    
+				    <a href="<?php /* @escapeNotVerified */ echo $block->getDealUrl('mphyperlocal/account/addshiparea')?>">
+				        <?php /* @escapeNotVerified */ echo __('Add Shipping Area') ?>
+				    </a>                
+				<?php } ?>
+			</li>
+		<?php } ?>
+		<?php if(($isSellerGroup && $helper->isAllowedAction('mphyperlocal/account/addrate')) || !$isSellerGroup) { ?>
+			<li class="nav item <?php /* @escapeNotVerified */ echo $block->getCurrentNavClass('mphyperlocal/account/addrate');?>">
+				<?php if($block->getCurrentNavClass('mphyperlocal/account/addrate')){ ?>   
+				    <strong><?php /* @escapeNotVerified */ echo __('Ship Rate') ?></strong>        
+				<?php 
+				} else { ?>    
+				    <a href="<?php /* @escapeNotVerified */ echo $block->getDealUrl('mphyperlocal/account/addrate')?>">
+				        <?php /* @escapeNotVerified */ echo __('Ship Rate') ?>
+				    </a>                
+				<?php } ?>
+			</li>
+		<?php } ?>
+		<?php if(($isSellerGroup && $helper->isAllowedAction('mphyperlocal/account/origin')) || !$isSellerGroup) { ?>
+		<li class="nav item <?php /* @escapeNotVerified */ echo $block->getCurrentNavClass('mphyperlocal/account/origin');?>">
+				<?php if($block->getCurrentNavClass('mphyperlocal/account/origin')){ ?>   
+				    <strong><?php /* @escapeNotVerified */ echo __('Seller Origin') ?></strong>        
+				<?php 
+				} else { ?>    
+				    <a href="<?php /* @escapeNotVerified */ echo $block->getDealUrl('mphyperlocal/account/origin')?>">
+				        <?php /* @escapeNotVerified */ echo __('Seller Origin') ?>
+				    </a>                
+				<?php } ?>
+			</li>
+		<?php } ?>
+		</ul>   
+	</li>
+<?php } ?>

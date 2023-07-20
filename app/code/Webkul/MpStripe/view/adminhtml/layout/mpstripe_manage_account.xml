@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_MpStripe
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <body>
+        <!-- <referenceContainer name="content">
+            <block class="Webkul\MpStripe\Block\Adminhtml\Manage\Account" name="adminhtml.seller.stripe.custom.account" />
+        </referenceContainer> -->
+        <!-- <referenceContainer name="content">
+            <block class="Webkul\MpStripe\Block\Adminhtml\Manage\Account\Edit" name="blog_post_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Webkul\MpStripe\Block\Adminhtml\Manage\Account\Edit\Tabs" name="blog_post_edit_tabs">
+                <block class="Webkul\MpStripe\Block\Adminhtml\Manage\Account\Edit\Tab\Main" name="blog_post_edit_tab_main"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">blog_post_edit_tab_main</argument>
+                </action>
+            </block>
+        </referenceContainer> -->
+
+        <!-- <referenceContainer name="left">
+            <block class="Webkul\MpStripe\Block\Adminhtml\Account\Edit\Tabs"
+                name="adminhtml.seller.stripe.custom.account.edit.tabs"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Webkul\MpStripe\Block\Adminhtml\Account\Edit"
+                name="adminhtml.seller.stripe.custom.account.edit"/>
+        </referenceContainer> -->
+        <referenceContainer name="content">
+            <uiComponent name="mpstripe_custom_account_form"/>
+        </referenceContainer>
+    </body>
+</page>

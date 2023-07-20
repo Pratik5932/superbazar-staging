@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Webkul Software.
+*
+* @category Webkul
+* @package Webkul_UvDeskConnector
+* @author Webkul
+* @copyright Copyright (c) 2010-2016 Webkul Software Private Limited (https://webkul.com)
+* @license https://store.webkul.com/license.html
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Webkul_UvDeskConnector::tickets" title="UvDesk Connector" module="Webkul_UvDeskConnector" sortOrder="10" resource="Webkul_UvDeskConnector::tickets" />
+	    <add id="Webkul_UvDeskConnector::tickets_list" title="Tickets" module="Webkul_UvDeskConnector" sortOrder="10" parent="Webkul_UvDeskConnector::tickets" action="uvdeskcon/tickets/index" resource="Webkul_UvDeskConnector::tickets"/>
+	</menu>
+</config>

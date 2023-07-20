@@ -1,0 +1,25 @@
+{
+    "name": "solwin/featuredpro",
+    "description": "Magento 2 Featured Products extension will help eCommerce store owner to showcase special products on store with an eye-catching and attractive way.",
+    "require": {
+        "php": "~5.5.0|~5.6.0|~7.0.0"
+    },
+    "type": "magento2-module",
+    "version": "2.0.8",
+    "authors": [
+        {
+            "name": "Solwin",
+            "email": "stdabhoya@yahoo.com",
+            "homepage": "https://www.solwininfotech.com/",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Solwin\\FeaturedPro\\": ""
+        }
+    }
+}

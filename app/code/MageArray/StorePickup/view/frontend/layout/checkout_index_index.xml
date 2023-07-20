@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MageArray_StorePickup::css/storepickup.css"/>
+    </head>
+    <body>
+        <referenceContainer name="root">
+			<block class="MageArray\StorePickup\Block\Storepickup" name="storepickup.checkout" before="-"
+                   template="MageArray_StorePickup::checkout/storepickup.phtml" />
+		</referenceContainer>
+    </body>
+</page>

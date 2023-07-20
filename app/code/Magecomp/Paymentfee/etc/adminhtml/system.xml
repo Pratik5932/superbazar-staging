@@ -1,0 +1,310 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magecomp" translate="label" sortOrder="100" class="magecomp-logo">
+            <label><![CDATA[]]></label>
+        </tab>
+        <section id="magecomp_paymentfee" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Payment Fees</label>
+            <tab>magecomp</tab>
+            <resource>Magecomp_Paymentfee::paymentfeeconfig</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Fee</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="refund_addfees" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Refund Payment Fee</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends><field id="*/*/enable">1</field></depends>
+                </field>
+            </group>
+            <group id="paymentfeepay1" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Payment Fee 1</label>
+                <depends>
+                    <field id="*/general/enable">1</field>
+                </depends>
+                <field id="enablepay" translate="label" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="paymethods" translate="label" type="multiselect" sortOrder="20"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Methods</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\Methods</source_model>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                </field>
+                <field id="payfeetype" translate="label" type="select" sortOrder="30"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Fee Type</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\HandlingTypes</source_model>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                </field>
+                <field id="payrateper" translate="label" type="text" sortOrder="40"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Cost(%)</label>
+                    <depends><field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfeetype" separator=",">P,C,M</field>
+                    </depends>
+                    <validate>required-entry validate-number validate-not-negative-number</validate>
+                </field>
+                <field id="payratefix" translate="label" type="text" sortOrder="50"  showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Payment Cost(Fixed)</label>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfeetype" separator=",">F,C,M</field>
+                    </depends>
+                    <validate>required-entry validate-number validate-not-negative-number</validate>
+                </field>
+                <field id="paydesc" translate="label" type="text" sortOrder="60"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Fee Title</label>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="payfilterenable" translate="label" type="select" sortOrder="70"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Apply Group Filter</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                    </depends>
+                </field>
+                <field id="paygroup" translate="label" type="multiselect" sortOrder="80"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Only for Customer Groups</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\Groups</source_model>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfilterenable">1</field>
+                    </depends>
+                </field>
+            </group>
+             <group id="paymentfeepay2" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Payment Fee 2</label>
+                 <depends><field id="*/general/enable">1</field></depends>
+                <field id="enablepay" translate="label" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="paymethods" translate="label" type="multiselect" sortOrder="20"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Methods</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\Methods</source_model>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                </field>
+                <field id="payfeetype" translate="label" type="select" sortOrder="30"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Fee Type</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\HandlingTypes</source_model>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                </field>
+                <field id="payrateper" translate="label" type="text" sortOrder="40"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Cost(%)</label>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfeetype" separator=",">P,C,M</field>
+                    </depends>
+                    <validate>required-entry validate-number validate-not-negative-number</validate>
+                </field>
+                <field id="payratefix" translate="label" type="text" sortOrder="50"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Cost(Fixed)</label>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfeetype" separator=",">F,C,M</field>
+                    </depends>
+                    <validate>required-entry validate-number validate-not-negative-number</validate>
+                </field>
+                <field id="paydesc" translate="label" type="text" sortOrder="60"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Fee Title</label>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="payfilterenable" translate="label" type="select" sortOrder="70"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Apply Group Filter</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                </field>
+                <field id="paygroup" translate="label" type="multiselect" sortOrder="80"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Only for Customer Groups</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\Groups</source_model>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfilterenable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="paymentfeepay3" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Payment Fee 3</label>
+                <depends><field id="*/general/enable">1</field></depends>
+                <field id="enablepay" translate="label" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="paymethods" translate="label" type="multiselect" sortOrder="20"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Methods</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\Methods</source_model>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                </field>
+                <field id="payfeetype" translate="label" type="select" sortOrder="30"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Fee Type</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\HandlingTypes</source_model>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                </field>
+                <field id="payrateper" translate="label" type="text" sortOrder="40"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Cost(%)</label>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfeetype" separator=",">P,C,M</field>
+                    </depends>
+                    <validate>required-entry validate-number validate-not-negative-number</validate>
+                </field>
+                <field id="payratefix" translate="label" type="text" sortOrder="50"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Cost(Fixed)</label>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfeetype" separator=",">F,C,M</field>
+                    </depends>
+                    <validate>required-entry validate-number validate-not-negative-number</validate>
+                </field>
+                <field id="paydesc" translate="label" type="text" sortOrder="60"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Fee Title</label>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="payfilterenable" translate="label" type="select" sortOrder="70"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Apply Group Filter</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                </field>
+                <field id="paygroup" translate="label" type="multiselect" sortOrder="80"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Only for Customer Groups</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\Groups</source_model>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfilterenable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="paymentfeepay4" translate="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Payment Fee 4</label>
+                <depends><field id="*/general/enable">1</field></depends>
+                <field id="enablepay" translate="label" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="paymethods" translate="label" type="multiselect" sortOrder="20"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Methods</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\Methods</source_model>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                </field>
+                <field id="payfeetype" translate="label" type="select" sortOrder="30"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Fee Type</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\HandlingTypes</source_model>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                </field>
+                <field id="payrateper" translate="label" type="text" sortOrder="40"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Cost(%)</label>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfeetype" separator=",">P,C,M</field>
+                    </depends>
+                    <validate>required-entry validate-number validate-not-negative-number</validate>
+                </field>
+                <field id="payratefix" translate="label" type="text" sortOrder="50"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Cost(Fixed)</label>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfeetype" separator=",">F,C,M</field>
+                    </depends>
+                    <validate>required-entry validate-number validate-not-negative-number</validate>
+                </field>
+                <field id="paydesc" translate="label" type="text" sortOrder="60"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Fee Title</label>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="payfilterenable" translate="label" type="select" sortOrder="70"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Apply Group Filter</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                    </depends>
+                </field>
+                <field id="paygroup" translate="label" type="multiselect" sortOrder="80"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Only for Customer Groups</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\Groups</source_model>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfilterenable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="paymentfeepay5" translate="label" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Payment Fee 5</label>
+                <depends><field id="*/general/enable">1</field></depends>
+                <field id="enablepay" translate="label" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="paymethods" translate="label" type="multiselect" sortOrder="20"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Methods</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\Methods</source_model>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                </field>
+                <field id="payfeetype" translate="label" type="select" sortOrder="30"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Fee Type</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\HandlingTypes</source_model>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                </field>
+                <field id="payrateper" translate="label" type="text" sortOrder="40"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Cost(%)</label>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfeetype" separator=",">P,C,M</field>
+                    </depends>
+                    <validate>required-entry validate-number validate-not-negative-number</validate>
+                </field>
+                <field id="payratefix" translate="label" type="text" sortOrder="50"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Cost(Fixed)</label>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfeetype" separator=",">F,C,M</field>
+                    </depends>
+                    <validate>required-entry validate-number validate-not-negative-number</validate>
+                </field>
+                <field id="paydesc" translate="label" type="text" sortOrder="60"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Fee Title</label>
+                    <depends><field id="*/*/enablepay">1</field></depends>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="payfilterenable" translate="label" type="select" sortOrder="70"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Apply Group Filter</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                    </depends>
+                </field>
+                <field id="paygroup" translate="label" type="multiselect" sortOrder="80"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Only for Customer Groups</label>
+                    <source_model>Magecomp\Paymentfee\Model\System\Groups</source_model>
+                    <depends>
+                        <field id="*/*/enablepay">1</field>
+                        <field id="*/*/payfilterenable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="tax" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Payment Fee Tax</label>
+                <depends><field id="*/general/enable">1</field></depends>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Calculate Tax On Payment Fee</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tax_class" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tax Class</label>
+                    <source_model>Magento\Tax\Model\TaxClass\Source\Product</source_model>
+                    <depends><field id="*/*/enable">1</field></depends>
+                </field>
+                <field id="display" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Fee</label>
+                    <source_model>Magento\Tax\Model\System\Config\Source\Tax\Display\Type</source_model>
+                    <depends><field id="*/*/enable">1</field></depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

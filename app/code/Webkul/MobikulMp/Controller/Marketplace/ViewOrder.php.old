@@ -1,0 +1,734 @@
+<?php
+/**
+ * Webkul Software.
+ * 
+ * PHP version 7.0+
+ *
+ * @category  Webkul
+ * @package   Webkul_MobikulMp
+ * @author    Webkul <support@webkul.com>
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html ASL Licence
+ * @link      https://store.webkul.com/license.html
+ */
+
+namespace Webkul\MobikulMp\Controller\Marketplace;
+
+/**
+ * Class ViewOrder
+ *
+ * @category Webkul
+ * @package  Webkul_MobikulMp
+ * @author   Webkul <support@webkul.com>
+ * @license  https://store.webkul.com/license.html ASL Licence
+ * @link     https://store.webkul.com/license.html
+ */
+class ViewOrder extends AbstractMarketplace
+{
+    /**
+     * Execute function for class ViewOrder
+     * 
+     * @throws LocalizedException
+     * 
+     * @return json | void
+     */
+    public function execute()
+    {        
+        try {
+            $this->verifyRequest();
+            $cacheString = "VIEWORDER".$this->storeId.$this->width.$this->sellerId.$this->customerToken.$this->customerId;
+            if ($this->helper->validateRequestForCache($cacheString, $this->eTag)) {
+                return $this->getJsonResponse($this->returnArray, 304);
+            }
+            $environment   = $this->emulate->startEnvironmentEmulation($this->storeId);
+            $this->customerSession->setCustomerId($this->customerId);
+            $order = $this->order   = $this->order->loadByIncrementId($this->incrementId);
+            $orderId = $this->order->getId();
+            $orderStatusLabel = $this->order->getStatusLabel();
+            $orderCollection  = $this->marketplaceOrders->getCollection()
+                ->addFieldToFilter("order_id", $orderId)
+                ->addFieldToFilter("seller_id", $this->customerId);
+            $this->paymentCode    = "";
+            $this->paymentMethod = "";
+            if (count($orderCollection)) {
+                $this->dashboardHelper->sellerId = $this->customerId;
+                if ($this->order->getPayment()) {
+                    $this->paymentCode = $this->order->getPayment()->getMethod();
+                    $this->paymentMethod = $this->order->getPayment()->getMethodInstance()->getTitle();
+                }
+                $tracking = $this->dashboardHelper->getOrderinfo($orderId);
+                if ($tracking != "") {
+                    if ($this->paymentCode == "mpcashondelivery") {
+                        $this->returnArray["mpCODAvailable"] = true;
+                    }
+                }
+                $isCanceled = $tracking->getIsCanceled();
+                if ($isCanceled) {
+                    $orderStatusLabel = "Canceled";
+                }
+                $this->returnArray["orderStatus"] = $orderStatusLabel;
+                $this->returnArray["incrementId"] = $this->order->getRealOrderId();
+                $this->returnArray["date"] = $this->viewTemplate->formatDate($this->order->getCreatedAt(), \IntlDateFormatter::MEDIUM, true, $this->viewTemplate->getTimezoneForStore($this->order->getStore()));
+                $this->itemBlock = $this->orderItemRenderer;
+                $this->priceBlock = $this->priceRenderer;
+                // $this->orderDetailsnTotals();
+                $_items           = $order->getItemsCollection();
+                $_count           = $_items->count();
+                $subtotal         = 0;
+                $totaltax         = 0;
+                $couponamount     = 0;
+                $admin_subtotal   = 0;
+                $shippingamount   = 0;
+                $vendor_subtotal  = 0;
+                $codcharges_total = 0;
+                $itemList         = [];
+                foreach ($_items as $_item) {
+                    $eachItem     = [];
+                    if ($_item->getParentItem()) {
+                        continue;
+                    }
+                    $row_total              = 0;
+                    $itemPrice              = 0;
+                    $couponcharges          = 0;
+                    $shippingcharges        = 0;
+                    $seller_item_cost       = 0;
+                    $totaltax_peritem       = 0;
+                    $codcharges_peritem     = 0;
+                    $available_seller_item  = 0;
+                    $seller_item_commission = 0;
+                    $seller_orderslist      = $this->orderViewBlock->getSellerOrdersList($orderId, $_item->getProductId(), $_item->getItemId());
+                    foreach ($seller_orderslist as $seller_item) {
+                        $itemPrice              = $seller_item->getMageproPrice();
+                        $totalamount            = $seller_item->getTotalAmount();
+                        $couponcharges          = $seller_item->getAppliedCouponAmount();
+                        $shippingcharges        = $seller_item->getShippingCharges();
+                        $seller_item_cost       = $seller_item->getActualSellerAmount();
+                        $totaltax_peritem       = $seller_item->getTotalTax();
+                        $available_seller_item  = 1;
+                        $seller_item_commission = $seller_item->getTotalCommission();
+                        if ($this->paymentCode == "mpcashondelivery") {
+                            $codcharges_peritem = $seller_item->getCodCharges();
+                        }
+                    }
+                    if ($available_seller_item == 1) {
+                        $row_total        = $itemPrice*$_item->getQtyOrdered();
+                        $vendor_subtotal  = $vendor_subtotal+$seller_item_cost;
+                        $subtotal         = $subtotal+$row_total;
+                        $admin_subtotal   = $admin_subtotal+$seller_item_commission;
+                        $totaltax         = $totaltax+$totaltax_peritem;
+                        $codcharges_total = $codcharges_total+$codcharges_peritem;
+                        $shippingamount   = $shippingamount+$shippingcharges;
+                        $couponamount     = $couponamount+$couponcharges;
+                        $result           = [];
+                        if ($options = $_item->getProductOptions()) {
+                            if (isset($options["options"])) {
+                                $result = array_merge($result, $options["options"]);
+                            }
+                            if (isset($options["additional_options"])) {
+                                $result = array_merge($result, $options["additional_options"]);
+                            }
+                            if (isset($options["attributes_info"])) {
+                                $result = array_merge($result, $options["attributes_info"]);
+                            }
+                        }
+                        // for bundle product ////////////////////////////////////////////
+                        $bundleitems  = array_merge([$_item], $_item->getChildrenItems());
+                        $_count       = count($bundleitems);
+                        $_index       = 0;
+                        $prevOptionId = "";
+                        if ($_item->getProductType() != "bundle") {
+                            $eachItem["productName"]             = $this->viewTemplate->escapeHtml($_item->getName());
+                            $eachItem["customOption"]            = [];
+                            $eachItem["downloadableOptionLable"] = "";
+                            $eachItem["downloadableOptionValue"] = [];
+                            if ($_item->getProductType() == "downloadable") {
+                                if ($options = $result) {
+                                    $customOption = [];
+                                    foreach ($options as $option) {
+                                        $eachOption = [];
+                                        $eachOption["label"] = $this->viewTemplate->escapeHtml($option["label"]);
+                                        if (!$this->viewTemplate->getPrintStatus()) {
+                                            $formatedOptionValue = $this->orderViewBlock->getFormatedOptionValue($option);
+                                            if (isset($formatedOptionValue["full_view"])) {
+                                                $eachOption["value"] = $formatedOptionValue["full_view"];
+                                            } else {
+                                                $eachOption["value"] = $formatedOptionValue["value"];
+                                            }
+                                        } else {
+                                            $eachOption["value"] = $this->viewTemplate->escapeHtml((isset($option["print_value"]) ? $option["print_value"] : $option["value"]));
+                                        }
+                                        $customOption[] = $eachOption;
+                                    }
+                                    $eachItem["customOption"] = $customOption;
+                                }
+                                // downloadable /////////////////////////////////////////////////////////////
+                                if ($links = $this->orderViewBlock->getDownloadableLinks($_item->getId())) {
+                                    $eachItem["downloadableOptionLable"] = $this->orderViewBlock->getLinksTitle($_item->getId());
+                                    foreach ($links->getPurchasedItems() as $link) {
+                                        $eachItem["downloadableOptionValue"][] = $this->viewTemplate->escapeHtml($link->getLinkTitle());
+                                    }
+                                }
+                            } else {
+                                if ($options = $result) {
+                                    $customOption = [];
+                                    foreach ($options as $option) {
+                                        $eachOption = [];
+                                        $eachOption["label"] = $this->viewTemplate->escapeHtml($option["label"]);
+                                        if (!$this->viewTemplate->getPrintStatus()) {
+                                            $formatedOptionValue = $this->orderViewBlock->getFormatedOptionValue($option);
+                                            if (isset($formatedOptionValue["full_view"])) {
+                                                $eachOption["value"] = $formatedOptionValue["full_view"];
+                                            } else {
+                                                $eachOption["value"] = $formatedOptionValue["value"];
+                                            }
+                                        } else {
+                                            $eachOption["value"] = $this->viewTemplate->escapeHtml((isset($option["print_value"]) ? $option["print_value"] : $option["value"]));
+                                        }
+                                        $customOption[] = $eachOption;
+                                    }
+                                    $eachItem["customOption"] = $customOption;
+                                }
+                            }
+                            $eachItem["sku"]   = $_item->getSku();
+                            $eachItem["price"] = $this->helperCatalog->stripTags($order->formatPrice($_item->getPrice()));
+                            $itemQtys = [];
+                            if ($_item->getQtyOrdered() > 0) {
+                                $orderedQty          = [];
+                                $orderedQty["label"] = __("Ordered");
+                                $orderedQty["value"] = $_item->getQtyOrdered()*1;
+                                $itemQtys[]          = $orderedQty;
+                            }
+                            if ($_item->getQtyInvoiced() > 0) {
+                                $invoicedQty          = [];
+                                $invoicedQty["label"] = __("Invoiced");
+                                $invoicedQty["value"] = $_item->getQtyInvoiced()*1;
+                                $itemQtys[]           = $invoicedQty;
+                            }
+                            if ($_item->getQtyShipped() > 0) {
+                                $shippedQty          = [];
+                                $shippedQty["label"] = __("Shipped");
+                                $shippedQty["value"] = $_item->getQtyShipped()*1;
+                                $itemQtys[]          = $shippedQty;
+                            }
+                            if ($_item->getQtyCanceled() > 0) {
+                                $canceledQty          = [];
+                                $canceledQty["label"] = __("Canceled");
+                                $canceledQty["value"] = $_item->getQtyCanceled()*1;
+                                $itemQtys[]           = $canceledQty;
+                            }
+                            if ($_item->getQtyRefunded() > 0) {
+                                $refundedQty          = [];
+                                $refundedQty["label"] = __("Refunded");
+                                $refundedQty["value"] = $_item->getQtyRefunded()*1;
+                                $itemQtys[]           = $refundedQty;
+                            }
+                            $eachItem["qty"]        = $itemQtys;
+                            $eachItem["totalPrice"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $row_total)));
+                            $eachItem["mpcodprice"] = "";
+                            if ($this->paymentCode == "mpcashondelivery") {
+                                $eachItem["mpcodprice"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $codcharges_peritem)));
+                            }
+                            $eachItem["adminCommission"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $seller_item_commission)));
+                            $eachItem["vendorTotal"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $seller_item_cost)));
+                            $eachItem["subTotal"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $row_total)));
+                        } else {
+                            foreach ($bundleitems as $_bundleitem) {
+                                $attributes_option = $block->getSelectionAttribute($_bundleitem);
+                                if ($_bundleitem->getParentItem()) {
+                                    $attributes = $attributes_option;
+                                    if ($prevOptionId != $attributes["option_id"]) {
+                                        $eachItem["productName"] = $attributes["option_label"];
+                                        $prevOptionId = $attributes["option_id"];
+                                    }
+                                }
+                                if (!$_bundleitem->getParentItem()) {
+                                    $eachItem["productName"] = $this->viewTemplate->escapeHtml($_bundleitem->getName());
+                                    $eachItem["sku"] = $_bundleitem->getSku();
+                                    $eachItem["price"] = $order->formatPrice($_item->getPrice());
+                                    $itemQtys = [];
+                                    if ($_item->getQtyOrdered() > 0) {
+                                        $orderedQty          = [];
+                                        $orderedQty["label"] = __("Ordered");
+                                        $orderedQty["value"] = $_item->getQtyOrdered()*1;
+                                        $itemQtys[]          = $orderedQty;
+                                    }
+                                    $eachItem["qty"]         = $itemQtys;
+                                } else {
+                                    $row_total              = 0;
+                                    $itemPrice              = 0;
+                                    $couponcharges          = 0;
+                                    $shippingcharges        = 0;
+                                    $seller_item_cost       = 0;
+                                    $totaltax_peritem       = 0;
+                                    $codcharges_peritem     = 0;
+                                    $available_seller_item  = 0;
+                                    $seller_item_commission = 0;
+                                    $seller_orderslist      = $block->getSellerOrdersList($orderId, $_bundleitem->getProductId(), $_bundleitem->getItemId());
+                                    foreach ($seller_orderslist as $seller_item) {
+                                        $available_seller_item  = 1;
+                                        $totalamount            = $seller_item->getTotalAmount();
+                                        $seller_item_cost       = $seller_item->getActualSellerAmount();
+                                        $seller_item_commission = $seller_item->getTotalCommission();
+                                        $shippingcharges        = $seller_item->getShippingCharges();
+                                        $couponcharges          = $seller_item->getAppliedCouponAmount();
+                                        $itemPrice              = $seller_item->getMageproPrice();
+                                        $totaltax_peritem       = $seller_item->getTotalTax();
+                                        if ($this->paymentCode == "mpcashondelivery") {
+                                            $codcharges_peritem = $seller_item->getCodCharges();
+                                        }
+                                    }
+                                    $seller_item_qty  = $_bundleitem->getQtyOrdered();
+                                    $row_total        = $itemPrice*$seller_item_qty;
+                                    $vendor_subtotal  = $vendor_subtotal+$seller_item_cost;
+                                    $subtotal         = $subtotal+$row_total;
+                                    $admin_subtotal   = $admin_subtotal+$seller_item_commission;
+                                    $totaltax         = $totaltax+$totaltax_peritem;
+                                    $codcharges_total = $codcharges_total+$codcharges_peritem;
+                                    $shippingamount   = $shippingamount+$shippingcharges;
+                                    $couponamount     = $couponamount+$couponcharges;
+                                    $eachItem["productName"] = $this->orderViewBlock->getValueHtml($_bundleitem);                                 $eachItem["sku"] = $_bundleitem->getSku();
+                                    $eachItem["price"] = $order->formatPrice($_bundleitem->getPrice());
+                                    $itemQtys = [];
+                                    if ($_bundleitem->getQtyOrdered() > 0) {
+                                        $orderedQty          = [];
+                                        $orderedQty["label"] = __("Ordered");
+                                        $orderedQty["value"] = $_bundleitem->getQtyOrdered()*1;
+                                        $itemQtys[]          = $orderedQty;
+                                    }
+                                    if ($_bundleitem->getQtyInvoiced() > 0) {
+                                        $invoicedQty          = [];
+                                        $invoicedQty["label"] = __("Invoiced");
+                                        $invoicedQty["value"] = $_bundleitem->getQtyInvoiced()*1;
+                                        $itemQtys[]           = $invoicedQty;
+                                    }
+                                    if ($_bundleitem->getQtyShipped() > 0) {
+                                        $shippedQty          = [];
+                                        $shippedQty["label"] = __("Shipped");
+                                        $shippedQty["value"] = $_bundleitem->getQtyShipped()*1;
+                                        $itemQtys[]          = $shippedQty;
+                                    }
+                                    if ($_bundleitem->getQtyCanceled() > 0) {
+                                        $canceledQty          = [];
+                                        $canceledQty["label"] = __("Canceled");
+                                        $canceledQty["value"] = $_bundleitem->getQtyCanceled()*1;
+                                        $itemQtys[]           = $canceledQty;
+                                    }
+                                    if ($_bundleitem->getQtyRefunded() > 0) {
+                                        $refundedQty          = [];
+                                        $refundedQty["label"] = __("Refunded");
+                                        $refundedQty["value"] = $_bundleitem->getQtyRefunded()*1;
+                                        $itemQtys[]           = $refundedQty;
+                                    }
+                                    $eachItem["qty"]        = $itemQtys;
+                                    $eachItem["totalPrice"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $row_total)));
+                                    $eachItem["mpcodprice"] = "";
+                                    if ($this->paymentCode == "mpcashondelivery") {
+                                        $eachItem["mpcodprice"]  = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $codcharges_peritem)));
+                                    }
+                                    $eachItem["adminCommission"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $seller_item_commission)));
+                                    $eachItem["vendorTotal"]     = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $seller_item_cost)));
+                                    $eachItem["subTotal"]        = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $row_total)));
+                                }
+                            }
+                        }
+                    }
+                    if (!empty($eachItem)) {
+                        $itemList[] = $eachItem;
+                    }
+                }
+                $this->returnArray["itemList"] = $itemList;
+                // getting totals data //////////////////////////////////////////////////////////////////////////////////////////////////////////
+                $taxToSeller                = $this->marketplaceHelper->getConfigTaxManage();
+                $totalTaxAmount             = 0;
+                $totalCouponAmount          = 0;
+                $refundedShippingAmount     = 0;
+                foreach ($orderCollection as $tracking) {
+                    $taxToSeller            = $tracking["tax_to_seller"];
+                    $totalTaxAmount         = $tracking->getTotalTax();
+                    $shippingamount         = $tracking->getShippingCharges();
+                    $totalCouponAmount      = $tracking->getCouponAmount();
+                    $refundedShippingAmount = $tracking->getRefundedShippingCharges();
+                }
+                $this->returnArray["subTotal"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $subtotal)));
+                $this->returnArray["shipping"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $shippingamount)));
+                $this->returnArray["discount"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $totalCouponAmount)));
+                $this->returnArray["tax"]      = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $totaltax)));
+                $admintotaltax           = 0;
+                $vendortotaltax          = 0;
+                if (!$taxToSeller) {
+                    $admintotaltax = $totaltax;
+                } else {
+                    $vendortotaltax = $totaltax;
+                }
+                $this->returnArray["mpcodcharge"] = "";
+                if ($this->paymentCode == "mpcashondelivery") {
+                    $this->returnArray["mpcodcharge"] = $order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $codcharges_total));
+                }
+                $this->returnArray["orderTotal"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, ($subtotal+$shippingamount+$codcharges_total+$totaltax-$totalCouponAmount))));
+                $this->returnArray["orderBaseTotal"] = "";
+                if ($order->isCurrencyDifferent()) {
+                    $this->returnArray["orderBaseTotal"] = $order->formatBasePrice($subtotal+$shippingamount+$codcharges_total+$totaltax-$totalCouponAmount);
+                }
+                $this->returnArray["vendorTotal"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, ($vendor_subtotal+$shippingamount+$codcharges_total+$vendortotaltax-$refundedShippingAmount-$couponamount))));
+                $this->returnArray["vendorBaseTotal"] = "";
+                if ($order->isCurrencyDifferent()) {
+                    $this->returnArray["vendorBaseTotal"] = $order->formatPrice($vendor_subtotal+$shippingamount+$codcharges_total+$vendortotaltax-$refundedShippingAmount-$couponamount);
+                }
+                $this->returnArray["adminCommission"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, ($admin_subtotal+$admintotaltax))));
+                $this->returnArray["adminBaseCommission"] = "";
+                if ($order->isCurrencyDifferent()) {
+                    $this->returnArray["adminBaseCommission"] = $order->formatBasePrice($admin_subtotal+$admintotaltax);
+                }
+                // getting order information /////////////////////////////////////////////////
+                if ($this->marketplaceHelper->getIsOrderManage()) {
+                    $this->returnArray['invoiceId'] = $tracking->getInvoiceId();
+                    $this->returnArray['shipmentId'] = $tracking->getShipmentId();
+                    $this->returnArray["manageOrder"] = true;
+                    if ($isCanceled!="1" && $this->order->canCancel() && !$tracking->getInvoiceId()) {
+                        $this->returnArray['cancelButton'] = true;
+                    }
+                    if ($isCanceled!="1" && !$this->order->isCanceled()) {
+                        $this->returnArray['sendEmailButton'] = true;
+                    }
+                    $creditmemoId = $tracking->getCreditmemoId();
+                    if ($creditmemoId && !$this->orderViewBlock->isOrderCanShip($order)) {
+                        $shippingamount=$tracking->getShippingCharges();
+                        $refundedShippingAmount = $tracking->getRefundedShippingCharges();
+                        if ($shippingamount-$refundedShippingAmount == 0 ) {
+                            $itemRefundStatus = 'Refunded';
+                        } else {
+                            $itemRefundStatus = '';
+                        }
+                    } else {
+                        $itemRefundStatus = '';
+                    }
+                    if (!$tracking->getInvoiceId() && $this->order->canInvoice() && $isCanceled!="1") {
+                        $this->returnArray['invoiceButton'] = true;
+                    } elseif ($tracking->getInvoiceId() && $itemRefundStatus!="Refunded" && $this->order->canCreditmemo() && $isCanceled!="1") {
+                        if ($this->paymentCode == 'mpcashondelivery' && !$this->getAdminPayStatus($orderId, $customerId)) {
+                            $this->returnArray['payCommissionButton'] = true;
+                            $this->returnArray['creditMemoButton'] = true;
+                        } elseif ($this->paymentCode != 'mpcashondelivery') {
+                            $this->returnArray['creditMemoButton'] = true;
+                        }
+                    }
+                    if ($this->order->hasCreditmemos()) {
+                        $this->returnArray['creditMemoTab'] = true;
+                    }
+
+                    if (!$tracking->getShipmentId() && $itemRefundStatus!="Refunded"
+                        && $isCanceled!="1"
+                        && $this->orderViewBlock->isOrderCanShip($this->order)
+                    ) {
+                        $this->returnArray['shipmentButton'] = true;
+                    }
+                }
+            }
+            // getting buyer information /////////////////////////////////
+            if ($this->marketplaceHelper->getSellerProfileDisplayFlag()) {
+                $this->returnArray["showBuyerInformation"] = true;
+                $this->returnArray["buyerName"]  = $this->order->getCustomerName();
+                $this->returnArray["buyerEmail"] = $this->order->getCustomerEmail();
+            }
+            // getting order information /////////////////////////////////
+            if ($this->marketplaceHelper->getSellerProfileDisplayFlag()) {
+                $this->returnArray["showAddressInformation"] = true;
+                if ($this->orderViewBlock->isOrderCanShip($this->order)) {
+                    $this->returnArray["canShip"] = true;
+                    $this->returnArray["shippingAddress"] = $this->orderViewBlock->getFormattedAddress($this->order->getShippingAddress());
+                }
+                $this->returnArray["billingAddress"] = $this->orderViewBlock->getFormattedAddress($this->order->getBillingAddress());
+            }
+            if ($this->order->getShippingDescription()) {
+                $this->returnArray["shippingMethod"] = $this->viewTemplate->escapeHtml($this->order->getShippingDescription());
+            } else {
+                $this->returnArray["shippingMethod"] = __("No shipping information available");
+            }
+
+            $this->returnArray["paymentMethod"] = $this->paymentMethod;
+            $this->returnArray["success"]   = true;
+            $this->emulate->stopEnvironmentEmulation($environment);
+            $this->helper->log($this->returnArray, "logResponse", $this->wholeData);
+            $this->checkNGenerateEtag($cacheString);
+            return $this->getJsonResponse($this->returnArray);
+        } catch (\Exception $e) {
+            $this->returnArray["message"] = __($e->getMessage());
+            $this->helper->printLog($this->returnArray, 1);
+            return $this->getJsonResponse($this->returnArray);
+        }
+    }
+
+    /**
+     * Verify Request function to verify Customer and Request
+     * 
+     * @throws Exception customerNotExist 
+     * @return json | void
+     */
+    protected function verifyRequest()
+    {
+        if ($this->getRequest()->getMethod() == "GET" && $this->wholeData) {
+            $this->eTag          = $this->wholeData["eTag"]          ?? "";
+            $this->storeId       = $this->wholeData["storeId"]       ?? 0;
+            $this->width         = $this->wholeData["width"]         ?? 1000;
+            $this->sellerId      = $this->wholeData["sellerId"]      ?? 0;
+            $this->incrementId   = $this->wholeData["incrementId"]   ?? 0;
+            $this->customerToken = $this->wholeData["customerToken"] ?? '';
+            $this->customerId    = $this->helper->getCustomerByToken($this->customerToken) ?? 0;
+            if (!$this->customerId && $this->customerToken != "") {
+                $this->returnArray["otherError"] = "customerNotExist";
+                throw new \Magento\Framework\Exception\LocalizedException(
+                    __("Customer you are requesting does not exist.")
+                );
+            } elseif ($this->customerId != 0) {
+                $this->customerSession->setCustomerId($this->customerId);
+            }
+        } else {
+            throw new \Exception(__("Invalid Request"));
+        }
+    }
+
+    /**
+     * Function to get admin payment Status
+     *
+     * @param int $orderId  order id
+     * @param int $sellerId sellerId
+     *
+     * @return string
+     */
+    public function getAdminPayStatus($orderId, $sellerId)
+    {
+        $adminPayStatus = 0;
+        $collection = $this->orderCollectionFactory->create()
+            ->addFieldToFilter(
+                'order_id',
+                ['eq' => $orderId]
+            )
+            ->addFieldToFilter(
+                'seller_id',
+                ['eq' => $sellerId]
+            );
+        foreach ($collection as $saleproduct) {
+            $adminPayStatus = $saleproduct->getAdminPayStatus();
+        }
+        return $adminPayStatus;
+    }
+
+    /**
+     * Function orderDetailsnTotals
+     * 
+     * Set order data in return array
+     * 
+     * @return null
+     */
+    protected function orderDetailsnTotals()
+    {
+        $this->loadedOrder = $this->order;
+        $orderId = $this->order->getId();
+        $items = $this->loadedOrder->getItemsCollection();
+        $itemList = [];
+        $orderData = [];
+        foreach ($items as $item) {
+            $this->itemBlock->setItem($item);
+            $this->priceBlock->setItem($item);
+            if ($item->getParentItem()) {
+                continue;
+            }
+
+
+
+            $row_total              = 0;
+            $itemPrice              = 0;
+            $couponcharges          = 0;
+            $shippingcharges        = 0;
+            $seller_item_cost       = 0;
+            $totaltax_peritem       = 0;
+            $codcharges_peritem     = 0;
+            $available_seller_item  = 0;
+            $seller_item_commission = 0;
+            $subtotal         = 0;
+            $totaltax         = 0;
+            $couponamount     = 0;
+            $admin_subtotal   = 0;
+            $shippingamount   = 0;
+            $vendor_subtotal  = 0;
+            $codcharges_total = 0;
+            $itemList         = [];
+            $seller_orderslist      = $this->orderViewBlock->getSellerOrdersList($orderId, $item->getProductId(), $item->getItemId());
+            foreach ($seller_orderslist as $seller_item) {
+                $itemPrice              = $seller_item->getMageproPrice();
+                $totalamount            = $seller_item->getTotalAmount();
+                $couponcharges          = $seller_item->getAppliedCouponAmount();
+                $shippingcharges        = $seller_item->getShippingCharges();
+                $seller_item_cost       = $seller_item->getActualSellerAmount();
+                $totaltax_peritem       = $seller_item->getTotalTax();
+                $available_seller_item  = 1;
+                $seller_item_commission = $seller_item->getTotalCommission();
+                if ($this->paymentCode == "mpcashondelivery") {
+                    $codcharges_peritem = $seller_item->getCodCharges();
+                }
+            }
+            if ($available_seller_item == 1) {
+                $row_total        = $itemPrice*$item->getQtyOrdered();
+                $vendor_subtotal  = $vendor_subtotal+$seller_item_cost;
+                $subtotal         = $subtotal+$row_total;
+                $admin_subtotal   = $admin_subtotal+$seller_item_commission;
+                $totaltax         = $totaltax+$totaltax_peritem;
+                $codcharges_total = $codcharges_total+$codcharges_peritem;
+                $shippingamount   = $shippingamount+$shippingcharges;
+                $couponamount     = $couponamount+$couponcharges;
+                $result           = [];
+                if ($options = $item->getProductOptions()) {
+                    if (isset($options["options"])) {
+                        $result = array_merge($result, $options["options"]);
+                    }
+                    if (isset($options["additional_options"])) {
+                        $result = array_merge($result, $options["additional_options"]);
+                    }
+                    if (isset($options["attributes_info"])) {
+                        $result = array_merge($result, $options["attributes_info"]);
+                    }
+                }
+                // for bundle product ////////////////////////////////////////////
+                $bundleitems  = array_merge([$item], $item->getChildrenItems());
+                $_count       = count($bundleitems);
+                $_index       = 0;
+                $prevOptionId = "";
+
+
+
+
+
+                $eachItem = [];
+                $eachItem["name"] = html_entity_decode($item->getName());
+                $eachItem["productId"] = $item->getProductId();
+                if ($options = $this->itemBlock->getItemOptions()) {
+                    foreach ($options as $option) {
+                        $eachOption = [];
+                        $eachOption["label"] = html_entity_decode($option["label"]);
+                        if (is_array($option["value"])) {
+                            $eachOption["value"] = $option["value"];
+                        } else {
+                            $eachOption["value"][] = $this->helperCatalog->stripTags($option["value"]);
+                        }
+                        $eachItem["option"][] = $eachOption;
+                    }
+                } else {
+                    $eachItem["option"] = [];
+                }
+                $eachItem["sku"] = $this->itemBlock->prepareSku($this->itemBlock->getSku());
+                if ($this->priceBlock->displayPriceInclTax() || $this->priceBlock->displayBothPrices()) {
+                    $eachItem["price"] = $this->loadedOrder->formatPriceTxt($this->itemBlock->getUnitDisplayPriceInclTax());
+                }
+                if ($this->priceBlock->displayPriceExclTax() || $this->priceBlock->displayBothPrices()) {
+                    $eachItem["price"] = $this->loadedOrder->formatPriceTxt($this->priceBlock->getUnitDisplayPriceExclTax());
+                }
+                $eachItem["qty"]["Ordered"] = $this->itemBlock->getItem()->getQtyOrdered()*1;
+                $eachItem["qty"]["Shipped"] = $this->itemBlock->getItem()->getQtyShipped()*1;
+                $eachItem["qty"]["Canceled"] = $this->itemBlock->getItem()->getQtyCanceled()*1;
+                $eachItem["qty"]["Refunded"] = $this->itemBlock->getItem()->getQtyRefunded()*1;
+                if (($this->priceBlock->displayPriceInclTax() || $this->priceBlock->displayBothPrices()) && !$item->getNoSubtotal()) {
+                    $eachItem["subTotal"] = $this->loadedOrder->formatPriceTxt($this->priceBlock->getRowDisplayPriceInclTax());
+                }
+                if ($this->priceBlock->displayPriceExclTax() || $this->priceBlock->displayBothPrices()) {
+                    $eachItem["subTotal"] = $this->loadedOrder->formatPriceTxt($this->priceBlock->getRowDisplayPriceExclTax());
+                }
+                $itemList[] = $eachItem;
+            }
+            $itemList = $this->addProductImages($itemList);
+            $orderData["itemList"] = $itemList;
+
+
+            $this->returnArray["mpcodcharge"] = "";
+            if ($this->paymentCode == "mpcashondelivery") {
+                $this->returnArray["mpcodcharge"] = $this->order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, $codcharges_total));
+            }
+            $this->returnArray["orderTotal"] = $this->helperCatalog->stripTags($this->order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($this->order, ($subtotal+$shippingamount+$codcharges_total+$totaltax-$totalCouponAmount))));
+            $this->returnArray["orderBaseTotal"] = "";
+            if ($this->order->isCurrencyDifferent()) {
+                $this->returnArray["orderBaseTotal"] = $this->order->formatBasePrice($subtotal+$shippingamount+$codcharges_total+$totaltax-$totalCouponAmount);
+            }
+            $this->returnArray["vendorTotal"] = $this->helperCatalog->stripTags($this->order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, ($vendor_subtotal+$shippingamount+$codcharges_total+$vendortotaltax-$refundedShippingAmount-$couponamount))));
+            $this->returnArray["vendorBaseTotal"] = "";
+            if ($this->order->isCurrencyDifferent()) {
+                $this->returnArray["vendorBaseTotal"] = $this->order->formatPrice($vendor_subtotal+$shippingamount+$codcharges_total+$vendortotaltax-$refundedShippingAmount-$couponamount);
+            }
+            $this->returnArray["adminCommission"] = $this->helperCatalog->stripTags($this->order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, ($admin_subtotal+$admintotaltax))));
+            $this->returnArray["adminBaseCommission"] = "";
+            if ($this->order->isCurrencyDifferent()) {
+                $this->returnArray["adminBaseCommission"] = $this->order->formatBasePrice($admin_subtotal+$admintotaltax);
+            }
+        }
+
+
+
+
+
+        $totals = [];
+        $totalsBlock = $this->orderTotals;
+        $totalsBlock->setOrder($this->loadedOrder);
+        $totalsBlock->_initTotals();
+        foreach ($totalsBlock->getTotals() as $total) {
+            $eachTotal = [];
+            $eachTotal["code"] = $total->getCode();
+            $eachTotal["label"] = $total->getLabel();
+            $eachTotal["value"] = $this->helperCatalog->stripTags($total->getValue());
+            $eachTotal["formattedValue"] = $this->helperCatalog->stripTags($totalsBlock->formatValue($total));
+            $totals[] = $eachTotal;
+            if ($total->getCode() == "grand_total") {
+                $this->returnArray["orderTotal"] = $eachTotal["formattedValue"];
+            }
+        }
+        
+        $eachTotal = [];
+        $eachTotal["code"] = "tax";
+        $eachTotal["label"] = __("Tax");
+        $eachTotal["value"] = $this->loadedOrder->getTaxAmount();
+        $eachTotal["formattedValue"] = $this->loadedOrder->formatPriceTxt($this->loadedOrder->getTaxAmount());
+
+        // $this->returnArray["orderTotal"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, ($subtotal+$shippingamount+$codcharges_total+$totaltax-$totalCouponAmount))));
+        // $this->returnArray["orderBaseTotal"] = "";
+        // if ($order->isCurrencyDifferent()) {
+        //     $this->returnArray["orderBaseTotal"] = $order->formatBasePrice($subtotal+$shippingamount+$codcharges_total+$totaltax-$totalCouponAmount);
+        // }
+        $vendorTotal = $this->helperCatalog->stripTags($this->loadedOrder->formatPrice($this->dashboardHelper->getOrderedPricebyorder($this->loadedOrder, ($vendor_subtotal+$shippingamount+$codcharges_total+$vendortotaltax-$refundedShippingAmount-$couponamount))));
+        // $this->returnArray["vendorTotal"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, ($vendor_subtotal+$shippingamount+$codcharges_total+$vendortotaltax-$refundedShippingAmount-$couponamount))));
+        $vendorBaseTotal = "";
+        if ($order->isCurrencyDifferent()) {
+            $vendorBaseTotal = $order->formatPrice($vendor_subtotal+$shippingamount+$codcharges_total+$vendortotaltax-$refundedShippingAmount-$couponamount);
+        }
+        $this->returnArray["adminCommission"] = $this->helperCatalog->stripTags($order->formatPrice($this->dashboardHelper->getOrderedPricebyorder($order, ($admin_subtotal+$admintotaltax))));
+        $this->returnArray["adminBaseCommission"] = "";
+        if ($order->isCurrencyDifferent()) {
+            $this->returnArray["adminBaseCommission"] = $order->formatBasePrice($admin_subtotal+$admintotaltax);
+        }
+        
+        $eachTotal["code"] = "vendorTotal;";
+        $eachTotal["label"] = __("Vendor Total");
+        $eachTotal["value"] = $this->loadedOrder->getTaxAmount();
+        $eachTotal["formattedValue"] = $this->loadedOrder->formatPriceTxt($this->loadedOrder->getTaxAmount());
+
+        $totals[] = $eachTotal;
+        $orderData["totals"] = $totals;
+        $this->returnArray["orderData"] = $orderData;
+    }
+
+    protected function addProductImages($items)
+    {
+        $productIds = [];
+        foreach ($items as $key => $item) {
+            $productIds[$key] = $item["productId"];
+        }
+        $collection = $this->productFactory->create()->getCollection()
+            ->AddAttributeToSelect("image")
+            ->addFieldToFilter("entity_id", ["in"=>$productIds]);
+        foreach ($collection as $coll) {
+            foreach ($items as $key => $item) {
+                if ($item["productId"] == $coll->getEntityId()) {
+                    $items[$key]["image"] = $this->helper->getUrl("media")."catalog/product".$coll->getImage();
+                    continue;
+                }
+            }
+        }
+        return $items;
+    }
+}

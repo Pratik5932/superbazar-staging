@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--  out of stock product at end of list -->
+<!--     <type name="\Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection">
+        <plugin name="Orbs_OutStockLast::OutofstockEnd" type="Orbs\OutStockLast\Plugin\Product\ProductList\Toolbar"/>
+    </type>
+
+    <type name="\Magento\Catalog\Model\Layer">
+        <plugin name="Orbs_OutStockLast::OutofstockEndLayer" type="Orbs\OutStockLast\Plugin\Catalog\Model\Layer" sortOrder="1000" />
+    </type>
+
+     <type name="\Magento\CatalogWidget\Block\Product\ProductsList">
+        <plugin name="Orbs_OutStockLast::OutofstockEndWidget" type="Orbs\OutStockLast\Plugin\Widget\ProductList" sortOrder="1000"/>
+    </type>
+
+     <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="out_of_stock_products_last" type="Orbs\OutStockLast\Plugin\ProductList\Toolbar" sortOrder="10"/>
+    </type> -->
+
+</config>

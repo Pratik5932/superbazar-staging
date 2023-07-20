@@ -1,0 +1,114 @@
+<?php
+/**
+ * @var \Mexbs\AdditionalPromotions\Block\DisplayRulePopup $block
+ */
+?>
+<script type="text/javascript">
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+            ) {
+
+            var popupTpl = '<aside ' +
+            'class="modal-<%= data.type %> <%= data.modalClass %> ' +
+            '<% if(data.responsive){ %><%= data.responsiveClass %><% } %> ' +
+            '<% if(data.innerScroll){ %><%= data.innerScrollClass %><% } %>"'+
+            'data-role="modal"' +
+            'data-type="<%= data.type %>"' +
+            'tabindex="0">'+
+            '    <div data-role="focusable-start" tabindex="0"></div>'+
+            '    <div class="modal-inner-wrap"'+
+            'data-role="focusable-scope">'+
+            '    <div '+
+            'class="modal-content" '+
+            'data-role="content">' +
+            '<button '+
+            'class="action-close" '+
+            'data-role="closeBtn" '+
+            'type="button">'+
+             '<span><%= data.closeText %></span>' +
+             '</button>' +
+            '</div>'+
+            '   </div>'+
+            '   </aside>';
+
+            var modalOptions = {
+                type: 'popup',
+                responsive: false,
+                innerScroll: false,
+                buttons: [],
+                popupTpl: popupTpl,
+                modalClass: 'rule-popup',
+                closeText: 'X',
+                modalCloseBtnHandler: function(){
+                    this.closeModal();
+                    displayNextPopupAndSetCookie();
+                }
+            };
+
+            var popupIdExistsInArray = function(popupId, popupArray){
+                for(var i=0; i<popupArray.length; i++){
+                    if(popupArray[i]['id'] == popupId){
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+            window.lastChainedDisplayedPopupIndex = 0;
+            window.popupsReponse = null;
+
+            var displayNextPopupAndSetCookie = function (){
+                var popupIndex = window.lastChainedDisplayedPopupIndex;
+
+                if(window.popupsReponse == null
+                    || ! (popupIndex in window.popupsReponse)){
+                    return;
+                }
+
+                var popupId = window.popupsReponse[popupIndex]['id'];
+                var popupHtml = window.popupsReponse[popupIndex]['html'];
+
+                var popupDisplayedCookieValue = $.cookie('<?php echo \Mexbs\AdditionalPromotions\Helper\Data::RULE_POPUP_DISPLAYED_COOKIE_NAME ?>');
+                var displayedPopups = [];
+                if(popupDisplayedCookieValue != null){
+                    displayedPopups = popupDisplayedCookieValue.split(",");
+                }
+                window.lastChainedDisplayedPopupIndex = popupIndex + 1;
+
+                if($.inArray(popupId, displayedPopups) == -1){
+                    $(".rule-popup-modal-wrapper").html(popupHtml);
+                    $('.rule-popup-modal-wrapper').modal('openModal');
+                    displayedPopups.push(popupId);
+                    var popupDisplayedNewCookieValue = displayedPopups.join(",");
+                    $.cookie('<?php echo \Mexbs\AdditionalPromotions\Helper\Data::RULE_POPUP_DISPLAYED_COOKIE_NAME ?>', popupDisplayedNewCookieValue);
+                }else{
+                    displayNextPopupAndSetCookie();
+                }
+            };
+
+            $(document).ready(function(){
+                modal(modalOptions, $('.rule-popup-modal-wrapper'));
+
+                $.ajax({
+                    url: "<?php echo $this->getUrl('additional_promotions/action/getRulePopup', ['_secure' => $this->getRequest()->isSecure()]) ?>",
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (response) {
+                        if(!$.isEmptyObject(response)){
+                            window.popupsReponse = response;
+
+                            displayNextPopupAndSetCookie();
+                        }
+                    }
+                });
+            });
+        }
+    );
+</script>
+<div class="rule-popup-modal-wrapper"></div>

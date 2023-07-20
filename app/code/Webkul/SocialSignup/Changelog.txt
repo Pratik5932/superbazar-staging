@@ -1,0 +1,27 @@
+
+Legend
+
++ Features
+- Bugs
+
+-------------------------------- Version 2.1.0 ---------------------------------------
+	
+	+compatible with magento ver 2.3.*
+
+-------------------------------- Version 2.0.2 --------------------------------------
+	- Fix the issue of required custom attribute of customer via signup with social signup.
+	+ Implemented the social login button at checkout page and as well as authentication section.  
+
+-------------------------------- Version 2.0.1 --------------------------------------
+
+	- Increase the size of fb_id column
+	+ Compatible with magento version 2.2.2 and above
+
+-------------------------------- Version 2.0.0 --------------------------------------
+	
+	+ Allows the users to sign up into their site using social networks.
+	+ Customer select one of their preferred social network to sign up on your site.
+	+ Customer can choose one among the various social account to login.
+	+ Admin can enable or disable the customer to login into their site using social networks.
+	+ Admin can manage settings for social networks on the backend such as App ID, secret key etc.
+

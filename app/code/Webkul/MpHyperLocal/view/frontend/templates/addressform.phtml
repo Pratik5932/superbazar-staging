@@ -1,0 +1,114 @@
+<?php
+/**
+* Webkul Software.
+*
+* @category  Webkul
+* @package   Webkul_MpHyperLocal
+* @author    Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license   https://store.webkul.com/license.html
+*/
+// @codingStandardsIgnoreFile
+$address = $block->isAddressSet();
+$product = $block->getCurrentProduct();
+$postCodes = null;
+$isProduct = false;
+$loca = "";
+if($address){
+    $loca = $address['address']; 
+}
+if($product && $product->getId()){
+  $postCodes = $block->getPostcodes();
+    $isProduct = true;
+}
+?>
+<span class="selected-location"><?php echo $address ? $address['address'] :''; ?></span>
+<i class="material-icons my_location">my_location</i>
+<div class="wk-mp-design" style="display: none;">
+
+    <fieldset class="info wk-mp-fieldset fieldset select-address-popup" >
+
+        <div class="fieldset form-list" id="cust">
+            <div class="row main-images-div-section landing_page_devition" >
+                <div class="landing-image-outer landing_inside_img_01">
+                    <img src="<?php echo $block->getViewFileUrl("images/sweets_snacks.jpg"); ?>">
+                    <h5>Snacks &amp; Sweets* </h5>
+                </div>
+                <div class="landing-image-outer landing_inside_img_02">
+                    <img src="<?php echo $block->getViewFileUrl("images/indian_groceries.png"); ?>">
+                    <h5>Indian Groceries*</h5>
+                </div>
+                <div class="landing-image-outer landing_inside_img_03">
+                    <img src="<?php echo $block->getViewFileUrl("images/free_shipping.png"); ?>">
+                    <h5 id="free_delivery_amt">Free Shipping Over <span>$25*</span></h5>
+                </div>
+            </div>
+            <div class="groceries-text">
+                <p><b>Indian Groceries</b> to your door step</p>
+            </div>
+            <div style="display: none;padding: 0 50px;text-align: center;" id="store-location-message">
+                <?php  /* ?> <p><?php echo __("The product you are looking is of different shipping location to yours. Please confirm your shipping postcode.");?></p><?php echo */  ?>
+            </div>
+            <div class="field">
+                <div class="row" id="landingform">
+                    <div class="zip-code-lable">
+                        <label class="label"><?php echo __('Enter Shipping Postcode')?></label>
+                    </div>
+                    <div class="zip-code-text">
+                        <div class="control">
+                            <input class="input-text autocomplete" data-lat="<?php echo $address ? $address['latitude'] :'' ?>" data-lng="<?php echo $address ? $address['longitude']:''?>" data-city="<?php echo $address ? $address['city'] :'' ?>" data-state="<?php echo $address ? $address['state'] :'' ?>" data-country="<?php echo $address ? $address['country'] :'' ?>" name="address" value="<?php echo $address ? $address['address'] :''?>" i=type="text" />
+                        </div>
+                    </div>
+
+                </div>
+                <p class="web-info-text">Please visit our website <a href="https://magento-952359-3631221.cloudwaysapps.com/">https://magento-952359-3631221.cloudwaysapps.com</a> for more details</p>
+            </div>
+        </div>
+    </fieldset> 
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "addresspopup": {
+                "saveAction": "<?php echo $block->getSaveAction()?>",
+                "isAddressSet": "<?php echo $address ? 1:0 ?>",
+                "popupHeading": "<?= $block->getLocationPopupWindow() ?>",
+                "filter" : "<?= $block->getFilter() ?>",
+                "storeLocation" : "<?=  $postCodes ?>",
+                "currentLocation" : "<?php echo $address ? $address['address'] :''; ?>",
+                "isProduct" : "<?php echo $isProduct; ?>"
+            }
+        }
+    }
+</script>
+<script data-breeze>
+    require([
+        "jquery",
+        "mage/translate",
+        "Magento_Ui/js/modal/modal",
+        "Magento_Ui/js/modal/alert",
+        'Magento_Customer/js/customer-data',
+        'jquery/jquery.cookie'
+        ],function($, $t, modal, alert, customerData){    
+            $(document).on('click', '.action.tocart.primary', function(e) {
+                <?php if(!$block->isCustomerLoggedIn()) { ?>
+                    e.preventDefault();
+                    $.alert({
+                        title: $.mage.__('Alert'),
+                        content: $.mage.__("Please login to Continue Shopping."),
+                        buttons: [{
+                            text: $.mage.__('OK'),
+                            class: 'action-primary action-accept',
+                            click: function () {
+                                window.location.href = window.checkout.customerLoginUrl;
+                                this.closeModal(true);
+                            }
+                        }]
+                    })                            
+                    <?php } ?>
+            }); 
+    });
+</script>
+
+

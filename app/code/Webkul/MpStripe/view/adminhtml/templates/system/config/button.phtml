@@ -1,0 +1,33 @@
+<!-- 
+/**
+* Webkul Software
+*
+* @category Webkul
+* @package Webkul_MpStripe
+* @author Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license https://store.webkul.com/license.html
+*/
+ -->
+ <script>
+require([
+    'jquery',
+    'prototype',
+], function(jQuery){
+
+    jQuery('#webhooks').click(function () {
+        jQuery('body').trigger('processStart');
+        new Ajax.Request('<?= $block->escapeUrl($block->getAjaxUrl()) ?>', {
+            loaderArea:     false,
+            asynchronous:   true,
+            onSuccess: function(transport) {
+                jQuery('body').trigger('processStop');
+                var response = JSON.parse(transport.responseText);
+                location.reload();
+            }
+        });
+    });
+});
+</script>
+
+<?= $block->getButtonHtml() ?>

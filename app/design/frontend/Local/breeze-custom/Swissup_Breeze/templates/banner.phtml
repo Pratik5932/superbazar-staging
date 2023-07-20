@@ -1,0 +1,30 @@
+<?php 
+$blockObj= $block->getLayout()->createBlock('FME\Banners\Block\Banners');
+$data = $blockObj->getFrontBanners();
+?>
+
+<div data-appearance="full-bleed" data-background-images="{}" data-background-type="image" data-content-type="row" data-element="main" data-enable-parallax="0" data-parallax-speed="0.5" data-pb-style="B7TUU2O" data-video-fallback-src="" data-video-lazy-load="true" data-video-loop="true" data-video-play-only-visible="true">
+    <div class="pagebuilder-slider" data-appearance="default" data-autoplay="false" data-autoplay-speed="4000" data-content-type="slider" data-element="main" data-fade="false" data-infinite-loop="false" data-pb-style="GJ0UQOV" data-show-arrows="true" data-show-dots="true">
+        <?php
+		foreach ($data as $collection) {
+			$mediaurl = $blockObj->getMediaDirectoryUrl().$collection->getBannerimage();
+			$bannerlink = $collection->getData('link');
+			#echo $mediaurl;exit;
+			
+    
+?>
+        <div data-appearance="poster" data-content-type="slide" data-element="main" data-show-button="never" data-show-overlay="never" data-slide-name="">
+        <div data-element="empty_link">
+                <div class="pagebuilder-slide-wrapper" style=" background: url('<?php echo $mediaurl;?>') center center no-repeat; background-size: cover; background-repeat: no-repeat;">
+                    <div class="pagebuilder-overlay pagebuilder-poster-overlay" data-element="overlay" data-overlay-color="" data-pb-style="D7L6BQK">
+                        <div class="pagebuilder-poster-content">
+                            <div data-element="content"><a class="banner-link" href="<?php echo $bannerlink; ?>" title="Slide 1" target="_blank"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+</div>

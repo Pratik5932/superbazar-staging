@@ -1,0 +1,341 @@
+<?php
+namespace Magecomp\Paymentfee\Helper;
+
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
+use Magento\Quote\Model\Quote;
+use Magecomp\Paymentfee\Helper\Tax as TaxHelper;
+use Magento\Store\Model\ScopeInterface;
+use Magento\Shipping\Model\Carrier\AbstractCarrier;
+use Magecomp\Paymentfee\Model\System\HandlingTypes;
+
+class Data extends AbstractHelper
+{
+    const PAYMENTFEE_GENERAL_ENABLED = 'magecomp_paymentfee/general/enable';
+    const PAYMENTFEE_GENERAL_TOTALS_LABEL = 'magecomp_paymentfee/general/totals_label';
+    const PAYMENTFEE_GENERAL_TEMPLATE = 'magecomp_paymentfee/general/payment_method_template';
+    const PAYMENTFEE_GENERAL_REFUND_ADDFEES = 'magecomp_paymentfee/general/refund_addfees';
+    const PAYMENTFEE_PAYMENTFEEPAY1_ENABLEPAY = 'magecomp_paymentfee/paymentfeepay1/enablepay';
+    const PAYMENTFEE_PAYMENTFEEPAY1_PAYMETHODS = 'magecomp_paymentfee/paymentfeepay1/paymethods';
+    const PAYMENTFEE_PAYMENTFEEPAY2_ENABLEPAY   = 'magecomp_paymentfee/paymentfeepay2/enablepay';
+    const PAYMENTFEE_PAYMENTFEEPAY2_PAYMETHODS = 'magecomp_paymentfee/paymentfeepay2/paymethods';
+    const PAYMENTFEE_PAYMENTFEEPAY3_ENABLEPAY   = 'magecomp_paymentfee/paymentfeepay3/enablepay';
+    const PAYMENTFEE_PAYMENTFEEPAY3_PAYMETHODS = 'magecomp_paymentfee/paymentfeepay3/paymethods';
+    const PAYMENTFEE_PAYMENTFEEPAY4_ENABLEPAY   = 'magecomp_paymentfee/paymentfeepay4/enablepay';
+    const PAYMENTFEE_PAYMENTFEEPAY4_PAYMETHODS = 'magecomp_paymentfee/paymentfeepay4/paymethods';
+    const PAYMENTFEE_PAYMENTFEEPAY5_ENABLEPAY   = 'magecomp_paymentfee/paymentfeepay5/enablepay';
+    const PAYMENTFEE_PAYMENTFEEPAY5_PAYMETHODS = 'magecomp_paymentfee/paymentfeepay5/paymethods';
+
+    private $taxHelper;
+
+    public function __construct(
+        Context $context,
+        TaxHelper $taxHelper
+    ) {
+        parent::__construct($context);
+        $this->taxHelper = $taxHelper;
+    }
+
+    public function isEnabled()
+    {
+        return (bool) $this->scopeConfig->getValue(self::PAYMENTFEE_GENERAL_ENABLED, 'store');
+    }
+
+    public function canRefundFees($storeId = null)
+    {
+        return (bool) $this->scopeConfig->getValue(
+            self::PAYMENTFEE_GENERAL_REFUND_ADDFEES,
+            'store',
+            $storeId
+        );
+    }
+
+    public function getFormattedLabel($feeRate)
+    {
+        $template = $this->scopeConfig->getValue(self::PAYMENTFEE_GENERAL_TEMPLATE, 'store');
+        $label = str_replace('[fee]', $feeRate, $template);
+        return $label;
+    }
+
+    public function getQuoteFees(Quote $quote, $calcBase)
+    {
+        $paymentMethod = $quote->getPayment()->getMethod();
+        $totalFee = 0;
+
+            $storeId = $quote->getStoreId();
+
+            if($this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY1_ENABLEPAY, ScopeInterface::SCOPE_STORE, $storeId))
+            {
+
+                $paymentMethods = explode(',',$this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY1_PAYMETHODS, ScopeInterface::SCOPE_WEBSITE));
+
+                if(in_array($paymentMethod,$paymentMethods))
+                {
+
+                    $totalFee += $this->calculateFee('paymentfeepay1',$quote, $calcBase);
+
+                }
+
+            }
+            if($this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY2_ENABLEPAY, ScopeInterface::SCOPE_STORE, $storeId))
+            {
+
+                $paymentMethods = explode(',',$this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY2_PAYMETHODS, ScopeInterface::SCOPE_WEBSITE));
+
+                if(in_array($paymentMethod,$paymentMethods))
+                {
+
+                    $totalFee += $this->calculateFee('paymentfeepay2',$quote, $calcBase);
+
+                }
+
+            }
+            if($this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY3_ENABLEPAY, ScopeInterface::SCOPE_STORE, $storeId))
+            {
+
+                $paymentMethods = explode(',',$this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY3_PAYMETHODS, ScopeInterface::SCOPE_WEBSITE));
+
+                if(in_array($paymentMethod,$paymentMethods))
+                {
+
+                    $totalFee += $this->calculateFee('paymentfeepay3',$quote, $calcBase);
+
+                }
+
+            }
+            if($this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY4_ENABLEPAY, ScopeInterface::SCOPE_STORE, $storeId))
+            {
+
+                $paymentMethods = explode(',',$this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY4_PAYMETHODS, ScopeInterface::SCOPE_WEBSITE));
+
+                if(in_array($paymentMethod,$paymentMethods))
+                {
+
+                    $totalFee += $this->calculateFee('paymentfeepay4',$quote, $calcBase);
+
+                }
+
+            }
+            if($this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY5_ENABLEPAY, ScopeInterface::SCOPE_STORE, $storeId))
+            {
+
+                $paymentMethods = explode(',',$this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY5_PAYMETHODS, ScopeInterface::SCOPE_WEBSITE));
+
+                if(in_array($paymentMethod,$paymentMethods))
+                {
+
+                    $totalFee += $this->calculateFee('paymentfeepay5',$quote, $calcBase);
+
+                }
+
+            }
+        return $totalFee;
+    }
+
+    public function calculateFee($method,Quote $quote, $calcBase)
+    {
+
+        if (is_array($calcBase)) {
+
+            if ($this->taxHelper->isTaxEnabled() && isset($calcBase['tax'])) {
+                unset($calcBase['tax']);
+            }
+            $calcBase = array_sum($calcBase);
+        }
+       if (!$calcBase) {
+        	return 0;
+		}
+        $paymentfeeAmount=0;
+        $address = $quote->getShippingAddress();
+        $storeId = $quote->getStoreId();
+        $handlingType =  $this->scopeConfig->getValue('magecomp_paymentfee/'.$method.'/payfeetype', ScopeInterface::SCOPE_STORE, $storeId);
+        $paymentfeeFixed =  $this->scopeConfig->getValue('magecomp_paymentfee/'.$method.'/payratefix', ScopeInterface::SCOPE_STORE, $storeId);
+        $paymentfeeRate =  $this->scopeConfig->getValue('magecomp_paymentfee/'.$method.'/payrateper', ScopeInterface::SCOPE_STORE, $storeId);
+        $applyGroupFilter = $this->scopeConfig->getValue('magecomp_paymentfee/'.$method.'/payfilterenable', ScopeInterface::SCOPE_STORE, $storeId);
+        $title = $this->scopeConfig->getValue('magecomp_paymentfee/'.$method.'/paydesc', ScopeInterface::SCOPE_STORE, $storeId);
+    	
+        $address->setMcPaymentfeeDescription($title);
+        $address->save();
+
+        if($applyGroupFilter)
+        {
+            $groupFilter = explode(',', $this->scopeConfig->getValue('magecomp_paymentfee/'.$method.'/paygroup', ScopeInterface::SCOPE_STORE, $storeId));
+            if(in_array($quote->getCustomerGroupId(), $groupFilter))
+            {
+                $apply = true;
+
+
+            } else {
+                $apply = false;
+            }
+        }
+        else
+        {
+            $apply = true;
+        }
+
+        if($apply) {
+
+            $subtotal = $address->getSubtotal();
+            switch ($handlingType) {
+                case AbstractCarrier::HANDLING_TYPE_FIXED:
+                    $paymentfeeAmount = $paymentfeeFixed;
+                    break;
+                case AbstractCarrier::HANDLING_TYPE_PERCENT:
+                    $paymentfeeAmount = round($subtotal * $paymentfeeRate / 100, 2);
+                    break;
+                case HandlingTypes::HANDLING_TYPE_COMBINED:
+                    $paymentfeeAmount = round($subtotal * $paymentfeeRate / 100, 2) + $paymentfeeFixed;
+                    break;
+                case HandlingTypes::HANDLING_TYPE_MIN:
+                    $paymentfeeAmount = round($subtotal * $paymentfeeRate / 100, 2);
+                    if ($paymentfeeAmount < $paymentfeeFixed) {
+                        $paymentfeeAmount = $paymentfeeFixed;
+                    }
+                    break;
+            }
+        }
+
+        return round($paymentfeeAmount * 100) / 100;
+    }
+    public function getApiQuoteFees(Quote $quote,$methods)
+    {
+    	if($methods=='' || empty($methods) || $methods==null){
+    		$address = $quote->getShippingAddress();
+    		$address->setMcPaymentfeeDescription("");
+        	$address->save();
+    		return 0;
+    	}
+        $paymentMethod = $quote->getPayment()->getMethod();
+        if($methods){
+        	$paymentMethod = $methods;
+        }
+        $totalFee = 0;
+
+            $storeId = $quote->getStoreId();
+
+            if($this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY1_ENABLEPAY, ScopeInterface::SCOPE_STORE, $storeId))
+            {
+
+                $paymentMethods = explode(',',$this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY1_PAYMETHODS, ScopeInterface::SCOPE_WEBSITE));
+
+                if(in_array($paymentMethod,$paymentMethods))
+                {
+
+                    $totalFee += $this->apicalculateFee('paymentfeepay1',$quote);
+
+                }
+
+            }
+            if($this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY2_ENABLEPAY, ScopeInterface::SCOPE_STORE, $storeId))
+            {
+
+                $paymentMethods = explode(',',$this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY2_PAYMETHODS, ScopeInterface::SCOPE_WEBSITE));
+
+                if(in_array($paymentMethod,$paymentMethods))
+                {
+
+                    $totalFee += $this->apicalculateFee('paymentfeepay2',$quote);
+
+                }
+
+            }
+            if($this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY3_ENABLEPAY, ScopeInterface::SCOPE_STORE, $storeId))
+            {
+
+                $paymentMethods = explode(',',$this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY3_PAYMETHODS, ScopeInterface::SCOPE_WEBSITE));
+
+                if(in_array($paymentMethod,$paymentMethods))
+                {
+
+                    $totalFee += $this->apicalculateFee('paymentfeepay3',$quote);
+
+                }
+
+            }
+            if($this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY4_ENABLEPAY, ScopeInterface::SCOPE_STORE, $storeId))
+            {
+
+                $paymentMethods = explode(',',$this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY4_PAYMETHODS, ScopeInterface::SCOPE_WEBSITE));
+
+                if(in_array($paymentMethod,$paymentMethods))
+                {
+
+                    $totalFee += $this->apicalculateFee('paymentfeepay4',$quote);
+
+                }
+
+            }
+            if($this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY5_ENABLEPAY, ScopeInterface::SCOPE_STORE, $storeId))
+            {
+
+                $paymentMethods = explode(',',$this->scopeConfig->getValue(self::PAYMENTFEE_PAYMENTFEEPAY5_PAYMETHODS, ScopeInterface::SCOPE_WEBSITE));
+
+                if(in_array($paymentMethod,$paymentMethods))
+                {
+
+                    $totalFee += $this->apicalculateFee('paymentfeepay5',$quote);
+
+                }
+
+            }
+        return $totalFee;
+    }
+    public function apicalculateFee($method,Quote $quote)
+    {
+        $paymentMethod = $quote->getPayment()->getMethod();
+        $paymentfeeAmount=0;
+        $address = $quote->getShippingAddress();
+        $storeId = $quote->getStoreId();
+        $handlingType =  $this->scopeConfig->getValue('magecomp_paymentfee/'.$method.'/payfeetype', ScopeInterface::SCOPE_STORE, $storeId);
+        $paymentfeeFixed =  $this->scopeConfig->getValue('magecomp_paymentfee/'.$method.'/payratefix', ScopeInterface::SCOPE_STORE, $storeId);
+        $paymentfeeRate =  $this->scopeConfig->getValue('magecomp_paymentfee/'.$method.'/payrateper', ScopeInterface::SCOPE_STORE, $storeId);
+        $applyGroupFilter = $this->scopeConfig->getValue('magecomp_paymentfee/'.$method.'/payfilterenable', ScopeInterface::SCOPE_STORE, $storeId);
+        $title = $this->scopeConfig->getValue('magecomp_paymentfee/'.$method.'/paydesc', ScopeInterface::SCOPE_STORE, $storeId);
+    	
+        $address->setMcPaymentfeeDescription($title);
+        $address->save();
+        
+        if($applyGroupFilter)
+        {
+            $groupFilter = explode(',', $this->scopeConfig->getValue('magecomp_paymentfee/'.$method.'/paygroup', ScopeInterface::SCOPE_STORE, $storeId));
+            if(in_array($quote->getCustomerGroupId(), $groupFilter))
+            {
+                $apply = true;
+
+
+            } else {
+                $apply = false;
+            }
+        }
+        else
+        {
+            $apply = true;
+        }
+
+        if($apply) {
+
+            $subtotal = $address->getSubtotal();
+            switch ($handlingType) {
+                case AbstractCarrier::HANDLING_TYPE_FIXED:
+                    $paymentfeeAmount = $paymentfeeFixed;
+                    break;
+                case AbstractCarrier::HANDLING_TYPE_PERCENT:
+                    $paymentfeeAmount = round($subtotal * $paymentfeeRate / 100, 2);
+                    break;
+                case HandlingTypes::HANDLING_TYPE_COMBINED:
+                    $paymentfeeAmount = round($subtotal * $paymentfeeRate / 100, 2) + $paymentfeeFixed;
+                    break;
+                case HandlingTypes::HANDLING_TYPE_MIN:
+                    $paymentfeeAmount = round($subtotal * $paymentfeeRate / 100, 2);
+                    if ($paymentfeeAmount < $paymentfeeFixed) {
+                        $paymentfeeAmount = $paymentfeeFixed;
+                    }
+                    break;
+            }
+        }
+
+        return round($paymentfeeAmount * 100) / 100;
+    }
+    
+}

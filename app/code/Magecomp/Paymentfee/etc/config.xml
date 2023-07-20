@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <magecomp_paymentfee>
+            <general>
+                <enable>1</enable>
+                <totals_label>Payment Fee</totals_label>
+                <payment_method_template>(Payment Fee: [fee])</payment_method_template>
+                <refund_addfees>0</refund_addfees>
+            </general>
+            <tax>
+                <enable>0</enable>
+                <display>2</display>
+            </tax>
+        </magecomp_paymentfee>
+        <sales>
+            <totals_sort>
+                <payment_fee>95</payment_fee>
+            </totals_sort>
+        </sales>
+    </default>
+</config>

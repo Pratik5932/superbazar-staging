@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="actions">
+        <field name="simple_action">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="template" xsi:type="string">Mexbs_AdditionalPromotions/form/element/simple-action</item>
+                </item>
+            </argument>
+        </field>
+        <container name="action_details">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Mexbs\AdditionalPromotions\Block\Adminhtml\Promo\Quote\Action\Details</argument>
+            </htmlContent>
+        </container>
+        <field name="discount_amount">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+        </field>
+        <field name="discount_qty">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>
+        </field>
+        <field name="max_discount_amount">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Maximum Discount Amount</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="dataScope" xsi:type="string">max_discount_amount</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                </item>
+            </argument>
+        </field>
+        <field name="discount_order_type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Mexbs\AdditionalPromotions\Model\Source\SalesRule\DiscountOrderTypeOptions</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Products ordered by</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">discount_order_type</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                </item>
+            </argument>
+        </field>
+        <field name="discount_breakdown_type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Mexbs\AdditionalPromotions\Model\Source\SalesRule\BreakdownType</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Mexbs_AdditionalPromotions/js/form/element/breakdown_type</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Discount Breakdown Type</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">discount_breakdown_type</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                </item>
+            </argument>
+        </field>
+        <field name="max_groups_number">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Maximum Number of Groups</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="dataScope" xsi:type="string">max_groups_number</item>
+                    <item name="sortOrder" xsi:type="number">80</item>
+                </item>
+            </argument>
+        </field>
+        <field name="max_sets_number">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Maximum Number of Sets</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="dataScope" xsi:type="string">max_sets_number</item>
+                    <item name="sortOrder" xsi:type="number">90</item>
+                </item>
+            </argument>
+        </field>
+        <field name="skip_tier_price">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Mexbs\AdditionalPromotions\Model\Source\SalesRule\YesNoConfig</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Skip items that have tier price</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">skip_tier_price</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                </item>
+            </argument>
+        </field>
+        <field name="skip_special_price">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Mexbs\AdditionalPromotions\Model\Source\SalesRule\YesNoConfig</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Skip items that have special price / catalog rule price</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">skip_special_price</item>
+                    <item name="sortOrder" xsi:type="number">110</item>
+                </item>
+            </argument>
+        </field>
+        <field name="display_popup_on_first_visit">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="label" xsi:type="string" translate="true">Display popup for customers on the first visit</item>
+                    <item name="sortOrder" xsi:type="number">120</item>
+                </item>
+            </argument>
+        </field>
+        <field name="popup_on_first_visit_image">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="label" xsi:type="string" translate="true">Popup Image</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">Mexbs_AdditionalPromotions/image-preview</item>
+                    <item name="required" xsi:type="boolean">false</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="apromotions/promo_quote_image/upload"/>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="visible" xsi:type="string">${ $.parentName}.display_popup_on_first_visit:checked</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">130</item>
+                </item>
+            </argument>
+        </field>
+        <field name="display_cart_hints">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="label" xsi:type="string" translate="true">Display Upsell Cart Hints</item>
+                    <item name="sortOrder" xsi:type="number">140</item>
+                </item>
+            </argument>
+        </field>
+        <field name="actions_hint_label">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Action Label for Upsell Cart Hints</item>
+                    <item name="notice" xsi:type="string" translate="true">The label that describes the action of the rule and will be displayed in cart hints if the condition haven't been reached yet. Eg: Add 100$ more, to get 1+1 on T-shirts. (The "to get 1+1 on T-shirts" is the Action Label in this example)</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="dataScope" xsi:type="string">actions_hint_label</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="visible" xsi:type="string">${ $.parentName}.display_cart_hints:checked</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">170</item>
+                </item>
+            </argument>
+        </field>
+        <field name="hide_hints_after_discount_number">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Hide Cart Hints after the Discount was applied number of times</item>
+                    <item name="notice" xsi:type="string" translate="true">If the value greater than 0, the hints will disappear after the discount was applied this number of times. (0 will cause the hints to show up all the time as long as the discount is applicable)</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="dataScope" xsi:type="string">hide_hints_after_discount_number</item>
+                    <item name="component" xsi:type="string">Mexbs_AdditionalPromotions/js/components/visible-on-hints-and-supported-actions</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="setCartHintsChecked" xsi:type="string">${$.provider}:data.display_cart_hints:checked</item>
+                        <item name="setSimpleAction" xsi:type="string">${$.provider}:data.simple_action</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">180</item>
+                </item>
+            </argument>
+        </field>
+        <field name="display_cart_hints_if_coupon_invalid">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="label" xsi:type="string" translate="true">Display Cart Hints When Coupon is Invalid</item>
+                    <item name="component" xsi:type="string">Mexbs_AdditionalPromotions/js/components/single-checkbox/visible-on-hints-and-supported-actions</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="setCartHintsChecked" xsi:type="string">${$.provider}:data.display_cart_hints:checked</item>
+                        <item name="setSimpleAction" xsi:type="string">${$.provider}:data.simple_action</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">185</item>
+                </item>
+            </argument>
+        </field>
+        <field name="display_promo_block">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="label" xsi:type="string" translate="true">Display Promo Block</item>
+                    <item name="component" xsi:type="string">Mexbs_AdditionalPromotions/js/components/single-checkbox/visible-on-promo-block-supported-actions</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="setSimpleAction" xsi:type="string">${$.provider}:data.simple_action</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">190</item>
+                </item>
+            </argument>
+        </field>
+        <field name="hide_promo_block_if_rule_applied">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="label" xsi:type="string" translate="true">Hide the Promo Block if the Promo has been applied</item>
+                    <item name="component" xsi:type="string">Mexbs_AdditionalPromotions/js/components/single-checkbox/visible-on-promo-block-and-promo-block-supported-actions</item>
+                    <item name="sortOrder" xsi:type="number">200</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="setPromoBlockChecked" xsi:type="string">${$.provider}:data.display_promo_block:checked</item>
+                        <item name="setSimpleAction" xsi:type="string">${$.provider}:data.simple_action</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="discount_step">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">210</item>
+                </item>
+            </argument>
+        </field>
+        <field name="apply_to_shipping">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">220</item>
+                </item>
+            </argument>
+        </field>
+        <field name="stop_rules_processing">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">230</item>
+                </item>
+            </argument>
+        </field>
+        <container name="actions_apply_to">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">240</item>
+                </item>
+            </argument>
+        </container>
+    </fieldset>
+</form>

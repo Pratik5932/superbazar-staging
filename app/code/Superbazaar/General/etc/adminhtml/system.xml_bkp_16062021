@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+* BSS Commerce Co.
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://bsscommerce.com/Bss-Commerce-License.txt
+*
+* =================================================================
+*                 MAGENTO EDITION USAGE NOTICE
+* =================================================================
+* This package designed for Magento COMMUNITY edition
+* BSS Commerce does not guarantee correct work of this extension
+* on any other Magento edition except Magento COMMUNITY edition.
+* BSS Commerce does not provide extension support in case of
+* incorrect edition usage.
+* =================================================================
+*
+* @category   BSS
+* @package    Bss_CustomProductAttributeExport
+* @author     Extension Team
+* @copyright  Copyright (c) 2015-2016 BSS Commerce Co. ( http://bsscommerce.com )
+* @license    http://bsscommerce.com/Bss-Commerce-License.txt
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="invoicepdfsection" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>Invoice PDF Category Section</label>
+            <tab>bss</tab>
+            <resource>Superbazaar_General::config_superbazaar_General</resource>
+            <group id="invoicepdfgroup" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Invoice PDF Category Section</label>
+                <field id="frozed_cat_ids" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="multiselect">
+                    <label>Select Categories for Frozen Category</label>
+                    <source_model>Superbazaar\General\Model\Config\Source\Categorylist</source_model>
+                </field>
+                <field id="fresh_cat_ids" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="multiselect">
+                    <label>Select Categories for Fresh Vegitable Category</label>
+                    <source_model>Superbazaar\General\Model\Config\Source\Categorylist</source_model>
+                </field>
+            </group>
+            
+        </section>
+    </system>
+</config>

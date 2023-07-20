@@ -1,0 +1,286 @@
+<?php
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+namespace Superbazaar\PostcodeWisePrice\Ui\DataProvider\Product\Form\Modifier;
+
+use Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\AbstractModifier;
+use Magento\Catalog\Controller\Adminhtml\Product\Initialization\StockDataFilter;
+use Magento\Catalog\Model\Locator\LocatorInterface;
+
+use Magento\CatalogInventory\Api\StockRegistryInterface;
+use Magento\Framework\Stdlib\ArrayManager;
+use Magento\CatalogInventory\Api\Data\StockItemInterface;
+use Magento\CatalogInventory\Api\StockConfigurationInterface;
+
+use Magento\Ui\Component\Container;
+use Magento\Ui\Component\Form\Element\DataType\Number;
+use Magento\Ui\Component\Form\Element\DataType\Text;
+use Magento\Ui\Component\Form\Element\Textarea;
+use Magento\Ui\Component\Form\Element\Input;
+use Magento\Ui\Component\Form\Element\Select;
+use Magento\Ui\Component\Form\Field;
+use Magento\Ui\Component\Modal;
+
+use Magento\Customer\Model\Customer\Source\GroupSourceInterface;
+use Magento\Framework\App\ObjectManager;
+/**
+* Data provider for attraction highlights field
+*/
+class Highlights extends AbstractModifier
+{
+    const ATTRACTION_HIGHLIGHTS_FIELD = 'postcode_prodct_price';
+    const FIELD_NAME_SELECT = 'postcode';
+
+    /**
+    * @var LocatorInterface
+    */
+    private $locator;
+
+    /**
+    * @var ArrayManager
+    */
+    private $arrayManager;
+
+    /**
+    * @var array
+    */
+    private $meta = [];
+
+    /**
+    * @var string
+    */
+    protected $scopeName;   
+
+    /**
+    * @param LocatorInterface $locator
+    * @param ArrayManager $arrayManager
+    */
+    public function __construct(
+        LocatorInterface $locator,
+        ArrayManager $arrayManager,
+        $scopeName = '',
+        \Superbazaar\PostcodeWisePrice\Model\Source\Postcode $postcode,
+        GroupSourceInterface $customerGroupSource = null
+    ) {
+        $this->locator = $locator;
+        $this->arrayManager = $arrayManager;
+        $this->scopeName = $scopeName;
+        $this->postcode = $postcode;
+        $this->customerGroupSource = $customerGroupSource
+            ?: ObjectManager::getInstance()->get(GroupSourceInterface::class);
+    }
+
+    /**
+    * {@inheritdoc}
+    */
+    public function modifyData(array $data)
+    {
+        $fieldCode = self::ATTRACTION_HIGHLIGHTS_FIELD;
+
+        $model = $this->locator->getProduct();
+        $modelId = $model->getId();
+
+        $highlightsData = $model->getPostcodeProdctPrice();
+
+        if ($highlightsData) {
+            $highlightsData = json_decode($highlightsData, true);
+            $path = $modelId . '/' . self::DATA_SOURCE_DEFAULT . '/'. self::ATTRACTION_HIGHLIGHTS_FIELD;
+            $data = $this->arrayManager->set($path, $data, $highlightsData);
+        }
+
+        return $data;
+    }
+
+    /**
+    * {@inheritdoc}
+    */
+    public function modifyMeta(array $meta)
+    {
+        $this->meta = $meta;
+        $this -> initAttractionHighlightFields();
+        return $this->meta;
+    }
+
+    /**
+    * Customize attraction highlights field
+    *
+    * @return $this
+    */
+    protected function initAttractionHighlightFields()
+    {
+        $highlightsPath = $this->arrayManager->findPath(
+            self::ATTRACTION_HIGHLIGHTS_FIELD,
+            $this->meta,
+            null,
+            'children'
+        );
+
+        if ($highlightsPath) {
+            $this->meta = $this->arrayManager->merge(
+                $highlightsPath,
+                $this->meta,
+                $this->initHighlightFieldStructure($highlightsPath)
+            );
+            $this->meta = $this->arrayManager->set(
+                $this->arrayManager->slicePath($highlightsPath, 0, -3)
+                . '/' . self::ATTRACTION_HIGHLIGHTS_FIELD,
+                $this->meta,
+                $this->arrayManager->get($highlightsPath, $this->meta)
+            );
+            $this->meta = $this->arrayManager->remove(
+                $this->arrayManager->slicePath($highlightsPath, 0, -2),
+                $this->meta
+            );
+        }
+
+        return $this;
+    }   
+
+
+    /**
+    * Get attraction highlights dynamic rows structure
+    *
+    * @param string $highlightsPath
+    * @return array
+    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+    */
+    protected function initHighlightFieldStructure($highlightsPath)
+    {
+        return [
+            'arguments' => [
+                'data' => [
+                    'config' => [
+                        'componentType' => 'dynamicRows',
+                        'label' => __('Postcode Product Price'),
+                        'renderDefaultRecord' => false,
+                        'recordTemplate' => 'record',
+                        'dataScope' => '',
+                        'dndConfig' => [
+                            'enabled' => false,
+                        ],
+                        'disabled' => false,
+                        'sortOrder' =>
+                        $this->arrayManager->get($highlightsPath . '/arguments/data/config/sortOrder', $this->meta),
+                    ],
+                ],
+            ],
+            'children' => [
+                'record' => [
+                    'arguments' => [
+                        'data' => [
+                            'config' => [
+                                'componentType' => Container::NAME,
+                                'isTemplate' => true,
+                                'is_collection' => true,
+                                'component' => 'Magento_Ui/js/dynamic-rows/record',
+                                'dataScope' => '',
+                            ],
+                        ],
+                    ],
+                    'children' => [
+
+                        'postcode' => [
+                            'arguments' => [
+                                'data' => [
+                                    'config' => [
+                                        'formElement' => Select::NAME,
+                                        'componentType' => Field::NAME,
+                                        'dataType' => Text::NAME,
+                                        'dataScope' => 'postcode',
+                                        'label' => __('Postcode'),
+                                        'options' => $this->getPostcodes(),
+                                        'sortOrder' => 1,
+                                    ],
+                                ],
+                            ],
+                        ],
+
+                        'price' => [
+                            'arguments' => [
+                                'data' => [
+                                    'config' => [
+                                        'formElement' => Input::NAME,
+                                        'componentType' => Field::NAME,
+                                        'dataType' => Text::NAME,
+                                        'label' => __('Price'),
+                                        'dataScope' => 'price',
+                                        'require' => '1',
+                                        'validation' => [
+                                            'required-entry' => true
+                                        ],
+                                        'sortOrder' => 2,
+                                    ],
+                                ],
+                            ],
+                        ],
+
+                        'actionDelete' => [
+                            'arguments' => [
+                                'data' => [
+                                    'config' => [
+                                        'componentType' => 'actionDelete',
+                                        'dataType' => Text::NAME,
+                                        'label' => '',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
+    }   
+    
+    /**
+     * Retrieve allowed postcode
+     *
+     * @return array
+     */
+    private function getPostcodes()
+    {
+        return $this->postcode->toOptionArray();
+    }
+    
+    protected function getSelectFieldConfig($sortOrder)
+    {
+        return [
+            'arguments' => [
+                'data' => [
+                    'config' => [
+                        'dataType' => Text::NAME,
+                        'formElement' => Select::NAME,
+                        'componentType' => Field::NAME,
+                        'dataScope' => 'website_id',
+                        'label' => __('Website'),
+                        'sortOrder' => $sortOrder,
+                        'options' => $this->_getOptions(),
+                        'visible' => true,
+                        'disabled' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
+    protected function _getOptions()
+    {
+        $options = [
+            1 => [
+                'label' => __('Option 1'),
+                'value' => 1
+            ],
+            2 => [
+                'label' => __('Option 2'),
+                'value' => 2
+            ],
+            3 => [
+                'label' => __('Option 3'),
+                'value' => 3
+            ],
+        ];
+
+        return $options;
+    }
+}
+?>

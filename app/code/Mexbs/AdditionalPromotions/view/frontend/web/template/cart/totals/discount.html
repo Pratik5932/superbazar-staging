@@ -1,0 +1,67 @@
+<!-- ko if: isDisplayed() && !isBreakdownDisplayed() -->
+<tr class="totals">
+    <th colspan="1" style="" class="mark" scope="row">
+        <span class="title" data-bind="text: title"></span>
+        <span class="discount coupon" data-bind="text: getCouponCode()"></span>
+    </th>
+    <td class="amount" data-bind="attr: {'data-th': title}">
+        <span><span class="price" data-bind="text: getValue()"></span></span>
+    </td>
+</tr>
+<!-- /ko -->
+
+<!-- ko if: isDisplayed() -->
+<!-- ko if: isBreakdownDisplayed() -->
+<!-- ko if: !isBreakdownCollapsedByDefault() -->
+<tr class="totals-discount-summary expanded"
+    data-bind="
+mageInit: {'toggleAdvanced':{'selectorsToggleClass': 'shown', 'baseToggleClass': 'expanded', 'toggleContainers': '.totals-discount-details'}}
+">
+    <th class="mark" scope="row">
+        <span class="title" data-bind="text: title"></span>
+        <span class="discount coupon" data-bind="text: getCouponCode()"></span>
+    </th>
+    <td class="amount" data-bind="attr: {'data-th': title}">
+        <span class="price" data-bind="text: getValue()"></span>
+    </td>
+</tr>
+<!-- ko foreach: getDetails() -->
+<!-- ko foreach: description_lines -->
+<tr class="totals-discount-details shown">
+    <td class="title" colspan="2">
+        <span data-bind="text: line"></span>
+    </td>
+</tr>
+<!-- /ko -->
+<!-- /ko -->
+<!-- /ko -->
+<!-- /ko -->
+<!-- /ko -->
+
+<!-- ko if: isDisplayed() -->
+<!-- ko if: isBreakdownDisplayed() -->
+<!-- ko if: isBreakdownCollapsedByDefault() -->
+<tr class="totals-discount-summary"
+    data-bind="
+mageInit: {'toggleAdvanced':{'selectorsToggleClass': 'shown', 'baseToggleClass': 'expanded', 'toggleContainers': '.totals-discount-details'}}
+">
+    <th class="mark" scope="row">
+        <span class="title" data-bind="text: title"></span>
+        <span class="discount coupon" data-bind="text: getCouponCode()"></span>
+    </th>
+    <td class="amount" data-bind="attr: {'data-th': title}">
+        <span class="price" data-bind="text: getValue()"></span>
+    </td>
+</tr>
+<!-- ko foreach: getDetails() -->
+<!-- ko foreach: description_lines -->
+<tr class="totals-discount-details">
+    <td class="title" colspan="2">
+        <span data-bind="text: line"></span>
+    </td>
+</tr>
+<!-- /ko -->
+<!-- /ko -->
+<!-- /ko -->
+<!-- /ko -->
+<!-- /ko -->

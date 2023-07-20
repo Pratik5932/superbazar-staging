@@ -1,0 +1,66 @@
+<?php
+    $productAccessLevel = $block->getAccessLevel();
+?>
+
+<fieldset class="fieldset form-inline entry-edit">
+    <legend class="legend">
+        <span><?= /* @escapeNotVerified */ __('Advanced Role Products') ?></span>
+    </legend><br />
+
+    <div class="field">
+        <label class="label" for="product_select"><span><?= /* @escapeNotVerified */ __('Advanced Role Products') ?></span></label>
+
+        <div class="control">
+            <select id="product_select" name="product_select" class="select" onchange="
+                var selectedValue = this.options[this.selectedIndex].value;
+                if (selectedValue == 1) {
+                    jQuery('[data-role=specified_role_products]').hide();
+                }
+
+                if (selectedValue == 2) {
+                   jQuery('[data-role=specified_role_products]').show();
+                }
+                if (selectedValue == 3) {
+                    jQuery('[data-role=specified_role_products]').hide();
+                }
+            ">
+                <option value="1"
+                    <?php
+                    if ($productAccessLevel == 1) {
+                        echo ('selected');
+                    }
+                    ?>
+                ><?= /* @escapeNotVerified */ __('Access To All Products') ?></option>
+                <option value="2"
+                    <?php
+                    if ($productAccessLevel == 2) {
+                        echo ('selected');
+                    }
+                    ?>
+                ><?= /* @escapeNotVerified */ __('Access To Specified Products') ?></option>
+                <option value="3"
+                    <?php
+                    if ($productAccessLevel == 3) {
+                        echo ('selected');
+                    }
+                    ?>
+                ><?= /* @escapeNotVerified */ __('Access To Own Created Products') ?></option>
+            </select>
+        </div>
+    </div>
+
+</fieldset>
+
+<fieldset class="fieldset
+    <?php
+        if ($productAccessLevel == 2) {
+            echo ('');
+        } else {
+            echo ('no-display');
+        }
+    ?>
+" data-role="specified_role_products">
+    <legend class="legend"><span><?= /* @escapeNotVerified */ __('Specified Role Products') ?></span></legend>
+    <br />
+    <?= $block->getGridHtml() ?>
+</fieldset>

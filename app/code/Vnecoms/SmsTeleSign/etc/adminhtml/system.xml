@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="vsms">
+            <group id="settings">
+            	<group id="sms_gateway">
+	            	<field id="telesign_customer_id" translate="label tooltip" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+	                    <label>TeleSign Customer Id</label>
+	                    <config_path>vsms/settings/telesign_customer_id</config_path>
+	                    <depends>
+	                        <field id="gateway">telesign</field>
+	                    </depends>
+	                </field>
+	                <field id="telesign_api_key" translate="label tooltip" type="text" sortOrder="41" showInDefault="1" showInWebsite="1" showInStore="0">
+	                    <label>TeleSign API Key</label>
+	                    <config_path>vsms/settings/telesign_api_key</config_path>
+	                    <depends>
+	                        <field id="gateway">telesign</field>
+	                    </depends>
+	                </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

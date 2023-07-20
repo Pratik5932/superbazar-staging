@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job instance="Superbazaar\General\Cron\ProductExpireSend" method="execute" name="product_expire_cron">
+            <schedule>0 0 1 * *</schedule>
+        </job>
+        <job instance="Superbazaar\General\Cron\ProductExpireSend" method="exportToCsv" name="product_expire_seller">
+            <!--            <schedule>* * * * *</schedule>-->
+            <schedule>59 23 28-31 * *</schedule>
+        </job>
+        <!--  <job instance="Superbazaar\General\Cron\WeightProduct" method="execute" name="panner_product_report">
+        <schedule>* * * * *</schedule>
+        </job> -->     
+
+        <job name="catalog_product_alert_custom" instance="Magento\ProductAlert\Model\Observer" method="process">
+            <schedule>*/5 * * * *</schedule>
+        </job>
+    </group>
+
+</config>

@@ -1,0 +1,85 @@
+"Delivery Date Information","Delivery Date Information"
+"Delivery Date","Delivery Date"
+"-- Please Select --","-- Please Select --"
+"Delivery Time Slot","Delivery Time Slot"
+"Shipping Arrival Comment","Shipping Arrival Comment"
+"Save Delivery Date","Save Delivery Date"
+Date,Date
+Content,Content
+More,More
+From,From
+To,To
+Note,Note
+"mm/dd/yy (ex: 05/04/2012)","mm/dd/yy (ex: 05/04/2012)"
+"dd-mm-yy (ex: 04-05-2012)","dd-mm-yy (ex: 04-05-2012)"
+"yy-mm-dd (ex: 2012-05-04)","yy-mm-dd (ex: 2012-05-04)"
+"Shipping Address","Shipping Address"
+"Shipping Method","Shipping Method"
+"Review & Payments","Review & Payments"
+%1,%1
+"Template Variables","Template Variables"
+"Credit Memo # ","Credit Memo # "
+N/A,N/A
+"No Comment","No Comment"
+"Shipping Arrival Date: ","Shipping Arrival Date: "
+"Shipping Arrival Timeslot: ","Shipping Arrival Timeslot: "
+"Shipping Arrival Comment: ","Shipping Arrival Comment: "
+"Invoice # ","Invoice # "
+"Packing Slip # ","Packing Slip # "
+"Address Information","Address Information"
+"Payment &amp; Shipping Information","Payment &amp; Shipping Information"
+"Order Total","Order Total"
+"Order History","Order History"
+"Order Currency:","Order Currency:"
+"Payment &amp; Shipping Method","Payment &amp; Shipping Method"
+"Payment Information","Payment Information"
+"The order was placed using %1.","The order was placed using %1."
+"Shipping Information","Shipping Information"
+"Total Shipping Charges","Total Shipping Charges"
+"Incl. Tax","Incl. Tax"
+"Shipping Arrival Comments: ","Shipping Arrival Comments: "
+"Items Refunded","Items Refunded"
+"No Items","No Items"
+"Memo Total","Memo Total"
+"Credit Memo History","Credit Memo History"
+"Credit Memo Totals","Credit Memo Totals"
+"Delivery Date InformationInformation","Delivery Date InformationInformation"
+"Items Invoiced","Items Invoiced"
+"Invoice History","Invoice History"
+"Invoice Totals","Invoice Totals"
+Edit,Edit
+"Items Ordered","Items Ordered"
+"Notes for this Order","Notes for this Order"
+"Order Totals","Order Totals"
+Add,Add
+"Add after","Add after"
+Delete,Delete
+"About the calendar","About the calendar"
+Close,Close
+"Go Today","Go Today"
+Previous,Previous
+Next,Next
+WK,WK
+Time,Time
+Hour,Hour
+Minute,Minute
+"Shipping and Tracking Information","Shipping and Tracking Information"
+"Track this shipment","Track this shipment"
+"Items Shipped","Items Shipped"
+"Shipment History","Shipment History"
+"Update Delivery Date","Update Delivery Date"
+"Select Date","Select Date"
+"Bss Commerce","Bss Commerce"
+"Order Delivery Date","Order Delivery Date"
+General,General
+Enabled,Enabled
+"Display At","Display At"
+"Processing Time","Processing Time"
+"Cut Off Time","Cut Off Time"
+"Holidays/Exclude Days/Blackout Days","Holidays/Exclude Days/Blackout Days"
+"Time Slots","Time Slots"
+"Enable Shipping Arrival Comment","Enable Shipping Arrival Comment"
+"Disable Delivery Date","Disable Delivery Date"
+"Date Fields","Date Fields"
+"Icon Calendar","Icon Calendar"
+"Exclude Holidays/Disable Day From Processing Day.","Exclude Holidays/Disable Day From Processing Day."

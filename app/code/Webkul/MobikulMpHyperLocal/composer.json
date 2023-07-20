@@ -1,0 +1,23 @@
+{
+    "name": "webkul/module-mobikul-marketplace-hyperlocal/",
+    "description": "Webkul Magento2 Mobikul Marketplace Hyperlocal Module",
+    "require": {
+        "webkul/module-mobikul-core": "3.*.*",
+        "webkul/module-mobikul-api": "3.*.*",
+        "webkul/module-mobikulmp-singleapp": "3.*.*",
+        "webkul/marketplace-hyperlocal": "3.*.*"
+    },
+    "type": "magento2-module",
+    "version": "3.0.0",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Webkul\\MobikulMpHyperLocal\\": ""
+        }
+    }
+}

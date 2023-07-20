@@ -1,0 +1,199 @@
+<?php
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_order = $block->getOrder();
+if($_order !== null){
+$_items = $_order->getAllItems();
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$scopeConfig = $objectManager->create('Magento\Framework\App\Config\ScopeConfigInterface');
+$frozenCategirylist = $scopeConfig->getValue("invoicepdfsection/invoicepdfgroup/frozed_cat_ids",
+    \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+$frozenCategirylist = explode(',', $frozenCategirylist);
+$freshCategirylist = $scopeConfig->getValue("invoicepdfsection/invoicepdfgroup/fresh_cat_ids",
+    \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+$freshCategirylist=explode(',', $freshCategirylist);
+$mergeArray = array_merge($frozenCategirylist,$freshCategirylist);
+$frozenitemarray = array();
+$freshitemarray = array();
+$otheritems = array();
+$heading = "";
+$heading1 = "";
+
+
+foreach ($frozenCategirylist as $_frozenitem){
+    foreach ($_items as $_item): 
+        $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProductId());
+        $categoryCollection = $objectManager->get('\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+        $categoryIds = $product->getCategoryIds();
+        ?>
+        <?php if(in_array($_frozenitem,$categoryIds)){
+            $frozenitemarray[] = $_item->getProductId();
+            $heading = "Freezer/Fridge";
+        }
+        endforeach;    
+} 
+
+
+foreach ($freshCategirylist as $_freshitem){
+    foreach ($_items as $_item): 
+        $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProductId());
+        $categoryCollection = $objectManager->get('\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+        $categoryIds = $product->getCategoryIds();
+        ?>
+        <?php if(in_array($_freshitem,$categoryIds)){
+            $freshitemarray[] = $_item->getProductId();
+            $heading1 = "Fresh Vegetables";
+        }
+        endforeach;    
+} 
+$total_qty = 0;
+foreach ($_items as $_item): 
+    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProductId());
+    $categoryCollection = $objectManager->get('\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+    $categoryIds = $product->getCategoryIds();
+    $total_qty =  $total_qty+$_item->getQtyOrdered();
+    ?>
+    <?php
+    $otherit = array_intersect($mergeArray,$categoryIds);
+    if(!count($otherit)){
+        $otheritems[] = $_item->getProductId();
+    }
+    endforeach;    
+?>
+<div style='padding: 10px;'>
+    <p>Total Products : <?php echo count($_items); ?></p>
+    <p>Total Items : <?php echo $total_qty; ?></p>
+</div>
+<?php if ($_order): ?>
+    <?php $_items = $_order->getAllItems(); ?>
+    <table class="email-items">
+        <thead>
+            <tr>
+                <th class="item-info">
+                    <?= /* @escapeNotVerified */  __('Items') ?>
+                </th>
+                <th class="item-info">
+                    <?= /* @escapeNotVerified */  __('Aisle') ?>
+                </th>
+                <th class="item-qty">
+                    <?= /* @escapeNotVerified */  __('Qty') ?>
+                </th>
+                <th class="item-discont" style="text-align: center;">
+                    <?= /* @escapeNotVerified */  __('Unit Price') ?>
+                </th>
+                <th class="item-discont">
+                    <?= /* @escapeNotVerified */  __('Discount') ?>
+                </th>
+                <th class="item-discont" style="text-align: center;">
+                    <?= /* @escapeNotVerified */  __('GST (Inclusive)') ?>
+                </th>
+                <th class="item-price" style="text-align: center;">
+                    <?= /* @escapeNotVerified */  __('Net Amount') ?>
+                </th>
+            </tr>
+        </thead>
+        <?php 
+        $newitems = array();
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        foreach ($_items as $_item) :
+            $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProductId());
+            $alies = $product->getAttributeText('aisle');
+            $newitems[$alies][] = $_item; 
+            ?>
+            <?php endforeach; ?>
+        <?php ksort($newitems);
+        $allItems = array();
+        foreach ($newitems as $name => $items) {
+            $allItems = array_merge($allItems, $items);
+        } ?>
+        <?php foreach ($allItems as $_item): ?>
+            <?php if (!$_item->getParentItem()) :
+                $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProductId());
+                $categoryCollection = $objectManager->get('\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+                $categoryIds = $product->getCategoryIds();
+                ?>
+
+                <?php if(in_array($_item->getProductId(),$otheritems)){ ?>
+
+                    <?= $block->getItemHtml($_item) ?>
+                    <?php } 
+
+                ?>
+
+
+                <?php endif; ?>
+            <?php endforeach;?>
+
+        <tr>
+            <td colspan="6" style="padding:10px 10px 0px; color: #d9534f;font-size: 18px;">
+                <strong><?php echo $heading ?></strong>
+            </td>
+        </tr>
+
+        <?php foreach ($allItems as $_item): ?>
+            <?php if (!$_item->getParentItem()) :
+                $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProductId());
+                $categoryCollection = $objectManager->get('\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+                $categoryIds = $product->getCategoryIds();
+                ?>
+
+                <?php if(in_array($_item->getProductId(),$frozenitemarray)){ ?>
+                    <?= $block->getItemHtml($_item) ?>
+                    <?php } 
+
+                ?>
+
+
+                <?php endif; ?>
+            <?php endforeach; ?>
+        <tr>
+            <td colspan="6" style="padding:10px 10px 0px; color: #d9534f ;font-size: 18px;">
+                <strong><?php echo $heading1; ?></strong>
+            </td>
+        </tr>
+        <?php foreach ($allItems as $_item): ?>
+            <?php if (!$_item->getParentItem()) :
+                $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProductId());
+                $categoryCollection = $objectManager->get('\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+                $categoryIds = $product->getCategoryIds();
+                ?>
+
+                <?php  if(in_array($_item->getProductId(),$freshitemarray)){?>
+
+                    <?= $block->getItemHtml($_item) ?>
+                    <?php } 
+
+                ?>
+
+
+                <?php endif; ?>
+            <?php endforeach; ?>
+        <tfoot class="order-totals">
+            <?= $block->getChildHtml('order_totals') ?>
+        </tfoot>
+    </table>
+    <?php if ($this->helper('Magento\GiftMessage\Helper\Message')->isMessagesAllowed('order', $_order, $_order->getStore()) && $_order->getGiftMessageId()): ?>
+        <?php $_giftMessage = $this->helper('Magento\GiftMessage\Helper\Message')->getGiftMessage($_order->getGiftMessageId()); ?>
+        <?php if ($_giftMessage): ?>
+            <br />
+            <table class="message-gift">
+                <tr>
+                    <td>
+                        <h3><?= /* @escapeNotVerified */  __('Gift Message for this Order') ?></h3>
+                        <strong><?= /* @escapeNotVerified */  __('From:') ?></strong> <?= $block->escapeHtml($_giftMessage->getSender()) ?>
+                        <br /><strong><?= /* @escapeNotVerified */  __('To:') ?></strong> <?= $block->escapeHtml($_giftMessage->getRecipient()) ?>
+                        <br /><strong><?= /* @escapeNotVerified */  __('Message:') ?></strong>
+                        <br /><?= $block->escapeHtml($_giftMessage->getMessage()) ?>
+                    </td>
+                </tr>
+            </table>
+            <?php endif; ?>
+        <?php endif; ?>
+    <?php endif; }?>

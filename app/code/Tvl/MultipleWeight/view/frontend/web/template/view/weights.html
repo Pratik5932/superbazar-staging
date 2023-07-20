@@ -1,0 +1,27 @@
+<div id="choose-weight-form">
+    <div class="row">
+        <div class="left">
+            <div class="weight-wrap ">
+                <label for="input-weight" data-bind="i18n: 'How many Grams is needed?'"></label>
+                <div class="control">
+                    <input type="text" id="input-weight" data-bind="value: weight" class="input-text" data-validate='{"required-number":true}'><span class="input-placeholder">gm</span>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="price-container">
+                <span class="price-wrapper" data-bind="html: price"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ko if: isAvailableWeight() -->
+    <div class="label field required">
+        <input type="hidden" name="item_qty" data-bind="value:selectedQty">
+        <label class="label" data-bind="i18n: 'Available sizes: '"></label>
+        <!-- ko foreach: availableWeights -->
+        <input type="radio" class="radio required-entry" name="weight" data-validate="{'validate-one-required-by-name':true}" data-bind="attr: {id: $data}, checked: $parent.selectedWeight, value: $data" /><label data-bind="text: $data + 'gm', attr: {for: $data}"></label>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</div>

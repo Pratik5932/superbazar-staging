@@ -1,0 +1,27 @@
+.vsms-field-container .mobile-number{width: 250px;}
+.vsms-field-container .mobile-number.otp-validated{background: #E5EFE5; border-color: #006400;}
+.sms-otp-error{color: #e02b27;}
+.vsms-field-container div.mage-error{position: absolute;}
+.modal-popup.otp-verify-modal .modal-inner-wrap{width: 600px;}
+.modal-slide.otp-verify-modal .page-main-actions{margin-bottom: auto;}
+.modal-slide.otp-verify-modal .modal-title{border-bottom: 1px solid #ccc; padding-bottom: 10px;}
+.sms-otp-dialog{text-align: center;}
+.sms-otp-mobile{font-weight: bold;}
+.sms-otp-step-1,.sms-otp-step-2{display: none;}
+#verify-otp-btn{clear: both; margin-top: 20px;}
+#verify-otp-btn.verifying{background: #ddd; border: 1px solid #aaa; color: #999; cursor: auto;}
+.resend-otp-btn{display: block; margin-top: 10px;}
+.resend-otp-btn.running{cursor: auto; color: #AAA;}
+.resend-otp-btn.running:hover {text-decoration: none;}
+.field .control input.otp-checkout-field{width: 85px;}
+.field .control input.sms-mobile-number{width: 100%;}
+.sms-address-mobile-container .intl-tel-input{width: 160px;}
+.sms-resendbtn.disabled{color: #bbb; cursor: auto; text-decoration: none;}
+.intl-tel-input{z-index: 10;}
+.form-edit-mobile .actions-toolbar{clear: both;}
+
+.sms-login-field-ctrl.selected{cursor: auto; color: #333; text-decoration: underline}
+
+@media screen and (max-width: 767px) {
+	.modal-popup.otp-verify-modal .modal-inner-wrap{width: 90%;}
+}

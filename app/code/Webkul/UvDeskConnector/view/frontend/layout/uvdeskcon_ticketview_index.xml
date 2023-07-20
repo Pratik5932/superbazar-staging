@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_UvDeskConnector
+ * @author    Webkul Software Private Limited
+ * @copyright Copyright (c) 2010-2017 Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="empty" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Ticket Thread</title>
+        <css src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" src_type="url"/>
+        <css src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" src_type="url"/>
+        <css src="Webkul_UvDeskConnector::css/uvdesk.css"/>
+        <css src="Webkul_UvDeskConnector::css/ticket_view.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="authentication-popup" remove="true"/>
+            <block class="Webkul\UvDeskConnector\Block\TicketView" name="customer_editss" template="Webkul_UvDeskConnector::ticketthread.phtml" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

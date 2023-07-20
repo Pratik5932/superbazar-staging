@@ -1,0 +1,6 @@
+[16-Oct-2018 19:07:20 Australia/Victoria] ERROR: SMTP server does not support authentication ()
+[16-Oct-2018 19:07:20 +1100]: <ee73d4bf> SMTP Error: Authentication failure: SMTP server does not support authentication (Code: ) in /home/magento-952359-3631221.cloudwaysapps.com/public_html/rmail/program/lib/Roundcube/rcube.php on line 1667 (POST /rmail/?_task=mail&_unlock=loading1539677239218&_lang=en_US&_framed=1&_action=send)
+[16-Oct-2018 19:07:49 Australia/Victoria] ERROR: STARTTLS failed ()
+[16-Oct-2018 19:07:49 Australia/Victoria] ERROR: Invalid response code received from server (-1)
+[16-Oct-2018 19:07:49 Australia/Victoria] ERROR: Failed to write to socket: unknown error ()
+[16-Oct-2018 19:07:49 +1100]: <ee73d4bf> SMTP Error: Authentication failure: STARTTLS failed (Code: ) in /home/magento-952359-3631221.cloudwaysapps.com/public_html/rmail/program/lib/Roundcube/rcube.php on line 1667 (POST /rmail/?_task=mail&_unlock=loading1539677268964&_lang=en_US&_framed=1&_action=send)

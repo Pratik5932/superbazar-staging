@@ -1,0 +1,113 @@
+"There is some privacy with this Facebook Account,
+                        so please check your account or signup with another account.","There is some privacy with this Facebook Account,
+                        so please check your account or signup with another account."
+"You have successfully loged in using your facebook account ","You have successfully loged in using your facebook account "
+"You have successfully logged in using your facebook account","You have successfully logged in using your facebook account"
+facebook,facebook
+"Something went wrong, please check log file.","Something went wrong, please check log file."
+"Unable to find google Csrf Code","Unable to find google Csrf Code"
+"Attribute socialsignup_gid or socialsignup_gtoken not exist","Attribute socialsignup_gid or socialsignup_gtoken not exist"
+"We have discovered you already have an account at our store.
+                        Your %1 account is now connected to your store account.","We have discovered you already have an account at our store.
+                        Your %1 account is now connected to your store account."
+"Sorry, could not retrieve your %1 first name. Please try again.","Sorry, could not retrieve your %1 first name. Please try again."
+"Sorry, could not retrieve your %2 last name. Please try again.","Sorry, could not retrieve your %2 last name. Please try again."
+google,google
+"Your %1 account is now connected to your new user account at our store.
+                    Now you can login using our %1 Connect button or using store account 
+                    credentials you will receive to your email address.","Your %1 account is now connected to your new user account at our store.
+                    Now you can login using our %1 Connect button or using store account 
+                    credentials you will receive to your email address."
+"Your %1 account is already connected to one of our store accounts.","Your %1 account is already connected to one of our store accounts."
+"Your %1 account is now connected to your store account.
+                    You can now login using our %1 Connect button or using 
+                    store account credentials you will receive to your email address.","Your %1 account is now connected to your store account.
+                    You can now login using our %1 Connect button or using 
+                    store account credentials you will receive to your email address."
+"You have successfully logged in using your %1 account.","You have successfully logged in using your %1 account."
+"No access token available.","No access token available."
+"No refresh token, nothing to revoke.","No refresh token, nothing to revoke."
+"Unable to retrieve access code.","Unable to retrieve access code."
+"No refresh token, unable to refresh access token.","No refresh token, unable to refresh access token."
+"Required HTTP method is not supported.","Required HTTP method is not supported."
+"Unspecified OAuth error occurred.","Unspecified OAuth error occurred."
+"You have successfully logged in using %1.","You have successfully logged in using %1."
+"Edit customer details","Edit customer details"
+"Csrf code did not find for instagram","Csrf code did not find for instagram"
+"Attribute socialsignup_instatoken or socialsignup_instaid not exist","Attribute socialsignup_instatoken or socialsignup_instaid not exist"
+"We have discovered you already have an account at our store.
+                         Your %1 account is now connected to your store account.","We have discovered you already have an account at our store.
+                         Your %1 account is now connected to your store account."
+"Sorry, could not retrieve your %1 last name. Please try again.","Sorry, could not retrieve your %1 last name. Please try again."
+instagram,instagram
+"Since instagram doesn't support third-party access to your email address,
+                    we were unable to send you your store account credentials.
+                    To be able to login using store account credentials you will need to update
+                    your email address and password using  Edit Account Information.","Since instagram doesn't support third-party access to your email address,
+                    we were unable to send you your store account credentials.
+                    To be able to login using store account credentials you will need to update
+                    your email address and password using  Edit Account Information."
+"Your %1 account is now connected to your store account.
+                 You can now login using our %1 Connect button or using store
+                  account credentials you will receive to your email address.","Your %1 account is now connected to your store account.
+                 You can now login using our %1 Connect button or using store
+                  account credentials you will receive to your email address."
+"HTTP error %d occurred while issuing request.","HTTP error %d occurred while issuing request."
+"Attribute `socialsignup_lid` or `socialsignup_ltoken` not exist","Attribute `socialsignup_lid` or `socialsignup_ltoken` not exist"
+linkedIn,linkedIn
+"Your %1 account is now connected to your new user account at our store.
+                    Now you can login using our %1 Connect button or using store account credentials
+                    you will receive to your email address.","Your %1 account is now connected to your new user account at our store.
+                    Now you can login using our %1 Connect button or using store account credentials
+                    you will receive to your email address."
+"Your %1 account is now connected to your store account.
+                    You can now login using our %1 Connect button or using store
+                    account credentials you will receive to your email address.","Your %1 account is now connected to your store account.
+                    You can now login using our %1 Connect button or using store
+                    account credentials you will receive to your email address."
+"Attribute socialsignup_tid or socialsignup_ttoken not exist","Attribute socialsignup_tid or socialsignup_ttoken not exist"
+"We have discovered you already have an account at our store.
+                    Your %1 account is now connected to your store account.","We have discovered you already have an account at our store.
+                    Your %1 account is now connected to your store account."
+twitter,twitter
+"Your Twitter account is now connected to your new user account at our store.
+                Now you can login using our Twitter Connect button.","Your Twitter account is now connected to your new user account at our store.
+                Now you can login using our Twitter Connect button."
+"Connect to https://api.twitter.com is false ! <br />Error code :","Connect to https://api.twitter.com is false ! <br />Error code :"
+"Unable to retrieve access token.","Unable to retrieve access token."
+"Unable to proceeed without an access token.","Unable to proceeed without an access token."
+disable,disable
+enable,enable
+"* Required Fields","* Required Fields"
+"Additional Information","Additional Information"
+"My Attribute","My Attribute"
+OR,OR
+Facebook,Facebook
+"Connect with Facebook","Connect with Facebook"
+Twitter,Twitter
+"Connect with Twitter","Connect with Twitter"
+Google,Google
+"Connect with Google","Connect with Google"
+Linkedin,Linkedin
+"Connect with Linkedin","Connect with Linkedin"
+Instagram,Instagram
+"Connect with Instagram","Connect with Instagram"
+"Personal Information","Personal Information"
+Submit,Submit
+"Sign In","Sign In"
+"Email Address","Email Address"
+Password,Password
+"Forgot Your Password?","Forgot Your Password?"
+"You can create an account after checkout.","You can create an account after checkout."
+"You already have an account with us. Sign in or continue as guest.","You already have an account with us. Sign in or continue as guest."
+Login,Login
+Webkul,Webkul
+"Social Signup","Social Signup"
+"Enable/Disable All Social Login","Enable/Disable All Social Login"
+Status,Status
+"Application Id","Application Id"
+"Secret Id","Secret Id"
+"Login Button","Login Button"
+Secret,Secret
+"Client Id","Client Id"
+LinkedIn,LinkedIn

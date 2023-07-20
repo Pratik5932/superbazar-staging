@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- <type name="Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider">
+    <plugin name="join_product_grid_with_stock_status" type="Superbazaar\General\Plugin\Ui\DataProvider\Product\ProductDataProvider" sortOrder="100" />
+    </type>-->
+    <!--    <preference for="Magento\Sales\Block\Adminhtml\Order\Create\Search\Grid" type="Superbazaar\General\Block\Adminhtml\Grid" />-->
+    <!--<type name="Magento\Backend\Block\Widget\Grid\Extended">
+    <plugin name="Superbazaar_General::After" type="Superbazaar\General\Plugin\Block\Widget\Grid\Extended" />
+    </type>-->
+    <preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="Superbazaar\General\Model\Order\Pdf\Invoice" />
+    <preference for="Magento\Sales\Model\Order\Pdf\Items\Invoice\DefaultInvoice" type="Superbazaar\General\Model\Order\Pdf\Invoice\DefaultInvoice" />
+    <preference for="Magento\ProductAlert\Controller\Add\Stock" type="Superbazaar\General\Controller\Add\Stock" />
+    <preference for="Magento\Catalog\Block\Adminhtml\Category\Tab\Product" type="Superbazaar\General\Block\Adminhtml\Category\Tab\CustomProduct" />
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="sales_order_grid_data_source" xsi:type="string">Superbazaar\General\Model\ResourceModel\Order\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+     <type name="Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider">
+        <plugin name="join_product_grid_with_stock_status" type="Superbazaar\General\Plugin\Ui\DataProvider\Product\ProductDataProvider" sortOrder="100" />
+    </type>
+</config>

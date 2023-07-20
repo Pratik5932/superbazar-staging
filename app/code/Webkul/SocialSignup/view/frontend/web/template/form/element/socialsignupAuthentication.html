@@ -1,0 +1,63 @@
+<!--
+/**
+ * @category   Webkul
+ * @package    Webkul_SocialSignup
+ * @author     Webkul Software Private Limited
+ * @copyright  Copyright (c) 2010-2017 Webkul Software Private Limited (https://webkul.com)
+ * @license    https://store.webkul.com/license.html
+ */
+-->
+<!-- ko if: socialSignupModuleEnable -->
+    <div class="wk_socialsignup_container">
+        <!-- ko if: status -->
+        <div class="wk_social_choice">
+            <h3>
+                OR
+            </h3>
+        </div>
+        <!--/ko-->
+        <div id="fb-root-authentication"></div>
+        <div class="fixblocksocial">
+            <!-- ko if: !customerSession -->
+                <!-- ko if: fb_status -->
+                    <div  id="fblogin_authentication" class="wksocialsignup fb_button_ps">
+                        <img data-bind="attr: { src: loginImg, alt:$t('Facebook'), title: $t('Connect with Facebook') }"/>
+                    </div>
+                <!--/ko-->
+
+                <!-- ko if: twitter_status -->
+                    <div  id="twitterlogin_authentication" class="wksocialsignup">
+                        <img data-bind="attr: { src: twitterLoginImg, alt:$t('Twitter'), title: $t('Connect with Twitter') }"/>
+                    </div>
+                <!--/ko-->
+
+
+                <!-- ko if: google_status -->
+                <div id="googlelogin" class="wksocialsignup">
+                    <div class="googlelogin-img">
+                        <img data-bind="attr: { src: googleLoginImg, alt:$t('Google'), title: $t('Connect with Google') }"/>
+                    </div>
+                    <div class="googlelogin-text" >
+                        <span><!-- ko i18n: ' Log in ' --><!-- /ko --></span>
+                    </div>
+                    <span></span>
+                </div>
+                <!--/ko-->
+
+
+                <!-- ko if: linkedin_status -->
+                    <div  id="linkedinlogin_authentication" class="wksocialsignup">
+                    <img data-bind="attr: { src: LinkedinLoginImg, alt:$t('Linkedin'), title: $t('Connect with Linkedin') }"/>
+                    </div>
+                <!--/ko-->
+
+
+                <!-- ko if: insta_status -->
+                        <div  id="instagramlogin_authentication" class="wksocialsignup">
+                            <img data-bind="attr: { src: InstaLoginImg, alt:$t('Instagram'), title: $t('Connect with Instagram') }"/>
+                        </div>
+                <!--/ko-->
+            <!--/ko-->
+        </div>
+    </div>
+<!--/ko-->

@@ -1,0 +1,39 @@
+Legend
+
++ Features
+- Bugs
+
+-------------------------------- Version 3.0.0 -------------------------------------
+	+ Implemented custom accounts
+	+ Implemented Payment Intent for SCA
+
+-------------------------------- Version 2.1.0 --------------------------------------
+	+ Compatible with Marketplace 2.2.x
+	+ Compatible with Magento2.3
+
+-------------------------------- Version 2.0.3 --------------------------------------
+	- fixed issue of creation of blank stripe customer and stripe customer with name on
+	- fixed the issue of save of duplicate cards. 
+	+ added billing, shipping and zipcode option in configuration.
+	+ added the local.So that stripe popup change according to magento locale
+
+-------------------------------- Version 2.0.2 --------------------------------------
+	- fixed js issues on checkout page
+	+ added billing address at checkout page
+	+ required to select billing address with stripe payment method
+
+-------------------------------- Version 2.0.1 --------------------------------------
+	- customer not able to checkout error fixed
+	- compatibility issues with magento2.1.2 fixed
+	- issues in tax and commission calculation fixed
+	+ now compatible with marketplace v2.0.4
+
+-------------------------------- Version 2.0.0 --------------------------------------
+	+ Enable/disable payment method from admin panel.
+	+ Provide split payment to sellers for your Marketplace store.
+	+ Accept all the cards that stripe supports
+	+ Allow sellers to register themselves using stripe connect.
+	+ Seller can refund the invoiced amount
+	+ Buyer can save stripe cards for future payments while paying
+        + if seller is not connected amount tranfers to admin without any trouble
+        + guest can checkout using stripe 

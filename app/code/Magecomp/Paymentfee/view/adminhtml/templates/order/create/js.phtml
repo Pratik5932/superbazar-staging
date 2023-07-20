@@ -1,0 +1,18 @@
+<script>
+    require([
+        "prototype",
+        "Magento_Sales/order/create/form",
+        "Magento_Catalog/catalog/product/composite/configure"
+    ], function(){
+
+        Event.observe(window, 'load',  function() {
+            payment.switchMethod = function(method) {
+                jQuery('#edit_form').trigger('changePaymentMethod', [method]);
+                order.setPaymentMethod(method);
+                var data = {};
+                data['order[payment_method]'] = method;
+                order.loadArea(['card_validation', 'totals'], true, data);
+            };
+        });
+    });
+</script>

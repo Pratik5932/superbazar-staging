@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Webkul MobikulMpHyperLocal Module.
+* @category  Webkul
+* @package   Webkul_MobikulMpHyperLocal
+* @author    Webkul
+* @copyright Copyright (c) 2010-2018 Webkul Software Private Limited (https://webkul.com)
+* @license   https://store.webkul.com/license.html
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Webkul\MobikulCore\Helper\Catalog">
+        <plugin name="MobikulCatalogHelperPlugin" type="Webkul\MobikulMpHyperLocal\Plugin\Helper\Catalog" sortOrder="1"/>
+    </type>
+    <type name="Webkul\MpHyperLocal\Helper\Data">
+        <plugin name="HyperlocalHelperPlugin" type="Webkul\MobikulMpHyperLocal\Plugin\Helper\HyperLocalHelperPlugin" sortOrder="1"/>
+    </type>
+
+    <type name="Webkul\MobikulApi\Controller\Catalog\ProductPageData">
+        <plugin name="afterProductViewExecute" type="Webkul\MobikulMpHyperLocal\Plugin\Controller\Catalog\ProductPageData" />
+    </type>
+    <type name="Webkul\MobikulApi\Controller\Catalog\HomePageData">
+        <plugin name="afterHomePageExecute" type="Webkul\MobikulMpHyperLocal\Plugin\Controller\Catalog\HomePageData" />
+    </type>
+
+    <!-- <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="get_shipping_info" type="Webkul\MobikulMpHyperLocal\Plugin\ShippingInformationManagement" sortOrder="1"/>
+    </type> -->
+    <!-- <preference for="Webkul\MpHyperLocal\Observer\ControllerPredispatchObserver" type="Webkul\MobikulMpHyperLocal\Rewrite\Observer\ControllerPredispatch" /> -->
+    <!-- <preference for="Magento\CatalogSearch\Model\Search\IndexBuilder" type="Webkul\MobikulMpHyperLocal\Plugin\IndexBuilder" /> -->
+    <preference for="Webkul\MobikulApi\Controller\Catalog\HomePageData" type="Webkul\MobikulMpHyperLocal\Controller\Catalog\HomePageData" />
+    <preference for="Webkul\MobikulApi\Controller\Catalog\NewProductList" type="Webkul\MobikulMpHyperLocal\Controller\Catalog\NewProductList" />
+    <preference for="Webkul\MobikulApi\Controller\Catalog\HotDealList" type="Webkul\MobikulMpHyperLocal\Controller\Catalog\HotDealList" />
+    <preference for="Webkul\MobikulApi\Controller\Catalog\FeaturedProductList" type="Webkul\MobikulMpHyperLocal\Controller\Catalog\FeaturedProductList" />
+    <preference for="Webkul\MobikulApi\Controller\Catalog\AdvancedSearchResult" type="Webkul\MobikulMpHyperLocal\Controller\Catalog\AdvancedSearchResult" />
+    <preference for="Webkul\MobikulApi\Controller\Catalog\CompareList" type="Webkul\MobikulMpHyperLocal\Controller\Catalog\CompareList" />
+    <!-- <preference for="Webkul\MobikulApi\Controller\Checkout\ShippingPaymentMethodInfo" type="Webkul\MobikulMpHyperLocal\Controller\Checkout\ShippingPaymentMethodInfo" /> -->
+    <preference for="Webkul\MobikulApi\Controller\Extra\SearchSuggestion" type="Webkul\MobikulMpHyperLocal\Controller\Extra\SearchSuggestion" />
+    <preference for="Webkul\MobikulMp\Controller\Marketplace\SellerList" type="Webkul\MobikulMpHyperLocal\Controller\Marketplace\SellerList" />
+    <preference for="Webkul\MobikulMp\Controller\Marketplace\SellerProfile" type="Webkul\MobikulMpHyperLocal\Controller\Marketplace\SellerProfile" />
+    <preference for="Webkul\MobikulMp\Controller\Marketplace\SellerCollection" type="Webkul\MobikulMpHyperLocal\Controller\Marketplace\SellerCollection" />
+    <preference for="Webkul\MobikulApi\Controller\Catalog\ProductCollection" type="Webkul\MobikulMpHyperLocal\Controller\Catalog\ProductCollection" />
+    <preference for="Webkul\MobikulApi\Controller\Checkout\AddToCart" type="Webkul\MobikulMpHyperLocal\Controller\Checkout\AddToCart" />
+    <preference for="Webkul\MobikulApi\Controller\Catalog\AddToWishlist" type="Webkul\MobikulMpHyperLocal\Controller\Catalog\AddToWishlist" />
+    <preference for="Webkul\MobikulApi\Controller\Customer\WishlistToCart" type="Webkul\MobikulMpHyperLocal\Controller\Customer\WishlistToCart" />
+    <preference for="Webkul\MobikulApi\Controller\Checkout\ShippingMethods" type="Webkul\MobikulMpHyperLocal\Controller\Checkout\ShippingMethods" />
+    <preference for="Webkul\MobikulApi\Controller\Customer\ReOrder" type="Webkul\MobikulMpHyperLocal\Controller\Customer\ReOrder" />
+    <preference for="Webkul\MpHyperLocal\Helper\Data" type="Webkul\MobikulMpHyperLocal\Rewrite\Helper\Data" />
+</config>

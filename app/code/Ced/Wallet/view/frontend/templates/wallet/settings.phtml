@@ -1,0 +1,115 @@
+<?php 
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Wallet
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+?>
+
+<?php
+    $transferAmountUrl = $this->getUrl('wallet/wallet/wallettransfer');
+    $requestAmountUrl =  $this->getUrl('wallet/wallet/walletrequestmoney');
+    $addAmountUrl = $this->getUrl('wallet/wallet/walletaddmoney');
+    $helper = $this->helper('Ced\Wallet\Helper\Data');
+
+?>
+<?php 
+	$objectManager = $this->helper('Ced\Wallet\Helper\Data')->_objectManager;
+	$currencyCode = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore(null)->getBaseCurrencyCode();
+	$minAmount =  $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('ced_wallet/active/min_amount',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+
+    $customerId = $this->helper('Ced\Wallet\Helper\Data')->getCustomerId();
+
+    if ($this->helper('Ced\Wallet\Helper\Data')->getWalletAmount()) {
+        $walletAmount = $helper->getFormatedPrice($helper->getWalletAmount(), $currencyCode);
+    }else{
+		$walletAmount = $helper->getFormatedPrice(0, $currencyCode);
+    }
+
+    $transferredAmount = $helper->getFormatedPrice($helper->getTrasferredAmount(), $currencyCode);
+    $requestedAmount = $helper->getFormatedPrice($helper->getRequestedAmount(), $currencyCode);
+
+?>
+<div class="wallet-box-wrapp clearfix">
+    <div class="wallet">
+      <div class="wallet-icon">
+       <img src="<?php echo $this->getViewFileUrl('Ced_Wallet::images/icon-wallet.png'); ?>" />
+      </div> 
+      <div class="wallet-amt">
+         <strong><?php echo __('Wallet Details');?></strong>
+         <p class="wallet-amount"><?php echo $walletAmount; ?></p>
+         <p class="amt-content"><?php echo __("Amount in Wallet");?></p>
+         <div class="add-amount">
+            <a id="add_money" class="action primary walletButton"
+            href="<?php echo $addAmountUrl;?>">
+                <?php echo __("Add Amount")?>
+            </a>
+        </div> 
+      </div>
+    </div>
+    <div class="wallet">
+      <div class="wallet-icon">
+       <img src="<?php echo $this->getViewFileUrl('Ced_Wallet::images/money-transfer.png'); ?>" />
+      </div> 
+      <div class="wallet-amt">
+         <strong><?php echo __('Transferred amount');?></strong>
+         <p class="wallet-amount"><?php echo $transferredAmount; ?></p>
+         <p class="amt-content"><?php echo __("Amount Transferred");?></p> 
+         <?php if($helper->getStoreConfig('ced_wallet/active/enable_transfer')): ?>
+            <div class="add-amount">
+                <a class="action primary walletButton transfer-amount"
+                   href="<?php echo $transferAmountUrl;?>">
+                    <?php echo __("Transfer Amount")?>
+                </a>
+            </div>
+            <?php endif;?>
+      </div>  
+    </div>
+    <div class="wallet">
+        <div class="wallet-icon">
+            <img src="<?php echo $this->getViewFileUrl('Ced_Wallet::images/request-money.png'); ?>" />
+        </div>
+        <div class="wallet-amt">
+            <strong><?php echo __('Total Requested Amount');?></strong>
+            <p class="wallet-amount total-requested"><?php echo $requestedAmount; ?></p>
+            <p class="amt-content"><?php echo __("Amount Requested");?></p>
+            <input id="amount_requested" type="hidden" name="amount_requested" value="<?php echo $helper->getRequestedAmount(); ?>"/>
+            <?php if($helper->getStoreConfig('ced_wallet/active/enable_redeem')): ?>
+                <div class="add-amount">
+
+                        <a id="redeem-money" class="action primary walletButton"  href="<?php echo $requestAmountUrl;?>">
+                            <?php echo __("Request Amount in Bank")?>
+                        </a>
+
+                </div>
+            <?php endif;?> 
+        </div>  
+    </div>
+</div>
+
+<div class="wallet-action-wrapper">
+    <?php echo $block->additionalWalletButtons(); ?>
+</div>
+<form method="post" action="<?php echo $this->getUrl('*/*/exportdownloadscsv')?>">
+    <div class="col-md-12">
+        <div class="col-md-6 export-buttons">
+            <button type="submit" class="button btn btn-warning uptransform" title="<?php echo __('Export') ?>" 
+                  id="export_btn">
+                <span><?php echo __('Export') ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+<?php echo $block->getGridHtml(); ?>

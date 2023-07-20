@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- /**
+* Webkul Software
+*
+* @category Webkul
+* @package Webkul_MpStripe
+* @author Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license https://store.webkul.com/license.html
+*/ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+        	<mpstripe>
+                <active>0</active>
+            	<model>Webkul\MpStripe\Model\PaymentMethod</model>
+            	<payment_action>authorize</payment_action>
+            	<title>MpStripe</title>
+                <order_status>processing</order_status>
+                <integration>0</integration>
+            	<name_on_form>MpStripe Pay</name_on_form>
+                <min_order_total>0.50</min_order_total>
+            </mpstripe>
+    	</payment>
+    </default>
+</config>

@@ -1,0 +1,107 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Top menu for store
+ *
+ * @var $block \Magento\Theme\Block\Html\Topmenu
+ */
+
+$columnsLimit = $block->getColumnsLimit() ?: 0;
+$_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
+
+?>
+<?php
+$baseHelper = $this->helper('Swissup\Breeze\Helper\Data');
+$baseUrl = $baseHelper->getBaseUrl();
+// $ishome = $baseHelper->getIsHome();
+$showHome = $baseHelper->getConfigValue('header_section/megamenu/show_home_link');
+?>
+<nav class="navigation" data-action="navigation">
+    <ul  class="main-menu-nav" data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
+        <li class = "level0 level-top">
+                        <a class="level-top" href = "<?php echo $baseUrl ?>">
+                            <?php echo __('Home');?>
+                        </a>               
+        </li>
+         <li class = "level0 level-top nomobile">
+                        <a class="level-top" href = "<?php echo $baseUrl."about-us"; ?>">
+                            <?php echo __('About Us');?>
+                        </a>               
+        </li>
+        <li class = "level0 level-top nomobile parent openproduct">
+                <a class="level-top" href = "#">
+                    <?php echo __('Products');?>
+                </a>
+                <ul class="allproducts nomobile submenu">
+                <?= /* @noEscape */ $_menuHtml?>
+                </ul>
+        </li>
+        <li class = "level0 level-top nomobile">
+                <a class="level-top" href = "<?php echo $baseUrl."clearance.html"; ?>">
+                    <?php echo __('Hot Sale');?>
+                </a>               
+        </li>
+        <li class = "level0 level-top nomobile">
+                        <a class="level-top" href = "<?php echo $baseUrl."shipping-and-payment"; ?>">
+                            <?php echo __('Shipping And Payment');?>
+                        </a>               
+        </li>
+         <li class = "level0 level-top nomobile">
+                <a class="level-top" href = "<?php echo $baseUrl."contact"; ?>">
+                    <?php echo __('Contact Us');?>
+                </a>               
+        </li>
+        
+     <?= $block->getChildHtml() ?>
+    </ul>
+</nav>
+<script type="data-breeze">
+require(["jquery"], function($) {
+// var name = $("div#store\.links").prev();
+// alert(name);
+    $(".section-items .section-item-title:first-child").addClass("active");
+    $(".section-items .section-item-content:nth-child(4)").hide();
+
+$(".section-items .section-item-title:first-child").click(function(){
+    $(this).addClass("active");
+    $(".section-items .section-item-title:nth-child(3)").removeClass("active");
+
+    $(".section-items .section-item-content:nth-child(4)").hide();
+    $(".section-items .section-item-content:nth-child(2)").show();
+
+});
+
+$(".navigation").each(function(){
+	
+	 $(this).find('li.parent').hover(function(){
+			$(this).addClass("opend")
+			$(this).children.addClass("show")
+		 });
+		 });
+$(".section-items .section-item-title:nth-child(3)").click(function(){
+    $(this).addClass("active");
+    $(".section-items .section-item-title:first-child").removeClass("active");
+    $(".section-items .section-item-content:nth-child(2)").hide();
+    $(".section-items .section-item-content:nth-child(4)").show();
+
+});
+
+});
+</script>
+<style type="text/css">
+@media only screen and (min-width: 1198px){
+#co-shipping-form .field ._with-tooltip .field-tooltip {
+  right: -1.75rem !important;
+}
+}
+.customer-account-edit .form-edit-account .fieldset:not([style]) {
+    display: inline;
+}
+.page-product-configurable .product-options-wrapper select.super-attribute-select option:disabled {
+    display: none !important;
+}
+</style>

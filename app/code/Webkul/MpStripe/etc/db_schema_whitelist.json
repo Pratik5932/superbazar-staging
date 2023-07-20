@@ -1,0 +1,48 @@
+{
+    "marketplace_stripe_customer": {
+        "column": {
+            "entity_id": true,
+            "website_id": true,
+            "strore_id": true,
+            "is_active": true,
+            "customer_id": true,
+            "stripe_customer_id": true,
+            "expiry_month": true,
+            "expiry_year": true,
+            "last4": true,
+            "fingerprint": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "marketplace_stripe_seller": {
+        "column": {
+            "entity_id": true,
+            "website_id": true,
+            "strore_id": true,
+            "is_active": true,
+            "seller_id": true,
+            "integration_type": true,
+            "email": true,
+            "access_token": true,
+            "refresh_token": true,
+            "stripe_key": true,
+            "stripe_user_id": true,
+            "isverified": true,
+            "user_type": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "stripe_payment_intent": true
+        }
+    }
+}

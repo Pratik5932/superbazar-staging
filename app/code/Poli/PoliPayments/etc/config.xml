@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <payment>
+            <polipayments>
+                <active>1</active>
+                <title>Pay with POLi</title>
+                <order_status>pending</order_status>
+                <payment_action>true</payment_action>
+                <model>Poli\PoliPayments\Model\PoliPayments</model>
+                <group>online</group>
+            </polipayments>
+        </payment>
+    </default>
+</config>

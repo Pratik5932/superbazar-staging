@@ -1,0 +1,13 @@
+Legend
+
++ Features
+- bugs
+
+-------------------------------- Version 3.0.1 --------------------------------------
+	+ walkthrough feature added.
+	+ Light and dark theme config added.
+	+ purchase point added.
+	+ dynamic api auth type feature added.
+
+-------------------------------- Version 3.0.0 --------------------------------------
+	+ compatible with magento version 2.3

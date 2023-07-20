@@ -1,0 +1,83 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category Webkul
+ * @package Webkul_MpStripe
+ * @author Webkul
+ * @copyright Copyright (c) Webkul
+ * Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+$helper = $block->getMpHelper();
+$stripeHelper = $block->getStripeHelper();
+$isPartner= $helper->isSeller();
+$isSellerGroup = $helper->isSellerGroupModuleInstalled();
+$magentoCurrentUrl = $block->getCurrentUrl();
+if ($isPartner) {
+    ?>
+    <?php
+    if (($isSellerGroup && $helper->isAllowedAction('mpstripe/seller/connect')) || !$isSellerGroup) {
+        ?>
+     <li 
+        class="nav item <?= strpos($magentoCurrentUrl, 'mpstripe/seller/connect') !== false ? "current":"";?>"
+     >        
+        <?php
+        if (strpos($magentoCurrentUrl, 'mpstripe/seller/connect') !== false
+        ) {
+            ?>    
+            <strong>
+            <?= /*@noEscape*/ __('Connect To Stripe')
+            ?>
+            </strong>  
+            <?php
+        } else {
+            ?>        
+            <a href="<?= $block->escapeUrl($block->getUrl(
+                'mpstripe/seller/connect',
+                ['_secure' => $block->getRequest()->isSecure()]
+            ));
+                        ?>"
+            >
+                <?= /*@noEscape*/ __('Connect To Stripe') ?>
+            </a>                        
+            <?php
+        }
+        ?>  
+    </li>
+
+        <?php
+    }
+    if (!$stripeHelper->getIntegration() && $stripeHelper->isSellerConnected()) {
+        if (($isSellerGroup && $helper->isAllowedAction('mpstripe/seller/transaction')) || !$isSellerGroup) {
+            ?>
+            <li 
+            class="nav item <?= strpos($magentoCurrentUrl, 'mpstripe/seller/transaction') !== false ? "current":"";?>"
+        >        
+            <?php
+            if (strpos($magentoCurrentUrl, 'mpstripe/seller/transaction') !== false
+            ) {
+                ?>    
+                <strong>
+                <?= /*@noEscape*/ __('Transactions')
+                ?>
+                </strong>  
+                <?php
+            } else {
+                ?>        
+                <a href="<?= $block->escapeUrl($block->getUrl(
+                    'mpstripe/seller/transaction',
+                    ['_secure' => $block->getRequest()->isSecure()]
+                ));
+                            ?>"
+                >
+                    <?= /*@noEscape*/ __('Transactions') ?>
+                </a>                        
+                <?php
+            }
+            ?>  
+        </li>
+            <?php
+        }
+    }
+}

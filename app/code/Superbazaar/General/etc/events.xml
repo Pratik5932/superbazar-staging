@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_place_after">
+        <observer name="order_id_sales_after" instance="Superbazaar\General\Observer\OrderComplete" />
+    </event>
+  <!--   <event name="controller_action_predispatch_checkout_index_index">
+        <observer name="superbazaar_sales_order_place_before" instance="Superbazaar\General\Observer\CheckPostcode" />
+    </event> -->
+    <event name="sales_order_payment_save_before">
+        <observer name="custom_sales_order_payment_place_start" instance="Superbazaar\General\Observer\CustomSalesOrderPaymentPlaceStartObserver" />
+    </event>
+
+   <!-- <event name="controller_action_predispatch_checkout_cart_couponPost">
+        <observer name="add_coupon" instance="Superbazaar\General\Observer\TrackCoupon"/>
+</event>-->
+</config>

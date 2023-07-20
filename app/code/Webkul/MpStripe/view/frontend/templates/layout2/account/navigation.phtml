@@ -1,0 +1,40 @@
+<?php
+/**
+ * Webkul Software
+ *
+ * @category  Webkul
+ * @package   Webkul_MpStripe
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+$_helper = $block->getMpHelper();
+$stripeHelper = $block->getStripeHelper();
+$isPartner= $_helper->isSeller();
+$magentoCurrentUrl = $block->getCurrentUrl();
+$isSellerGroup = $_helper->isSellerGroupModuleInstalled();
+?>
+<?php if ($isPartner) { ?>
+    <?php if (($isSellerGroup && $_helper->isAllowedAction('mpstripe/seller/connect')) || !$isSellerGroup) { ?>
+        <li class="nav item notification-link level-2 
+        <?= /*@noEscape*/ strpos($magentoCurrentUrl, 'mpstripe/seller/connect')? "current active":"";?>">
+            <a href="<?= $block->escapeUrl($block
+            ->getUrl('mpstripe/seller/connect', ['_secure' => $block->getRequest()->isSecure()])); ?>">
+                <?= /* @noEscape */ __('Connect To Stripe') ?>
+            </a>
+        </li>
+    <?php }
+    if (!$stripeHelper->getIntegration() && $stripeHelper->isSellerConnected()) {
+        if (($isSellerGroup && $_helper->isAllowedAction('mpstripe/seller/transaction')) || !$isSellerGroup) {
+            ?>
+            <li class="nav item notification-link level-2 
+            <?= /* @noEscape */ strpos($magentoCurrentUrl, 'mpstripe/seller/transaction')? "current active":"";?>">
+                <a href="<?= $block->escapeUrl($block
+                ->getUrl('mpstripe/seller/transaction', ['_secure' => $block->getRequest()->isSecure()])); ?>">
+                <?= /* @noEscape */ __('Transactions') ?>
+                </a>
+            </li>
+            <?php
+        }
+    }
+} ?>

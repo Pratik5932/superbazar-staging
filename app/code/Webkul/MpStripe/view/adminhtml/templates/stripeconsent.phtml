@@ -1,0 +1,12 @@
+<?php
+$serviceAgreement = __('Services Agreement');
+$connectedAccountAgreement = __("Connected Account Agreement");
+$remainingMsg = __('certify that the information you have provided is complete and correct');
+?>
+<?= /*@noEscape*/ __(
+    "By creating account, you agree to our %1, %2, and %3",
+    '<a href="https://stripe.com/gb/legal" target="__blank">'.$serviceAgreement.'</a>',
+    '<a href="https://stripe.com/gb/connect-account/legal" target="__blank">'.$connectedAccountAgreement.'</a>',
+    $remainingMsg
+);
+?>

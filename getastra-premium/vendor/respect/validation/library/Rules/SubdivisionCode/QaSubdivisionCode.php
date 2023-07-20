@@ -1,0 +1,39 @@
+<?php
+
+/*
+ * This file is part of Respect/Validation.
+ *
+ * (c) Alexandre Gomes Gaigalas <alexandre@gaigalas.net>
+ *
+ * For the full copyright and license information, please view the "LICENSE.md"
+ * file that was distributed with this source code.
+ */
+namespace AstraPrefixed\Respect\Validation\Rules\SubdivisionCode;
+
+use AstraPrefixed\Respect\Validation\Rules\AbstractSearcher;
+/**
+ * Validator for Qatar subdivision code.
+ *
+ * ISO 3166-1 alpha-2: QA
+ *
+ * @link https://salsa.debian.org/iso-codes-team/iso-codes
+ */
+class QaSubdivisionCode extends AbstractSearcher
+{
+    public $haystack = [
+        'DA',
+        // Ad Dawhah
+        'KH',
+        // Al Khawr wa adh Dhakhīrah
+        'MS',
+        // Ash Shamal
+        'RA',
+        // Ar Rayyan
+        'US',
+        // Umm Salal
+        'WA',
+        // Al Wakrah
+        'ZA',
+    ];
+    public $compareIdentical = \true;
+}

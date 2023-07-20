@@ -1,0 +1,7 @@
+[06-Oct-2021 10:27:50 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Unknown application mode: development in /home/superbaz/public_html/vendor/magento/framework/App/State.php:99
+Stack trace:
+#0 /home/superbaz/public_html/generated/code/Magento/Framework/App/State/Interceptor.php(14): Magento\Framework\App\State->__construct(Object(Magento\Framework\Config\Scope), 'development')
+#1 /home/superbaz/public_html/vendor/magento/framework/ObjectManager/Factory/AbstractFactory.php(116): Magento\Framework\App\State\Interceptor->__construct(Object(Magento\Framework\Config\Scope), 'development')
+#2 /home/superbaz/public_html/vendor/magento/framework/ObjectManager/Factory/Compiled.php(108): Magento\Framework\ObjectManager\Factory\AbstractFactory->createObject('Magento\\Framewo...', Array)
+#3 /home/superbaz/public_html/vendor/magento/framework/ObjectManager/Factory/Compiled.php(150): Magento\Framework\ObjectManager\Factory\Compiled->create('Magento\\Framewo...')
+#4 /home/superbaz/public_html/vendor/magento/framework/ObjectManager/Factory/Compiled.php(79) in /home/superbaz/public_html/vendor/magento/framework/App/State.php on line 99

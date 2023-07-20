@@ -1,0 +1,39 @@
+<?= $block->getChildHtml() ?>
+
+<?php
+    $categoryAccessLevel = $block->getAccessLevel();
+    $selectedCategories = $block->getSelected();
+    $categoriesTree = $block->getCategoryTree();
+?>
+
+<fieldset class="fieldset form-inline entry-edit">
+    <legend class="legend">
+        <span><?= /* @escapeNotVerified */ __('Advanced Role Categories') ?></span>
+    </legend><br />
+
+    <div class="field">
+        <label class="label" for="category_select"><span><?= /* @escapeNotVerified */ __('Advanced Role Categories') ?></span></label>
+
+        <div class="control">
+            <select id="category_select" name="category_select" onchange="jQuery('[data-role=tree-category-container]').toggle()" class="select">
+                <option value="0" <?php if ($categoryAccessLevel == 0) echo 'selected'; ?>><?= /* @escapeNotVerified */ __('Access To All Categories') ?></option>
+                <option value="1" <?php if ($categoryAccessLevel == 1) echo 'selected'; ?>><?= /* @escapeNotVerified */ __('Access To Specified Categories') ?></option>
+            </select>
+        </div>
+    </div>
+
+    <div class="field <?php if ($categoryAccessLevel == 0) echo 'no-display'; ?>" data-role="tree-category-container">
+        <label class="label"><span><?= /* @escapeNotVerified */ __('Categories') ?></span></label>
+
+        <div class="control">
+            <div class="tree x-tree" data-role="category-tree" data-mage-init='<?php
+            echo $block->escapeHtml($this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode([
+                'categoryTree' => [
+                    "treeInitData" => $categoriesTree,
+                    "treeInitSelectedData" => $selectedCategories
+                ],
+            ]));
+            ?>'></div>
+        </div>
+    </div>
+</fieldset>

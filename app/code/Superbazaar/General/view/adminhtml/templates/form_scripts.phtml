@@ -1,0 +1,41 @@
+<script>
+    require([
+        'jquery',
+        'domReady!'
+        ], function ($) {
+            $(document).ready(function () {
+                setTimeout(function () {
+                    var action = $('[name="product[store_location]"]').val();
+                    if (action=="1022") {
+                        $('div[data-index="aisle"]').show();
+                    }else{
+                        $('div[data-index="aisle"]').hide();
+                    }
+
+                  /*  $(document).on('click', '#save-button', function() { 
+                        if($('[name="product[aisle]"]').val() == "" || $('[name="product[aisle]"]').val() ==null){
+                            event.preventDefault();
+                            $('div[data-index="aisle"] admin__field-control').append('<label class="admin__field-error">This is a required field.</label>');
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    });
+*/
+                    $(document).on('change', '[name="product[store_location]"]', function() {
+                        var action = $('[name="product[store_location]"]').val();
+                        if (action=="1022") {
+                            $('div[data-index="aisle"]').show();
+
+
+                        }else{
+                            $('div[data-index="aisle"]').hide();
+                        }
+
+                    });
+                    },7000);
+
+
+            });
+    });
+</script>

@@ -1,0 +1,297 @@
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_UvDeskConnector
+ * @author    Webkul Software Private Limited
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<?php
+  $ticketId = $this->getRequest()->getParam('id');
+  $ticketThread = $block->getTicketThread();
+	$releventData = [
+    'pageNoParameter' => 'ticketId/'.$ticketId.'/pageNo/',
+		'ticketThreadIndexAjaxUrl'	=> $block->getUrl('uvdeskcon/ticketthread/getTicketThread')
+	];
+	$serializedData = $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($releventData);
+?>
+<?php if(isset($ticketThread['error'])){ ?>
+  <script type="text/javascript">
+      require(
+          [
+              'jquery',
+              'mage/template',
+              'Magento_Ui/js/modal/alert',
+              'mage/url',
+              'mage/loader'
+          ],function($, template, alert, urlBuilder){
+              var url = "<?php echo $block->getUrl('uvdeskcon/tickets/index'); ?>";
+              var msg = "<?php echo $block->getErrorMessage($ticketThread); ?>";
+              alert({
+                  title: 'Some thing went wrong..',
+                  content:msg,
+                  actions: {
+                      always: function(){
+                        $('body').trigger('processStart');
+                        window.location = url;
+                      }
+                  }
+              });
+          });
+  </script>
+<?php } else { 
+ 	$ticketThreadTotalCount = $ticketThread['pagination']['totalCount'];
+  $expandButtonLabel = "All Expanded";
+  if ($ticketThreadTotalCount>10) {
+    $expandButtonCount = $ticketThreadTotalCount - 10;
+    $expandButtonLabel = "Expand ".$expandButtonCount." More...";
+  }
+  $nextPageNo = isset($ticketThread['pagination']['next'] )? $ticketThread['pagination']['next'] : 0;
+ 	$ticketData = $block->getSingleTicketData();
+?>
+<div class="container-fluid">
+  <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title"><?php /* @escapeNotVerified */ echo __('Labels') ?></h3></div>
+        <div class="panel-body vertical-menu" id="uvdesk_backend_ticket_thread_panel">
+	        <?php foreach ($block->getAllTicketsAccToLabel()['labels']['predefind'] as $key => $value) { ?>
+	            <a href='<?php echo $block->getUrl("uvdeskcon/tickets/index/");echo 'labels/'.$key ;?>' style="color: #555;"><?php echo ucfirst($key); ?> <span class="label label-success"> <?php echo $value; ?></span>
+	            </a>
+	        <?php } ?>
+	        <?php foreach ($block->getAllTicketsAccToLabel()['labels']['custom'] as $key => $value) { ?>
+	            <a href='<?php echo $block->getUrl("uvdeskcon/tickets/index/");echo 'labelsId/'.$value['id'] ;?>' style="color: #555;"><?php echo ucfirst($value['name']); ?> <span class="label label-success"> <?php echo $value['count']; ?></span>
+	            </a>
+	        <?php } ?>
+        </div>
+
+      </div>
+  </div>
+  <div class="panel panel-default col-sm-9">
+    <div id="ticket-detail">
+      <h3 class="pull-left">#<?php echo $ticketData['ticket']['incrementId']." ".$ticketData['ticket']['subject'];?></h3>
+      <div style="clear: both;">
+                  <span class="label label-info" title="" data-toggle="tooltip" data-original-title="Status"><?php echo $ticketData['ticket']['status']['name'];?></span>
+                            <span class="label label-warning" title="" data-toggle="tooltip" data-original-title="Priority"><?php echo $ticketData['ticket']['type']['name'];?></span>
+                            <span class="label label-info" title="" data-toggle="tooltip" data-original-title="Type"><?php echo $ticketData['ticket']['priority']['name'];?></span>
+                  <span class="label label-info" title="" data-toggle="tooltip" data-original-title="Threads"><?php echo $ticketData['ticketTotalThreads'];?></span>
+        <span class="label label-success" title="" data-toggle="tooltip" data-original-title="Agent"><i class="fa fa-user"></i></span>
+        <span>
+        <?php echo $ticketData['ticket']['agent']['detail']['agent']['name'];?>
+        </span>
+      </div>
+    </div>
+    <div class="thread">
+      <div class="col-sm-12 thread-created-info text-center">
+        <span class="info" style="background-color: #3c5794;color: white;padding: 6px;border-radius: 10px;">
+          <?php echo $ticketData['ticket']['customer']['detail']['customer']['name'];?> <?php /* @escapeNotVerified */ echo __('created a ticket') ?>
+        </span>
+        <span class="text-right date pull-right">
+          <?php echo $ticketData['ticket']['formatedCreatedAt'];?></span>
+      </div>
+      <div class="col-sm-12">
+        <div class="pull-left">
+          <span class="round-tabs">
+            <?php if(empty($ticketData['ticket']['customer']['smallThumbnail'])) { ?>
+              <img src="https://cdn.uvdesk.com/uvdesk/images/d94332c.png"/>
+            <?php } else {?>
+              <img src="<?php echo $ticketData['ticket']['customer']['smallThumbnail'];?>">
+            <?php } ?>
+          </span>
+        </div>
+        <div class="thread-info">
+          <div class="thread-info-row first">
+            <span class="cust-name">
+              <strong><?php echo $ticketData['ticket']['customer']['detail']['customer']['name'];?>  ( <?php echo $ticketData['ticket']['customer']['email'];?> ) </strong>
+            </span>
+          </div>
+          <div class="thread-info-row">
+          </div>
+        </div>
+        <div class="thread-body">
+          <div class="reply border-none">
+            <div class="main-reply">
+              <?php echo $ticketData['createThread']['reply'];?><br>
+            </div>
+            <div class="attachments">
+            <?php foreach($ticketData['createThread']['attachments'] as $key=>$attachment){ ?>
+              <a href="<?php echo $block->getUrl('uvdeskcon/tickets/downloadattachment').'attachment_id/'.$attachment['id'].'/name/'.$attachment['name'];?>" target="_blank" class="download-attachment" title='<?php echo $attachment['name']; ?>' style="background-image:url('<?php if(isset($attachment['attachmentThumb'])){ echo $attachment['attachmentThumb']; } else{ echo ""; } ?>');background-size:cover;">
+                <i class="fa fa-download">
+                </i>
+              </a>
+            <?php } ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center expand-div">
+      <button class="btn btn-primary" type="button" id="button-load" data-next-page = "<?php echo $nextPageNo ;?>"><?php echo $expandButtonLabel ; ?></button>
+      <span class="loader-border"></span>
+    </div>
+    <div class="ticket-thread">
+    <?php foreach(array_reverse($ticketThread['threads']) as $key=>$value){?>
+      <div class="thread">
+        <div class="col-sm-12 thread-created-info text-center">
+          <span class=""><?php echo $value['formatedCreatedAt'];?> -
+          </span>
+          <span class="info">
+            <span><?php echo $value['user']['detail'][$value['userType']]['name']; ?> replied -</span>
+            <span id="thread<?php echo $value['id'];?>" class="copy-thread-link">#<?php echo $value['id'];?></span>
+          </span>
+        </div>
+        <div class="col-sm-12">
+          <div class="pull-left">
+            <span class="round-tabs">
+            <?php if(empty($value['user']['smallThumbnail'])) { ?>
+              <img src="https://cdn.uvdesk.com/uvdesk/images/d94332c.png"/>
+            <?php } else {?>
+              <img src="<?php echo $value['user']['smallThumbnail'];?>">
+            <?php } ?>
+            </span>
+          </div>
+          <div class="thread-body">
+            <div class="thread-info">
+              <div class="thread-info-row first">
+                <span class="cust-name">
+                  <strong><?php echo $value['user']['detail'][$value['userType']]['name'];?></strong>
+                </span>
+                <label class="user-type customer label label-info"><?php echo $value['userType'];?></label>
+              </div>
+              <div class="thread-info-row">
+              </div>
+            </div>
+            <div class="reply">
+              <div class="main-reply"><?php echo $value['reply'];?>
+          </div>
+        </div>
+        <div class="attachments">
+        <?php foreach($value['attachments'] as $key=>$attachment){ ?>
+          <a href="<?php echo $block->getUrl('uvdeskcon/tickets/downloadattachment').'attachment_id/'.$attachment['id'].'/name/'.$attachment['name'];?>" target="_blank" class="download-attachment" title='<?php echo $attachment['name']; ?>' style="background-image:url('<?php if(isset($attachment['attachmentThumb'])){ echo $attachment['attachmentThumb']; } else{ echo ""; } ?>');background-size:cover;">
+            <i class="fa fa-download"></i>
+          </a>
+        <?php } ?>
+        </div>
+      </div>
+    </div>
+    </div>
+    <hr>
+    <?php } ?>
+    </div>
+    <div class="col-sm-12">
+      <div class="pull-left">
+        <span class="round-tabs">
+          <?php if(empty($ticketData['ticket']['agent']['smallThumbnail'])) { ?>
+            <img src="https://cdn.uvdesk.com/uvdesk/images/d94332c.png"/>
+          <?php } else {?>
+            <img src="<?php echo $ticketData['ticket']['agent']['smallThumbnail'];?>">
+          <?php } ?>
+        </span>
+      </div>
+      <span class="userName"><?php echo $ticketData['ticket']['agent']['detail']['agent']['name'];?></span>
+      <div class="thread-body">
+        <div class="thread-info">
+          <!-- <br><br> -->
+          <form action="<?php echo $block->getUrl('uvdeskcon/tickets/ticketthread' ,['_secure' => $this->getRequest()->isSecure()]) ?>addReply/1" method="post" id="uv-admin-reply-ticket" data-mage-init='{"validation":{}}' enctype="multipart/form-data">
+            <div class="reply border-none">
+              <?php echo $block->getBlockHtml('formkey') ?>
+            <div class="control">
+              <textarea name="product[description]" class="required-entry input-text" id="description" rows="5" cols="75" ></textarea>							
+                <script>
+                  require([
+                      'jquery',
+                      "mage/translate", 
+                      "mage/adminhtml/events", 
+                      'mage/adminhtml/wysiwyg/tiny_mce/setup'
+                  ], function(jQuery){
+                    var config = <?php echo $block->getWysiwygConfig() ?>;
+                    config['height'] = '250px';
+                    wysiwygcompany_description = new wysiwygSetup("description", config);
+                    wysiwygcompany_description.setup("exact");
+                  });
+                </script>
+            </div>
+              <input name="ticket_id" value="<?php echo $ticketData['ticket']['id']?>" type="hidden">
+              <input name="incremet_id" value="<?php echo $ticketData['ticket']['incrementId']?>" type="hidden">
+              <div class="wk-uvdesk-attachments">
+                <div class="attachment-div">
+                  <span class="download-attachment upload-attachment"><i class="fa fa-upload"></i><span >×</span></span>
+                  <input name="attachment[]" class="fileUpload"  type="file">
+                </div>
+              </div>
+              <span id="addFile">+ Attach File</span>
+              <br><br>
+              <input class="btn btn-success" id="uv-admin-reply-save-btn" value="Reply" type="submit">
+            </div>
+          </form>
+        </div>
+      </div>
+      </div>
+  </div>
+</div>
+<div id="wait" class="loadingg-mask" data-role="loader" style="display: none;">
+    <div class="popupp popupp-loading">
+      <div class="popupp-inner">
+        <img alt="Loading..." src="<?php echo $block->getViewFileUrl('Webkul_UvDeskConnector::images/aa1b406.gif'); ?>"/>
+        <br>
+      </div>
+  </div>
+</div>
+<?php } ?>
+<script id="ticketPagination-template" type="text/x-magento-template">
+  <div class="attachment-div">
+    <span class="download-attachment upload-attachment">
+      <i class="fa fa-upload"></i><span>×</span>
+    </span>
+    <input name="attachment[]" class="fileUpload" type="file">
+  </div>
+</script>
+
+<script id="ticket-thread-template" type="text/x-magento-template">
+   <div class="thread">
+    <div class="col-sm-12 thread-created-info text-center">
+      <span class="text-right date pull-right"><%- data.formatedCreatedAt %> -
+      </span>
+      <span class="info">
+        <span><%- data.name %> replied -</span>
+        <span id="thread<%- data.id %>" class="copy-thread-link">#<%- data.id %></span>
+      </span>
+    </div>
+    <div class="col-sm-12">
+      <div class="pull-left">
+        <span class="round-tabs">
+        <% if(data.userSmallThumbNail == null) {%>
+          <img src="https://cdn.uvdesk.com/uvdesk/images/d94332c.png"/>
+        <% } else { %>
+          <img src="<%- data.userSmallThumbNail %>">
+        <% } %>
+        </span>
+      </div>
+      <div class="thread-body">
+        <div class="thread-info">
+          <div class="thread-info-row first">
+            <span class="cust-name">
+              <strong><%- data.customerDetail %></strong>
+            </span>
+            <label class="user-type customer label label-info"><%- data.userType %></label>
+          </div>
+          <div class="thread-info-row">
+          </div>
+        </div>
+        <div class="reply">
+          <div class="main-reply"><%- data.reply %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</script>
+<script type="text/x-magento-init">
+    {
+        "*":{
+            "Webkul_UvDeskConnector/js/ticketThread":<?php echo $serializedData ?>
+        }
+    }
+</script>

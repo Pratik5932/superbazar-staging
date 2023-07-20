@@ -1,0 +1,42 @@
+<?php
+/**
+ * @var \Mexbs\AdditionalPromotions\Block\PromoProducts $block
+ */
+?>
+<style>
+    .cart-promos-wrapper{
+        margin-bottom: 50px;
+        height: 100%;
+        float: left;
+    }
+    .cart-promos-wrapper-title{
+        line-height: 1.1;
+        font-size: 30px;
+        display: none;
+    }
+    .cart-promo-blue-label{
+        background-color: #1979c3;
+        color: #ffffff;
+        font-weight: 600;
+    }
+    .cart-promo-grey-label{
+        background-color: #999999;
+        color: #ffffff;
+        font-weight: 600;
+    }
+</style>
+<script type="text/x-magento-init">
+    <?= /* @noEscape */ $this->helper(\Magento\Framework\Json\Helper\Data::class)->jsonEncode([
+        '*' => ['Mexbs_AdditionalPromotions/js/promo-block' => [
+            'promoProductsUrl' => $this->getUrl('apromotions/action/getPromoProductsHtml', ['_secure' => $this->getRequest()->isSecure()]),
+            'promoAddToCartHtmlUrl' => $this->getUrl('apromotions/action/getPromoAddToCartHtml', ['_secure' => $this->getRequest()->isSecure()]),
+            'promoAddToCartUrl' => $this->getUrl('apromotions/action/addPromoProductsToCart', ['_secure' => $this->getRequest()->isSecure()])
+        ]],
+    ]);
+    ?>
+</script>
+<div class="cart-promo-add-to-cart-modal"></div>
+<div class="cart-promos-wrapper-title"><?php echo $block->getPromoBlockTitle() ?></div>
+<div class="cart-promos-wrapper">
+    <?php echo $block->getPromoBlockRulesHtml() ?>
+</div>

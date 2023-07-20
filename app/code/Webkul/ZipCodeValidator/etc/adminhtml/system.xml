@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_ZipCodeValidator
+ * @author    Webkul
+ * @copyright Copyright (c) 2010-2017 Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+ -->
+ <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+ 	<system>
+        <tab id="webkul" translate="label" sortOrder="10">
+            <label>Webkul</label>
+        </tab>
+        <section id="zipcodevalidator" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
+        	<label>Zip Code Validator</label>
+            <tab>webkul</tab>
+            <resource>Webkul_ZipCodeValidator::config_zipcodevalidator</resource>
+            <group id="wk_zipcodevalidatorstatus" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Zip Code Validator Configuration</label>
+                <field id="wk_zipcodevalidatorstatus" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Zip Code Validator Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="applyto" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <source_model>Webkul\ZipCodeValidator\Model\Config\Source\Apply</source_model>
+                    <label>Zip Code Validator Availability</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="wk_zipcodevalidatorstatus">1</field>
+                    </depends>
+                </field>
+                <field id="regions" translate="label comment" sortOrder="1" type="multiselect" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <source_model>Webkul\ZipCodeValidator\Model\Config\Source\RegionOptions</source_model>
+                    <label>Select the Regions</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="applyto">1</field>
+                        <field id="wk_zipcodevalidatorstatus">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,65 @@
+<?php
+
+namespace Superbazaar\PostcodeWisePrice\Observer;
+
+use \Magento\Framework\Event\Observer;
+use \Magento\Framework\Event\ObserverInterface;
+
+class SerializedPostcodeProductPrice implements ObserverInterface
+{
+    const ATTR_ATTRACTION_HIGHLIGHTS_CODE = 'postcode_prodct_price';
+
+    /**
+    * @var  \Magento\Framework\App\RequestInterface
+    */
+    protected $request;
+
+    /**
+    * Constructor
+    */
+    public function __construct(
+        \Magento\Framework\App\RequestInterface $request
+    )
+    {
+        $this->request = $request;
+    }
+
+    public function execute(Observer $observer)
+    {
+        /** @var $product \Magento\Catalog\Model\Product */
+        $isAjax = ($this->request->getParam('isAjax')) ? $this->request->getParam('isAjax') : null;
+        if($isAjax == null) {
+            $product = $observer->getEvent()->getDataObject();
+            $post = $this->request->getPost();
+            $post = $post['product'];
+            $highlights = isset($post[self::ATTR_ATTRACTION_HIGHLIGHTS_CODE]) ? $post[self::ATTR_ATTRACTION_HIGHLIGHTS_CODE] : '';
+           #  print_r($highlights);exit;
+            $product->setPostcodeProdctPrice($highlights);
+            $requiredParams = ['price','postcode'];
+            if (is_array($highlights)) {
+                $highlights = $this -> removeEmptyArray($highlights, $requiredParams);
+                $product->setPostcodeProdctPrice(json_encode($highlights));
+            }
+        }
+    }
+
+    /**
+    * Function to remove empty array from the multi dimensional array
+    *
+    * @return Array
+    */
+    private function removeEmptyArray($attractionData, $requiredParams){
+
+        $requiredParams = array_combine($requiredParams, $requiredParams);
+        $reqCount = count($requiredParams);
+
+        foreach ($attractionData as $key => $values) {
+            $values = array_filter($values);
+            $inersectCount = count(array_intersect_key($values, $requiredParams));
+            if ($reqCount != $inersectCount) {
+                unset($attractionData[$key]);
+            }  
+        }
+        return $attractionData;
+    }
+}

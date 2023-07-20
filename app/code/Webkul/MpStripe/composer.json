@@ -1,0 +1,21 @@
+{
+    "name": "webkul/marketplace-stripe-payment-gateway",
+    "description": "Marketplace Stripe Payment Gateway For Magento2",
+    "require": {
+	    "webkul/module-marketplace": "3.0.*",
+        "stripe/stripe-php": "7.*"
+    },
+    "type": "magento2-module",
+    "version": "3.0.0",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Webkul\\MpStripe\\": ""
+        }
+    }
+}

@@ -1,0 +1,59 @@
+"Add Money to Wallet ","Add Money to Wallet "
+"Wallet Transaction","Wallet Transaction"
+"Update Qty's","Update Qty's"
+Refund,Refund
+"Refund Offline","Refund Offline"
+"Pay To Wallet","Pay To Wallet"
+"Order Shipments","Order Shipments"
+"My Wallet","My Wallet"
+"Wallet is disabled for user.","Wallet is disabled for user."
+"Pay a non zero amount.","Pay a non zero amount."
+"'You can only pay ' .","'You can only pay ' ."
+"The credit memo's total must be positive.","The credit memo's total must be positive."
+"Cannot create online refund for Refund to Store Credit.","Cannot create online refund for Refund to Store Credit."
+"Discount (%1)","Discount (%1)"
+Discount,Discount
+"Items to Refund","Items to Refund"
+Product,Product
+Price,Price
+Qty,Qty
+"Return to Stock","Return to Stock"
+"Qty to Refund","Qty to Refund"
+Subtotal,Subtotal
+"Tax Amount","Tax Amount"
+"Discount Amount","Discount Amount"
+"Row Total","Row Total"
+"No Items To Refund","No Items To Refund"
+"Order Total","Order Total"
+"Credit Memo Comments","Credit Memo Comments"
+"Comment Text","Comment Text"
+"Refund Totals","Refund Totals"
+"Append Comments","Append Comments"
+"Email Copy of Credit Memo","Email Copy of Credit Memo"
+"Current Wallet Amount :","Current Wallet Amount :"
+"Add Money","Add Money"
+"Grid Record","Grid Record"
+"ID #","ID #"
+"ORDER ID","ORDER ID"
+ACTION,ACTION
+AMOUNT,AMOUNT
+TIME,TIME
+"grid records not available.","grid records not available."
+"Wallet Payment","Wallet Payment"
+"Your Wallet is empty","Your Wallet is empty"
+"Place Order","Place Order"
+"CedCommerce Wallet","CedCommerce Wallet"
+Wallet,Wallet
+"General Settings","General Settings"
+"Enable Wallet","Enable Wallet"
+"Wallet System","Wallet System"
+Enabled,Enabled
+Title,Title
+"Payment from Applicable Countries","Payment from Applicable Countries"
+"Payment from Specific Countries","Payment from Specific Countries"
+Instructions,Instructions
+"Sort Order","Sort Order"
+"Item Status","Item Status"
+"Original Price","Original Price"
+"Tax Percent","Tax Percent"
+wallet/wallet/transaction,wallet/wallet/transaction

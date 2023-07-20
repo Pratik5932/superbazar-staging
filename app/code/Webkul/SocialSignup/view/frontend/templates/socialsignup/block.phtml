@@ -1,0 +1,96 @@
+<!--
+/**
+ * @category   Webkul
+ * @package    Webkul_SocialSignup
+ * @author     Webkul Software Private Limited
+ * @copyright  Copyright (c) 2010-2017 Webkul Software Private Limited (https://webkul.com)
+ * @license    https://store.webkul.com/license.html
+ */  -->
+<?php
+    $helper = $this->helper(\Webkul\SocialSignup\Helper\Data::class);
+?>
+<div class="wk_socialsignup_container">
+    <?php
+    if ($helper->getFbStatus() == 1 || $helper->getTwitterStatus() == 1 ||
+        $helper->getGoogleStatus() == 1 || $helper->getLinkedInStatus() == 1 ||
+         $helper->getInstaStatus() == 1) { ?>
+    <div class="wk_social_choice">
+        <h3>
+            <?= $block->escapeHtml(__("OR")) ?>
+        </h3>
+    </div>
+    <?php }
+    ?>
+
+     <!-- Social Login Links -->
+            <div id="fb-root"></div><div class="fixblocksocial">
+                <?php if (!$helper->customerSession()) :?>
+                <!-- Facebook login -->
+                    <?php if ((int)$helper->getFbStatus() == 1) { ?>
+                <div  id="fblogin" class="fblogin wksocialsignup fb_button_ps"><img src="<?= $block->escapeUrl($helper->getLoginImg())?>" alt="<?= $block->escapeHtml(__('Facebook'))?>" title="<?= $block->escapeHtml(__('Connect with Facebook'))?>"/></div>
+                <?php } ?>
+                <!-- End Facebook login -->
+
+                <!-- twitter login -->
+                    <?php if ((int)$helper->getTwitterStatus() == 1) { ?>
+                <div  id="twitterlogin" class="twitterlogin wksocialsignup"><img src="<?= $block->escapeUrl($helper->getTwitterLoginImg())?>" alt="<?= $block->escapeHtml(__('Twitter'))?>" title="<?= $block->escapeHtml(__('Connect with Twitter'))?>" /></div>
+                <?php } ?>
+                <!-- ENd twitter login -->
+                <!-- google login -->
+                    <?php if ((int)$helper->getGoogleStatus() == 1) { ?>
+                  <div id="googlelogin" class="googlelogin wksocialsignup">
+                      <div class="googlelogin-img">
+                          <img src="<?= $block->escapeUrl($helper->getGoogleLoginImg())?>" alt="<?= $block->escapeHtml(__('Google')) ?>" title="<?= $block->escapeHtml(__('Connect with Google')) ?>" style="width: 18px;">
+                      </div>
+                      <div class="googlelogin-text" >
+                          <span><?=  $block->escapeHtml(__("Log in")) ?></span>
+                      </div>
+                      <span></span>
+                  </div>
+                <?php } ?>
+                <!-- ENd google login -->
+
+                <!-- Linkedin login -->
+                    <?php if ((int)$helper->getLinkedInStatus() == 1) { ?>
+                <div  id="linkedinlogin" class="linkedinlogin wksocialsignup"><img src="<?= $block->escapeUrl($helper->getLinkedinLoginImg())?>" alt="<?= $block->escapeHtml(__('Linkedin'))?>" title="<?= $block->escapeHtml(__('Connect with Linkedin'))?>" /></div>
+                <?php } ?>
+                <!-- ENd Linkedin login -->
+                <!-- Instagram login -->
+                    <?php if ((int)$helper->getInstaStatus() == 1) { ?>
+                        <div  id="instagramlogin" class="instagramlogin wksocialsignup"><img src="<?= $block->escapeUrl($helper->getInstaLoginImg())?>" alt="<?= $block->escapeHtml(__('Instagram'))?>" title="<?= $block->escapeHtml(__('Connect with Instagram'))?>" /></div>
+                <?php } ?>
+                <!-- End Instagram login -->
+
+
+                <?php endif?>
+            </div>
+        <!-- End Social Login Links -->
+</div>
+<?php
+$data = [
+    "fbAppId"=>$block->getAppId(),
+    "uId"=>$block->checkFbUser(),
+    "customerSession" => $block->customerSession(),
+    "localeCode" => $block->getLocaleCode(),
+    "fbLoginUrl" => $block->getUrl('socialsignup/facebook/login')
+];
+$popupData = [
+    "width"=>'700',
+    "height" => '300',
+    "twitterUrl" => $block->getRequestUrl('socialsignup/twitter/request', ['mainw_protocol'=>'http']),
+    "linkedinUrl" => $block->getRequestUrl('socialsignup/linkedin/request', ['mainw_protocol'=>'http']),
+    "googleUrl" => $block->getRequestUrl('socialsignup/google/request', ['mainw_protocol'=>'http']),
+    "instagramUrl" => $block->getRequestUrl('socialsignup/instagram/request', ['mainw_protocol'=>'http'])
+];
+$serializedData = $this->helper(\Magento\Framework\Json\Helper\Data::class)->jsonEncode($data);
+$serializedPopupData = $this->helper(\Magento\Framework\Json\Helper\Data::class)->jsonEncode($popupData);
+?>
+
+<script type="text/x-magento-init">
+    {
+        "*":{
+            "fbBlockPlugin":<?= $serializedData ?>,
+            "popupPlugin":<?= $serializedPopupData ?>
+        }
+    }
+</script>

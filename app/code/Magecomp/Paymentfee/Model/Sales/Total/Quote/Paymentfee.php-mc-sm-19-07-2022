@@ -1,0 +1,261 @@
+<?php
+namespace Magecomp\Paymentfee\Model\Sales\Total\Quote;
+
+use Magento\Framework\Model\Context;
+use Magento\Quote\Model\Quote;
+use Magento\Quote\Model\Quote\Address;
+use Magento\Quote\Model\Quote\Address\Total\AbstractTotal;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Tax\Model\Calculation;
+use Magento\Quote\Model\Quote\Address\Total;
+use Magecomp\Paymentfee\Helper\Data;
+use Magecomp\Paymentfee\Helper\Tax as TaxHelper;
+use Magento\Directory\Helper\Data as DirectoryHelper;
+use Magento\Framework\App\Request\Http;
+use Magento\Quote\Api\Data\ShippingAssignmentInterface;
+use Magento\Backend\App\Area\FrontNameResolver;
+class Paymentfee extends AbstractTotal
+{
+
+    protected $_code = 'mc_paymentfee';
+    private $context;
+    private $storeManager;
+    private $helper;
+    private $taxHelper;
+    private $taxCalculator;
+    private $request;
+    private $directoryHelper;
+
+    public function __construct(
+        Context $context,
+        StoreManagerInterface $storeManager,
+        Data $dataHelper,
+        TaxHelper $taxHelper,
+        DirectoryHelper $directoryHelper,
+        Calculation $taxCalculator,
+        Http $httpRequest
+    ) {
+        $this->context = $context;
+        $this->storeManager = $storeManager;
+        $this->helper = $dataHelper;
+        $this->taxHelper = $taxHelper;
+        $this->directoryHelper = $directoryHelper;
+        $this->taxCalculator = $taxCalculator;
+        $this->request = $httpRequest;
+    }
+
+    public function collect(
+        Quote $quote,
+        ShippingAssignmentInterface $shippingAssignment,
+        Total $total
+    ) {
+        parent::collect($quote, $shippingAssignment, $total);
+
+        $total->setTotalAmount($this->getCode(), 0);
+        $total->setBaseTotalAmount($this->getCode(), 0);
+        $total->setTotalAmount('mc_paymentfee_tax', 0);
+        $total->setBaseTotalAmount('mc_paymentfee_tax', 0);
+
+        if (!$this->helper->isEnabled()) {
+            return $this;
+        }
+
+        $store = $this->storeManager->getStore();
+        $baseCurrencyCode = $store->getBaseCurrencyCode();
+        $currentCurrencyCode = $store->getCurrentCurrencyCode();
+
+        $areaCode = $this->context->getAppState()->getAreaCode();
+        if ($areaCode == FrontNameResolver::AREA_CODE) {
+            $currentCurrencyCode = $quote->getQuoteCurrencyCode();
+        }
+
+        $this->_checkPayPalExpress($quote);
+        $this->_checkAmazonAdvanced($quote);
+
+        $calcBase = $total->getAllBaseTotalAmounts();
+
+        $baseFee = $this->helper->getQuoteFees($quote, $calcBase);
+        $fee = $this->directoryHelper->currencyConvert(
+            $baseFee,
+            $baseCurrencyCode,
+            $currentCurrencyCode
+        );
+
+        if ($baseFee == 0) {
+            return $this;
+        }
+
+        $total->setTotalAmount($this->getCode(), $fee);
+        $total->setBaseTotalAmount($this->getCode(), $baseFee);
+
+        if ($this->taxHelper->isTaxEnabled()) {
+            $address = $this->_getAddressFromQuote($quote);
+            $this->_calculateTax($address, $total);
+            $extraTaxables = $address->getAssociatedTaxables();
+            $extraTaxables[] = [
+                'code' => $this->_code,
+                'type' => $this->_code,
+                'quantity' => 1,
+                'tax_class_id' => $this->taxHelper->getTaxClassId(),
+                'unit_price' => $fee,
+                'base_unit_price' => $baseFee,
+                'price_includes_tax' => false,
+                'associated_item_code' => false
+            ];
+            $address->setAssociatedTaxables($extraTaxables);
+        }
+        return $this;
+    }
+
+    public function fetch(Quote $quote, Total $total)
+    {
+        $amount = $total->getMcPaymentfeeAmount();
+        $address = $this->_getAddressFromQuote($quote);
+		$title = $address->getMcPaymentfeeDescription();
+
+        $result = [
+            [
+                'code' => $this->getCode(),
+                'title' => __($title),
+                'value' => $amount
+            ]
+        ];
+		  															  
+
+        if ($this->taxHelper->isTaxEnabled() && $this->taxHelper->displayInclTax()) {
+
+
+            $result [] = [
+                'code' => 'payment_fee_incl_tax',
+                'value' => $amount + $address->getMcPaymentfeeTaxAmount(),
+                'title' => __($title),
+            ];
+        }
+
+        return $result;
+    }
+
+    protected function _getAddressFromQuote(Quote $quote)
+    {
+        return $quote->isVirtual() ? $quote->getBillingAddress() : $quote->getShippingAddress();
+    }
+
+    protected function _calculateTax(Address $address, Total $total)
+    {
+        $taxClassId = $this->taxHelper->getTaxClassId();
+        if (!$taxClassId) {
+            return $this;
+        }
+
+        $taxRateRequest = $this->_getAddressTaxRequest($address);
+        $taxRateRequest->setProductClassId($taxClassId);
+
+        $rate = $this->taxCalculator->getRate($taxRateRequest);
+
+        $baseTax = $this->taxCalculator->calcTaxAmount(
+            $total->getBaseTotalAmount('mc_paymentfee'),
+            $rate,
+            false,
+            true
+        );
+        $tax = $this->taxCalculator->calcTaxAmount(
+            $total->getTotalAmount('mc_paymentfee'),
+            $rate,
+            false,
+            true
+        );
+
+        $total->setBaseMcPaymentfeeTaxAmount($baseTax);
+        $total->setMcPaymentfeeTaxAmount($tax);
+
+        $appliedRates = $this->taxCalculator->getAppliedRates($taxRateRequest);
+        $this->_saveAppliedTaxes($address, $appliedRates, $tax, $baseTax, $rate);
+
+        $total->addBaseTotalAmount('tax', $baseTax);
+        $total->addTotalAmount('tax', $tax);
+
+        return $this;
+    }
+
+    protected function _getAddressTaxRequest($address)
+    {
+        $addressTaxRequest = $this->taxCalculator->getRateRequest(
+            $address,
+            $address->getQuote()->getBillingAddress(),
+            $address->getQuote()->getCustomerTaxClassId(),
+            $address->getQuote()->getStore()
+        );
+        return $addressTaxRequest;
+    }
+
+    protected function _saveAppliedTaxes(
+        Address $address,
+        $applied,
+        $amount,
+        $baseAmount,
+        $rate
+    ) {
+        $previouslyAppliedTaxes = $address->getAppliedTaxes();
+        $process = count($previouslyAppliedTaxes);
+
+        foreach ($applied as $row) {
+            if ($row['percent'] == 0) {
+                continue;
+            }
+            if (!isset($previouslyAppliedTaxes[$row['id']])) {
+                $row['process'] = $process;
+                $row['amount'] = 0;
+                $row['base_amount'] = 0;
+                $previouslyAppliedTaxes[$row['id']] = $row;
+            }
+
+            if ($row['percent'] !== null) {
+                $row['percent'] = $row['percent'] ? $row['percent'] : 1;
+                $rate = $rate ? $rate : 1;
+
+                $appliedAmount = $amount / $rate * $row['percent'];
+                $baseAppliedAmount = $baseAmount / $rate * $row['percent'];
+            } else {
+                $appliedAmount = 0;
+                $baseAppliedAmount = 0;
+                foreach ($row['rates'] as $rate) {
+                    $appliedAmount += $rate['amount'];
+                    $baseAppliedAmount += $rate['base_amount'];
+                }
+            }
+
+            if ($appliedAmount || $previouslyAppliedTaxes[$row['id']]['amount']) {
+                $previouslyAppliedTaxes[$row['id']]['amount'] += $appliedAmount;
+                $previouslyAppliedTaxes[$row['id']]['base_amount'] += $baseAppliedAmount;
+            } else {
+                unset($previouslyAppliedTaxes[$row['id']]);
+            }
+        }
+        $address->setAppliedTaxes($previouslyAppliedTaxes);
+    }
+
+    protected function _checkPayPalExpress(Quote $quote)
+    {
+        $request = $this->request;
+        if ($request->getModuleName() == 'paypal'
+            && $request->getControllerName() == 'express'
+            && $request->getParam("button", false)
+        ) {
+            $quote->getPayment()->setMethod('paypal_express')->save();
+        }
+
+        return $this;
+    }
+
+    protected function _checkAmazonAdvanced(Quote $quote)
+    {
+        $request = $this->request;
+        if ($request->getModuleName() == 'amazonpayments'
+            && ($request->getControllerName() == 'advanced_login'
+                || $request->getControllerName() == 'advanced_checkout')
+        ) {
+            $quote->getPayment()->setMethod('amazonpayments_advanced')->save();
+        }
+        return $this;
+    }
+}

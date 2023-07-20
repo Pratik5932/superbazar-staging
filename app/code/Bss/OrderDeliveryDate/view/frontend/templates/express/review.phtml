@@ -1,0 +1,93 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_OrderDeliveryDate
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var \Bss\OrderDeliveryDate\Block\Express\Review $block */ ?>
+<?php
+$helper = $block->getHelper();
+$enable = (boolean) $helper->isEnabled();
+$show = $block->showOdd();
+$day_off = $helper->getDayOff();
+$block_out_holidays =  $this->helper('Bss\OrderDeliveryDate\Helper\Data')
+    ->returnClassSerialize()
+    ->unserialize($helper->getBlockHoliday());
+$process_time = 0;
+$current_time = (int) $helper->getStoreTimestamp();
+$cut_off_time_convert = $helper->getCutOffTime();
+$process_time = $helper->getProcessingTime();
+if ($cut_off_time_convert && $current_time > $cut_off_time_convert) {
+    $process_time = $process_time + 1;
+}
+$timeZone = $helper->getTimezoneOffsetSeconds();
+$asProcessingDays = $helper->isAsProcessingDays();
+$icon = $helper->getIcon();
+$date_field_required = $helper->isFieldRequired('required_date');
+$times_field_required = $helper->isFieldRequired('required_timeslot');
+$comment_field_required = $helper->isFieldRequired('required_comment');
+?>
+<?php if ($enable && $show): ?>
+    <form id="delivery_form" class="form" action="<?php echo $block->escapeUrl($this->getUrl('orderdeliverydate/payment/saveDelivery', ['_secure' => true])); ?>" method="post" data-mage-init='{"validation":{}}'>
+        <div class="block-content">
+            <div class="box box-order-delivery-address">
+                <strong class="box-title"><span class="<?php if ($date_field_required) echo "required" ?>"><?php echo $block->escapeHtml(__('Delivery Date')); ?></span></strong>
+                <div class="box-content">
+                    <input class="input-text" type="text" name="shipping_arrival_date" placeholder="Delivery Date" id="shipping_arrival_date" value="<?php echo $block->getShippingDate() ?>" <?php if ($date_field_required) echo "data-validate='{required:true}'"; ?> />
+                </div>
+                <?php if(!empty($helper->getTimeSlot())) : ?>
+                    <strong class="box-title"><span class="<?php if ($times_field_required) echo "required" ?>"><?php echo $block->escapeHtml(__('Delivery Time Slot')); ?></span></strong>
+                    <div class="box-content">
+                        <select class="select" name="delivery_time_slot" id="delivery_time_slot" aria-describedby="notice-H9GF7RA" placeholder="" <?php if ($times_field_required) echo "data-validate='{required:true}'"; ?>>
+                            <option value="">Please select delivery time slot</option>
+                            <?php foreach ($helper->getTimeSlot() as $value) : ?>
+                                <?php if (isset($value['disabled']) && $value['disabled'] == 1): ?>
+                                <option value="" disabled="disabled"><?php echo $value['label'] ?></option>
+                                <?php else: ?>
+                                <option value="<?php echo $value['value'] ?>" <?php echo ($value['value'] == $block->getShippingTimeslot() ? 'selected' : '') ?>  ><?php echo $value['label'] ?></option>
+                                <?php endif; ?>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                <?php endif ?>
+                <?php if($helper->isShowShippingComment()) : ?>
+                    <strong class="box-title"><span class="<?php if ($comment_field_required) echo "required" ?>"><?php echo $block->escapeHtml(__('Delivery Comment')); ?></span></strong>
+                    <div class="box-content">
+                        <textarea class="admin__control-textarea" name="shipping_arrival_comments" rows="5" placeholder="Shipping Comment" id="shipping_arrival_comments" <?php if ($comment_field_required) echo "data-validate='{required:true}'"; ?>><?php echo $block->getShippingComment() ?></textarea>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </form>
+    <br>
+    <script type="text/x-magento-init">
+        {
+            "#shipping_arrival_date": {
+                "Bss_OrderDeliveryDate/js/date": {
+                    "dateFormat": "<?php echo $helper->getDateFormat() ?>",
+                    "buttonText":"<?php echo __('Select Date') ?>",
+                    "processingTime" : "<?php echo $process_time; ?>",
+                    "blockOutHoliday" : <?php echo json_encode($block_out_holidays); ?>,
+                    "dayOff" : "<?php echo $day_off; ?>",
+                    "currentTime" : "<?php echo $current_time; ?>",
+                    "timeZone" : "<?php echo $timeZone; ?>",
+                    "asProcessingDays" : "<?php echo $asProcessingDays; ?>"
+                }
+            }
+        }
+    </script>
+<?php endif; ?>

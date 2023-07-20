@@ -1,0 +1,210 @@
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Wallet
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+--> 
+<div>
+    <?php $currencyCode = $this->_objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore(null)->getBaseCurrencyCode();?>
+    <h1><?php echo __("Current Wallet Amount :"); 
+     echo  $this->helper('Ced\Wallet\Helper\Data')->getFormatedPrice($block->getWalletAmount(), $currencyCode);?> </h1>
+         
+</div>
+<div>
+    <!--start: popup for otp confirmation-->
+
+    <div id="popup-mpdal" style="display:none">
+        <main class="mdl-layout__content mdl-color--grey-100">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid"> 
+                <form id="otp-varification-form"
+                      method="POST" name="otp-form"
+                      action="<?php echo $this->getUrl('*/*/verifyotp');?>">
+
+                    <fieldset class="fieldset">
+                        <?php echo $block->getBlockHtml('formkey'); ?>
+                        <div class="field otp required">
+                            <label class="label" for="otp_number">
+                                <span>
+                                    <?php echo __('Enter your OTP here...'); ?>
+                                </span>
+                            </label>
+                            <div class="control">
+                                <input class="otp__input required-entry "
+                                       name="otp_number"
+                                       type="text"
+                                       data-validate="{required:true, 'validate-email':true}"
+                                       id="otp-number">
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </main>
+    <div class="otp-message"></div>
+    </div>
+    
+    <!--end: popup for otp confirmation-->
+    <!--transfer money to another wallet-->
+    <form class="form"
+      action="<?php echo $this->getUrl('*/*/transfermoney');?>"
+      id="wallet_transfer"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+        
+        <?php echo $block->getBlockHtml('formkey'); ?>
+        <div class="addmoney">
+            <fieldset class="fieldset">
+                <div class="field email required"> 
+                    <div class="control">
+                        <input placeholder="<?php echo __("Enter Email"); ?>"
+                               class="required-entry validate-email"
+                               data-validate="{required:true, 'validate-email':true, 'remote':'<?php echo $this->getUrl('*/*/checkemailfortransfer', ['_secure' => true]); ?>'
+                                }" type="email" name="email"/>
+                    </div>
+                </div>
+                <div class="field amount required"> 
+                    <div class="control">
+                        <input placeholder="<?php echo __("Enter Amount"); ?>"
+                               class="required-entry validate-greater-than-zero not-negative-amount"
+                               type="text" name="amount"/>
+                    </div>
+                </div>
+                <div class="field message required"> 
+                    <div class="control">
+                        <textarea placeholder="<?php echo __("Enter Description"); ?>"
+                                  name="description"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <input type="hidden" name="hideit" id="hideit" value="" />
+                    <button class="action primary money"
+                            <?php if ($block->otpAllowed()):?>
+                            onclick="checkConfirmation();return false;"
+                            <?php endif; ?>
+                            type="submit" >
+                        <?php echo __("Proceed"); ?>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                title: 'Please Enter the OTP',
+                innerScroll: true,
+                buttons: [{
+                    text: $.mage.__('Continue'),
+                    class: 'otp-validation',
+                    click: function () {
+                        var frm = $('#otp-varification-form');
+                        var error_msg = '<?php echo __('Wrong OTP, please try again.') ?>';
+                        error_msg = "<div style='color:red'>"+error_msg+"</div>";
+                        var success_msg = '<?php echo __('OTP Verified, proceeding....') ?>';
+                        success_msg = "<div style='color:green'>"+success_msg+"</div>";
+
+                        $.ajax({
+                            type: frm.attr('method'),
+                            url: frm.attr('action'),
+                            data: frm.serialize(),
+                            showLoader: true,
+                            success: function (data) {
+                                if (data == true) { 
+                                    $(".modal-content .otp-message").html(success_msg);
+                                    var wallet_transfer_frm = $('#wallet_transfer');
+                                    wallet_transfer_frm.submit();
+                                    this.closeModal();
+                                } else{
+                                    $(".modal-content .otp-message").html(error_msg); 
+                                }
+                            },
+                            error: function (data) { 
+                                $(".modal-content .otp-message").html(success_msg);
+                                console.log('An error occurred.');
+                                console.log(data);
+                            }
+                        });
+                    }
+                }]
+            };
+            var popup = modal(options, $('#popup-mpdal'));
+        }
+    );
+    
+    function checkConfirmation() {
+        require([
+            'jquery',
+            'mage/mage',
+            'Magento_Ui/js/modal/modal'
+        ], function($, modal){
+
+            var dataForm = $('#wallet_transfer');
+            var ignore = null;
+
+            dataForm.mage('validation', {
+                ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+            }).find('input').attr('autocomplete', 'off');
+
+            dataForm.valid();
+            dataForm.validation('isValid');
+
+            if (!dataForm.valid()) {
+                return false;
+            }
+
+            var child_gift_preview_html = jQuery('#child_preview_html');
+            var gift_preview_html = jQuery('#preview_html');
+
+             <?php if ($block->otpAllowed()){ ?>
+                    var url = '<?php echo $this->getUrl('*/*/sendotp')?>';
+                    jQuery.ajax({
+                        url:url,
+                        method: 'post',
+                        data: dataForm.serialize(),
+                        showLoader: true
+                    }).done(function(data){
+                        window.response = data;
+                        if (data.status) {
+                            $("#popup-mpdal").modal("openModal");
+                            gift_preview_html.on('click','.modal-close', function(){
+                                gift_preview_html.removeClass('active');
+                            });
+                        }else{
+                           alert(data.message); 
+                        }
+                    });
+
+            <?php }else{ ?>
+                dataForm.submit();
+            <?php } ?>
+            return false;
+        });
+        return false;
+    }
+</script>

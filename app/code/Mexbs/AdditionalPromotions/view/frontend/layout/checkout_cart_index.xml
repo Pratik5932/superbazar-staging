@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <head>
+
+        <css src="Mexbs_AdditionalPromotions::css/cart.css"/>
+
+        <!-- <css src="Magento_Swatches::css/swatches.css"/> -->
+
+    </head>
+
+    <body>
+
+        <referenceContainer name="before.body.end">
+
+            <block class="Mexbs\AdditionalPromotions\Block\InjectCartHints"
+
+                   name="ap.cart.hints"
+
+                   template="Mexbs_AdditionalPromotions::inject-cart-hints.phtml"
+
+                    />
+
+            <referenceBlock name="ap.display.popup" remove="true" />
+
+        </referenceContainer>
+
+        <referenceContainer name="checkout.cart.items">
+
+            <block class="Mexbs\AdditionalPromotions\Block\PromoProducts"
+
+                   name="ap.promo.products"
+
+                   template="Mexbs_AdditionalPromotions::promo-products.phtml"
+
+                    />
+
+        </referenceContainer>
+
+    </body>
+
+</page>
+

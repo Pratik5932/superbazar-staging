@@ -1,0 +1,63 @@
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+$custId = $customerSession->getCustomer()->getId();
+$bool = false;  
+if($custId){
+    $address = $objectManager->get('Webkul\MpHyperLocal\Helper\Data')->getSavedAddress();
+    $homepage_postcode = $address ? $address['address'] :'';
+    $order = $objectManager->get('Magento\Sales\Model\Order')->getCollection()->addFieldToFilter('customer_id',$custId)->setOrder('entity_id','DESC')->getFirstItem();
+    if($order && count($order->getData()) > 0){
+        $data = $objectManager->get('Magento\Sales\Api\OrderRepositoryInterface')->get($order->getData('entity_id'));
+        if($data->getShippingAddress()){
+            $zipcode = $data->getShippingAddress()->getData("postcode");
+            $bool = ($zipcode != $homepage_postcode)?true:false;
+        }
+    }
+}    
+?>
+<?php if($bool): ?>
+    <script type="text/javascript">
+        require(['jquery','Magento_Ui/js/modal/alert'], function($, alert){
+            $(document).ready(function(){
+                if(!localStorage.getItem('popupShown')){
+                    var homepost = '<?php echo $homepage_postcode?>';
+                    var zipcode = '<?php echo $zipcode?>';
+                    alert({
+                        title: 'Alert',
+                        content: '"Shipping Postcode" entered at home page for shopping is '+homepost+' whereas the previous order shipping address post code was '+zipcode+'. Do you want to proceed with shipping post code '+homepost+'?',
+                        modalClass: 'alert',
+                        actions: {
+                            always: function() {
+
+                            }
+                        },
+                        buttons: [{
+                            text: $.mage.__('Ok'),
+                            class: 'action primary accept',
+
+                            /**
+                            * Click handler.
+                            */
+                            click: function () {
+                                localStorage.setItem('popupShown', true);
+                                this.closeModal(true);
+                            }
+                            }, {
+                                text: $.mage.__('Update "Shipping Post Code" at home page'),
+                                class: 'action',
+
+                                /**
+                                * Click handler.
+                                */
+                                click: function () {
+                                    // New action
+                                    $('.my_location').trigger("click");
+                                }
+                        }]
+                    });
+                }
+            });
+        });
+    </script>
+    <?php endif; ?>

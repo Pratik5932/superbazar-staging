@@ -1,0 +1,16 @@
+<!-- 
+/**
+ * @category   Webkul
+ * @package    Webkul_SocialSignup
+ * @author     Webkul Software Private Limited
+ * @copyright  Copyright (c) 2010-2017 Webkul Software Private Limited (https://webkul.com)
+ * @license    https://store.webkul.com/license.html
+ */  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Webkul\SocialSignup\Api\Data\FacebooksignupInterface" type="Webkul\SocialSignup\Model\Facebooksignup" />
+    <preference for="Webkul\SocialSignup\Api\FacebooksignupRepositoryInterface" type="Webkul\SocialSignup\Model\FacebooksignupRepository" />
+
+    <type name="Magento\Customer\Model\Customer">
+        <plugin name="ddg_customer_sendNewAccountEmail_disabler" disabled="true"/>
+    </type>
+</config>

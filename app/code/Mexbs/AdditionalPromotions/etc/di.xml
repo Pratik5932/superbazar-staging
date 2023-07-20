@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\SalesRule\Model\Rule">
+        <plugin name="additionalPromotionsSalesRule" type="Mexbs\AdditionalPromotions\Model\Plugin\SalesRule"/>
+    </type>
+    <type name="Magento\SalesRule\Model\Validator">
+        <plugin name="additionalPromotionsValidator" type="Mexbs\AdditionalPromotions\Model\Plugin\Validator"/>
+    </type>
+    <type name="Magento\SalesRule\Model\Rule\Metadata\ValueProvider">
+        <plugin name="apMetadataValueProvider" type="Mexbs\AdditionalPromotions\Model\Plugin\Rule\Metadata\ValueProvider"/>
+    </type>
+    <type name="Magento\SalesRule\Model\Rule\Condition\Product\Combine">
+        <plugin name="apConditionProductCombine" type="Mexbs\AdditionalPromotions\Model\Plugin\Rule\Condition\Product\Combine"/>
+    </type>
+    <type name="Magento\Quote\Model\Cart\TotalsConverter">
+        <plugin name="apTotalsConverter" type="Mexbs\AdditionalPromotions\Model\Plugin\Quote\Cart\TotalsConverter"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Address">
+        <plugin name="apQuoteAddress" type="Mexbs\AdditionalPromotions\Model\Plugin\Quote\Address"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote">
+        <plugin name="apQuote" type="Mexbs\AdditionalPromotions\Model\Plugin\Quote"/>
+    </type>
+    <type name="Magento\SalesRule\Model\Rule\Action\Discount\CalculatorFactory">
+        <arguments>
+            <argument name="discountRules" xsi:type="array">
+                <item name="get_y_for_each_x_spent_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\GetYForEachXSpent</item>
+                <item name="get_y_for_each_x_spent_up_to_n_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\GetYForEachXSpentUpToN</item>
+                <item name="buy_x_get_n_of_different_y_percent_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\BuyXGetNOfYPercentDiscount</item>
+                <item name="buy_x_get_n_of_different_y_fixed_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\BuyXGetNOfYFixedDiscount</item>
+                <item name="buy_x_get_n_of_different_y_fixed_price_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\BuyXGetNOfYFixedPriceDiscount</item>
+                <item name="buy_abc_get_n_of_different_d_percent_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\BuyABCGetNOfDPercentDiscount</item>
+                <item name="buy_abc_get_n_of_different_d_fixed_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\BuyABCGetNOfDFixedDiscount</item>
+                <item name="buy_abc_get_n_of_different_d_fixed_price_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\BuyABCGetNOfDFixedPriceDiscount</item>
+                <item name="get_each_n_after_m_percent_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\GetEachNAfterMPercentDiscount</item>
+                <item name="get_each_n_after_m_fixed_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\GetEachNAfterMFixedDiscount</item>
+                <item name="get_each_n_after_m_fixed_price_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\GetEachNAfterMFixedPriceDiscount</item>
+                <item name="get_all_after_m_percent_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\GetAllAfterMPercentDiscount</item>
+                <item name="get_all_after_m_fixed_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\GetAllAfterMFixedDiscount</item>
+                <item name="get_all_after_m_fixed_price_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\GetAllAfterMFixedPriceDiscount</item>
+                <item name="each_group_of_n_percent_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\EachGroupOfNPercentDiscount</item>
+                <item name="each_group_of_n_fixed_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\EachGroupOfNFixedDiscount</item>
+                <item name="each_group_of_n_fixed_price_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\EachGroupOfNFixedPriceDiscount</item>
+                <item name="products_set_percent_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\ProductsSetPercentDiscount</item>
+                <item name="products_set_fixed_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\ProductsSetFixedDiscount</item>
+                <item name="products_set_fixed_price_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\ProductsSetFixedPriceDiscount</item>
+                <item name="first_n_next_m_after_k_percent_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\FirstNNextMAfterKPercentDiscount</item>
+                <item name="first_n_next_m_after_k_fixed_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\FirstNNextMAfterKFixedDiscount</item>
+                <item name="first_n_next_m_after_k_fixed_price_discount_action" xsi:type="string">Mexbs\AdditionalPromotions\Model\Rule\Action\Discount\FirstNNextMAfterKFixedPriceDiscount</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Mexbs\AdditionalPromotions\Model\SalesRule\Rule\Condition\Product\CustomOptionTitleValue">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="form_name" xsi:type="string">sales_rule_form</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Mexbs\AdditionalPromotions\Model\SalesRule\Rule\Condition\Product\CustomOptionSku">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="form_name" xsi:type="string">sales_rule_form</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Mexbs\AdditionalPromotions\Api\Data\DiscountDetailsInterface" type="Mexbs\AdditionalPromotions\Model\Calculation\DiscountDetails" />
+    <preference for="Mexbs\AdditionalPromotions\Api\Data\DescriptionLinesInterface" type="Mexbs\AdditionalPromotions\Model\Calculation\DescriptionLines" />
+    <preference for="Magento\SalesRule\Model\RulesApplier" type="Mexbs\AdditionalPromotions\Model\Rewrite\SalesRule\RulesApplier" />
+    <preference for="Magento\OfflineShipping\Model\SalesRule\Calculator" type="Mexbs\AdditionalPromotions\Model\Rewrite\SalesRule\OfflineShipping\Calculator" />
+    <preference for="Magento\SalesRule\Model\Rule\Condition\Product\Subselect" type="Mexbs\AdditionalPromotions\Model\Rewrite\Rule\Condition\Product\Subselect" />
+    <preference for="Magento\SalesRule\Model\Rule\Condition\Product\Found" type="Mexbs\AdditionalPromotions\Model\Rewrite\Rule\Condition\Product\Found" />
+    <preference for="Magento\SalesRule\Model\Rule\Condition\Combine" type="Mexbs\AdditionalPromotions\Model\Rewrite\Rule\Condition\Combine" />
+    <preference for="Magento\SalesRule\Model\Rule\Condition\Address" type="Mexbs\AdditionalPromotions\Model\Rewrite\Rule\Condition\Address" />
+    <type name="Mexbs\AdditionalPromotions\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Mexbs\AdditionalPromotions\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">apLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Mexbs\AdditionalPromotions\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Mexbs\AdditionalPromotions\SalesRuleImageUpload" type="Mexbs\AdditionalPromotions\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">additional_promotions/tmp/sales_rule</argument>
+            <argument name="basePath" xsi:type="string">additional_promotions/sales_rule</argument>
+            <argument name="allowedFileExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Mexbs\AdditionalPromotions\Controller\Adminhtml\Promo\Quote\Image\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Mexbs\AdditionalPromotions\SalesRuleImageUpload</argument>
+        </arguments>
+    </type>
+    <type name="Mexbs\AdditionalPromotions\Observer\MoveSalesRuleImageFromTmp">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Mexbs\AdditionalPromotions\SalesRuleImageUpload</argument>
+        </arguments>
+    </type>
+    <preference for="Magento\Rule\Block\Editable" type="Mexbs\AdditionalPromotions\Block\Editable" />
+</config>

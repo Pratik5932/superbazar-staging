@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_MpHyperLocal
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Review\Observer\CatalogBlockProductCollectionBeforeToHtmlObserver">
+        <plugin name="Webkul_MpHyperLocal::aroundExecute"
+                type="Webkul\MpHyperLocal\Plugin\CatalogBlockProductCollectionBeforeToHtmlObserver"
+                sortOrder="10" />
+    </type>
+    <type name="Magento\CatalogSearch\Model\Advanced">
+        <plugin name="Webkul_MpHyperLocal::afterGetProductCollection"
+                type="Webkul\MpHyperLocal\Plugin\Advanced"
+                sortOrder="10" />
+    </type>
+    <type name="Magento\CatalogWidget\Block\Product\ProductsList">
+        <plugin name="Webkul_MpHyperLocal::afterGetProductCollectionWidget"
+                type="Webkul\MpHyperLocal\Plugin\CatalogWidget\ProductList"
+                sortOrder="1" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="Webkul_MpHyperLocal::afterGetLoadedProductCollection"
+                type="Webkul\MpHyperLocal\Plugin\Catalog\ListProduct"
+    />
+    </type>
+    <virtualType name="Magento\CatalogSearch\Block\SearchResult\ListProduct">
+        <plugin name="Webkul_MpHyperLocal::afterGetLoadedProductCollection"
+                type="Webkul\MpHyperLocal\Plugin\Catalog\ListProduct" />
+    </virtualType>
+</config>

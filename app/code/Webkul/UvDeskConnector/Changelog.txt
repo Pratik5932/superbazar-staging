@@ -1,0 +1,40 @@
+Legend
+
++ Features
+- Bugs
+
+-------------------------------- Version 2.1.0 ---------------------------------------
+			+compatible with magento ver 2.3.*
+
+-------------------------------- Version 2.0.5 ---------------------------------------
+			-Fixed minor issues.
+
+-------------------------------- Version 2.0.4 ---------------------------------------
+			+Implement the UvDesk credential validation in the configuration at the time of saving it.
+			-Remove the column "Priority" and "Reply" from frontend ticket table as it is of no use.
+			-Fixed issues.
+
+-------------------------------- Version 2.0.3 --------------------------------------
+			-Fixed minor issues
+
+-------------------------------- Version 2.0.2 --------------------------------------
+
+			+Compatible with Magento ver 2.2.x.
+			+Customer can assign collaborator to its ticket.
+			+Add logger for log the error.
+
+-------------------------------- Version 2.0.1 --------------------------------------
+
+			+Admin can enable or disable the module from backend
+			+Admin can change the assigned agent from a ticket
+			+Admin can delete the ticket from backend
+			+customer can attach a file during creation of ticket
+
+-------------------------------- Version 2.0.0 --------------------------------------
+
+			+Integrate Uvdesk Helpdesk System with magento
+			+Admin can manage tickets from magento backend.
+			+Admin can reply on tickets.
+			+Admin can delete any ticket.
+			+Customers can reply to tickets from their magento store account on front-end.
+			+Real time synchronization between Uvdesk Helpdesk System and magento Store tickets.

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* Webkul Software.
+*
+* @category  Webkul
+* @package   Webkul_MpStripe
+* @author    Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license   https://store.webkul.com/license.html
+*/
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Ui/etc/ui_configuration.xsd">
+    <columns name="marketplace_sellers_columns" >
+        <actionsColumn name="stripe_account" class="Webkul\MpStripe\Ui\Component\Listing\Columns\Accounts">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">seller_id</item>
+                    <item name="viewUrlPath" xsi:type="string">mpstripe/manage/account</item>
+                    <item name="urlEntityParamName" xsi:type="string">seller_id</item>
+                    <item name="label" xsi:type="string" translate="true">Manage Stripe Accounts</item>
+                    <item name="sortOrder" xsi:type="number">12</item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+</listing>

@@ -1,0 +1,122 @@
+<?php
+/**
+ * Webkul Software
+ *
+ * @category  Webkul
+ * @package   Webkul_MpStripe
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+
+$cards = $block->getSavedCards();
+$helper = $block->getStripeHelper();
+?>
+<form 
+    action="
+    <?= $block->escapeUrl($block->getUrl(
+        'mpstripe/cards/delete',
+        ['_secure' => $block->getRequest()->isSecure()]
+    ))?>"  
+    enctype="multipart/form-data" 
+    method="post" 
+    id="form-stripe-validate"
+>
+    <div class="wk-mp-design">
+        <fieldset class="fieldset info">
+            <legend class="legend">
+                <span><?= /*@noEscape*/ __('Your Saved Cards') ?></span>
+            </legend>   
+            <?= $block->getBlockHtml('formkey') ?>
+            <?php if ($cards) { ?>
+                    <table cellspacing="0" class="border table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <?= /*@noEscape*/ __('Select'); ?>
+                                </th>
+                                <th>
+                                    <?= /*@noEscape*/ __('Cards'); ?>
+                                </th>
+                                <th>
+                                    <?= /*@noEscape*/ __('Status'); ?>
+                                </th>
+                            </tr>
+                        </thead>        
+                        <?php foreach ($cards as $card) { ?>
+                            <tr>
+                                <td>
+                                    <input 
+                                        type="checkbox" 
+                                        class="checkbox" 
+                                        name="card_id[]" 
+                                        value="<?= $block->escapeHtml($card->getEntityId());?>"
+                                    >
+                                </td>
+                                <td>
+                                    <label class="label">
+                                        <?= $block->escapeHtml('****'.$card->getData('last4'));
+                                        ?>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="label">
+                                        <?php
+                                            $status = $helper->customerExist($card
+                                            ->getData('stripe_customer_id'));
+                                        if ($status) {
+                                            echo $block->escapeHtml(__('Enable'));
+                                        } else {
+                                            echo $block->escapeHtml(__('Expire'));
+                                        }
+                                        ?>
+                                    </label>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <button 
+                                        class="button wk-mp-btn"
+                                        title="<?= /*@noEscape*/ __('Delete') ?>" 
+                                        type="submit" 
+                                        id="save_butn">   
+                                        <span>
+                                            <span>
+                                                <?= /*@noEscape*/ __('Delete') ?>
+                                            </span>
+                                        </span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    
+            <?php } else { ?>
+                    <div class="emptymsg">
+                            <?= /*@noEscape*/ __('No cards available') ?>
+                    </div>
+            <?php   } ?>  
+            <div class="buttons-set">
+                <p class="back-link">
+                    <a  
+                        href="javascript:;"
+                        onclick="javascript: window.history.back();"
+                        class="left">&laquo; <?= /*@noEscape*/ __('Back') ?>
+                    </a>
+                </p>
+            </div>
+        </fieldset>
+    </div>
+</form>
+<script type="text/x-magento-init">
+    {
+        "*":{
+            "cardJs":{
+                "data": {}
+            }
+        }
+    }
+</script>

@@ -1,0 +1,22 @@
+/**
+* Webkul Software.
+*
+* @category Webkul
+* @package Webkul_Stripe
+* @author Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license https://store.webkul.com/license.html
+*/
+.webkul_stripe_section .entry-edit-head > .config-heading .heading strong {
+    padding-left:150px;
+    background:url(../images/big.png) no-repeat 0 0 / 135px auto;
+    line-height:38px;
+}
+.webkul_stripe_section .entry-edit-head > .config-heading:before {
+    background: url("../images/blue-on-light.png") no-repeat 0 0 / 150px auto;
+    content: "";
+    display: inline;
+    float: right;
+    height: 25px;
+    width: 150px;
+}

@@ -1,0 +1,197 @@
+<?php
+/**
+* Webkul Software.
+*
+* @category  Webkul
+* @package   Webkul_MpHyperLocal
+* @author    Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license   https://store.webkul.com/license.html
+*/
+// @codingStandardsIgnoreFile
+$address = $block->isAddressSet();
+?>
+<span id="selected-location"><?php echo $address ? $address['address'] :''; ?></span>
+<i class="material-icons my_location">my_location</i>
+<div class="wk-mp-design" style="display: none;">
+
+    <fieldset class="info wk-mp-fieldset fieldset" id="select-address-popup">
+
+        <div class="fieldset form-list" id="cust">
+            <div class="row main-images-div-section" id="landing_page_devition">
+                <div class="landing-image-outer landing_inside_img_01">
+                    <img src="<?php echo $block->getViewFileUrl("images/sweets_snacks.jpg"); ?>">
+                    <h5>Snacks &amp; Sweets</h5>
+                </div>
+                <div class="landing-image-outer landing_inside_img_02">
+                    <img src="<?php echo $block->getViewFileUrl("images/indian_groceries.png"); ?>">
+                    <h5>Indian Groceries</h5>
+                </div>
+                <div class="landing-image-outer landing_inside_img_03">
+                    <img src="<?php echo $block->getViewFileUrl("images/free_shipping.png"); ?>">
+                    <h5 id="free_delivery_amt">Free Shipping Over <span>$25*</span></h5>
+                </div>
+            </div>
+            <div class="groceries-text">
+                <p><b>Snacks</b> and <b>Groceries</b> to your door step</p>
+            </div>
+            <div class="field">
+                <div class="row" id="landingform">
+                    <div class="zip-code-lable">
+                        <label class="label"><?php echo __('Shipping Postcode')?></label>
+                    </div>
+                    <div class="zip-code-text">
+                        <div class="control">
+                            <input class="input-text" data-lat="<?php echo $address ? $address['latitude'] :'' ?>" data-lng="<?php echo $address ? $address['longitude']:''?>" data-city="<?php echo $address ? $address['city'] :'' ?>" data-state="<?php echo $address ? $address['state'] :'' ?>" data-country="<?php echo $address ? $address['country'] :'' ?>" name="address" value="<?php echo $address ? $address['address'] :''?>" id="autocomplete" type="text" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset> 
+</div>
+<script>
+    require.config({
+        map: {
+            '*': {
+                'googleMapPlaceLibrary': 'https://maps.googleapis.com/maps/api/js?key=<?php echo $block->getGoogleApiKey()?>&v=3.exp&libraries=places'
+            }
+        }
+    });
+</script>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "addresspopup": {
+                "saveAction": "<?php echo $block->getSaveAction()?>",
+                "isAddressSet": "<?php echo $address ? 1:0 ?>",
+                "popupHeading": "<?= $block->getLocationPopupWindow() ?>",
+                "filter" : "<?= $block->getFilter() ?>"
+            }
+        }
+    }
+</script>
+
+<style type="text/css">
+    #landingform {
+
+        padding-top: 15px;
+        text-align: center;
+    }
+    .go-to-shop,.go-to-shop:hover{
+        background:#d92128 ;
+        border-radius: 4px;
+        height: 35px;
+        border: none;
+        margin-top: 10px;
+        color: #FFFFFF;
+        font-size: 20px;
+    }
+
+    .zipcode-popup.modal-popup.modal-slide .modal-footer{
+        border: none;
+        text-align: center;
+        padding-top:  0rem;
+        padding-bottom: 2rem;
+    }
+    .zip-code-lable,.zip-code-text{
+        width: 40%;
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px; 
+        text-align: right;  
+    }
+    .zip-code-text input {
+        border-radius: 4px;
+        height: 35px;
+        border: 1px solid #333;
+        background: #e4e4e4;
+        color: #333;
+    }
+    .zip-code-lable .label {
+        font-size: 18px;
+        color: #333333;
+    }
+    .zipcode-popup .modal-header{
+        background-image: url('https://www.superbazaar.com.au/pub/media/logo/stores/1/logo.png');
+        width:148px;
+        height:50px;
+        margin: 0 auto;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-top: 10px;
+        border: 0;
+    }
+    .modal-title{
+        border: none   
+    }
+    .zipcode-popup .action-close{
+        display: none;
+    }
+    .main-images-div-section {
+        margin-top: 1em;
+        overflow: hidden;
+    }
+    .main-images-div-section .landing-image-outer {
+        float: left;
+        width: 27.99%;
+        text-align: center;
+        padding: 0 15px;
+    }
+    .main-images-div-section .landing-image-outer img {
+        max-height: 100px;
+        height: 100px;
+    }
+    .material-icons.my_location{
+        font-size: 21px !important;
+        line-height: 21px !important;
+    }
+   
+    .main-images-div-section img {
+        max-width: 100%;
+    }
+
+    .main-images-div-section .landing-image-outer h5 {
+        font-size: 12px;
+        color: #23bca8;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+    .groceries-text {
+        text-align: center;
+        margin-top: 0.5em;
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    .zipcode-popup.modal-slide .modal-content{
+        padding: 0;
+    }
+    @media only screen and (max-width: 767px){
+        .zipcode-popup.modal-popup.modal-slide .modal-inner-wrap[class] {
+        background-color: #fff; 
+    }
+    }
+    @media only screen and (max-width: 600px){
+        .main-images-div-section{
+        padding-left: 7%;
+    }
+    .main-images-div-section .landing-image-outer{
+        width: 24.99%
+    }
+    }
+    @media only screen and (max-width: 427px){
+        .main-images-div-section{
+        padding-left: 2%;
+    } 
+    .main-images-div-section .landing-image-outer{
+        width: 22.99%;
+        padding: 0px 12px;
+    }
+    .zip-code-lable, .zip-code-text{
+        width: 92%;
+        text-align: center;
+    }
+    }
+</style>

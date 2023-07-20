@@ -1,0 +1,91 @@
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Wallet
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+-->
+
+
+    <?php 
+    
+    $minimumAmount = $block->getMinimumAmount();
+
+?>
+<div>
+    <h1>
+        <?php 
+            echo __("Current Wallet Amount: %1", $block->getFromattedPrice($block->getWalletAmount())); 
+        ?>
+    </h1>
+</div>
+
+<form class="form"
+  action="<?php echo $this->getUrl('*/*/addmoney');?>"
+  id="form-validate"
+  method="post"
+  data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+  data-mage-init='{"validation":{}}'>
+ 
+    <fieldset class="fieldset">
+         <?= $block->getBlockHtml('formkey') ?>
+        <legend class="legend"><span><?= $block->escapeHtml(__('Add Money To Wallet')) ?></span></legend><br />
+        <div class="field text">
+            <label class="label" for="message"><span><?= $block->escapeHtml(__('Enter Amount')) ?></span></label>
+            <div class="control">
+                <input placeholder="<?php echo __("Enter Amount"); ?>" 
+                class="required-entry not-negative-amount validate-greater-than-zero" 
+                id="wallet_amount" 
+                type="text" 
+                name="price"/>
+                <div for="wallet_amount"  class="wallet-amount-error" id="wallet-amount-error"></div>
+            </div>
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Add Money')) ?>" class="action submit primary">
+                    <span><?= $block->escapeHtml(__('Add Money')) ?></span>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<script type="text/javascript">
+    require(['jquery'],function($) {
+        $('#form-validate').submit(function () {
+            var minimumValue = '<?= $minimumAmount ?>';
+            if (parseFloat($('#wallet_amount').val())>0 && ($('#wallet_amount').val()< parseFloat(minimumValue))) {
+                $('#wallet_amount').focus();
+                if(!$('#wallet_amount-error').id ||$('#wallet_amount-error').is(':empty')){
+                    $('#wallet-amount-error').html("<?= __('Min Amount to add to the wallet is %1', $minimumAmount); ?>");
+                }
+                
+                return false;
+            }else{
+                $('#wallet-amount-error').html('');
+                return true;
+            }
+        });
+    });
+</script>
+
+<style>
+    .wallet-amount-error {
+    	color: #e02b27;
+    	font-size: 1.2rem;
+    	margin-top: 7px;
+    }
+
+</style>

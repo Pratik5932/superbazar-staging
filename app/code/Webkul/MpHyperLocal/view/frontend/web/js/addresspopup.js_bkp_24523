@@ -1,0 +1,386 @@
+/**
+* Webkul Software.
+*
+* @category  Webkul
+* @package   Webkul_MpHyperLocal
+* @author    Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license   https://store.webkul.com/license.html
+*/
+define(
+    [
+        "Magento_Ui/js/modal/modal"
+    ],
+    function (modal) {
+        "use strict";
+        $.widget(
+            'addresspopup',
+            {
+				 component: 'addresspopup',
+				     _create: function () {
+					var self = this;
+                    var optionsData = this.options;
+					
+                    var autocomplete;
+                    var address_Type = {
+                        locality: 'long_name',
+                        administrative_area_level_1: 'long_name',
+                        country: 'long_name'
+                    };
+                    var addressMap = {
+                        locality: 'city',
+                        administrative_area_level_1: 'state',
+                        country: "country"
+                    };
+                    var selector = {
+                        city: 1,
+                        state: 2,
+                        country: 3
+                    };
+                   
+
+                    if (optionsData.isAddressSet == 0 && optionsData.storeLocation =="") {
+						$(".select-address-popup").modal({
+						
+						type: 'popup',
+                        responsive: true,
+                        innerScroll: true,
+                        width:'200px',
+                        modalClass: 'zipcode-popup',
+                        keyboard: false,
+                        clickableOverlay:false,
+						 autoOpen: true,
+
+                        title: '',
+                        buttons: [{
+                            text: $.mage.__('Shop Now'),
+                            class: 'go-to-shop',
+                            click: function () {
+                                var address = $('.autocomplete');
+                                if (address.val()) {
+                                    var conf = confirm($t('On location address change cart will empty.1'));
+                                    if (conf) {
+                                        $('.go-to-shop').before($('<span />').addClass('loader'));
+                                        $.ajax({
+                                            url: optionsData.saveAction,
+                                            data: {
+                                                'address':address.val(),
+                                                'lat':address.attr('data-lat'),
+                                                'lng':address.attr('data-lng'),
+                                                'city':address.attr('data-city'),
+                                                'state':address.attr('data-state'),
+                                                'country':address.attr('data-country')
+                                            },
+                                            type: 'POST',
+                                            dataType:'html',
+                                            success: function (response) {
+                                              //  var response = $.parseJSON(transport);
+                                                if (response.status ==1) {
+                                                    if(response.zipcode){
+                                                        $.cookies.set('zipcode', response.zipcode);
+
+                                                    }
+                                                    $.cookies.set('storeLocation', "");
+                                                    $.cookies.set('currentLocation', "");
+                                                    location.reload();
+                                                } else if (response.status ==0) {
+                                                    alert({
+                                                        title: $.mage.__('Alert'),
+                                                        content: '<p style="word-wrap: break-word;">We are currently supplying only in '+response.ids+',  if your Melbourne Post code not in the list, kindly reach out info@superbazaar.com.au to update it </p>',
+                                                        actions: {
+                                                            always: function() {
+                                                                $('.modal-footer .loader').removeClass("loader");
+
+                                                            }
+                                                        }
+                                                    });
+                                                } else {
+                                                    $('.hyper-local-error').remove();
+                                                    $('.modal-footer .loader').removeClass("loader");
+                                                    $('#select-address-popup').before($('<span class="message-error error message hyper-local-error"/>').text(response.msg));
+                                                }
+                                            }
+                                        });
+                                    }
+                                } else {
+                                    address.focus();
+                                    address.css('border', '1px solid red');
+                                }
+                            }
+                        }]
+    
+						});
+                    }
+
+                    var postcodeArray = optionsData.storeLocation.split(',');
+//console.log(postcodeArray.includes(optionsData.storeLocation));
+                    if(optionsData.storeLocation !="" && postcodeArray.includes(optionsData.storeLocation) < 0 && optionsData.isAddressSet == 0){
+                        $.cookies.set('storeLocation', optionsData.storeLocation);
+                        $.cookies.set('currentLocation', optionsData.currentLocation);
+                        window.location.href = "https://www.superbazaar.com.au/";
+
+                    }
+                    if(optionsData.storeLocation !="" && postcodeArray.length > 0 && postcodeArray.includes(optionsData.storeLocation) == -1 && optionsData.isAddressSet == 1){
+                        $$.cookies.set('storeLocation', optionsData.storeLocation);
+                        $$.cookies.set('currentLocation', optionsData.currentLocation);
+                        window.location.href = "https://www.superbazaar.com.au/";
+
+
+                    }
+
+                    if ($.cookies.get('storeLocation') !="" && postcodeArray.includes($.cookies.get('storeLocation')) < 0 && $.cookies.get('storeLocation') != optionsData.currentLocation && optionsData.isAddressSet == 0) {
+                        $(".select-address-popup").modal({
+						
+						type: 'popup',
+                        responsive: true,
+                        innerScroll: true,
+                        width:'200px',
+                        modalClass: 'zipcode-popup',
+                        keyboard: false,
+                        clickableOverlay:false,
+						 autoOpen: true,
+
+                        title: '',
+                        buttons: [{
+                            text: $.mage.__('Shop Now'),
+                            class: 'go-to-shop',
+                            click: function () {
+                                var address = $('.autocomplete');
+                                if (address.val()) {
+                                    var conf = confirm($t('On location address change cart will empty.2'));
+                                    if (conf) {
+                                        $('.go-to-shop').before($('<span />').addClass('loader'));
+                                        $.ajax({
+                                            url: optionsData.saveAction,
+                                            data: {
+                                                'address':address.val(),
+                                                'lat':address.attr('data-lat'),
+                                                'lng':address.attr('data-lng'),
+                                                'city':address.attr('data-city'),
+                                                'state':address.attr('data-state'),
+                                                'country':address.attr('data-country')
+                                            },
+                                            type: 'POST',
+                                            dataType:'html',
+                                            success: function (response) {
+                                              //  var response = $.parseJSON(transport);
+                                                if (response.status ==1) {
+                                                    if(response.zipcode){
+                                                        $.cookies.set('zipcode', response.zipcode);
+
+                                                    }
+                                                    $.cookies.set('storeLocation', "");
+                                                    $.cookies.set('currentLocation', "");
+                                                    location.reload();
+                                                } else if (response.status ==0) {
+                                                    alert({
+                                                        title: $.mage.__('Alert'),
+                                                        content: '<p style="word-wrap: break-word;">We are currently supplying only in '+response.ids+',  if your Melbourne Post code not in the list, kindly reach out info@superbazaar.com.au to update it </p>',
+                                                        actions: {
+                                                            always: function() {
+                                                                $('.modal-footer .loader').removeClass("loader");
+
+                                                            }
+                                                        }
+                                                    });
+                                                } else {
+                                                    $('.hyper-local-error').remove();
+                                                    $('.modal-footer .loader').removeClass("loader");
+                                                    $('#select-address-popup').before($('<span class="message-error error message hyper-local-error"/>').text(response.msg));
+                                                }
+                                            }
+                                        });
+                                    }
+                                } else {
+                                    address.focus();
+                                    address.css('border', '1px solid red');
+                                }
+                            }
+                        }]
+    
+						});
+
+                        setTimeout(function(){  $("#store-location-message").show(); 
+                            $.cookies.set('storeLocation', "");
+                            $.cookies.set('currentLocation', "");
+                            }, 5000);
+                    }
+
+                    if($.cookies.get('storeLocation')  && $.inArray(optionsData.currentLocation, postcodeArray) < 0 && !optionsData.isProduct && optionsData.isAddressSet == 1){
+                        $(".select-address-popup").modal({
+						
+						type: 'popup',
+                        responsive: true,
+                        innerScroll: true,
+                        width:'200px',
+                        modalClass: 'zipcode-popup',
+                        keyboard: false,
+                        clickableOverlay:false,
+						 autoOpen: true,
+
+                        title: '',
+                        buttons: [{
+                            text: $.mage.__('Shop Now'),
+                            class: 'go-to-shop',
+                            click: function () {
+                                var address = $('.autocomplete');
+                                if (address.val()) {
+                                    var conf = confirm($t('On location address change cart will empty.3'));
+                                    if (conf) {
+                                        $('.go-to-shop').before($('<span />').addClass('loader'));
+                                        $.ajax({
+                                            url: optionsData.saveAction,
+                                            data: {
+                                                'address':address.val(),
+                                                'lat':address.attr('data-lat'),
+                                                'lng':address.attr('data-lng'),
+                                                'city':address.attr('data-city'),
+                                                'state':address.attr('data-state'),
+                                                'country':address.attr('data-country')
+                                            },
+                                            type: 'POST',
+                                            dataType:'html',
+                                            success: function (response) {
+                                              //  var response = $.parseJSON(transport);
+                                                if (response.status ==1) {
+                                                    if(response.zipcode){
+                                                        $.cookies.set('zipcode', response.zipcode);
+
+                                                    }
+                                                    $.cookies.set('storeLocation', "");
+                                                    $.cookies.set('currentLocation', "");
+                                                    location.reload();
+                                                } else if (response.status ==0) {
+                                                    alert({
+                                                        title: $.mage.__('Alert'),
+                                                        content: '<p style="word-wrap: break-word;">We are currently supplying only in '+response.ids+',  if your Melbourne Post code not in the list, kindly reach out info@superbazaar.com.au to update it </p>',
+                                                        actions: {
+                                                            always: function() {
+                                                                $('.modal-footer .loader').removeClass("loader");
+
+                                                            }
+                                                        }
+                                                    });
+                                                } else {
+                                                    $('.hyper-local-error').remove();
+                                                    $('.modal-footer .loader').removeClass("loader");
+                                                    $('#select-address-popup').before($('<span class="message-error error message hyper-local-error"/>').text(response.msg));
+                                                }
+                                            }
+                                        });
+                                    }
+                                } else {
+                                    address.focus();
+                                    address.css('border', '1px solid red');
+                                }
+                            }
+                        }]
+    
+						}); 
+                        setTimeout(function(){  $("#store-location-message").show(); 
+                            $.cookies.set('storeLocation', "");
+                            $.cookies.set('currentLocation', "");
+                            }, 5000);
+
+                    }
+
+						$('.my_location').on('click',function() {
+						$(".select-address-popup").modal({
+						type: 'popup',
+                        responsive: true,
+                        innerScroll: true,
+                        width:'200px',
+                        modalClass: 'zipcode-popup',
+                        keyboard: false,
+                        clickableOverlay:false,
+						autoOpen: true,
+                        title: '',
+                        buttons: [{
+                            text: $.mage.__('Shop Now'),
+                            class: 'go-to-shop',
+                            click: function () {
+                                var address = $('.autocomplete');
+                                if (address.val()) {
+                                    var conf = confirm($t('On location address change cart will empty.4'));
+                                    if (conf) {
+                                        $('.go-to-shop').before($('<span />').addClass('loader'));
+                                        $.ajax({
+                                            url: optionsData.saveAction,
+                                            data: {
+                                                'address':address.val(),
+                                                'lat':address.attr('data-lat'),
+                                                'lng':address.attr('data-lng'),
+                                                'city':address.attr('data-city'),
+                                                'state':address.attr('data-state'),
+                                                'country':address.attr('data-country')
+                                            },
+                                            type: 'POST',
+                                            dataType:'html',
+                                            success: function (response) {
+                                              //  var response = $.parseJSON(transport);
+                                                if (response.status ==1) {
+                                                    if(response.zipcode){
+                                                        $.cookies.set('zipcode', response.zipcode);
+
+                                                    }
+                                                    $.cookies.set('storeLocation', "");
+                                                    $.cookies.set('currentLocation', "");
+                                                    location.reload();
+                                                } else if (response.status ==0) {
+                                                    alert({
+                                                        title: $.mage.__('Alert'),
+                                                        content: '<p style="word-wrap: break-word;">We are currently supplying only in '+response.ids+',  if your Melbourne Post code not in the list, kindly reach out info@superbazaar.com.au to update it </p>',
+                                                        actions: {
+                                                            always: function() {
+                                                                $('.modal-footer .loader').removeClass("loader");
+
+                                                            }
+                                                        }
+                                                    });
+                                                } else {
+                                                    $('.hyper-local-error').remove();
+                                                    $('.modal-footer .loader').removeClass("loader");
+                                                    $('#select-address-popup').before($('<span class="message-error error message hyper-local-error"/>').text(response.msg));
+                                                }
+                                            }
+                                        });
+                                    }
+                                } else {
+                                    address.focus();
+                                    address.css('border', '1px solid red');
+                                }
+                            }
+                        }]
+						
+						});
+						$(".select-address-popup").modal('openModal');
+                    });
+						 $('.autocomplete').on('keypress',function() {
+                        $(this).css('border','1px solid #c2c2c2');
+                    });
+
+                    $('#address_type').on('change',function() {
+                        if ($('#address_type').val() == 'postcode') {
+                            $('.location').css('display','none');
+                            $('.postcode').css('display','block');
+                        } else {
+                            $('.postcode').css('display','none');
+                            $('.location').css('display','block');
+                        }
+                    });
+                   
+                    $('.zip-code-text .input-text').on('keypress',function(event) {
+                        if(event.keyCode == 13){
+                            $(".go-to-shop").click();
+                        }
+                    });
+                    
+
+                }
+            },
+			
+			
+        );
+       return $.addresspopup;
+    }
+);

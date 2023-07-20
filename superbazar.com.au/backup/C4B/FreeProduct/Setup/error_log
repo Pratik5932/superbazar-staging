@@ -1,0 +1,2 @@
+[12-Sep-2020 20:26:51 UTC] PHP Fatal error:  Interface 'Magento\Framework\Setup\InstallSchemaInterface' not found in /home/superbaz/public_html/backup/C4B/FreeProduct/Setup/InstallSchema.php on line 21
+[02-Jul-2021 14:52:13 UTC] PHP Fatal error:  Interface 'Magento\Framework\Setup\InstallSchemaInterface' not found in /home/superbaz/public_html/backup/C4B/FreeProduct/Setup/InstallSchema.php on line 21

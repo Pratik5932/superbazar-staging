@@ -1,0 +1,602 @@
+---
+phpMussel:
+ Name: phpMussel
+ Version: 1.14.2
+ Minimum Required: 1.0.0
+ Dependencies:
+  PHP: >=5.4
+  l10n/{lang}: >=2021.95.583
+ Changelog: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/Changelog-v1.txt
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/channels.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/classes/ArchiveHandler.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/classes/CompressionHandler.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/classes/Maikuolan/Cache.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/classes/Maikuolan/ComplexStringHandler.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/classes/Maikuolan/DelayedIO.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/classes/Maikuolan/Demojibakefier.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/classes/Maikuolan/Events.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/classes/Maikuolan/L10N.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/classes/Maikuolan/NumberFormatter.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/classes/Maikuolan/Operation.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/classes/Maikuolan/Request.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/classes/Maikuolan/YAML.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/classes/TemporaryFileHandler.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/cli.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/config.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/config.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/event_handlers.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_2fa.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_accounts.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_accounts_row.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_cache.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_config.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_config_row.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_files.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_files_edit.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_files_rename.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_files_row.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_home.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_login.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_logs.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_nav_complete_access.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_nav_logs_access_only.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_quarantine.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_quarantine_row.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_siginfo.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_siginfo_row.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_statistics.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_updates.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_updates_row.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/_upload_test.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/frontend.css
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/frontend.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/icons.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/lock_bl_c.png
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/lock_bl_o.png
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/lock_rd_c.png
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/lock_rd_o.png
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/lock_wt_c.png
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/lock_wt_o.png
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/pips.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/fe_assets/scripts.js
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/frontend.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/frontend_functions.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/functions.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/php5.4.x.php
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/shorthand.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/signatures/switch.dat
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/template_custom.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/template_default.html
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/upload.php
+  To:
+   - channels.yaml
+   - classes/ArchiveHandler.php
+   - classes/CompressionHandler.php
+   - classes/Maikuolan/Cache.php
+   - classes/Maikuolan/ComplexStringHandler.php
+   - classes/Maikuolan/DelayedIO.php
+   - classes/Maikuolan/Demojibakefier.php
+   - classes/Maikuolan/Events.php
+   - classes/Maikuolan/L10N.php
+   - classes/Maikuolan/NumberFormatter.php
+   - classes/Maikuolan/Operation.php
+   - classes/Maikuolan/Request.php
+   - classes/Maikuolan/YAML.php
+   - classes/TemporaryFileHandler.php
+   - cli.php
+   - config.php
+   - config.yaml
+   - event_handlers.php
+   - fe_assets/_2fa.html
+   - fe_assets/_accounts.html
+   - fe_assets/_accounts_row.html
+   - fe_assets/_cache.html
+   - fe_assets/_config.html
+   - fe_assets/_config_row.html
+   - fe_assets/_files.html
+   - fe_assets/_files_edit.html
+   - fe_assets/_files_rename.html
+   - fe_assets/_files_row.html
+   - fe_assets/_home.html
+   - fe_assets/_login.html
+   - fe_assets/_logs.html
+   - fe_assets/_nav_complete_access.html
+   - fe_assets/_nav_logs_access_only.html
+   - fe_assets/_quarantine.html
+   - fe_assets/_quarantine_row.html
+   - fe_assets/_siginfo.html
+   - fe_assets/_siginfo_row.html
+   - fe_assets/_statistics.html
+   - fe_assets/_updates.html
+   - fe_assets/_updates_row.html
+   - fe_assets/_upload_test.html
+   - fe_assets/frontend.css
+   - fe_assets/frontend.html
+   - fe_assets/icons.php
+   - fe_assets/lock_bl_c.png
+   - fe_assets/lock_bl_o.png
+   - fe_assets/lock_rd_c.png
+   - fe_assets/lock_rd_o.png
+   - fe_assets/lock_wt_c.png
+   - fe_assets/lock_wt_o.png
+   - fe_assets/pips.php
+   - fe_assets/scripts.js
+   - frontend.php
+   - frontend_functions.php
+   - functions.php
+   - lang.php
+   - php5.4.x.php
+   - shorthand.yaml
+   - signatures/switch.dat
+   - template_custom.html
+   - template_default.html
+   - upload.php
+  Checksum:
+   - 4664d7cae8a441537a1ce25c670a787c220739cc9d2016e9df1ef8d94ee42edd:1540
+   - e8386fb1573cb573bd2c1a5b0fcc6a31663c1a1f018b07d5aa4a4284982f1b43:30982
+   - 2ef3e1ed02efa3ff1c9e85507f930b5a2e4ced12b45018d1b980089d0e6bc7e9:3785
+   - ff13aa4417a7663950ce1d9a19e31e028cb216bfcf9545dd79682408d5172b18:26409
+   - 78ad68df59ad7255a8cf3367bca55e8541e139211b5939a3a1668568658c5936:4064
+   - 311f5a38dcd46f7ead3d4b74c85cb2ff31fd2844978ab8c2f40e3d7b0ceb1b59:4810
+   - fbc362686c973e2e369d1909fc4f74993d1920d62afa27cc7d04b8bb72f5d707:29751
+   - 4ee01b60c1a697f3c4c974900954cd015b1bce1655cbcfbea8d8b3280729f92b:3726
+   - 52b2463df806841d7d6dc95cc8cfde9676721079dd7498fc6bd6ece644f87dfb:16189
+   - 3daab4bd0ce2ac84cafbaf6f7d653de3601d997896da3587d2f94b00cccbc291:37566
+   - 09c158e658525bba7f909825d0f7ab71294945a363835672abda1a5c250935d5:11845
+   - 319f75bfb944d6d5496051dfa78e27aea4d2d4abefc30d7818d7bb058f82a571:7989
+   - c631586fe1dc035ba11a9329e1a7ed41318f1dc479ea5baba20eb01d1624f860:13088
+   - e75f6ab3f64a455e1b80ab3bac5c38eb2465ec3100f69850c0eaf6fa678d959d:1730
+   - 6febe25bf05c6855641b5488843bb507d6a9780d2215d27377133458d5d6de54:28416
+   - e99474e302dfc25b07ecf6b000636453b044c8c5a7a9e00d194be87e09a1cd8e:8009
+   - 6c4c1c8ffea6d4fb00e94a292686efdd128d740d6d25499c0eeeecf9a28e1bf9:16610
+   - f93dfeeb561bc4cf3290c45734f0ab26742cfeb6199a22e97630a10c2d1c62ee:7660
+   - 525daa72f2945b7a22356fd75b01e2a1e6dfb667ad52b0becad51ead86832eb7:531
+   - 205e59afd4aa6cb6bbc2f41ac472b3cb552c198beea5be87eb02e4cce794a9e0:2067
+   - 0fe78bad5499f267b215accbf785c8f97e25414cc734c729cd09f3c979d5c4ac:1424
+   - e9fab19b6d1eee218d78b453ef9cf19cbe8038901acfd462828b861f94188036:116
+   - 890485d14a72c942e9376055625452b9e73ab1b859bb87d905ad1a88ada9dc9b:893
+   - 248eec685e131d9a719ee8c0d0d10fcd2da681ed399dc57143803f047f5ca8aa:234
+   - 6fb8cfe37a40058d47bfcb79984a7a2c3b352207622c137d58eeaf64edd79894:1184
+   - 9350b3f4081db72181a8fe6229de7f011b6caaaa471de800ea94aa826bee3968:752
+   - d24f5b81f21b72cc3980122652386bf2a636c88a86a5d7f0f714c77be77b0860:735
+   - 910e667bb03456935bdec49dce6cabac768f618b2ec26b685aff8a49d8559b39:549
+   - f89923bb40df45806664c18a21cf51c1f1a765cd86109d2e6b858582f496ef24:1746
+   - b623372b0068f6f13d1c536480b8331e4b35afbbf1d3fb08e43ea7e99fc3a104:1366
+   - 8c3c55676a2db053a91749507c9c037400a74944bfccfb203969a393f564fcf4:332
+   - 502526ae5a9dc576d2709954780443694d7ce3bb7e13db357f5c74f7b5f4740e:1431
+   - a9033fec4b01acc6846840d3584f03b6d22ad03ae2ee0f9b0b5ac0edf7a34587:672
+   - d5d1fef5b2a1f36b785c93d339ce82ef699e548b92fb1af48f79abcc6064b3cc:706
+   - 786138231444ba70832f7469b68c271b4129bbbb620107430b567dd3eb022f41:1036
+   - 3e5134dc5eda0470368f7d81d84b2bb5ed9da113acd6653888b4a506db1d0857:634
+   - d2f8a234b6fe597a0f76678cdb92f45f34322cab71454f0399e7fa0082a7709c:145
+   - fa59c05631ebb5f3b352afaad46d4fdb9b3539311308d8827c976f9af645aacb:3389
+   - 79d21a386767688768b0ca8a3d3a08821328e2bafca3238071dabfbddeb6f0ce:954
+   - 03f8ad68bbb9053685fd0f2deb1a9a971793eafa7924aca8c6bcd3f99a60a75c:643
+   - a296016dfbda2e78a6af51d852d5439eec563da14a9cd30dd268f0926622cbe1:606
+   - 212b770b3df3a6c479edf943cc08b2b60ab7ebf21ff2c742f5be0146f68e3c23:7802
+   - 18ff0063d5ee9dd28b2aaaf033fc6fce5b64e325e94eacfb315146f8180c86fe:1023
+   - df745c52f9e972b03e016ded19febe371034a8d3c929879a7b624b503ff2e3b3:17518
+   - e07cbd9cd2f45d147de14a63a222860639a3cb2f158088ebb82b70bb5e7306c2:776
+   - 240b0d3b501aa8715c43aff11340e921c1d19c384e17d9947dbb231367bdb20d:806
+   - 4f881a40dee13d495d32364923ccf71c9f43916be33c0aa8e2f7fa2d2daaabde:788
+   - ea0da98550d384c33d602b7b6343ca071caa252cc8b0d5a289461ca6c83bb0f4:795
+   - e92590ab306614305ee17863d4c313dd4ac0ea5c75552236e83fb09779f01452:761
+   - 5635e13d7cecabf5e397c79932474442c11f116fabbd5b012248f957056a3158:776
+   - bcc32dd57fa1f413a66ae3ae12acf1b27741a69b5d3b986f4f5a6963a6e7a12f:781
+   - 0c8236cc080b6138e634977cd57281126e0a6b064920ec9d8979d305cd18f2fb:992
+   - 27b391c40c519c81cf175ce7462f51327d6946454c88e08ca172afdb129839a7:170283
+   - 6e5ae9b70c1c6d75630aec70a82e665c04b8f3e85b37c705d5c495793f3b28a9:116259
+   - 024d8e634b2efb7b35f2f34744e5538ab58e1ee34f208cbdeb8761da6f9d4cde:231535
+   - 7c250e232f7cd4f2dc9db36a06b7ca62339813e419cdb71af89f07dcc26130c6:7051
+   - a7cc0c8e1bc173269581b3094408d8eed4089d122100e90437f570ccd59eecb8:1659
+   - d8f2d65398a01aaaf308425d3dd21b421b7a23c8a20e9e1f5dd3409cad4c4885:4666
+   - 2de3f9d9b9d97414430c5ab2fcafbee4d19ed38373ab2e51ed158f9dd862e1ff:3237
+   - 7b656811c946982d7646c2e03934eb75f256a8c093d21d7caa9e4c0a82ce99b8:1020
+   - ba70f6d5f271714fe04a4fcc466821c5b1605ea4940a30ae46850da128ac45cb:1986
+   - f2f87cb06ee7834f7f0fd7ceaf52f0d6d4eb92969cbc0c9b42dff927d99be48e:20986
+ Reannotate: components.dat
+l10n/en:
+ Name: L10N: English
+ Extended Description: English language data
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.en.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.en.yaml
+  To:
+   - lang/lang.en.fe.yaml
+   - lang/lang.en.yaml
+  Checksum:
+   - 421df64682ebfa9feaf74a8de25c599faf2d4211f4ce8e9a2a61560da4c10e85:50205
+   - 22c0e0733950c584d38da238da26160b62aa2e61b2d0939a812b8b63e225d890:5929
+ Reannotate: components.dat
+l10n/ar:
+ Name: L10N: العربية
+ Extended Description: ملفات اللغة العربية
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.ar.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.ar.yaml
+  To:
+   - lang/lang.ar.fe.yaml
+   - lang/lang.ar.yaml
+  Checksum:
+   - b53de2effe5a1b30c43afab8a1a6a0792090533f6e02c4a3a6929b4c8aed9d67:71013
+   - ca79ae2e016423119baba232e860ed7cd5311cc0c792b2307ea114619aec0262:7189
+ Reannotate: components.dat
+l10n/bn:
+ Name: L10N: বাংলা
+ Extended Description: বাংলা ভাষার তথ্য
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.bn.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.bn.yaml
+  To:
+   - lang/lang.bn.fe.yaml
+   - lang/lang.bn.yaml
+  Checksum:
+   - e9867001207647789b0b4e8a80b047a50ae8f7dd52594ba89f21567a70905d31:97808
+   - fcc85453ffcee55962ee400e15a4355bdf13e0900d5db38524a168a4a4d4420e:11473
+ Reannotate: components.dat
+l10n/de:
+ Name: L10N: Deutsche
+ Extended Description: Deutsche Sprachdateien
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.de.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.de.yaml
+  To:
+   - lang/lang.de.fe.yaml
+   - lang/lang.de.yaml
+  Checksum:
+   - d012033e61482628fe075b7c14414005bb0cbdd86045b9f5d11a8527c7e65694:55319
+   - b4fd975d293c5765c3e5488e8bc0cf2dba6e1544fed08790c9db842ea5d4e111:6255
+ Reannotate: components.dat
+l10n/es:
+ Name: L10N: Español
+ Extended Description: Lingüísticos datos Español
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.es.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.es.yaml
+  To:
+   - lang/lang.es.fe.yaml
+   - lang/lang.es.yaml
+  Checksum:
+   - 8d8626644a8e7d43d072d5bfc1998b4124605ec3872fa796a930e285a6d8ec18:56496
+   - 9b61bbfd9fcffb382734ffabcc2ccb648209a78e4615e1143d7a66f705b1a7e7:6109
+ Reannotate: components.dat
+l10n/fr:
+ Name: L10N: Français
+ Extended Description: Linguistiques données en Français
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.fr.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.fr.yaml
+  To:
+   - lang/lang.fr.fe.yaml
+   - lang/lang.fr.yaml
+  Checksum:
+   - 065fea62d8e6d0f99530786b25e0674588c00f20b1e87a616c9159ff2f959a98:58158
+   - 38839938388222c57348bf0ff988211f618e1c8f7a70270eb6979e1e49f0fea0:6663
+ Reannotate: components.dat
+l10n/hi:
+ Name: L10N: हिंदी
+ Extended Description: हिंदी भाषा डाटा
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.hi.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.hi.yaml
+  To:
+   - lang/lang.hi.fe.yaml
+   - lang/lang.hi.yaml
+  Checksum:
+   - 4198cb31888fb2383fddcc287bef67c9db31fa811422d6600041ce68fd51262e:100988
+   - de39bcc070a40da007c34960073ed82e33247d20bd8665b066b198297b07ff7b:11158
+ Reannotate: components.dat
+l10n/id:
+ Name: L10N: Bahasa Indonesia
+ Extended Description: File Bahasa Indonesia
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.id.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.id.yaml
+  To:
+   - lang/lang.id.fe.yaml
+   - lang/lang.id.yaml
+  Checksum:
+   - 4e66ceeb45c09c49bc1d8df073383d8efcac67aedb6a0e546eb99b998a167c0e:52866
+   - fcd7549f88f747c4fa3a8c9f940461c934b4853d2408fdebdd884372ea23396a:5887
+ Reannotate: components.dat
+l10n/it:
+ Name: L10N: Italiana
+ Extended Description: Linguistici dati Italiana
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.it.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.it.yaml
+  To:
+   - lang/lang.it.fe.yaml
+   - lang/lang.it.yaml
+  Checksum:
+   - 878d4bdb8979ec51a89ed1ebe2d069b3748ca57e4750931bd27520e62b191761:55541
+   - c4f53b1dff8b6fc202d85745e3f8679cd85709486778d6ac9693116bccd7c319:6147
+ Reannotate: components.dat
+l10n/ja:
+ Name: L10N: 日本語
+ Extended Description: 日本語言語データ
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.ja.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.ja.yaml
+  To:
+   - lang/lang.ja.fe.yaml
+   - lang/lang.ja.yaml
+  Checksum:
+   - 7970eec05f60b0259c6c9d66bf0f8a0be1a8071e44f17e4530dc7d5b76fbfe0b:66581
+   - f264f002646a0ab08307122839787a1ca85993ef04986784330118b311c6246f:7953
+ Reannotate: components.dat
+l10n/ko:
+ Name: L10N: 한국어
+ Extended Description: 한국어 언어 데이터
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.ko.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.ko.yaml
+  To:
+   - lang/lang.ko.fe.yaml
+   - lang/lang.ko.yaml
+  Checksum:
+   - 88bee70f5c0f43ce6f2bc10884aeceb5f51486b7ac4753f070ec62efe2a53e69:55049
+   - 87d097f020b683a1315caaf428977e3a053baf709c1f751ec9a18f972980ee88:6669
+ Reannotate: components.dat
+l10n/nl:
+ Name: L10N: Nederlandse
+ Extended Description: Nederlandse lokalisatie
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.nl.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.nl.yaml
+  To:
+   - lang/lang.nl.fe.yaml
+   - lang/lang.nl.yaml
+  Checksum:
+   - 4940552bb13d1d0dd8eb5cab2dd5027e180b9b76225fcd15b35c17e5c6532fb4:54726
+   - 78100a8208d4ffd5315f0227699defa83e3e2f64897ca5c36c4da2a1d7f85646:6041
+ Reannotate: components.dat
+l10n/pt:
+ Name: L10N: Português
+ Extended Description: Linguagem dados Português
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.pt.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.pt.yaml
+  To:
+   - lang/lang.pt.fe.yaml
+   - lang/lang.pt.yaml
+  Checksum:
+   - 45098d879057e53102ec99b5ae5350cc500ebde58d53dcd4f1b64c6c608106b8:55256
+   - 8728acdcbdd58372a23cc49eb992b1418908ed93ad59391b2c184fe918dbec3c:6197
+ Reannotate: components.dat
+l10n/ru:
+ Name: L10N: Русский
+ Extended Description: Русском языковые файлы
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.ru.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.ru.yaml
+  To:
+   - lang/lang.ru.fe.yaml
+   - lang/lang.ru.yaml
+  Checksum:
+   - 8d5b1df8c1c7dfb07924693c1d153fa91d4ecb4e279267def27c0056c0b6f3cc:79347
+   - ed65247e36f0284b3849d7535187cf6ee489d14969e7d731075838937e493db7:8880
+ Reannotate: components.dat
+l10n/th:
+ Name: L10N: ภาษาไทย
+ Extended Description: ข้อมูลภาษาไทย
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.th.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.th.yaml
+  To:
+   - lang/lang.th.fe.yaml
+   - lang/lang.th.yaml
+  Checksum:
+   - b0846cc4497a0db5e1847ac0c58a03de93faf60b30086de1eb9e4969a52e294f:96976
+   - aba5327929e543a141d15da1d6977e149481ec6eed6f34525f632420ddb5c939:10517
+ Reannotate: components.dat
+l10n/tr:
+ Name: L10N: Türkçe
+ Extended Description: Türkçe dili verileri
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.tr.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.tr.yaml
+  To:
+   - lang/lang.tr.fe.yaml
+   - lang/lang.tr.yaml
+  Checksum:
+   - fdaade6a0bea935b5e17e890c72075464f2e97ff3cd02f67fe9d7e5af05a7632:53290
+   - d9124b34f24f0d00d63a656dcd9e140b8dc41ca3f0f47e37a9f978ed61bd103c:6152
+ Reannotate: components.dat
+l10n/ur:
+ Name: L10N: ‏اردو‏
+ Extended Description: ‏اردو‏ زبان فائلوں
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.ur.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.ur.yaml
+  To:
+   - lang/lang.ur.fe.yaml
+   - lang/lang.ur.yaml
+  Checksum:
+   - f977d976cb830f9808dad631a410323d471b300d10aab9ce440b18102e614bbf:77174
+   - c6829cc1aa954d78b7ec784fc878a6b8cc5697b02e25c6d8d608f49a6ca3445e:7836
+ Reannotate: components.dat
+l10n/vi:
+ Name: L10N: Tiếng Việt
+ Extended Description: Dữ liệu tiếng Việt
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.vi.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.vi.yaml
+  To:
+   - lang/lang.vi.fe.yaml
+   - lang/lang.vi.yaml
+  Checksum:
+   - 3ffa145f724f74855dd50445c99271078ee066501d4127cd0368d34e5304a72a:63987
+   - 885cb02ff27ddf51b9462e39587ae8410ee0fa36afc73f8021e33ca206f58d48:7144
+ Reannotate: components.dat
+l10n/zh-TW:
+ Name: L10N: 中文（傳統）
+ Extended Description: 中文（傳統）語言數據
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.zh-tw.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.zh-tw.yaml
+  To:
+   - lang/lang.zh-tw.fe.yaml
+   - lang/lang.zh-tw.yaml
+  Checksum:
+   - 1493a0dba72c35b62b0e3a38d1589fb464e1723808eca32b087948e563836979:47970
+   - 814359754d9eb0a9efa6154ae142ca80a6cf2e14bc5fc7bb487a5a19b8bc5a47:5536
+ Reannotate: components.dat
+l10n/zh:
+ Name: L10N: 中文（简体）
+ Extended Description: 中文（简体）语言数据
+ Version: 2021.126.677
+ Minimum Required: 1.8.0
+ Dependencies:
+  phpMussel Core: ^1.8
+ Remote: https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/components.dat
+ Uninstallable: true
+ Files:
+  From:
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.zh.fe.yaml
+   - https://raw.githubusercontent.com/phpMussel/phpMussel/v1/vault/lang/lang.zh.yaml
+  To:
+   - lang/lang.zh.fe.yaml
+   - lang/lang.zh.yaml
+  Checksum:
+   - 9c71b67eb08bdf8840005c77702c5f4c4227793c1a78dc0e7de73a3ee35fd3ad:47949
+   - ac538ef7e162aa453a19e8a63e30c3f27ce8f930470325654becffb6527eeafd:5535
+ Reannotate: components.dat
+

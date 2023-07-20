@@ -1,0 +1,33 @@
+/**
+* Webkul Software.
+*
+* @category Webkul
+* @package Webkul_MpStripe
+* @author Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license https://store.webkul.com/license.html
+*/
+#danger{
+    color:red;
+}
+
+.stripe-card-options {
+    padding: 10px;
+}
+.stripe-control .control {
+    margin: 10px 0;
+}
+.stripe-control {
+    margin: 10px;
+}
+
+#payment_form_mpstripe.fieldset {
+    background: aliceblue none repeat scroll 0 0;
+    padding: 10px;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px #e2e2e2;
+}
+img.payment-icon {
+    width: 100px;
+}

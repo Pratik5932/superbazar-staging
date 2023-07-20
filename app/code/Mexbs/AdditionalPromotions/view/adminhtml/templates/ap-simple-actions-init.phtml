@@ -1,0 +1,16 @@
+<?php
+/**
+ * @var \Mexbs\AdditionalPromotions\Helper\Data $apHelper
+ */
+$apHelper = $this->helper('Mexbs\AdditionalPromotions\Helper\Data');
+?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Mexbs_AdditionalPromotions/js/model/ap-simple-actions": {
+                "supportedActions": "<?php echo str_replace("\"", "\\\"", json_encode(array_keys($apHelper->apSimpleActionsToTypes))) ?>",
+                "promoBlockSupportedActions": "<?php echo str_replace("\"", "\\\"", json_encode($apHelper->promoBlockSupportedSimpleActions)) ?>"
+            }
+        }
+    }
+</script>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+ 	<system>
+        <section id="general" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+            <tab>general</tab>
+            <group id="settings" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Super Bazaar Settings</label>
+				<field id="customer_group" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer Group</label>
+                    <validate>required-entry</validate>
+                    <source_model>Superbazaar\CustomWork\Model\Config\Source\CustomerGroup</source_model>
+                </field>
+                <field id="percentage" translate="label comment" sortOrder="2" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Fee in percentage</label>
+                    <validate>required-entry</validate>
+                    <comment>ex: 2 or 5</comment>
+                </field>
+				<field id="change_message" translate="label comment" sortOrder="3" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Change Apply Coupon Message</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="coupon_code" translate="label comment" sortOrder="4" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Coupon Code</label>
+                </field>
+				<field id="coupon_message" translate="label comment" sortOrder="5" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Coupon Success Message</label>
+                </field>
+				<field id="attribute_list" translate="label comment" sortOrder="6" type="multiselect" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Attributes For Seller</label>
+                    <source_model>Superbazaar\CustomWork\Model\Config\Source\AttributeList</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

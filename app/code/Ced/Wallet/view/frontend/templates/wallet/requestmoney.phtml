@@ -1,0 +1,88 @@
+<?php
+
+/** @var \Magento\Wishlist\Block\Customer\Sharing $block */
+
+$helper = $this->helper('Ced\Wallet\Helper\Data');
+$customerId = $this->helper('Ced\Wallet\Helper\Data')->getCustomerId();
+$currencyCode = $this->_objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore(null)->getBaseCurrencyCode();
+?>
+<div>
+    <h1>
+        <?php 
+            echo __("Current Wallet Amount: %1", $helper->getFormatedPrice($block->getWalletAmount(), $currencyCode)); 
+        ?>
+    </h1>
+    
+    <?php if($helper->getWalletAmount()-$helper->getRequestedAmount()>0): ?>
+        <h3><?php echo __("Amount available for request : "); echo $helper->getFormatedPrice($helper->getWalletAmount()-$helper->getRequestedAmount(), $currencyCode); ?> </h3>
+    <?php endif; ?>
+</div>
+
+
+
+<form class="form"
+  action="<?php echo $this->getUrl('*/*/requestmoney');?>"
+  id="form-validate"
+  method="post"
+  data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+  data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+         <?= $block->getBlockHtml('formkey') ?>
+        <legend class="legend"><span><?= $block->escapeHtml(__('Request money from Wallet')) ?></span></legend><br />
+        <div class="field text">
+            <label class="label" for="message"><span><?= $block->escapeHtml(__('Enter Amount')) ?></span></label>
+            <div class="control">
+                <input placeholder="<?php echo __("Enter Amount"); ?>" 
+                class="required-entry not-negative-amount validate-greater-than-zero" 
+                id="requested_amount" 
+                type="text" 
+                name="amount"/>
+                <div for="wallet_amount"  class="wallet-amount-error" id="wallet-amount-error"></div>
+            </div>
+        </div>
+        <div class="field text">
+            <label class="label" for="message"><span><?= $block->escapeHtml(__('Add your Bank Account details here')) ?></span></label>
+            <div class="control">
+                <textarea name="details" cols="60" rows="5" required></textarea>
+            </div>
+        </div>
+        <input type="hidden" name="customer_id" value="<?php echo $customerId; ?>">
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Request Money')) ?>" class="action submit primary">
+                    <span><?= $block->escapeHtml(__('Request Money')) ?></span>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+
+<script type="text/javascript">
+    require(['jquery'],function($) {
+        $('#form-validate').submit(function () {
+            var requestBalance = $('#requested_amount').val();
+            var amountneedtorequest = '<?php echo $helper->getWalletAmount()-$helper->getRequestedAmount(); ?>'
+            console.log(amountneedtorequest);
+            if($('#requested_amount').val()>0 && (parseFloat(requestBalance) > parseFloat(amountneedtorequest))){
+                $('#requested_amount').focus();
+                if(!$('#wallet_amount-error').id ||$('#wallet_amount-error').is(':empty')){
+                    $('#wallet-amount-error').html("<?= __('Please enter amount less than or equal to amount available for request.');?>");
+                }
+                return false;
+            }else{
+                $('#wallet-amount-error').html('');
+                return true;
+            }
+        });
+    });
+</script>
+
+<style>
+    .wallet-amount-error {
+    	color: #e02b27;
+    	font-size: 1.2rem;
+    	margin-top: 7px;
+    }
+
+</style>

@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--Category plugins-->
+    <type name="Magento\Catalog\Controller\Adminhtml\Category\Save">
+        <plugin name="cminds_advancedpermissions_category_save" type="Cminds\AdvancedPermissions\Plugin\Category\SavePlugin" />
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Category\Add">
+        <plugin name="cminds_advancedpermissions_category_add" type="Cminds\AdvancedPermissions\Plugin\Category\AddPlugin" />
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Category\Move">
+        <plugin name="cminds_advancedpermissions_category_move" type="Cminds\AdvancedPermissions\Plugin\Category\MovePlugin" />
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Category\Edit">
+        <plugin name="cminds_advancedpermissions_category_edit" type="Cminds\AdvancedPermissions\Plugin\Category\EditPlugin" disabled="true"/>
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Category\Delete">
+        <plugin name="cminds_advancedpermissions_category_delete" type="Cminds\AdvancedPermissions\Plugin\Category\DeletePlugin" />
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Category\Collection">
+        <plugin name="cminds_advancedpermissions_category_collection_load_around" type="Cminds\AdvancedPermissions\Plugin\Category\FilterCategoryPlugin" />
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Category\Index">
+        <plugin name="cminds_advancedpermissions_category_index" type="Cminds\AdvancedPermissions\Plugin\Category\IndexPlugin" />
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
+        <plugin name="cminds_advancedpermissions_product_collection_load" type="Cminds\AdvancedPermissions\Plugin\Product\CollectionLoadPlugin" />
+    </type>
+    <!--Product plugins-->
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Save">
+        <plugin name="cminds_advancedpermissions_product_save" type="Cminds\AdvancedPermissions\Plugin\Product\SavePlugin" />
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Edit">
+        <plugin name="cminds_advancedpermissions_product_edit" type="Cminds\AdvancedPermissions\Plugin\Product\EditPlugin" />
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\MassDelete">
+        <plugin name="cminds_advancedpermissions_product_massdelete" type="Cminds\AdvancedPermissions\Plugin\Product\MassDeletePlugin" />
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\MassStatus">
+        <plugin name="cminds_advancedpermissions_product_massstatus" type="Cminds\AdvancedPermissions\Plugin\Product\MassStatusPlugin" />
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\NewAction">
+        <plugin name="cminds_advancedpermissions_product_newaction" type="Cminds\AdvancedPermissions\Plugin\Product\NewActionPlugin" />
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Action\Attribute\Edit">
+        <plugin name="cminds_advancedpermissions_product_attribute_edit" type="Cminds\AdvancedPermissions\Plugin\Product\AttributeEditPlugin" />
+    </type>
+    <!--Customer plugins-->
+    <type name="Magento\Customer\Controller\Adminhtml\Index\NewAction">
+        <plugin name="cminds_advancedpermissions_customer_newaction" type="Cminds\AdvancedPermissions\Plugin\Customer\NewActionPlugin" />
+    </type>
+    <type name="Magento\Customer\Controller\Adminhtml\Index\Edit">
+        <plugin name="cminds_advancedpermissions_customer_edit" type="Cminds\AdvancedPermissions\Plugin\Customer\EditPlugin" />
+    </type>
+    <type name="Magento\Customer\Controller\Adminhtml\Index\Delete">
+        <plugin name="cminds_advancedpermissions_customer_delete" type="Cminds\AdvancedPermissions\Plugin\Customer\DeletePlugin" />
+    </type>
+    <type name="Magento\Customer\Controller\Adminhtml\Index\MassDelete">
+        <plugin name="cminds_advancedpermissions_customer_massdelete" type="Cminds\AdvancedPermissions\Plugin\Customer\MassDeletePlugin" />
+    </type>
+    <type name="Magento\Customer\Controller\Adminhtml\Index\Save">
+        <plugin name="cminds_advancedpermissions_customer_save" type="Cminds\AdvancedPermissions\Plugin\Customer\SavePlugin" />
+    </type>
+    <type name="Magento\Customer\Controller\Adminhtml\Index\MassSubscribe">
+        <plugin name="cminds_advancedpermissions_customer_masssubscribe" type="Cminds\AdvancedPermissions\Plugin\Customer\MassSubscribePlugin" />
+    </type>
+    <type name="Magento\Customer\Controller\Adminhtml\Index\MassUnsubscribe">
+        <plugin name="cminds_advancedpermissions_customer_masssubscribe" type="Cminds\AdvancedPermissions\Plugin\Customer\MassUnsubscribePlugin" />
+    </type>
+    <type name="Magento\Customer\Controller\Adminhtml\Index\MassAssignGroup">
+        <plugin name="cminds_advancedpermissions_customer_massasssigngroup" type="Cminds\AdvancedPermissions\Plugin\Customer\MassAssignGroupPlugin" />
+    </type>
+    <type name="Magento\Customer\Controller\Adminhtml\Index\InlineEdit">
+        <plugin name="cminds_advancedpermissions_customer_inlineedit" type="Cminds\AdvancedPermissions\Plugin\Customer\InlineEditPlugin" />
+    </type>
+    <type name="Magento\Customer\Model\ResourceModel\Grid\Collection">
+        <plugin name="cminds_advancedpermissions_customer_grid_collection" type="Cminds\AdvancedPermissions\Plugin\Customer\CustomerGridCollectionPlugin" />
+    </type>
+    <type name="Magento\Customer\Model\ResourceModel\Online\Grid\Collection">
+        <plugin name="cminds_advancedpermissions_customer_online_grid_collection" type="Cminds\AdvancedPermissions\Plugin\Customer\CustomerOnlineGridCollectionPlugin" />
+    </type>
+    <type name="Magento\Customer\Ui\Component\Listing\AttributeRepository">
+        <plugin name="cminds_advancedpermissions_customer_grid_collection_filter_website" type="Cminds\AdvancedPermissions\Plugin\Customer\AfterGetAttributesListPlugin" />
+    </type>
+    <!--Role plugins-->
+    <type name="Magento\User\Controller\Adminhtml\User\Role\EditRole">
+        <plugin name="cminds_advancedpermissions_role_edit" type="Cminds\AdvancedPermissions\Plugin\Role\EditRoleAroundPlugin" />
+    </type>
+    <!--Website access plugins-->
+    <type name="Magento\Store\Model\ResourceModel\Store\Collection">
+        <plugin name="cminds_advancedpermissions_website_view" type="Cminds\AdvancedPermissions\Plugin\Website\WebsiteViewPlugin" />
+    </type>
+    <type name="Magento\Backend\Model\Auth">
+        <plugin name="cminds_advancedpermissions_admin_login" type="Cminds\AdvancedPermissions\Plugin\Website\AccessPlugin" />
+    </type>
+    <!--Store view plugins-->
+    <type name="Magento\Store\Model\ResourceModel\Store\Collection">
+        <plugin name="cminds_advancedpermissions_store_view" type="Cminds\AdvancedPermissions\Plugin\Store\StoreViewPlugin" />
+    </type>
+    <type name="Magento\Backend\Block\Store\Switcher">
+        <plugin name="cminds_advancedpermissions_store_switcher" type="Cminds\AdvancedPermissions\Plugin\Store\StoreSwitcherPlugin" />
+    </type>
+    <type name="Magento\Store\Model\ResourceModel\Website\Grid\Collection">
+        <plugin name="cminds_advancedpermissions_admin_store_view_grid" type="Cminds\AdvancedPermissions\Plugin\Store\StoreAdminGridPlugin" />
+    </type>
+    <!--Order plugins-->
+    <type name="Magento\Store\Model\System\Store">
+        <plugin name="cminds_advancedpermissions_store" type="Cminds\AdvancedPermissions\Plugin\Store\StorePlugin" />
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Collection">
+        <plugin name="cminds_advancedpermissions_store_dashboard_collection" type="Cminds\AdvancedPermissions\Plugin\Store\StoreDashboardPlugin" />
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Grid\Collection">
+        <plugin name="cminds_advancedpermissions_order_collection_grid" type="Cminds\AdvancedPermissions\Plugin\Order\OrderGridPlugin" />
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Invoice\Grid\Collection">
+        <plugin name="cminds_advancedpermissions_order_invoice_collection_grid" type="Cminds\AdvancedPermissions\Plugin\Order\OrderInvoiceGridPlugin" />
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Shipment\Grid\Collection">
+        <plugin name="cminds_advancedpermissions_order_shipment_collection_grid" type="Cminds\AdvancedPermissions\Plugin\Order\OrderShipmentGridPlugin" />
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Creditmemo\Grid\Collection">
+        <plugin name="cminds_advancedpermissions_order_creditmemo_collection_grid" type="Cminds\AdvancedPermissions\Plugin\Order\OrderCreditMemoGridPlugin" />
+    </type>
+    <!-- override dashboard tabs -->
+    <type name="Magento\Backend\Block\Dashboard\Tab\Customers\Newest">
+        <plugin name="cminds_advancedpermissions_backend_dashboard_grid_customer_newest" type="Cminds\AdvancedPermissions\Plugin\Dashboard\TabCustomersNewestPlugin" />
+    </type>
+    <type name="Magento\Reports\Model\ResourceModel\Product\Collection">
+        <plugin name="cminds_advancedpermissions_product_reports_collection_load" type="Cminds\AdvancedPermissions\Plugin\Product\ReportsCollectionLoadPlugin" />
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Report\Bestsellers\Collection">
+        <plugin name="cminds_advancedpermissions_sales_report_bestsell_collection_load" type="Cminds\AdvancedPermissions\Plugin\Sales\ReportBestsellersCollectionPlugin" />
+    </type>
+    <type name="Magento\Backend\Block\System\Account\Edit\Form">
+        <plugin name="cminds_advancedpermissions_post_code_admin_form" type="Cminds\AdvancedPermissions\Plugin\Block\User\Edit\Tab\Main"/>
+    </type>
+    <type name="Magento\User\Block\User\Edit\Tab\Main">
+        <plugin name="cminds_advancedpermissions_post_code_admin_form_main" type="Cminds\AdvancedPermissions\Plugin\Block\User\Edit\Tab\Main"/>
+    </type>
+    <preference for="Magento\Sales\Model\ResourceModel\Report\Bestsellers\Collection"
+        type="Cminds\AdvancedPermissions\Model\ResourceModel\Report\Bestsellers\Collection" />
+    <preference for="Magento\User\Api\Data\UserInterface"
+                type="Cminds\AdvancedPermissions\Api\Data\AdvancedUserInterface" />
+    <preference for="Magento\Sales\Model\ResourceModel\Order\Customer\Collection"
+                type="Cminds\AdvancedPermissions\Rewrite\Customer\Collection" />
+    <preference for="Magento\Backend\Controller\Adminhtml\System\Account\Save"
+                type="Cminds\AdvancedPermissions\Rewrite\Adminhtml\Account\Save" />
+    <preference for="Magento\User\Controller\Adminhtml\User\Save"
+                type="Cminds\AdvancedPermissions\Rewrite\Adminhtml\User\Save" />
+</config>

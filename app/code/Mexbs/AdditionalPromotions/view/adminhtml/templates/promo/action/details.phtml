@@ -1,0 +1,87 @@
+<?php
+/**
+ * @var \Mexbs\AdditionalPromotions\Block\Adminhtml\Promo\Quote\Action\Details $block
+ */
+?>
+<script>
+    require([
+        "Mexbs_AdditionalPromotions/js/rules",
+        'jquery'
+    ], function(apRulesForm, $){
+        window.simple_action_container = new apRulesForm('action-details-wrapper',
+            '<?php echo $block->getNewChildUrl() ?>',
+            [
+                '<?php echo \Magento\SalesRule\Model\Rule::BY_PERCENT_ACTION ?>',
+                '<?php echo \Magento\SalesRule\Model\Rule::BY_FIXED_ACTION ?>',
+                '<?php echo \Magento\SalesRule\Model\Rule::CART_FIXED_ACTION ?>',
+                '<?php echo \Magento\SalesRule\Model\Rule::BUY_X_GET_Y_ACTION ?>'
+            ],
+            '<?php echo $block->getMagentoVersion(); ?>'
+        );
+
+        $(document).ready(function(){
+            var toggleSimpleActionVisibility = function(){
+                var wrapperLis = $("#action-details-wrapper li");
+                if((wrapperLis=='undefined') || (wrapperLis.length == 0) || wrapperLis.first().is(':empty')){
+                    $("#simple_action").show();
+                }else{
+                    $("#simple_action").hide();
+                }
+            };
+
+            toggleSimpleActionVisibility();
+
+            $(document).on("click", ".rule-param-remove", toggleSimpleActionVisibility);
+
+            var toggleActionFieldsVisibility = function(){
+                switch($("#simple_action").val()) {
+                    <?php
+                    $allFieldNames = $block->getAllFieldNames();
+                    foreach($block->getApSimpleActionFieldNamesShowSetting() as $apSimpleAction => $fieldNamesToShow): ?>
+                    case "<?php echo $apSimpleAction ?>":
+                        <?php foreach($allFieldNames as $fieldName): ?>
+                        <?php if(in_array($fieldName, $fieldNamesToShow)): ?>
+                            $("[name='<?php echo $fieldName ?>']").closest(".admin__field").show();
+                            <?php if($fieldName == \Mexbs\AdditionalPromotions\Block\Adminhtml\Promo\Quote\Action\Details::ACTIONS_SECTION_NAME): ?>
+                            $("#actions__1__type").closest(".rule-tree").show();
+                            <?php endif; ?>
+                        <?php else: ?>
+                            $("[name='<?php echo $fieldName ?>']").closest(".admin__field").hide();
+                            <?php if($fieldName == \Mexbs\AdditionalPromotions\Block\Adminhtml\Promo\Quote\Action\Details::ACTIONS_SECTION_NAME): ?>
+                            $("#actions__1__type").closest(".rule-tree").hide();
+                            <?php endif; ?>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
+                        break;
+                    <?php endforeach; ?>
+                    default:
+                    <?php foreach($block->getAllNonApFieldNames() as $fieldName): ?>
+                        $("[name='<?php echo $fieldName ?>']").closest(".admin__field").show();
+                        <?php if($fieldName == \Mexbs\AdditionalPromotions\Block\Adminhtml\Promo\Quote\Action\Details::ACTIONS_SECTION_NAME): ?>
+                            $("#actions__1__type").closest(".rule-tree").show();
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <?php foreach($block->getAllApFieldNames() as $fieldName): ?>
+                        $("[name='<?php echo $fieldName ?>']").closest(".admin__field").hide();
+                    <?php endforeach; ?>
+                }
+            };
+
+            toggleActionFieldsVisibility();
+
+            $("#simple_action").on("change", toggleActionFieldsVisibility);
+
+
+        });
+    });
+</script>
+<div class="admin__fieldset fieldset rule-tree rule-param-new-child" id="action-details-wrapper">
+    <div class="admin__field">
+            <div class="admin__field-control">
+                <input type="hidden" id="action_details__1__new_child" class="element-value-changer" />
+                <ul id="action_details__1__children" class="rule-param-children">
+                    <?php echo $block->getChildrenHtml() ?>
+                </ul>
+            </div>
+    </div>
+</div>

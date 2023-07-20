@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ * 
+ *
+ *
+ * @category  Webkul
+ * @package   Webkul_Customisation
+ * @author    Webkul <support@webkul.com>
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html ASL Licence
+ * @link      https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Webkul\Customisation\Api\PaypalApiManagementInterface" type="Webkul\Customisation\Model\Api\PaypalApiManagement" />
+    <preference for="Webkul\Customisation\Api\Data\PaypalApiInterface" type="Webkul\Customisation\Model\PaypalApi" />
+
+    <preference for="Webkul\Customisation\Api\PaypalSellerInfoSaveApiManagementInterface" type="Webkul\Customisation\Model\Api\PaypalSellerInfoSaveApiManagement" />
+
+    <preference for="Webkul\Customisation\Api\PaypalSellerInfoApiManagementInterface" type="Webkul\Customisation\Model\Api\PaypalSellerInfoApiManagement" />
+
+    <preference for="Webkul\Customisation\Api\StripeSaveCardApiManagementInterface" type="Webkul\Customisation\Model\Api\StripeSaveCardApiManagement" />
+
+    <preference for="Webkul\Customisation\Api\StripeSellerTransactionApiManagementInterface" type="Webkul\Customisation\Model\Api\StripeSellerTransactionApiManagement" />
+
+    <preference for="Webkul\Customisation\Api\StripeSellerRemoveApiManagementInterface" type="Webkul\Customisation\Model\Api\StripeSellerRemoveApiManagement" />
+
+    <preference for="Webkul\Customisation\Api\StripeSellerUpdateApiManagementInterface" type="Webkul\Customisation\Model\Api\StripeSellerUpdateApiManagement" />
+
+    <preference for="Webkul\Customisation\Api\StripeSellerAccountApiManagementInterface" type="Webkul\Customisation\Model\Api\StripeSellerAccountApiManagement" />
+
+    <preference for="Webkul\Customisation\Api\StripeDeleteSaveCardApiManagementInterface" type="Webkul\Customisation\Model\Api\StripeDeleteSaveCardApiManagement" />
+
+    <preference for="Webkul\Customisation\Api\StripePaymentIntentCreateApiManagementInterface" type="Webkul\Customisation\Model\Api\StripePaymentIntentCreateApiManagement" />
+</config>

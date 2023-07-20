@@ -1,0 +1,35 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_MpHyperLocal
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+// @codingStandardsIgnoreFile
+$address = $block->isAddressSet();
+if ($this->getRequest()->getFullActionName() == 'mphyperlocal_account_origin' || $this->getRequest()->getFullActionName() == 'mphyperlocal_account_addshiparea') {
+?>
+<script>
+require.config({
+    map: {
+        '*': {
+            'googleMapPlaceLibrary': 'https://maps.googleapis.com/maps/api/js?key=<?php echo $block->getGoogleApiKey()?>&v=3.exp&libraries=places'
+        }
+    }
+ });
+ </script>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "addresspopup": {
+                "saveAction": "<?php echo $block->getSaveAction()?>",
+                "isAddressSet": "<?php echo $address ? 1:0 ?>",
+                "popupHeading": "<?php echo $block->getLocationPopupWindow()?>"
+            }
+        }
+    }
+</script>
+<?php }

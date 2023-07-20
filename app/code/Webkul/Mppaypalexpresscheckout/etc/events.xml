@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Mppaypalexpresscheckout
+ * @author    Webkul Software Private Limited
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_onepage_controller_success_action">
+        <observer name="webkul_mppaypalexpresscheckout_sales_order_success_observer" instance="Webkul\Mppaypalexpresscheckout\Observer\SalesOrderSuccessObserver" />
+    </event>
+    <event name="payment_method_is_active">
+        <observer name="webkul_mppaypalexpresscheckout_payment_method_is_active_observer" instance="Webkul\Mppaypalexpresscheckout\Observer\PaymentMethodAvailable" />
+    </event>
+    <event name="adminhtml_sales_order_creditmemo_register_before">
+        <observer name="webkul_mppaypalexpresscheckout_adminhtml_sales_order_creditmemo_register_before_observer" instance="Webkul\Mppaypalexpresscheckout\Observer\CreditmemoRegisterBefore" />
+    </event>
+</config>

@@ -1,0 +1,106 @@
+/**
+ * Solwin Infotech
+ * Solwin Featured Product Extension
+ * 
+ * @category   Solwin
+ * @package    Solwin_FeaturedPro
+ * @copyright  Copyright © 2006-2016 Solwin (https://www.solwininfotech.com)
+ * @license    https://www.solwininfotech.com/magento-extension-license/
+ */
+
+.featuredproduct .owl-wrapper{
+    padding-bottom: 32px;
+}
+.sidebar .featuredproduct .owl-wrapper{
+    padding-bottom: 0;
+}
+
+.featuredproduct li.product-item {
+    width: 100% !important;
+    background: transparent !important;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.featuredproduct-index-index .products-grid .product-item:nth-child(2n + 1) {
+    margin-left: calc((100% - 4 * 23.439%) / 3);
+}
+.featuredproduct-index-index .products-grid .product-item:nth-child(4n+1) {
+    margin-left: 0;
+}
+.featuredproduct-index-index .products-grid .product-item {
+    margin-left: calc((100% - 4 * 23.439%) / 3);
+    padding: 0;
+    width: 23.439%;
+}
+.featuredproduct-index-index .product-item-info {
+    width: 240px;
+}
+.featuredproduct-index-index .products-grid .product-items {
+    margin: 0;
+}
+.featuredproduct.product-items {
+    margin: 0 !important;
+}
+.featuredproduct .product-item-info {
+    width: 100%;
+}
+.fpro-sidebar {
+    margin: 20px 0 0 !important;
+}
+.fpro-sidebar .product-items .product-item {
+    margin: 0 0 15px !important;
+}
+.fpro-sidebar .product-items .product-item:last-child {
+    margin: 0 0 5px !important;
+}
+.block-sidebar .block-title strong{
+    font-size: 18px;
+    font-weight: 300;
+}
+.sidebar .product-items .product-item-info .product-item-photo{
+    position: relative !important;
+}
+.sidebar .products-grid .product-item-info:hover, .products-grid .product-item-info.active{
+    margin: 0;
+}
+
+.featuredproduct .product-item .product-item-actions {
+    bottom: -70px;
+    transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+}
+.featuredproduct-index-index .products-grid .product-item .product-item-actions {
+    bottom: -70px;
+    -webkit-transition: all 0.3s ease 0s;
+}
+@media only screen and (max-width: 1023px) {
+    .featuredproduct-index-index .products-grid .product-item:nth-child(4n+1) {
+        margin-left: calc((100% - 3 * 32%) / 2);
+    }
+    .featuredproduct-index-index .products-grid .product-item:nth-child(3n+1) {
+        margin-left: 0;
+    }
+    .featuredproduct-index-index .products-grid .product-item {
+        margin-left: calc((100% - 3 * 32%) / 2);
+        padding: 0;
+        width: 31.9%;
+    }
+}
+@media only screen and (max-width: 639px) {
+    .featuredproduct li.product-item {
+        width: 100% !important;
+        background: transparent !important;
+        box-sizing: border-box;
+    }
+    .featuredproduct-index-index .products-grid .product-item:nth-child(3n+1) {
+        margin-left: calc((100% - 2 * 49%) / 1);
+    }
+    .featuredproduct-index-index .products-grid .product-item:nth-child(2n+1) {
+        margin-left: 0;
+    }
+    .featuredproduct-index-index .products-grid .product-item {
+        margin-left: calc((100% - 2 * 49%) / 1);
+        padding: 0;
+        width: 49%;
+    }
+}

@@ -1,0 +1,141 @@
+<?= $block->getChildHtml() ?>
+
+<?php
+    $websites = $block->getWebsites();
+    $storesTree = $block->getStoreViewsTree();
+    $accessLevel = $block->getAccessLevel();
+    $selectedScopeValues = $block->getSelected();
+?>
+
+<fieldset class="fieldset form-inline entry-edit">
+    <legend class="legend">
+        <span><?= /* @escapeNotVerified */ __('Advanced Role Scope') ?></span>
+    </legend><br />
+
+    <div class="field">
+        <label class="label" for="scope_select"><span><?= /* @escapeNotVerified */ __('Advanced Role Scope') ?></span></label>
+
+        <div class="control">
+            <select id="scope_select" name="scope_select" class="select" onchange="
+                var selectedValue = this.options[this.selectedIndex].value;
+                if (selectedValue == 1) {
+                    jQuery('[data-role=specified_store_views]').hide();
+                    jQuery('[data-role=specified_store_websites]').hide();
+                }
+
+                if (selectedValue == 2) {
+                   jQuery('[data-role=specified_store_websites]').show();
+                   jQuery('[data-role=specified_store_views]').hide();
+                }
+                if (selectedValue == 3) {
+                    jQuery('[data-role=specified_store_views]').show();
+                    jQuery('[data-role=specified_store_websites]').hide();
+                }
+            ">
+                <option value="1"
+                    <?php
+                        if ($accessLevel == 1) {
+                            echo ('selected');
+                        }
+                    ?>
+                ><?= /* @escapeNotVerified */ __('Access To All Stores') ?></option>
+                <option value="2"
+                    <?php
+                    if ($accessLevel == 2) {
+                        echo ('selected');
+                    }
+                    ?>
+                ><?= /* @escapeNotVerified */ __('Access To Specified Websites') ?></option>
+                <option value="3"
+                    <?php
+                    if ($accessLevel == 3) {
+                        echo ('selected');
+                    }
+                    ?>
+                ><?= /* @escapeNotVerified */ __('Access To Specified Store Views') ?></option>
+            </select>
+        </div>
+    </div>
+    <div class="field
+        <?php
+            if ($accessLevel == 2) {
+                echo ('');
+            } else {
+                echo ('no-display');
+            }
+        ?>
+        " data-role="specified_store_websites">
+        <label class="label" for="websites">Website</span></label>
+        <div class="control">
+            <select id="websites" name="websites[]" class="select multiselect admin__control-multiselect" multiple="multiple">
+                <?php
+                    foreach ($websites as $website) {
+                        echo ('<option value="' . $website->getWebsiteId() . '"');
+                        if (in_array(
+                                $website->getWebsiteId(),
+                                $selectedScopeValues
+                        )
+                        ) {
+                            if ($accessLevel == 2) {
+                                echo ('selected');
+                            }
+                        }
+                        echo ('>' . $website->getName() . '</option>)');
+                    }
+                ?>
+            </select>
+        </div>
+    </div>
+
+    <div class="field
+        <?php
+            if ($accessLevel == 3) {
+                echo ('');
+            } else {
+                echo ('no-display');
+            }
+        ?>
+    " data-role="specified_store_views">
+        <label class="label" for="stores">Store View</span></label>
+        <div class="control">
+            <select id="stores" name="stores[]" class="select multiselect admin__control-multiselect" multiple="multiple">
+                <?php
+                    foreach ($storesTree as $website) {
+                        echo ('<optgroup label="' . __($website['website_name']) . '">');
+                            foreach ($website['website_groups'] as $group) {
+                                echo ('<optgroup label="&emsp;&emsp;' . __($group['group_name']) . '">');
+                                    foreach ($group['group_stores'] as $storeId => $storeName) {
+                                        echo ('<option value="' . $storeId . '"');
+                                        if (in_array(
+                                            $storeId,
+                                            $selectedScopeValues
+                                        )
+                                        ) {
+                                            if ($accessLevel == 3) {
+                                                echo ('selected');
+                                            }
+                                        }
+                                        echo('>&emsp;&emsp;');
+                                        echo (__($storeName));
+                                        echo ('</option>');
+                                    }
+                                echo ('</optgroup>');
+                            }
+                        echo ('</optgroup>');
+                    }
+                ?>
+            </select>
+        </div>
+    </div>
+
+
+</fieldset>
+
+<script>
+//    require(['domReady!'], function(domReady){
+//        console.log('dom is ready');
+//        require(['jquery'], function($){
+//            console.log('jquery loaded');
+//        });
+//    });
+</script>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Customer\Controller\Account\LoginPost">
+        <plugin name="Webkul_ZipCodeValidator::loginpost" type="Webkul\ZipCodeValidator\Plugin\Controller\Account\LoginPost" sortOrder="1" />
+    </type>
+    <type name="Magento\Quote\Model\ShippingMethodManagement">
+        <plugin name="Webkul_ZipCodeValidator::shippingmethodmanagement" type="Webkul\ZipCodeValidator\Plugin\Quote\Model\ShippingMethodManagement" sortOrder="1" />
+    </type>
+</config>

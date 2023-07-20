@@ -1,0 +1,36 @@
+<?php
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+namespace Superbazaar\General\Observer;
+
+use Magento\Framework\Event\ObserverInterface;
+
+class Productsaveafter implements ObserverInterface
+{
+
+    public function __construct(
+        \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistry
+    )
+    {
+        $this->stockRegistry = $stockRegistry;
+        #parent::__construct();
+    }
+    public function execute(\Magento\Framework\Event\Observer $observer)
+    {
+        $_product = $observer->getProduct();  // you will get product object
+        $sku=$_product->getSku(); // for sku
+        if($sku == "Test-1"){
+            $stockItem = $this->stockRegistry->getStockItemBySku($sku);
+            $origQty = $stockItem->getQty();
+            $qty = $origQty + $_product->getUpdatedQty() + $_product->getQtyCount2();
+            $_product->setUpdatedQty($qty);
+           # $_product->save();
+            $stockItem->setQty($qty);
+            $stockItem->setIsInStock((bool)$qty); // this line
+            $this->stockRegistry->updateStockItemBySku($sku, $stockItem);
+        }
+
+    }
+}

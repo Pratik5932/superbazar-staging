@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="Vnecoms_Sms::css/intlTelInput.css"/>
+		<css src="Vnecoms_Sms::css/styles.css"/>
+	</head>
+	<body>
+		<referenceBlock name="checkout.root">
+			<arguments>
+				<argument name="jsLayout" xsi:type="array">
+					<item name="components" xsi:type="array">
+						<item name="checkout" xsi:type="array">
+							<item name="children" xsi:type="array">
+								<item name="steps" xsi:type="array">
+									<item name="children" xsi:type="array">
+										<item name="shipping-step" xsi:type="array">
+											<item name="children" xsi:type="array">
+												<item name="shippingAddress" xsi:type="array">
+													<item name="children" xsi:type="array">
+														<item name="shipping-address-fieldset" xsi:type="array">
+															<item name="children" xsi:type="array">
+																<item name="telephone" xsi:type="array">
+																	<item name="component" xsi:type="string">Vnecoms_Sms/js/checkout/mobile</item>
+																	<item name="validation" xsi:type="array">
+																		<item name="max_text_length" xsi:type="number">15</item>
+																		<item name="validate-number" xsi:type="boolean">false</item>
+																		<item name="validate-digits" xsi:type="boolean">false</item>
+																	</item>
+																	<item name="config" xsi:type="array">
+																		<item name="elementTmpl" xsi:type="string">Vnecoms_Sms/checkout/mobile</item>
+																		<item name="tooltip" xsi:type="array">
+																			<item name="description" xsi:type="string" translate="true">For delivery questions.</item>
+																		</item>
+																	</item>
+																</item>
+															</item>
+														</item>
+													</item>
+												</item>
+											</item>
+										</item>
+									</item>
+								</item>
+							</item>
+						</item>
+					</item>
+				</argument>
+			</arguments>
+		</referenceBlock>
+	</body>
+</page>

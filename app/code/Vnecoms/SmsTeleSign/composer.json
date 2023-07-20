@@ -1,0 +1,17 @@
+{
+    "name": "vnecoms/module-sms-telesign",
+    "description": "N/A",
+    "require": {
+        "telesign/telesign": "^2.2"
+    },
+    "type": "magento2-module",
+    "version": "2.0.0",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Vnecoms\\SmsTeleSign\\": ""
+        }
+    }
+}

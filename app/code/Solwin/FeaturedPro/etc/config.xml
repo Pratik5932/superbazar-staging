@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Solwin Infotech
+ * Solwin Featured Product Extension
+ * 
+ * @category   Solwin
+ * @package    Solwin_FeaturedPro
+ * @copyright  Copyright © 2006-2016 Solwin (https://www.solwininfotech.com)
+ * @license    https://www.solwininfotech.com/magento-extension-license/
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <featuredpro_settings>
+            <featured_products>
+                <enable>0</enable>
+                <enable_toplink>0</enable_toplink>
+                <enable_footerlink>0</enable_footerlink>
+                <title>Featured Products</title>
+                <limit>8</limit>
+                <enable_sidebar>0</enable_sidebar>
+                <sidebar_title>Featured Products</sidebar_title>
+                <sidebar_limit>5</sidebar_limit>
+            </featured_products>            
+        </featuredpro_settings>
+    </default>
+</config>

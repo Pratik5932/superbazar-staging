@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Ren. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Ren_Pushapp::ren_pushapp_index" title="Push Notification" module="Ren_Pushapp"  sortOrder="20" dependsOnModule="Ren_Pushapp" action="pushapp/pushapp/index" resource="Ren_Pushapp::ren_pushapp_index"/>
+<!--AddMenu-->
+    </menu>
+</config>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   Webkul
+ * @package    Webkul_SocialSignup
+ * @author     Webkul Software Private Limited
+ * @copyright  Copyright (c) 2010-2017 Webkul Software Private Limited (https://webkul.com)
+ * @license    https://store.webkul.com/license.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Webkul_SocialSignup::css/socialsignup.css"/>
+    </head>
+    <body>
+    <referenceContainer name="content">
+        <referenceBlock name="authentication-popup" template="Webkul_SocialSignup::account/authentication-popup.phtml">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="authenticationPopup" xsi:type="array">
+                                <item name="children" xsi:type="array">
+                                    <item name="socialsignup-authentication" xsi:type="array">
+                                        <item name="sortOrder" xsi:type="string">1</item>
+                                        <item name="component" xsi:type="string">Webkul_SocialSignup/js/view/socialsignupGuestCheckoutAuthentication</item>
+                                        <item name="displayArea" xsi:type="string">additional-login-form-fields</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+        </referenceBlock>
+    </referenceContainer>
+    </body>
+</page>

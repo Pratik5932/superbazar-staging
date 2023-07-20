@@ -1,0 +1,171 @@
+<?php
+/**
+ * @var \Mexbs\AdditionalPromotions\Block\Cart\ProductsSetDiscount $block
+ */
+$productGroups = $block->getRuleProductGroupsWithDisplayDataAndProducts();
+if(count($productGroups) > 0):
+?>
+<style>
+    .cart-promo-wrapper{
+        margin-top: 20px;
+        clear: both;
+        float: left;
+    }
+    .cart-promo-matching-product-wrapper{
+        margin-right: 5px;
+    }
+    .cart-promo-product-group-wrapper,
+    .cart-promo-matching-product-wrapper{
+        max-width: 164px;
+        max-height: 200px;
+        float: left;
+        border: 2px solid #1979c3;
+    }
+    .cart-promo-product-group-product-image{
+        float: left;
+        max-height: 200px;
+        max-width: 200px;
+    }
+    .cart-promo-product-group-discount{
+        padding: 8px 15px 2px 15px;
+        height: 32px;
+        font-size: 1.8rem;
+    }
+    .cart-promo-product-group-summary{
+        float: left;
+        margin: 75px 10px 0 10px;
+    }
+    .cart-promo-product-group-qty{
+        width: 20px;
+        height: 20px;
+        float: left;
+        margin-top: -19px;
+        margin-left: 142px;
+        padding-left: 4px;
+        display: block;
+    }
+    .cart-promo-product-group-title{
+        width: 159px;
+        margin-top: -200px;
+        padding: 5px 0 5px 5px;
+        float: left;
+        display: none;
+    }
+    .cart-promo-product-group-plus{
+        float: left;
+        width: 18px;
+        height: 27px;
+        font-size: 2rem;
+        padding-left: 9px;
+        margin: 80px 10px 0 10px;
+    }
+    .cart-promo-name{
+        line-height: 1.1;
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+        color: #1979c3;
+    }
+    .cart-promo-matching-product-checkmark{
+        float: left;
+        display:inline-block;
+        width: 22px;
+        height:22px;
+        -ms-transform: rotate(45deg); /* IE 9 */
+        -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+        transform: rotate(45deg);
+        margin-top: -198px;
+        margin-left: 9px;
+    }
+    .cart-promo-matching-product-checkmark .checkmark_stem{
+        position: absolute;
+        width: 7px;
+        height: 21px;
+        background-color: #00ff00;
+        left: 11px;
+        top: 2px;
+    }
+    .cart-promo-matching-product-checkmark .checkmark_kick{
+        position: absolute;
+        width: 14px;
+        height: 7px;
+        background-color: #00ff00;
+        left: 4px;
+        top: 17px;
+    }
+    .cart-promo-product-group-add{
+        margin-top: 10px;
+    }
+</style>
+<?php
+$productGroupIndex = 0;
+$alreadyMatchingItemsPerGroup = $block->getAlreadyAddedMatchingRuleItemsWithDisplayData();
+$isSomeProductsHasOptions = $block->getIsSomeProductsHasOptions();
+$isRuleHasSelections = $block->getIsRuleHasSelections();
+?>
+<div class="cart-promo-wrapper"
+    data-rule-id="<?php echo $block->getRuleId(); ?>"
+    data-some-products-has-options="<?php echo ($isSomeProductsHasOptions ? 1 : 0) ?>"
+    data-rule-has-selections="<?php echo ($isRuleHasSelections ? 1 : 0) ?>">
+    <div class="cart-promo-name"><?php echo $block->getRuleName() ?></div>
+    <?php
+    foreach($productGroups as $groupNumber => $productGroup):
+        $alreadyMatchedQty = 0;
+        if(isset($alreadyMatchingItemsPerGroup[$groupNumber])):
+            foreach($alreadyMatchingItemsPerGroup[$groupNumber] as $alreadyAddedItemData):
+                $item = $alreadyAddedItemData['item'];
+                $productId = 0;
+                if($item){
+                    $productId = $item->getProductId();
+                }
+        ?>
+        <div class="cart-promo-matching-product-wrapper"
+             data-square-type="matching"
+             data-group-number="<?php echo $groupNumber; ?>"
+             data-product-id="<?php echo $productId; ?>">
+            <div class="cart-promo-product-group-image">
+                <img class="cart-promo-product-group-product-image" src="<?php echo $alreadyAddedItemData['image'] ?>"/>
+                <div class="cart-promo-matching-product-checkmark">
+                    <div class="checkmark_stem"></div>
+                    <div class="checkmark_kick"></div>
+                </div>
+                <div class="cart-promo-product-group-title cart-promo-blue-label"><?php echo $alreadyAddedItemData['title'] ?></div>
+                <div class="cart-promo-product-group-qty cart-promo-blue-label">x<?php echo $alreadyAddedItemData['qty'] ?></div>
+            </div>
+        </div>
+        <?php
+                $alreadyMatchedQty += $alreadyAddedItemData['qty'];
+            endforeach;
+            endif;
+        if(($productGroup['qty'] - $alreadyMatchedQty) > 0):
+            $title = (($productGroup['qty'] - $alreadyMatchedQty) == 1 ? $productGroup['title_singular'] : $productGroup['title_plural']);
+        ?>
+        <div class="cart-promo-product-group-wrapper"
+             data-square-type="not-matching"
+             data-group-number="<?php echo $groupNumber; ?>"
+             data-title="<?php echo $title;?>"
+             data-group-qty-left-to-select="<?php echo ($productGroup['qty'] - $alreadyMatchedQty) ?>"
+             data-first-product-id="<?php echo $productGroup['first_product_id'] ?>"
+            >
+            <div class="cart-promo-product-group-image">
+                <img class="cart-promo-product-group-product-image" src="<?php echo $productGroup['image'] ?>"/>
+                <div class="cart-promo-product-group-title cart-promo-blue-label"><?php echo $title; ?></div>
+                <div class="cart-promo-product-group-qty cart-promo-blue-label">x<?php echo ($productGroup['qty'] - $alreadyMatchedQty) ?></div>
+            </div>
+        </div>
+    <?php
+        endif;
+    if(($productGroupIndex+1) != count($productGroups)): ?>
+        <div class="cart-promo-product-group-plus cart-promo-blue-label">+</div>
+    <?php endif;
+        $productGroupIndex++;
+    endforeach;
+    $addToCartText = ($isSomeProductsHasOptions ? "Configure and Add To Cart" : ($isRuleHasSelections ? "Select and Add To Cart" : "Add To Cart"));
+    ?>
+    <div class="cart-promo-product-group-summary">
+        <div class="cart-promo-product-group-discount cart-promo-blue-label"><?php echo $block->getRuleDiscountDescription() ?></div>
+        <button class="cart-promo-product-group-add" type="submit" name="add_promo_products_action" data-action="promo-add-to-cart" data-promo-id=<?php echo $block->getRuleId() ?> title="<?php echo $addToCartText; ?>">
+            <span><?php echo $addToCartText; ?></span>
+        </button>
+    </div>
+</div>
+<?php endif; ?>

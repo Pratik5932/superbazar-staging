@@ -1,0 +1,170 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_SocialSignup
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<fieldset class="fieldset create account" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')); ?>">
+    <?php $_collection = $block->attributeCollectionFilter();
+    if (count($_collection)) :
+        $haveAtLeastOneReqAttr = 0;
+        foreach ($_collection as $attributeData) {
+            $isRequiredArray = explode(' ', $attributeData->getFrontendClass());
+            if (in_array('required', $isRequiredArray)) {
+                $haveAtLeastOneReqAttr = 1 ;
+                break;
+            }
+        }
+        ?>
+        <?php if ($haveAtLeastOneReqAttr == 1) {?>
+    <legend class="legend"><span><?= $block->escapeHtml(__('Additional Information')); ?></span></legend><br>
+    <?php } ?>
+    <?php endif; ?>
+            <?php foreach ($_collection as $attributeData) { ?>
+                <?php $isRequiredArray = explode(' ', $attributeData->getFrontendClass());?>
+                <?php if (!in_array('required', $isRequiredArray)) { continue; } ?>
+                <?php $attrAsArray = $attributeData->toArray();
+                $usedInForms = $block->getUsedInForms($attributeData->getId());
+                $isShowOnRegisterPage = in_array('customer_account_create', $usedInForms);?>
+                <?php if ($isShowOnRegisterPage) : ?>
+                <div class="<?php if ($attributeData->getFrontendInput() == 'boolean') { echo 'choice '; } ?> field <?= $block->escapeHtml($attributeData->getAttributeCode()) ?> <?= $block->escapeHtml(in_array('required', $isRequiredArray))?'required':'' ?>">
+                    <?php if ($attributeData->getFrontendInput() != 'boolean') : ?>
+                    <label for="<?= $block->escapeHtml($attributeData->getAttributeCode()) ?>" class="label"><span><?= $block->escapeHtml($attributeData->getFrontendLabel()); ?></span></label>
+                <?php endif ?>
+                    <div class="control">
+                    <?php if ($attributeData->getFrontendInput() == 'text') : ?>
+                        <input type="text" name="<?= $block->escapeHtml($attributeData->getAttributeCode()) ?>" id="<?= $block->escapeHtml($attributeData->getAttributeCode()) ?>" title="<?= $block->escapeHtml(__('My Attribute')) ?>" class="input-text <?= $block->escapeHtml($attributeData->getFrontendClass()) ?>" <?= $block->escapeHtml(in_array('required', $isRequiredArray))? 'data-validate="{required:true}"':'' ?> autocomplete="off">
+
+                    <?php elseif ($attributeData->getFrontendInput() == 'textarea') :?>
+                        <textarea name="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" id="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" class="input-text <?= $block->escapeHtml($attributeData->getFrontendClass()) ?>" <?= $block->escapeHtml(in_array('required', $isRequiredArray))? 'data-validate="{required:true}"':'' ?> ></textarea>
+
+                    <?php elseif ($attributeData->getFrontendInput() == 'date') :?>
+                        <input type="date" name="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" id="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" value="" class="dob_type <?= $block->escapeHtml($attributeData->getFrontendClass()) ?>" <?= $block->escapeHtml(in_array('required', $isRequiredArray))? 'data-validate="{required:true}"':'' ?> autocomplete="off"><button value="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" type="button" class="ui-datepicker-trigger"><span>Select Date</span></button>
+                    <?php elseif (($attributeData->getFrontendInput() == 'select') && !in_array('dependable_field_'.$attrAsArray['attribute_code'], $isRequiredArray)) :
+                        $optiondata = $attributeData->getSource()->getAllOptions();
+                        usort($optiondata, function ($a, $b) {
+                            return $a['value'] - $b['value'];
+                        });
+                        if ($attributeData->getWkFrontendInput() == 'radio') {
+                            foreach ($optiondata as $instance) { if ($instance['value']) {?>
+                                  <div><input type="radio" name="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" value="<?= $block->escapeHtml($instance['value']) ?>"/> <span><?= $block->escapeHtml($instance['label']) ?></span></div>
+                            <?php }
+                            }
+                        } else {
+                            ?>
+                        <select name="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" id="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" class="input-select <?= $block->escapeHtml($attributeData->getFrontendClass()) ?>" <?= $block->escapeHtml(in_array('required', $isRequiredArray))? 'data-validate="{required:true}"':'' ?>>
+                            <?php foreach ($optiondata as $instance) { ?>
+                                  <option <?= $block->escapeHtml(($attrAsArray['default_value'] == $instance['value']))? 'selected="selected"' : '' ?> value="<?= $block->escapeHtml($instance['value']) ?>"> <?= $block->escapeHtml($instance['label']) ?></option>
+                            <?php } ?>
+                        </select>
+                    <?php }
+                     elseif ($attributeData->getFrontendInput() == 'multiselect') :
+                         $optiondata = $attributeData->getSource()->getAllOptions();
+                         usort($optiondata, function ($a, $b) {
+                            return $a['value'] - $b['value'];
+                         });
+                            ?>
+                        <select name="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>[]" id="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" class="input-select <?= $block->escapeHtml($attributeData->getFrontendClass()) ?>" <?= $block->escapeHtml(in_array('required', $isRequiredArray))? 'data-validate="{required:true}"':'' ?> multiple="multiple">
+                            <?php foreach ($optiondata as $instance) { ?>
+                                <?php if ($instance['value'] != '') :?>
+                                  <option value="<?= $block->escapeHtml($instance['value']) ?>"> <?= $block->escapeHtml($instance['label']) ?></option>
+                            <?php endif ?>
+                            <?php } ?>
+                        </select>
+                    <?php elseif ($attributeData->getFrontendInput() == 'boolean') :?>
+                        <input type="checkbox" name="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" id="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" class="wkinput-text <?= $block->escapeHtml($attributeData->getFrontendClass()) ?>" <?= $block->escapeHtml(in_array('required', $isRequiredArray))? 'data-validate="{required:true}"':'' ?> value="1">
+                        <label for="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" class="label"><span><?= $block->escapeHtml($attributeData->getFrontendLabel()); ?></span></label>
+
+                    <?php elseif ($attributeData->getFrontendInput() == 'image') :?>
+                        <input type="file" name="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" id="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" class="input-text custom_file <?= $block->escapeHtml($attributeData->getFrontendClass()) ?>" data-allowed = "<?= $block->escapeHtml($attrAsArray['note']) ?>" <?= $block->escapeHtml(in_array('required', $isRequiredArray))? 'data-validate="{required:true}"':'' ?>><br>
+                        <span class="note"><span><?= $block->escapeHtml($attrAsArray['note']) ?></span></span>
+
+                    <?php elseif ($attributeData->getFrontendInput() == 'file') :?>
+                        <input type="file" name="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" id="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" class="input-text custom_file <?= $block->escapeHtml($attributeData->getFrontendClass()) ?>" data-allowed = "<?= $block->escapeHtml($attrAsArray['note']) ?>" <?= $block->escapeHtml(in_array('required', $isRequiredArray))? 'data-validate="{required:true}"':'' ?>><br>
+                        <span class="note"><span><?= $block->escapeHtml($attrAsArray['note']) ?></span></span>
+                    <?php endif; ?>
+                    <?php if (in_array('dependable_field_'.$attrAsArray['attribute_code'], $isRequiredArray)) :?>
+                        <select name="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" id="<?= $block->escapeHtml($attrAsArray['attribute_code']) ?>" class="input-select <?= $block->escapeHtml('dependable_field_'.$attrAsArray['attribute_code']); ?>" <?= $block->escapeHtml(in_array('required', $isRequiredArray))? 'data-validate="{required:true}"':'' ?>>
+                        <?php foreach ($attributeData->getSource()->getAllOptions() as $instance) { ?>
+                                <?php if ($instance['value'] != '') :?>
+                                  <option <?= $block->escapeHtml(($attrAsArray['default_value'] == $instance['value']))? 'selected="selected"' : '' ?> value="<?= $block->escapeHtml($instance['value']) ?>"> <?= $block->escapeHtml($instance['label']) ?></option>
+                                <?php endif ?>
+                            <?php } ?>
+                        </select>
+                    <?php endif; ?>
+                    </div>
+                </div>
+                <?php endif ?>
+        <?php } ?>
+</fieldset>
+<script>
+    require([
+        "jquery",
+        "mage/calendar",
+    ], function ($){
+        $.each($('.dob_type'),function(i,v){
+            $(this).calendar({showsTime: false,dateFormat: "M/d/yy"});
+        });
+        $('.ui-datepicker-trigger').on('click',function(){
+            var id = $(this).val();
+            $("#"+id).focus() 
+            $(  "#"+id ).trigger( "click" );
+        });
+
+        /* Dependable Fields Control */
+        $.each($( "select[class*='dependable_field_']" ), function(){
+            var childClass = $(this).attr('id');
+            var parentValue = $.trim($(this).find("option:selected").text());
+            if(parentValue == 'No' || parentValue == ''){
+                $('.'+$('.child_'+childClass).attr('id')).hide();
+                $('.'+$('.child_'+childClass).attr('id')).find('input').attr('disabled','disabled');
+            }
+        });
+
+        $( "select[class*='dependable_field_']" ).change(function(target){
+            var childClass = $(this).attr('id');
+            var parentValue = $.trim($(this).find("option:selected").text());
+
+            if(parentValue == 'Yes'){
+                $('.'+$('.child_'+childClass).attr('id')).show();
+                $('.'+$('.child_'+childClass).attr('id')).find('input').removeAttr('disabled');
+            }else{
+                $('.child_'+childClass).removeAttr('data-validate');
+                $('.'+$('.child_'+childClass).attr('id')).hide();
+                $('.'+$('.child_'+childClass).attr('id')).find('input').attr('disabled','disabled');
+            }
+        });
+
+        /* End of Dependable Field controll*/
+
+        $('.custom_file').change(function(){
+            var ext_arr = $(this).attr("data-allowed").split(",");
+            if(ext_arr.indexOf($(this).val().split("\\").pop().split(".").pop()) < 0){
+                //alert('Invalid Image Extension. Allowed extension is '+$(this).attr("data-allowed"));
+                var self = $(this);
+                $('<div />').html('Invalid Image Extension. Allowed extensions are '+$(this).attr("data-allowed"))
+                .modal({
+                    title: 'Attension!',
+                    autoOpen: true,
+                    buttons: [{
+                     text: 'Ok',
+                        attr: {
+                            'data-action': 'cancel'
+                        },
+                        'class': 'action',
+                        click: function() {
+                                self.val('');
+                                this.closeModal();
+                            }
+                    }]
+                 });
+
+            }
+        });
+    })
+    </script>

@@ -1,0 +1,26 @@
+<config>
+    <type name="Magento\Catalog\Model\Product">
+       <plugin name="super_bazaar_price" type="Superbazaar\CustomWork\Plugin\Product" sortOrder="1" />
+    </type>
+    <type name="Magento\Quote\Model\CouponManagement">
+       <plugin name="super_bazaar_custom_coupon_message" type="Superbazaar\CustomWork\Plugin\CouponManagement" sortOrder="1" />
+    </type>
+    <preference for="Magento\Checkout\Controller\Cart\CouponPost" type="Superbazaar\CustomWork\Model\Rewrite\CouponPost"/>
+	<type name="Magento\OfflinePayments\Model\Banktransfer">
+       <plugin name="super_bazaar_bank_transfer" type="Superbazaar\CustomWork\Plugin\Banktransfer" sortOrder="1" />
+    </type>
+    <type name="Magento\OfflinePayments\Block\Form\Banktransfer">
+       <plugin name="super_bazaar_bank_transfer_admin" type="Superbazaar\CustomWork\Plugin\BanktransferForm" sortOrder="1" />
+    </type>
+
+    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="catalog_productlist_toolbar_plugin" type="Superbazaar\CustomWork\Plugin\Product\ProductList\Toolbar"/>
+    </type>
+
+    <type name="Magento\Wishlist\Controller\Index\Add">
+      <plugin name="custom_wishlist_redirect" type="Superbazaar\CustomWork\Plugin\Wishlist\AddPlugin" sortOrder="10" />
+   </type>
+
+	<preference for="\Magento\Payment\Block\Info" type="Superbazaar\CustomWork\Plugin\Info"/>
+        <preference type="Superbazaar\CustomWork\Controller\Cart\Addgroup" for="Magento\Checkout\Controller\Cart\Addgroup"/>
+</config>

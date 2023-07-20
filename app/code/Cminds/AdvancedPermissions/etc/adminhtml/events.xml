@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation=" qw urn:magento:framework:Event/etc/events.xsd">
+    <event name="admin_permissions_role_prepare_save">
+        <observer name="cminds_advancedpermissions_role_prepare_save"
+                  instance="Cminds\AdvancedPermissions\Observer\Role\PrepareToSaveObserver" />
+    </event>
+    <event name="backend_auth_user_login_success">
+        <observer name="cminds_advancedpermissions_login_successful"
+                  instance="Cminds\AdvancedPermissions\Observer\StoreView\LoginSuccessfulObserver" />
+    </event>
+    <event name="catalog_product_save_before">
+        <observer name="cminds_advancedpermissions_catalog_product_save_before"
+                  instance="Cminds\AdvancedPermissions\Observer\Product\ProductSaveBeforeObserver" />
+    </event>
+</config>

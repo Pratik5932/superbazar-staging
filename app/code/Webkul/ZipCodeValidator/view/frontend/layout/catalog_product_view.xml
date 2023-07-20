@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Webkul software.
+ * @category Webkul
+ * @package Webkul_ZipCodeValidator
+ * @author Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */ 
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="Webkul_ZipCodeValidator::css/styles.css"/>
+	</head>
+	<body>
+		<referenceContainer name="alert.urls">
+			<block class="Webkul\ZipCodeValidator\Block\Product\ViewOnProduct" name="zipcode_form" template="Webkul_ZipCodeValidator::product/viewonproduct.phtml" before="-" />
+		</referenceContainer>
+	</body>
+</page>

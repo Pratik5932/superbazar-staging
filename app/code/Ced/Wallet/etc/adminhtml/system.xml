@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Wallet
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+       <tab id="ced_wallet" translate="label" sortOrder="100">
+            <label>CedCommerce Wallet</label>
+        </tab>
+        <section id="ced_wallet" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Wallet</label>
+            <tab>ced_wallet</tab>
+            <resource>Ced_Wallet::wallet</resource>
+            <group id="active" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Settings</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Wallet System</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="min_amount" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Minimum Amount to Add in Wallet</label>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                </field>
+                <!-- <field id="max_amount" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Maximum Amount</label>
+                    <frontend_class>validate-number</frontend_class>
+                    <comment>Maximum transaction Amount per month</comment>
+                </field> -->
+                 <field id="enable_transfer" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Wallet Transfer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="otp_required_for_transaction"
+                       translate="label comment"
+                       type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable OTP verification for Customer Wallet Amount Transfer</label>
+                    <depends><field id="enable_transfer">1</field></depends>
+                    <comment>If yes then OTP verification is required to transfer wallet amount from one customer to another</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="otp_template"
+                       translate="label comment"
+                       type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>OTP Template</label>
+                    <depends><field id="enable_transfer">1</field></depends>
+                    <comment>
+                        <![CDATA[<strong>Format which can be applied to OTP numbers<br>Example::Prefix-{{id}}-{{ rand n}} output will be PREFIX-5-1234 <br>
+                        Others formats are:<br>
+                        {{id}}--->store id<br>
+                        {{rand n}}--->random number is generated where n=1,2,3....  <br>
+                        {{alphanum n}}--->alphanumeric number is generated where n=1,2,3....<br>
+                        </strong>]]>
+                    </comment>
+                </field>
+
+                <field id="mail_template_for_otp"
+                       translate="label comment" type="select"
+                       sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template For OTP</label>
+                    <depends><field id="enable_transfer">1</field></depends>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <comment>This email will be sent for OTP confirmation.</comment>
+                </field>
+                <field id="mail_template_for_transaction"
+                       translate="label comment" type="select"
+                       sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template For Transaction</label>
+                    
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <comment>This email will be sent on wallet transaction.</comment>
+                </field>
+                  <field id="enable_redeem" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Bank Transfer Request</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                
+                <!-- <field id="enable_offlinepayments" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Offline Payment methods to recharge Wallet</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> -->
+                <field id="allowed_payment_methods" translate="label" type="multiselect" sortOrder="9" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Allowed Payment Methods For Wallet Recharge</label>
+                    <source_model>Ced\Wallet\Model\Source\Paymethods</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+            <group id="cashback" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                 <label>Cashback Settings</label>
+                  <field id="enable_cashback" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Enable Order Cashback</label>
+                    <source_model>Ced\Wallet\Model\Config\Source\Cashback</source_model>
+                </field>
+                <!--  <field id="enable_regcashback" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Cashback for Registration</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="registration_cashback" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cashback for Registration</label>
+                     <depends>
+                        <field id="enable_cashback">1</field>
+                    </depends>
+                </field> -->
+                 
+                <field id="order_amount" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Minimum Order Amount for Cashback</label>
+             <validate>required-entry validate-digits validate-greater-than-zero</validate>
+                </field>
+                <field id="max_cashback" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Maximum Cashback Amount</label>
+                   <validate>validate-digits validate-greater-than-zero</validate>
+                   <comment>Leave it empty if you do not want to apply Maximum Cashback Amount</comment>
+                </field>
+                <field id="cashback_percentage" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cashback percentage amount</label>
+                    <validate>required-entry validate-digits validate-greater-than-zero</validate>
+                </field>
+                <!--<field id="cashback_payment" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cashback Payment</label>
+                    <source_model>Ced\Wallet\Model\Config\Source\Cashbackpay</source_model>
+                </field>
+                 <field id="cashback_time" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cashback Time period</label>
+                    <comment>In days</comment>
+                    <depends><field id="cashback_payment">interval</field></depends>
+                   <validate>required-entry validate-digits validate-greater-than-zero</validate>
+                </field>
+                 <field id="cashback_interval" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cashback Intervals</label>
+                    <comment>In number</comment>
+                    <depends><field id="cashback_payment">interval</field></depends>
+                    <validate>required-entry validate-digits validate-greater-than-zero</validate>
+                </field>
+                <field id="start_cashback" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Start Date for Cashback</label>
+                    <depends><field id="cashback_payment">interval</field></depends>
+                    <comment>In days(leave empty if want to give first casback instantly after Invoice)</comment>
+                    <validate>validate-digits validate-greater-than-zero</validate>
+                </field>-->
+              <field id="enable_product_cashback" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Product Cashback</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                 <field id="product_cashback" type="label" sortOrder="12" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Productwise Cashback</label>
+                        <frontend_model>Ced\Wallet\Block\System\Config\Form\Field\Cashback</frontend_model>
+                        <backend_model>Ced\Wallet\Model\Backend\Serialized\Cashback</backend_model>
+                        <depends><field id="enable_product_cashback">1</field></depends>
+                    </field>
+               <field id="cashback_expire" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cashback Expiration</label>
+                    <validate>validate-digits validate-greater-than-zero</validate>
+                    <comment>In Days</comment>
+                </field>
+            </group>
+        </section>
+        <section id="payment">
+            <group id="wallet" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Wallet System</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Applicable Countries</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="41" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+
+                <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                    <frontend_class>validate-digits</frontend_class>
+                </field>
+            </group>
+        </section>
+
+    </system>
+</config>

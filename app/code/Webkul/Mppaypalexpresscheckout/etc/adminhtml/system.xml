@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Mppaypalexpresscheckout
+ * @author    Webkul Software Private Limited
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="mppaypalexpresscheckout" translate="label" type="text" sortOrder="36" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Marketplace PayPal Express Checkout Payment</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable this Solution</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payment/mppaypalexpresscheckout/active</config_path>
+                </field>
+                <field id="sandbox" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sandbox Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payment/mppaypalexpresscheckout/sandbox</config_path>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                    <config_path>payment/mppaypalexpresscheckout/title</config_path>
+                </field>
+                <field id="merchant_id" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Merchant PayPal ID</label>
+                    <config_path>payment/mppaypalexpresscheckout/merchant_id</config_path>
+                </field>
+                <field id="verify_seller" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Verify Seller Paypal Account using App Id ?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payment/mppaypalexpresscheckout/verify_seller</config_path>
+                </field>
+                <field id="paypal_app_id" translate="label" type="obscure" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>PayPal Application ID</label>
+                    <config_path>payment/mppaypalexpresscheckout/paypal_app_id</config_path>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="verify_seller">1</field>
+                    </depends>
+                </field>
+                <field id="details_approval" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Seller Paypal Account Details Approval required ?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payment/mppaypalexpresscheckout/details_approval</config_path>
+                    <depends>
+                        <field id="verify_seller">0</field>
+                    </depends>
+                </field>
+                <field id="api_username" translate="label" type="obscure" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>PayPal API User Name</label>
+                    <config_path>payment/mppaypalexpresscheckout/api_username</config_path>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="api_password" translate="label" type="obscure" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>PayPal API Password</label>
+                    <config_path>payment/mppaypalexpresscheckout/api_password</config_path>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="api_signature" translate="label" type="obscure" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>PayPal API Signature</label>
+                    <config_path>payment/mppaypalexpresscheckout/api_signature</config_path>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <!-- <field id="client_id" translate="label" type="obscure" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Id</label>
+                    <config_path>payment/mppaypalexpresscheckout/client_id</config_path>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="client_secret" translate="label" type="obscure" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Secret</label>
+                    <config_path>payment/mppaypalexpresscheckout/client_secret</config_path>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field> -->
+                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Applicable Countries</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                    <config_path>payment/mppaypalexpresscheckout/allowspecific</config_path>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                    <config_path>payment/mppaypalexpresscheckout/specificcountry</config_path>
+                </field>
+                <field id="is_invoice_manage" translate="label" type="select" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Is seller able to manage invoice in case he did not set his paypal details and did not receive amount</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payment/mppaypalexpresscheckout/is_invoice_manage</config_path>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                    <frontend_class>validate-number</frontend_class>
+                    <config_path>payment/mppaypalexpresscheckout/sort_order</config_path>
+                </field>
+            </group>
+        </section>
+        <section id="marketplace">
+            <group id="email">
+                <field id="expresscheckout_status_template" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Seller Paypal Details Status Notification</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

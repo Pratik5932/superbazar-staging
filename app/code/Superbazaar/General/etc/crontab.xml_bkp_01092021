@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job instance="Superbazaar\General\Cron\ProductExpireSend" method="execute" name="product_expire_cron">
+            <schedule>0 0 1 * *</schedule>
+        </job>
+      <!--  <job instance="Superbazaar\General\Cron\WeightProduct" method="execute" name="panner_product_report">
+            <schedule>* * * * *</schedule>
+        </job> -->     
+    </group>
+    
+</config>

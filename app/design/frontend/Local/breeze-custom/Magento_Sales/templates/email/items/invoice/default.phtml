@@ -1,0 +1,150 @@
+<?php
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_item = $block->getItem();
+$boldText = "";
+$center = "style='text-align: center'";
+if($_item->getQty() > 1){
+    $boldText = "style='color: #59b210;font-weight: bold;'";
+}
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProductId());
+$specialprice = $product->getSpecialPrice();
+$specialPriceFromDate = $product->getSpecialFromDate();
+$specialPriceToDate = $product->getSpecialToDate();
+$today =  time();
+/*$taxAmountPercent = $product->getTaxClassId();
+$tax_amountPrice = "";
+if($taxAmountPercent==10){
+    $tax_amount =(($product->getFinalPrice()*$taxAmountPercent) / 100 ) * $_item->getQty();
+    $tax_amountPrice = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($tax_amount,true,false); 
+}*/
+$tax_amountPrice = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($_item->getTaxAmount(),true,false);
+
+?>
+<?php $_order = $block->getItem()->getOrder(); ?>
+<tr style="border-bottom: 1px dotted;">
+    <td class="item-info<?php if ($block->getItemOptions()): ?> has-extra<?php endif; ?>">
+        <p class="product-name" <?php echo $boldText;?>><?= $block->escapeHtml($_item->getName()) ?></p>
+        <p class="sku"><?= /* @escapeNotVerified */  __('SKU') ?>: <?= $block->escapeHtml($block->getSku($_item)) ?></p>
+        <?php if ($block->getItemOptions()): ?>
+            <dl>
+                <?php foreach ($block->getItemOptions() as $option): ?>
+                    <dt><strong><em><?= /* @escapeNotVerified */  $option['label'] ?></em></strong></dt>
+                    <dd>
+                        <?= /* @escapeNotVerified */  nl2br($option['value']) ?>
+                    </dd>
+                    <?php endforeach; ?>
+            </dl>
+            <?php endif; ?>
+        <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+        <?php if ($addInfoBlock) :?>
+            <?= $addInfoBlock->setItem($_item->getOrderItem())->toHtml() ?>
+            <?php endif; ?>
+        <?= $block->escapeHtml($_item->getDescription()) ?>
+        <?php 
+        $discountPriceCal1 = 0;
+
+        if($_item->getDiscountAmount()){
+            $discountPriceCal1 = $_item->getDiscountAmount();
+
+        }
+        $totalDiscountprice = 0;
+        if($specialprice && ($_item->getOriginalPrice()>$_item->getBasePriceInclTax())){
+            $mainprice = $_item->getBasePriceInclTax();
+            $discountPrice = $_item->getOriginalPrice()-$mainprice; 
+            $discountPriceCal=  $discountPrice*$_item->getQty();
+            $totalDiscountprice = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($discountPriceCal,true,false);
+            ?>
+
+            <p class="sku"><?= /* @escapeNotVerified */  __('Original price') ?>: <?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($product->getPrice(),true,false); ?></p>
+            <p class="sku" style='color: #59b210;font-weight: bold;'><?= /* @escapeNotVerified */  __('Saving') ?>: <?=  $totalDiscountprice; ?></p>
+            <?php } ?>
+    </td>
+      <td class="item-info" ><?=  $product->getAttributeText('aisle'); ?></td>
+    <td class="item-qty" <?php echo $boldText;?>><?= /* @escapeNotVerified */  $_item->getQty() * 1 ?></td>
+
+    <?php 
+
+    if($specialprice && ($_item->getOriginalPrice()>$_item->getPrice())){
+        /* $mainprice = $_item->getPrice();
+        $discountPrice = $mainprice-$product->getSpecialPrice(); 
+        $discountPriceCal=  $discountPrice*$_item->getQty();
+        $totalDiscountprice = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($discountPriceCal,true,false);*/
+        ?>
+        <td class="item-actualprice" <?php echo $boldText;?>>
+            <?=   $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($_item->getBasePriceInclTax(),true,false); ?>
+        </td>
+
+
+        <?php } else{
+        ?>
+        <td class="item-actualprice" <?php echo $boldText;?> >
+            <?= /* @escapeNotVerified */ $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($_item->getBasePriceInclTax(),true,false); ?>
+        </td>
+
+        <?php }
+    $discountPriceCalwithotherdiscount = $_item->getDiscountAmount();
+
+    ?>
+
+
+    <?php  if($_item->getQty() > 1){ 
+        $discountPriceCalwithotherdiscount = $_item->getDiscountAmount();
+        ?>
+        <td class="item-discount" style="color: #59b210;font-weight: bold;text-align: center;">
+            <?= /* @escapeNotVerified */  '-'.$this->helper('Magento\Framework\Pricing\Helper\Data')->currency($discountPriceCalwithotherdiscount,true,false); ?>
+        </td>
+        <td class="item-gst"style='color: #59b210;font-weight: bold;text-align: center;' >
+        <?= /* @escapeNotVerified */ $tax_amountPrice?$tax_amountPrice:'N/A' ?>
+        </td>
+        <?php 
+        $netprice = $_item->getBasePriceInclTax()*$_item->getQty();
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $currency = $objectManager->get('Magento\Directory\Model\Currency');
+        $totalDiscountprice1 = $currency->format($discountPriceCal1, ['display'=>\Zend_Currency::NO_SYMBOL], false);
+        $net =$netprice-$totalDiscountprice1;
+        ?>
+        <td class="item-price" style='color: #59b210;font-weight: bold;text-align: center;' >
+            <?= /* @escapeNotVerified */  $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($net,true,false); ?>
+        </td>
+
+        <?php } else { ?>
+        <?php if($_item->getDiscountAmount()>0){
+
+            ?>
+            <td class="item-discount" style="color: #59b210;font-weight: bold;text-align: center;">
+                <?= /* @escapeNotVerified */  '-'.$this->helper('Magento\Framework\Pricing\Helper\Data')->currency($discountPriceCalwithotherdiscount,true,false); ?>
+            </td>
+            <?php }else{ ?>
+            <td class="item-discount" style="text-align: center;">
+                <?= /* @escapeNotVerified */  '-'.$this->helper('Magento\Framework\Pricing\Helper\Data')->currency($discountPriceCalwithotherdiscount,true,false); ?>
+            </td>
+            <?php  } ?>
+
+
+        <td class="item-gst"style='text-align: center;' >
+        <?= /* @escapeNotVerified */ $tax_amountPrice?$tax_amountPrice:'N/A' ?>
+        </td>
+
+
+        <?php 
+        $netprice = $_item->getBasePriceInclTax()*$_item->getQty();
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $currency = $objectManager->get('Magento\Directory\Model\Currency');
+        $totalDiscountprice1 = $currency->format($discountPriceCal1, ['display'=>\Zend_Currency::NO_SYMBOL], false); 
+        $net =$netprice-$totalDiscountprice1;
+
+        ?>
+        <td class="item-price" <?php echo $center;?> >
+            <?= /* @escapeNotVerified */  $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($net,true,false); ?>
+
+        </td> 
+        <?php    } ?>
+</tr>

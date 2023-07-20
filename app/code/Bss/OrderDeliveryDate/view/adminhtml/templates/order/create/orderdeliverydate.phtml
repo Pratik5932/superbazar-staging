@@ -1,0 +1,35 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_OrderDeliveryDate
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var \Bss\OrderDeliveryDate\Block\Adminhtml\Order\Create\Delivery $block */ ?>
+<div class="admin__page-section-title">
+    <span class="title"><?php /* @escapeNotVerified */ echo $block->getHeaderText() ?></span>
+    <div class="actions"></div>
+</div>
+<div id="delivery_date_fieds" class="admin__page-section-content">
+    <?php echo $block->getForm()->getHtml() ?>
+</div>
+<script>
+    require([
+        "jquery"
+    ], function($){
+        $("#delivery_date_fieds").trigger('contentUpdated');
+    });
+</script>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <additional_promotions>
+            <description_breakdown>
+                <enabled>1</enabled>
+                <collapsed>1</collapsed>
+                <type>labels_and_product_names</type>
+            </description_breakdown>
+            <skip_discount>
+                <skip_special_price>0</skip_special_price>
+                <skip_tier_price>0</skip_tier_price>
+            </skip_discount>
+            <promo_block_in_cart>
+                <promo_block_title>Related Promotions</promo_block_title>
+            </promo_block_in_cart>
+        </additional_promotions>
+    </default>
+</config>

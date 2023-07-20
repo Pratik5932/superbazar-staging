@@ -1,0 +1,196 @@
+<?php
+
+namespace Cminds\AdvancedPermissions\Rewrite\Customer;
+
+use Cminds\AdvancedPermissions\Api\AdvancedPermissionInterface;
+use Cminds\AdvancedPermissions\Model\RoleScopeFactory;
+use Cminds\AdvancedPermissions\Model\ResourceModel\AdvancedPermission\Collection as AdvancedPermissionCollection;
+use Cminds\AdvancedPermissions\Model\User\Config as UserConfig;
+use Magento\Eav\Model\EntityFactory;
+use Magento\Eav\Model\ResourceModel\Helper;
+use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\Data\Collection\Db\FetchStrategyInterface;
+use Magento\Framework\DataObject\Copy\Config;
+use Magento\Framework\DB\Adapter\AdapterInterface;
+use Magento\Framework\Model\ResourceModel\Db\VersionControl\Snapshot;
+use Magento\Framework\Validator\UniversalFactory;
+use Magento\Customer\Model\ResourceModel\Address\Collection as AddressCollection;
+use Psr\Log\LoggerInterface;
+
+class Collection extends \Magento\Sales\Model\ResourceModel\Order\Customer\Collection
+{
+    /**
+     * @var AdvancedPermissionCollection
+     */
+    private $advancedPermissionCollection;
+
+    /**
+     * @var RoleScopeFactory
+     */
+    private $roleScopeFactory;
+
+    /**
+     * @var AddressCollection
+     */
+    private $addressCollection;
+
+    /**
+     * @var UserConfig
+     */
+    private $userConfig;
+
+    /**
+     * Collection constructor.
+     * @param \Magento\Framework\Data\Collection\EntityFactory $entityFactory
+     * @param LoggerInterface $logger
+     * @param FetchStrategyInterface $fetchStrategy
+     * @param \Magento\Framework\Event\ManagerInterface $eventManager
+     * @param \Magento\Eav\Model\Config $eavConfig
+     * @param ResourceConnection $resource
+     * @param EntityFactory $eavEntityFactory
+     * @param Helper $resourceHelper
+     * @param UniversalFactory $universalFactory
+     * @param Snapshot $entitySnapshot
+     * @param Config $fieldsetConfig
+     * @param AdvancedPermissionCollection $advancedPermissionCollection
+     * @param RoleScopeFactory $roleScopeFactory
+     * @param AddressCollection $addressCollection
+     * @param UserConfig $userConfig
+     * @param AdapterInterface|null $connection
+     * @param string $modelName
+     */
+
+    public function __construct(
+        \Magento\Framework\Data\Collection\EntityFactory $entityFactory,
+        LoggerInterface $logger,
+        FetchStrategyInterface $fetchStrategy,
+        \Magento\Framework\Event\ManagerInterface $eventManager,
+        \Magento\Eav\Model\Config $eavConfig,
+        ResourceConnection $resource,
+        EntityFactory $eavEntityFactory,
+        Helper $resourceHelper,
+        UniversalFactory $universalFactory,
+        Snapshot $entitySnapshot,
+        Config $fieldsetConfig,
+        AdvancedPermissionCollection $advancedPermissionCollection,
+        RoleScopeFactory $roleScopeFactory,
+        AddressCollection $addressCollection,
+        UserConfig $userConfig,
+        $modelName = \Magento\Customer\Model\ResourceModel\Customer\Collection::CUSTOMER_MODEL_NAME,
+		AdapterInterface $connection = null
+
+    ) {
+        $this->advancedPermissionCollection = $advancedPermissionCollection;
+        $this->roleScopeFactory = $roleScopeFactory;
+        $this->addressCollection = $addressCollection;
+        $this->userConfig = $userConfig;
+
+        parent::__construct(
+            $entityFactory,
+            $logger,
+            $fetchStrategy,
+            $eventManager,
+            $eavConfig,
+            $resource,
+            $eavEntityFactory,
+            $resourceHelper,
+            $universalFactory,
+            $entitySnapshot,
+            $fieldsetConfig,
+            $modelName, 
+			            $connection
+
+            
+        );
+    }
+
+    /**
+     * @return $this
+     */
+    protected function _initSelect()
+    {
+        parent::_initSelect();
+        $this->addAdditionalFilters();
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    private function addAdditionalFilters()
+    {
+
+        if ($this->userConfig->currentUser === null) {
+            return $this;
+        }
+
+        $role = $this->userConfig->currentUser->getRole();
+        $roleId = $role->getId();
+        $advancedPermissionCollection = $this->advancedPermissionCollection
+            ->addFieldToFilter('role_id', $roleId);
+
+        if ($advancedPermissionCollection->count() > 0) {
+            $advancedPermission = $advancedPermissionCollection->getFirstItem();
+
+            if ($advancedPermission->getRoleId() != $roleId) {
+                return $this;
+            }
+
+            $postCodes = $this->userConfig->currentUser->getData('post_codes');
+            if (!empty($postCodes)) {
+                $this->filterByPostCode($postCodes);
+            }
+
+            if ($advancedPermission->getIsScopeLimit() == true) {
+
+                $roleScope = $this->roleScopeFactory
+                    ->create()
+                    ->load($advancedPermission->getRoleId());
+
+                if ($roleScope->getReferenceValue() === '' || $roleScope->getReferenceValue() === null) {
+                    $allowedStoresViews = [];
+                } else {
+                    $allowedStoresViews = explode(',', $roleScope->getReferenceValue());
+                }
+
+
+                if ($roleScope->getAccessLevel() == AdvancedPermissionInterface::ACCESS_TO_SPECIFIED_WEBSITES) {
+
+                    $joinTable = $this->getTable('customer_entity');
+                    $this
+                        ->getSelect()
+                        ->join($joinTable,'main_table.entity_id = customer_entity.entity_id', ['store_id']);
+                    $this->addFieldToFilter('customer_entity.website_id',['in' => $allowedStoresViews]);
+
+                } elseif ($roleScope->getAccessLevel() == AdvancedPermissionInterface::ACCESS_TO_SPECIFIED_STORE_VIEWS) {
+
+                    $joinTable = $this->getTable('customer_entity');
+                    $this
+                        ->getSelect()
+                        ->join($joinTable,'main_table.entity_id = customer_entity.entity_id', ['store_id']);
+                    $this->addFieldToFilter('store_id',['in' => $allowedStoresViews]);
+
+                }
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * @param string $postCodes
+     */
+    private function filterByPostCode($postCodes)
+    {
+        $postCodes = array_map(
+            function ($item) {
+                return trim($item);
+            }, explode(',', $postCodes)
+        );
+
+        $addressCollection = $this->addressCollection->addFieldToFilter('postcode', ['in' => $postCodes]);
+        if ($addressCollection->getSize()) {
+            $parentIds = array_unique($addressCollection->getColumnValues('parent_id'));
+            $this->addFieldToFilter('entity_id', ['in' => $parentIds]);
+        }
+    }
+}

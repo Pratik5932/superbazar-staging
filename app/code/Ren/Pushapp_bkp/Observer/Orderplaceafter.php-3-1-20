@@ -1,0 +1,54 @@
+<?php
+
+namespace Ren\Pushapp\Observer;
+
+use Magento\Framework\Event\Observer;
+use Magento\Framework\Event\ObserverInterface;
+
+class Orderplaceafter implements ObserverInterface {
+    public function execute(\Magento\Framework\Event\Observer $observer) {
+		
+		define('API_ACCESS_KEY', 'AAAAD20U3rw:APA91bGSElytK9l4vqX1XU2IkmxtdbXdJ-GaUFlrnOzS2jhzsj7K-pkTbwm3jFWsTuzDhhPdhlRF8x0lDYMvt0OPT2Q89CZLu34hLNNZ-i8xLW7iXkQFykUg4Cjs_ziuiwnpFa-pOdyp');
+   
+   $title = "Study Reminder";
+        $body = "Today's Practice Question is Ready! Attempt a new practice question each day to help keep you motivated and learn more. Ready to take today's challenge? Answer Question";
+        $notification = array('title' => $title, 'body' => $body, 'sound' => 'default', 'badge' => '1');
+		$registrationIds = array();
+		$registrationIds[] = 'elVObjlaZ9U:APA91bGlEZIcXSejLUNtMnro68VuPjo4FDltPydwPlxty_OK5nyQjIng0prMr20NRjYUxJzMCd0a2FvmG8aR0J9XTaGvBeelJKcAiLuWteBDEjz4vDjwUKoWGPt6_0J_Er4weiKkMUGP';
+   
+   $json_data = array('registration_ids' => array_values($registrationIds), 'notification' => $notification, 'priority' => 'high');
+        $data = json_encode($json_data);
+		//echo '<pre>';
+		//print_r($json_data);
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:key=' . API_ACCESS_KEY
+        );
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        $result = curl_exec($ch);
+		
+		$response=curl_exec($ch);
+		//print_r($response);
+   //$response = json_decode($response,true);
+  // print_r($response);
+		
+        if ($result === FALSE) {
+            die('Oops! FCM Send Error: ' . curl_error($ch));
+        }
+        curl_close($ch);
+        if (count($registrationIds) > 0) {
+			
+//            mail('testdeveloper140@gmail.com', 'FCM Send', implode(', ', $registrationIds));
+        }
+
+       
+    }
+}

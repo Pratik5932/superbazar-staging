@@ -1,0 +1,16 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+$custId = $customerSession->getCustomer()->getId();
+$data = $this->getRequest()->getParams();
+
+if(isset($data['redirect']) && $custId):
+?>
+<script type="text/javascript">
+	require(['jquery'], function($){
+        $(window).load(function(){
+            $('.my_location').trigger("click");
+        });
+    });
+</script>
+<?php endif ?>

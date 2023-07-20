@@ -1,0 +1,65 @@
+<?php
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+
+// @codingStandardsIgnoreFile
+
+/**
+* Product view template
+*
+* @see \Magento\Catalog\Block\Product\View\Description
+*/
+?>
+<?php
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+$_call = $block->getAtCall();
+$_code = $block->getAtCode();
+$_className = $block->getCssClass();
+$_attributeLabel = $block->getAtLabel();
+$_attributeType = $block->getAtType();
+$_attributeAddAttribute = $block->getAddAttribute();
+
+$renderLabel = true;
+// if defined as 'none' in layout, do not render
+if ($_attributeLabel == 'none') {
+    $renderLabel = false;
+}
+
+if ($_attributeLabel && $_attributeLabel == 'default') {
+    $_attributeLabel = $_product->getResource()->getAttribute($_code)->getStoreLabel();
+}
+if ($_attributeType && $_attributeType == 'text') {
+    $_attributeValue = ($_helper->productAttribute($_product, $_product->$_call(), $_code)) ? $_product->getAttributeText($_code) : '';
+} else {
+    $_attributeValue = $_helper->productAttribute($_product, $_product->$_call(), $_code);
+}
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$expireDate_attribute = $_product->getResource()->getAttribute('previous_order_expiry_date');
+$salable = $objectManager->get('Magento\CatalogInventory\Api\StockRegistryInterface')->getStockItem($_product->getId());
+$salablle =  $salable->getQty();
+?>
+<!-- if ($_attributeValue && $salablle>0): -->
+<?php if ($_attributeValue): 
+    $date = str_replace('/', '-', $_attributeValue);
+    $expireDate = date("d-M-Y", strtotime($date));
+    ?>
+    <div class="product attribute expire-date <?= /* @escapeNotVerified */ $_className ?>">
+        <?php if ($renderLabel): ?><strong class="type"><?= /* @escapeNotVerified */ $_attributeLabel ?></strong><?php endif; ?>
+        <div class="value" <?= /* @escapeNotVerified */ $_attributeAddAttribute ?>><?= /* @escapeNotVerified */ $expireDate ?></div>
+    </div>
+    <?php endif; ?>
+<style type="text/css">
+    /*.product.attribute.expire-date.previous_order_expiry_date{
+    display: none;
+    }*/
+    .product.attribute.expire-date.previous_order_expiry_date .type,.product.attribute.expire-date.previous_order_expiry_date .value{
+        display: inline;
+    }
+    .product.attribute.expire-date.previous_order_expiry_date {
+    padding: 15px 0;
+}
+</style>

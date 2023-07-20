@@ -1,0 +1,367 @@
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_UvDeskConnector
+ * @author    Webkul Software Private Limited
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<?php
+$jsonHelper = $this->helper('Magento\Framework\Json\Helper\Data');
+$tickets = $block->getAllTicketsAccToLabel();
+$baseUvdesAdminUrl = $this->getUrl('uvdeskcon/tickets/index');
+if(!array_key_exists('error', $tickets)) {
+    $lastPage = $tickets['pagination']['last'];
+    $startPage = $tickets['pagination']['startPage'];
+    $endPage = $tickets['pagination']['endPage'];
+    $totalCount = $tickets['pagination']['totalCount'];
+    $selectedLabel = $block->labelParamater();
+} else if(array_key_exists('error', $tickets)) {
+    $errorMessage = $block->getErrorMessage($tickets);
+}
+$labelParameter = $block->labelParamater();
+$agent          = $block->getFilterDataFor('agent');
+$customer       = $block->getFilterDataFor('customer');
+$group          = $block->getFilterDataFor('group');
+$mailbox        = $block->getFilterDataFor('mailbox');
+$priority       = $block->getFilterDataFor('priority');
+$team           = $block->getFilterDataFor('team');
+$type           = $block->getFilterDataFor('type');
+$tag            = $block->getFilterDataFor('tag');
+
+$releventData = [
+    'agent' => $jsonHelper->jsonEncode($agent),
+    'customer' => $jsonHelper->jsonEncode($customer),
+    'group' => $jsonHelper->jsonEncode($group),
+    'mailbox' => $jsonHelper->jsonEncode($mailbox),
+    'priority' => $jsonHelper->jsonEncode($priority),
+    'team' => $jsonHelper->jsonEncode($team),
+    'type' => $jsonHelper->jsonEncode($type),
+    'tag' => $jsonHelper->jsonEncode($tag),
+    'baseUvdeskAdminUrl' => $baseUvdesAdminUrl,
+    'ticketsGridDeleteAjaxUrl'	=> $block->getUrl('uvdeskcon/tickets/delete'),
+    'ticketsGridGetTicketsAjaxUrl'	=> $block->getUrl('uvdeskcon/tickets/gettickets'),
+    'ticketsGridAgentAssignAjaxUrl'	=> $block->getUrl('uvdeskcon/tickets/agentassign')
+];
+$serializedData = $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($releventData);
+
+?>
+<div class="container-fluid">
+<div class="row-from-bootstrap">
+  <?php if(!array_key_exists('error', $tickets)) { ?>
+    <div class="col-md-3">
+        <div class="panel-group">
+            <div class="panel panel-default">
+              <div class="panel-heading"><h3 class="panel-title"><?php /* @escapeNotVerified */ echo __('Labels') ?></h3></div>
+              <div class="panel-body vertical-menu">
+                <?php foreach ($tickets['labels']['predefind'] as $key => $value) { ?>
+                    <a class="<?php echo $block->selectedLabelClass($key); ?>" href='<?php echo $block->getUrl("uvdeskcon/tickets/index/");echo 'labels/'.$key ;?>' id="<?php echo $key; ?>" style="font-weight:800;color: #333;text-decoration:none;"><?php echo ucfirst($key); ?> <span class="label label-success"><?php echo $value; ?></span></a>
+                <?php } ?>
+                <?php foreach ($tickets['labels']['custom'] as $key => $value) { ?>
+                    <a class="<?php echo $block->selectedLabelClass($value['id']); ?>" href='<?php echo $block->getUrl("uvdeskcon/tickets/index/");echo 'labelsId/'.$value['id'] ;?>' id="<?php echo $value['name']; ?>" style="font-weight:800;color: #333;text-decoration:none;"><?php echo ucfirst($value['name']); ?> <span class="label label-success"><?php echo $value['count']; ?></span></a>
+                <?php } ?>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading"><h3 class="panel-title"><?php /* @escapeNotVerified */ echo __('Filter Tickets') ?></h3></div>
+              <div class="panel-body" id="filters">
+                <div id="ticket-filters">
+                    <label for="filter-assigned" class="control-label">
+                        <span data-toggle="tooltip" title="" data-original-title="Enter Member name (Atleast 2 letters)">
+                            <?php /* @escapeNotVerified */ echo __('Assigned To') ?>
+                        </span>
+                    </label>
+                    <br>
+                    <div class="pos-relative" filter-type="agent">
+                        <i class="fa fa-spinner fa-spin" style="display: none;"></i>
+                        <input type="text" placeholder="Enter Member name (Atleast 2 letters)" class="form-control inputbox" id="filter-assigned"/>
+                    </div>
+                </div>
+                <div>
+                    <label for="filter-customer" class="control-label">
+                        <span data-toggle="tooltip" title="" data-original-title="Enter Customer name (Atleast 2 letters)">
+                            <?php /* @escapeNotVerified */ echo __('Customer') ?>
+                        </span>
+                    </label>
+                    <br>
+                    <div class="pos-relative" filter-type="customer">
+                        <input type="text" placeholder="Enter Customer name (Atleast 2 letters)" class="form-control inputbox" id="filter-customer">
+                    </div>
+                </div>
+                <div>
+                    <label for="filter-group"><?php /* @escapeNotVerified */ echo __('Group') ?></label>
+                    <br>
+                    <div class="pos-relative" filter-type="group">
+                        <input type="text" placeholder="Select Group" class="form-control inputbox" id="filter-group">
+                    </div>
+                </div>
+                <div>
+                    <label for="filter-team"><?php /* @escapeNotVerified */ echo __('Team') ?></label>
+                    <br>
+                    <div class="pos-relative" filter-type="team">
+                        <input type="text" placeholder="Select Team" class="form-control inputbox" id="filter-team">
+                    </div>
+                </div>
+                <div>
+                    <label for="filter-priority"><?php /* @escapeNotVerified */ echo __('Priority') ?></label>
+                    <br>
+                    <div class="pos-relative" filter-type="priority">
+                        <input type="text" placeholder="Select Priority" class="form-control inputbox" id="filter-priority">
+                    </div>
+                </div>
+                <div>
+                    <label for="filter-type"><?php /* @escapeNotVerified */ echo __('Type') ?></label>
+                    <br>
+                    <div class="pos-relative" filter-type="type">
+                        <input type="text" placeholder="Select Type" class="form-control inputbox" id="filter-type">
+                    </div>
+                </div>
+                <div>
+                    <label for="filter-tag" class="control-label"><span data-toggle="tooltip" title="" data-original-title="Enter Tag (Atleast 2 letters)"><?php /* @escapeNotVerified */ echo __('Tag') ?></span></label>
+                    <br>
+                    <div class="pos-relative" filter-type="tag">
+                        <input type="text" placeholder="Enter Tag (Atleast 2 letters)" class="form-control inputbox" id="filter-tag">
+                    </div>
+                </div>
+                <div>
+                    <label for="filter-mailbox"><?php /* @escapeNotVerified */ echo __('Mailbox') ?></label>
+                    <br>
+                    <div class="pos-relative" filter-type="mailbox">
+                        <input type="text" placeholder="Enter Mailbox" class="form-control inputbox" id="filter-mailbox">
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default col-md-9">
+    <div class="panel-heading top-heading">
+        <h3 class="panel-title"><?php /* @escapeNotVerified */ echo __('Ticket List') ?></h3>
+         <div class="pull-right" style="margin-top:-3%;">
+          <button type="button" id="wk_delete_tickets" data-toggle="tooltip" title="" class="btn btn-danger"  data-original-title="Delete"><i class="fa fa-trash-o"></i></button>
+         </div>
+    </div>
+    <div id="ticket-list" style="clear:both;">
+    <div class="panel-heading">
+    <div class="uvdesk_navbar btn-group width-100">
+        <?php foreach($tickets['status'] as $status) {   ?>
+                <a tab-id="<?php echo $status['id']; ?>" class="btn btn-default width-16">
+                <i class="<?php echo $block->getGlycophins($status['id']); ?>"></i>
+                    <span class="hidden-xs"><?php echo $status['name']; ?></span><br>
+                    <span class="label label-info"><?php echo $tickets['tabs'][$status['id']] ?></span>
+                </a>
+        <?php } ?>
+    </div>
+    </div>
+    <div class="panel-body">
+    <div class="table-responsive">
+    <table  class="table table-bordered table-hover" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="text-center"><input type="checkbox" id="check_all" name="selected[]" value=""></th>
+                <th class="text-center"><?php /* @escapeNotVerified */ echo __('Priority') ?></th>
+                <th class="text-center"><?php /* @escapeNotVerified */ echo __('Ticket') ?></th>
+                <th class="text-center"><?php /* @escapeNotVerified */ echo __('Customer Name') ?></th>
+                <th class="text-center"><?php /* @escapeNotVerified */ echo __('Subject') ?></th>
+                <th class="text-center"><?php /* @escapeNotVerified */ echo __('Created On') ?></th>
+                <th class="text-center"><?php /* @escapeNotVerified */ echo __('Replies') ?></th>
+                <th class="text-center"><?php /* @escapeNotVerified */ echo __('Agent') ?></th>
+                <th class="text-center"><?php /* @escapeNotVerified */ echo __('Action') ?></th>
+            </tr>
+        </thead>
+        <tbody id="ticket-body">
+           <?php if(!empty($tickets['tickets'])) { ?>
+            <?php foreach($tickets['tickets'] as $ticket) { ?>
+                <tr>
+                    <td class="text-center"><input type="checkbox" name="selected" value="<?php echo $ticket['id']?>"></td>
+                    <td class="text-center" style="color:<?php echo $ticket['priority']['color'] ; ?>; font-weight: bold;"><?php echo $ticket['priority']['name'] ;?></td>
+                    <td class="text-center"><?php /* @escapeNotVerified */ echo __('#') ?><?php echo $ticket['incrementId']?></td>
+                    <td class="text-center"><?php echo $ticket['customer']['name'] ?></td>
+                    <td class="text-center"><?php echo $ticket['subject'] ?></td>
+                    <td class="text-center"><?php echo $ticket['formatedCreatedAt'] ?></td>
+                    <td class="text-center"><label class="label label-info"><?php echo $ticket['totalThreads'] ?></label></td>
+                    <td class="" style="width: 20%;">
+                    <span class="badge agentButton" style="margin-left:37px;">
+                        <i class="fa fa-pencil"></i>
+                    </span>
+                    <span><?php echo $ticket['agent']['name'] ?></span>
+                    <div class="btn-group bootstrap-select">
+                        <div class="dropdown-menu open" role="combobox" style="max-height: 199px; overflow: hidden; min-height: 43px;z-index:900;">
+                            <div class="bs-searchbox">
+                                <input class="agentSearchInput form-control" type="text" class="form-control" autocomplete="off" role="textbox" aria-label="Search" data-ticketid=
+                                    "<?php echo $ticket['id']?>">
+                            </div>
+                            <ul class="dropdown-menu inner"  role="listbox" aria-expanded="true" style="max-height: 144px; overflow-y: auto; min-height: 0px;">
+                            <?php foreach($agent['agent'] as $agentData) {?>
+                                <?php
+                                    $selected = "";
+                                    if($ticket['agent']['name'] == $agentData['name'] ){
+                                        $selected = "selected active";
+                                    }
+                                ?>
+                                <li  class="<?php echo $selected ; ?> agentLists">
+                                    <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true" data-ticketid=
+                                    "<?php echo $ticket['id']?>" data-agentid="<?php echo $agentData['id'] ;?>">
+                                        <span class="text"><?php echo $agentData['name']; ?></span>
+                                        <span class="glyphicon glyphicon-ok check-mark"></span>
+                                    </a>
+                                </li>
+                                <?php $selected = ""; ?>
+                            <?php } ?>
+                            </ul>
+                        </div>
+                    </div>
+                    </td>
+                    <td class="text-center"><a href="<?php echo $block->getUrl('uvdeskcon/tickets/ticketthread').'id/'.$ticket['id'].'/increment_id/'.$ticket['incrementId'];?>" target="_blank" class="btn btn-info"><?php /* @escapeNotVerified */ echo __('View') ?></a></td>
+                </tr>
+            <?php } ?>
+            <?php } else { ?>
+                    <tr><td class="text-center" colspan="9"><?php /* @escapeNotVerified */ echo __('No tickets Found!') ?></td></tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <?php if($totalCount > 0 && ($startPage != $endPage)) {?>
+            <?php if (isset($tickets['pagination']['previous']) && $tickets['pagination']['previous']!=0) { ?>
+                <li class='pagination-list uvdpagination' data=<?php echo $tickets['pagination']['previous']; ?>><a href="#">&laquo</a></li>
+            <?php } ?>
+            <?php if ($tickets['pagination']['firstPageInRange']!=$tickets['pagination']['first']) {?>
+                <li class='pagination-list uvdpagination' data=<?php echo $tickets['pagination']['first']; ?>><a href="#"><?php echo $tickets['pagination']['first']; ?></a></li>
+                <li class='pagination-list uvdpagination'><a href="#">...</a></li>
+            <?php } ?>
+            <?php foreach($tickets['pagination']['pagesInRange'] as $page) {?>
+                <li class='pagination-list uvdpagination' data=<?php echo $page ; ?>><a href="#"><?php echo $page ; ?></a></li>
+            <?php } ?>
+            <?php if ($tickets['pagination']['lastPageInRange']!=$tickets['pagination']['last']) {?>
+                <li class='pagination-list uvdpagination'><a href="#">...</a></li>
+                <li class='pagination-list uvdpagination' data=<?php echo $tickets['pagination']['last']; ?>><a href="#"><?php echo $tickets['pagination']['last']; ?></a></li>
+            <?php } ?>
+            <?php if (isset($tickets['pagination']['next']) && $tickets['pagination']['next']!=0) { ?>
+                <li class='pagination-list uvdpagination' data=<?php echo $tickets['pagination']['next']; ?>><a href="#">&raquo</a></li>
+            <?php } ?>
+        <?php } ?>
+    </ul>
+    </div>
+    </div>
+    </div>
+
+    </div>
+    <?php } else { ?>
+            <div class="message message-error error"><div data-ui-id="messages-message-error"><?php echo $errorMessage; ?></div></div>
+    <?php } ?>
+  </div>
+</div>
+<div id="wait" class="loadingg-mask" data-role="loader" style="display: none;">
+    <div class="popupp popupp-loading">
+      <div class="popupp-inner">
+        <img alt="Loading..." src="<?php echo $block->getViewFileUrl('Webkul_UvDeskConnector::images/aa1b406.gif'); ?>"/>
+        <br>
+      </div>
+  </div>
+</div>
+<script id="employee-template" type="text/x-magento-template">
+   <tr>
+        <td class="text-center"><input type="checkbox" name="selected" value=<%- data.ticket %>></td>
+
+        <td class="text-center" style="color:<%- data.priorityColor %>;font-weight: bold;">
+           <%- data.priority %>
+        </td>
+
+        <td class="text-center">
+           #<%- data.incrementId %>
+        </td>
+
+        <td class="text-center">
+           <%- data.name %>
+       </td>
+
+       <td class="text-center">
+           <%- data.subject %>
+       </td>
+
+       <td class="text-center">
+           <%- data.date %>
+       </td >
+
+       <td class="text-center">
+           <label class="label label-info"><%- data.replies %></label>
+       </td>
+       <td class="">
+            <span class="badge agentButton" style="margin-left:37px;">
+                <i class="fa fa-pencil"></i>
+            </span>
+            <span><%- data.agent %> </span>
+                <div class="btn-group bootstrap-select">
+                    <div class="dropdown-menu open" role="combobox" style="max-height: 199px; overflow: hidden; min-height: 43px;z-index:900;">
+                        <div class="bs-searchbox">
+                            <input class="agentSearchInput form-control" type="text" class="form-control" autocomplete="off" role="textbox" aria-label="Search" data-ticketid="<%- data.ticket %>" >
+                        </div>
+                        <ul class="dropdown-menu inner"  role="listbox" aria-expanded="true" style="max-height: 144px; overflow-y: auto; min-height: 0px;">
+                        <%_.forEach(data.allAgentList.agent, function (agent,index) {%>
+                            <li data-original-index="0" class="agentLists">
+                                <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true" data-ticketid="<%- data.ticket %>" data-agentid="<%- agent['id'] %>">
+                                    <span class="text"><%- agent['name'] %></span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                </a>
+                            </li>
+                        <%})%>
+                        </ul>
+                    </div>
+                </div>
+       </td>
+       <td class="text-center">
+           <a href="<?php echo $block->getUrl('uvdeskcon/tickets/ticketthread'); ?>id/<%- data.ticket %>/increment_id/<%- data.incrementId %>" target="_blank" class="btn btn-info">View</a>
+       </td>
+   </tr>
+</script>
+<script id="employeetab-template" type="text/x-magento-template">
+        <a tab-id="<%- data.tabId %>" class="btn btn-default width-16">
+            <i class="<?php echo $block->getGlycophins("<%- data.tabId %>");?>"></i>
+            <span class="hidden-xs"><%- data.tabName %></span><br>
+            <span class="label label-info"><%- data.tabCount %></span>
+        </a>
+</script>
+<script id="ticketPagination-template" type="text/x-magento-template">
+    <%if (data.pageCount>1) {%>
+    <%if (data.previous!=0) {%>
+        <li class='pagination-list uvdpagination' data=<%- data.previous %>><a href="#">&laquo</a></li>
+    <%}%>
+    <%if (data.firstPageInRange!=data.first) {%>
+        <li class='pagination-list uvdpagination' data=<%- data.first %>><a href="#"><%- data.first %></a></li>
+        <li class='pagination-list uvdpagination'><a href="#">...</a></li>
+    <%}%>
+    <%_.forEach(data.pagesInRange, function (page,index) {%>
+            <% if(page == data.selectedPageNo) { %>
+                <li class='pagination-list uvdpagination active' data="<%- page %>"><a href="#"><%- page %></a></li>
+            <% } else { %>
+                <li class='pagination-list uvdpagination' data="<%- page %>"><a href="#"><%- page %></a></li>
+            <% } %>
+    <%})%>
+    <%if (data.lastPageInRange!=data.last) {%>
+        <li class='pagination-list uvdpagination'><a href="#">...</a></li>
+        <li class='pagination-list uvdpagination' data=<%- data.last %>><a href="#"><%- data.last %></a></li>
+    <%}%>
+    <%if (data.next!=0) {%>
+        <li class='pagination-list uvdpagination' data=<%- data.next %>><a href="#">&raquo</a></li>
+    <%}%>
+    <%}%>
+</script>
+<script id="agentList-template" type="text/x-magento-template">
+    <li class="agentLists">
+        <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true" data-ticketid="<%- data.ticketId %>" data-agentid="<%- data.agentId %>">
+            <span class="text"><%- data.agentName %></span>
+            <span class="glyphicon glyphicon-ok check-mark"></span>
+        </a>
+    </li>
+</script>
+<script type="text/x-magento-init">
+    {
+        "*":{
+            "Webkul_UvDeskConnector/js/ticketsGrid":<?php echo $serializedData ?>
+        }
+    }
+</script>

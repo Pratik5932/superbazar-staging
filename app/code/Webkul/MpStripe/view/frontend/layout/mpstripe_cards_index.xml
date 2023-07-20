@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- /**
+* Webkul Software.
+*
+* @category Webkul
+* @package Webkul_MpStripe
+* @author Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license https://store.webkul.com/license.html
+*/ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Saved Stripe Cards</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Webkul\MpStripe\Block\Cards" name="mpstripe.saved.cards.list" template="Webkul_MpStripe::cards.phtml" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

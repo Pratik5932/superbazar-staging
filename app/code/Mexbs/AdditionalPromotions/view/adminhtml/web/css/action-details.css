@@ -1,0 +1,24 @@
+#simple_action_container .rule-param-new-child.action-details-selection.not-selected .element{
+    display: inline;
+}
+#simple_action_container ul
+{
+    list-style-type: none;
+}
+#action-details-wrapper.admin__fieldset{
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-left: 26%;
+}
+#action-details-wrapper.admin__fieldset > .admin__field{
+    margin-bottom: 3rem;
+}
+#action-details-wrapper.admin__fieldset > .admin__field > .admin__field-control{
+    width: 90%;
+}
+#simple_action_container{
+    border: 0;
+}
+#action-details-wrapper div.rule-note{
+    margin-top: 15px;
+}

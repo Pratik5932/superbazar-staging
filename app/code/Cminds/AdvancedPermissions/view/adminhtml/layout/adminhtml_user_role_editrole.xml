@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="left">
+            <referenceBlock name="adminhtml.user.editroles">
+                <block class="Cminds\AdvancedPermissions\Block\Adminhtml\Role\Tab\Scope" name="adminhtml.user.tab.role_scope"/>
+                <action method="addTabAfter">
+                    <argument name="name" xsi:type="string">role_scope</argument>
+                    <argument name="block" xsi:type="string">adminhtml.user.tab.role_scope</argument>
+                    <argument name="after" xsi:type="string">info</argument>
+                </action>
+                <block class="Cminds\AdvancedPermissions\Block\Adminhtml\Role\Tab\Category" name="adminhtml.user.tab.role_category"/>
+                <action method="addTabAfter">
+                    <argument name="name" xsi:type="string">role_category</argument>
+                    <argument name="block" xsi:type="string">adminhtml.user.tab.role_category</argument>
+                    <argument name="after" xsi:type="string">info</argument>
+                </action>
+
+                <block class="Cminds\AdvancedPermissions\Block\Adminhtml\Role\Tab\Product" name="adminhtml.user.tab.role_product"/>
+                <action method="addTabAfter">
+                    <argument name="name" xsi:type="string">role_product</argument>
+                    <argument name="block" xsi:type="string">adminhtml.user.tab.role_product</argument>
+                    <argument name="after" xsi:type="string">info</argument>
+                </action>
+            </referenceBlock>
+        </referenceContainer>
+    </body>
+</page>

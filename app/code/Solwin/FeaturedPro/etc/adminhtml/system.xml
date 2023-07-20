@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Solwin Infotech
+ * Solwin Featured Product Extension
+ * 
+ * @category   Solwin
+ * @package    Solwin_FeaturedPro
+ * @copyright  Copyright © 2006-2016 Solwin (https://www.solwininfotech.com)
+ * @license    https://www.solwininfotech.com/magento-extension-license/
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/system_file.xsd">
+    <system>
+        <section id="featuredpro_settings" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Featured Product</label>
+            <!-- Assign section to tab -->
+            <tab>solwin_extension_tab</tab>
+            <resource>Solwin_FeaturedPro::config</resource>
+            <group id="featured_products" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <!-- Enable Module -->
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <!-- Enable Top link -->
+                <field id="enable_toplink" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Top link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <!-- Enable Footer link -->
+                <field id="enable_footerlink" translate="label" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Footer link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <!-- Title -->
+                <field id="title" translate="label comment" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <!-- Items per page -->
+                <field id="limit" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Items per page</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="featured_products_sidebar" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sidebar Settings</label>
+                <!-- Show in sidebar -->
+                <field id="enable_sidebar" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show in sidebar</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <!-- Title -->
+                <field id="sidebar_title" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                    <comment><![CDATA[Set title for sidebar featured products.]]></comment>
+                    <depends>
+                        <field id="enable_sidebar">1</field>
+                    </depends>
+                </field>
+                <!-- Limit -->
+                <field id="sidebar_limit" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Limit</label>
+                    <validate>required-entry</validate>
+                    <comment><![CDATA[Set limit for sidebar featured products.]]></comment>
+                    <depends>
+                        <field id="enable_sidebar">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

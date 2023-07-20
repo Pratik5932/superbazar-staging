@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   Webkul
+ * @package    Webkul_SocialSignup
+ * @author     Webkul Software Private Limited
+ * @copyright  Copyright (c) 2010-2017 Webkul Software Private Limited (https://webkul.com)
+ * @license    https://store.webkul.com/license.html
+ */  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="webkul" translate="label" sortOrder="10">
+            <label>Webkul</label>
+        </tab>
+        <section id="socialsignup" translate="label" type="text" sortOrder="999" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Social Signup</label>
+            <tab>webkul</tab>
+            <resource>Webkul_SocialSignup::config_socialsignup</resource>
+            <group id="sociallogin" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable/Disable All Social Login</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Status</label>
+                    <source_model>Webkul\SocialSignup\Model\Config\Source\Status</source_model>
+                </field>
+            </group>
+            <group id="fblogin" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Facebook</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Status</label>
+                    <source_model>Webkul\SocialSignup\Model\Config\Source\Status</source_model>
+                </field>
+                <field id="appid" translate="label comment" sortOrder="2" type="obscure" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Application Id</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="secret" translate="label comment" sortOrder="3" type="obscure" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Secret Id</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="imglogin" translate="label" type="image" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login Button</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">socialsignup/fb</base_url>
+                    <upload_dir >pub/media/socialsignup/fb</upload_dir>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="twitterlogin" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Twitter</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Status</label>
+                    <source_model>Webkul\SocialSignup\Model\Config\Source\Status</source_model>
+                </field>
+                <field id="consumerkey" translate="label comment" sortOrder="2" type="obscure" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Application Id</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="consumersecret" translate="label comment" sortOrder="3" type="obscure" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Secret</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="imglogin" translate="label" type="image" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login Button</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">socialsignup/twitter</base_url>
+                    <upload_dir >pub/media/socialsignup/twitter</upload_dir>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="google" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Google</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Status</label>
+                    <source_model>Webkul\SocialSignup\Model\Config\Source\Status</source_model>
+                </field>
+                <field id="api_key" translate="label comment" sortOrder="2" type="obscure" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Id</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="secret" translate="label comment" sortOrder="3" type="obscure" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Secret Id</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="imglogin" translate="label" type="image" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login Button</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">socialsignup/google</base_url>
+                    <upload_dir >pub/media/socialsignup/google</upload_dir>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="linkedin" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>LinkedIn</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Status</label>
+                    <source_model>Webkul\SocialSignup\Model\Config\Source\Status</source_model>
+                </field>
+                <field id="api_key" translate="label comment" sortOrder="2" type="obscure" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Id</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="secret" translate="label comment" sortOrder="3" type="obscure" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Secret Id</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="imglogin" translate="label" type="image" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login Button</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">socialsignup/linkedin</base_url>
+                    <upload_dir >pub/media/socialsignup/linkedin</upload_dir>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="instagram" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Instagram</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Status</label>
+                    <source_model>Webkul\SocialSignup\Model\Config\Source\Status</source_model>
+                </field>
+                <field id="api_key" translate="label comment" sortOrder="2" type="obscure" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Id</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="secret" translate="label comment" sortOrder="3" type="obscure" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Secret Id</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="imglogin" translate="label" type="image" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login Button</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">socialsignup/instagram</base_url>
+                    <upload_dir >pub/media/socialsignup/instagram</upload_dir>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

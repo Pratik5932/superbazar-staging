@@ -1,0 +1,5 @@
+Subtotal,Price,module,Magento_Checkout
+Cart Subtotal,Subtotal,module,Magento_Checkout
+Shipping,Shipping Fee,module,Magento_Checkout
+Order Total Incl. Tax,Total Incl Tax,module,Magento_Checkout
+Price,Subtotal,module,Magento_Sales

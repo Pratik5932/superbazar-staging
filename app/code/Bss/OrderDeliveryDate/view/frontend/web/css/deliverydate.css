@@ -1,0 +1,49 @@
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_OrderDeliveryDate
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+*/
+#shipping_arrival_date, #delivery_arrival_date{
+    max-width: 255px;
+    text-align:center;
+    pointer-events: none;
+    margin: 10px 10px 10px 0;
+}
+#shipping_arrival_date, #delivery_time_slot, #shipping_arrival_comments, textarea[name="shipping_arrival_comments"]{
+    margin-top:10px;
+}
+#delivery_time_slot, #shipping_arrival_comments, textarea[name="shipping_arrival_comments"]{
+    max-width:500px;
+    margin: 10px 0 10px 0;
+}
+.shipping_arrival_date img{
+    cursor: pointer;
+    max-width: 50px;
+    max-height: 30px;
+}
+#delivery_form .box-order-delivery-address{
+    max-width: 320px;
+}
+.bss-delivery .shipping_arrival_date .required:after, 
+.bss-delivery .delivery_time_slot .required:after, 
+.bss-delivery .shipping_arrival_comments .required:after,
+.box-order-delivery-address .box-title .required:after {
+    content: '*';
+    color: #e02b27;
+    font-size: 1.2rem;
+    margin: 0 0 0 5px;
+}
+.field._error .delivery_time_slot select, .field._error .datetime-delivery textarea {
+    border-color: #ed8380;
+}

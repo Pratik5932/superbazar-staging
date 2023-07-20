@@ -1,0 +1,45 @@
+<?php
+/**
+ * @var \Mexbs\AdditionalPromotions\Block\InjectCartHints $block
+ */
+?>
+<script type="text/javascript">
+    require(
+        [
+            'jquery'
+        ],
+        function(
+            $
+            ) {
+            window.reLoadHints = function(){
+                $(".cart-hints-wrapper").remove();
+                $.ajax({
+                    url: "<?php echo $this->getUrl('apromotions/action/getCartHints', ['_secure' => $this->getRequest()->isSecure()]) ?>",
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (response) {
+                        if(!$.isEmptyObject(response)){
+                            var cartHintsDivHtml = '<div class="cart-hints-wrapper">';
+                            var cartHint = "";
+                            for(var cartHintIndex in response){
+                                if(response.hasOwnProperty(cartHintIndex)){
+                                    cartHint = response[cartHintIndex];
+                                }
+                                if(cartHint != ""){
+                                    cartHintsDivHtml = cartHintsDivHtml + '<div class="cart-hint">' + cartHint + '</div>';
+                                }
+                            }
+                            cartHintsDivHtml += '</div>';
+                            $(cartHintsDivHtml).insertAfter($(".page.messages"));
+                        }
+                    }
+                });
+            };
+
+            $(document).ready(function(){
+                reLoadHints();
+            });
+        }
+    );
+</script>
+<div class="rule-popup-modal-wrapper"></div>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="salesrule_item_validate_for_rule">
+        <observer name="additionalPromotionsItemValidate" instance="Mexbs\AdditionalPromotions\Observer\UpdateValidationResult" />
+    </event>
+    <event name="sales_quote_item_save_before">
+        <observer name="apPrepareApDataInQuoteItemOnSaveBefore" instance="Mexbs\AdditionalPromotions\Observer\PrepareApDataInQuoteItemOnSaveBefore" />
+    </event>
+    <event name="sales_model_service_quote_submit_before">
+        <observer name="apCopyDescriptionDetailsToOrder" instance="Mexbs\AdditionalPromotions\Observer\CopyDescriptionDetailsToOrder" />
+    </event>
+    <event name="sales_quote_load_after">
+        <observer name="apSalesQuoteLoadHintMessages" instance="Mexbs\AdditionalPromotions\Observer\LoadHintMessagesToQuote" />
+    </event>
+    <event name="sales_quote_save_before">
+        <observer name="apSalesQuoteSaveHintMessages" instance="Mexbs\AdditionalPromotions\Observer\SaveHintMessagesToQuote" />
+    </event>
+</config>

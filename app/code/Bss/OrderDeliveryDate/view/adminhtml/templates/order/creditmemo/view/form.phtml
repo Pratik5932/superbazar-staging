@@ -1,0 +1,153 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_OrderDeliveryDate
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var \Magento\Sales\Block\Adminhtml\Order\Creditmemo\View\Form $block */ ?>
+<?php  $_order = $block->getCreditmemo()->getOrder() ?>
+<?php echo $block->getChildHtml('order_info') ?>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Payment &amp; Shipping Method') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+
+        <?php if (!$_order->getIsVirtual()): ?>
+        <div class="admin__page-section-item order-payment-method">
+        <?php else: ?>
+        <div class="admin__page-section-item order-payment-method order-payment-method-virtual">
+        <?php endif; ?>
+            <?php /* Billing Address */?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php /* @escapeNotVerified */ echo __('Payment Information') ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <div class="order-payment-method-title"><?php echo $block->getChildHtml('order_payment') ?></div>
+                <div class="order-payment-currency"><?php /* @escapeNotVerified */ echo __('The order was placed using %1.', $_order->getOrderCurrencyCode()) ?></div>
+                <div class="order-payment-additional"><?php echo $block->getChildHtml('order_payment_additional'); ?></div>
+            </div>
+        </div>
+
+        <?php if (!$_order->getIsVirtual()): ?>
+        <div class="admin__page-section-item order-shipping-address">
+            <?php /* Shipping Address */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php /* @escapeNotVerified */ echo __('Shipping Information') ?></span>
+            </div>
+            <div class="shipping-description-wrapper admin__page-section-item-content">
+                <div class="shipping-description-title"><?php echo $block->escapeHtml($_order->getShippingDescription()) ?></div>
+                <div class="shipping-description-content">
+                    <?php /* @escapeNotVerified */ echo __('Total Shipping Charges'); ?>:
+
+                    <?php if ($this->helper('Magento\Tax\Helper\Data')->displayShippingPriceIncludingTax()): ?>
+                        <?php $_excl = $block->displayShippingPriceInclTax($_order); ?>
+                    <?php else: ?>
+                        <?php $_excl = $block->displayPriceAttribute('shipping_amount', false, ' '); ?>
+                    <?php endif; ?>
+                    <?php $_incl = $block->displayShippingPriceInclTax($_order); ?>
+
+                    <?php /* @escapeNotVerified */ echo $_excl; ?>
+                    <?php if ($this->helper('Magento\Tax\Helper\Data')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                        (<?php /* @escapeNotVerified */ echo __('Incl. Tax'); ?> <?php /* @escapeNotVerified */ echo $_incl; ?>)
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+</section>
+
+<!-- start add delivery date -->
+<?php if($_order->getShippingArrivalDate() || $_order->getShippingArrivalTimeslot() || $_order->getShippingArrivalComments()):?>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?php echo __('Delivery Date Information') ?></span>
+    </div>
+    <div class="admin__page-section-item order-delivery-date">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php echo __('Delivery Date') ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <div id="shipping-arrival-date">
+                    <div>
+                        <strong><?php echo __('Shipping Arrival Date: ') ?></strong>
+                        <?php if($_order->getShippingArrivalDate()):?>
+                            <span><?php echo $this->helper('Bss\OrderDeliveryDate\Helper\Data')->formatDate($_order->getShippingArrivalDate());?></span>
+                        <?php else:?>
+                            <span><?php echo __('N/A');?></span>
+                        <?php endif;?>
+                    </div>
+                    <div>
+                        <strong><?php echo __('Shipping Arrival Timeslot: ') ?></strong>
+                        <?php if($_order->getShippingArrivalTimeslot()):?>
+                            <span><?php echo $_order->getShippingArrivalTimeslot();?></span>
+                        <?php else:?>
+                            <span><?php echo __('N/A');?></span>
+                        <?php endif;?>
+                    </div>
+                    <?php if($this->helper('Bss\OrderDeliveryDate\Helper\Data')->isShowShippingComment()) : ?>
+                        <div>
+                            <strong><?php echo __('Shipping Arrival Comments: ') ?></strong>
+                            <?php if($_order->getShippingArrivalComments()):?>
+                                <span><?php echo $_order->getShippingArrivalComments();?></span>
+                            <?php else:?>
+                                <span><?php echo __('No Comment');?></span>
+                            <?php endif;?>
+                        </div>
+                    <?php endif;?>
+                </div>
+            </div>
+        </div>
+</section>
+<?php endif;?>
+<!-- end add delivery date -->
+
+<?php $_items = $block->getCreditmemo()->getAllItems() ?>
+
+<?php if (!empty($_items)): ?>
+<div id="creditmemo_items_container">
+    <?php echo $block->getChildHtml('creditmemo_items') ?>
+</div>
+<?php else: ?>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Items Refunded') ?></span>
+    </div>
+    <div class="no-items admin__page-section-content"><?php /* @escapeNotVerified */ echo __('No Items') ?></div>
+</section>
+<?php endif; ?>
+
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Memo Total') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-comments-history">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php /* @escapeNotVerified */ echo __('Credit Memo History') ?></span>
+            </div>
+            <div class="admin__page-section-item-content"><?php echo $block->getChildHtml('order_comments') ?></div>
+        </div>
+        <div class="admin__page-section-item order-totals" id="history_form">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php /* @escapeNotVerified */ echo __('Credit Memo Totals') ?></span>
+            </div>
+            <div class="admin__page-section-content"><?php echo $block->getChildHtml('creditmemo_totals') ?></div>
+        </div>
+    </div>
+</section>

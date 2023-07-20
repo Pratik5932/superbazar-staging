@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Solwin Infotech
+ * Solwin Featured Product Extension
+ * 
+ * @category   Solwin
+ * @package    Solwin_FeaturedPro
+ * @copyright  Copyright © 2006-2016 Solwin (https://www.solwininfotech.com)
+ * @license    https://www.solwininfotech.com/magento-extension-license/
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Solwin_FeaturedPro::css/featuredpro.css"/>
+        <css src="Solwin_FeaturedPro::css/owl.carousel.css"/>
+        <css src="Solwin_FeaturedPro::css/owl.theme.css"/>
+        <css src="Solwin_FeaturedPro::css/owl.transitions.css"/>
+    </head>
+    <body>	
+        <referenceContainer name="after.body.start">			
+            <block class="Magento\Framework\View\Element\Js\Components" name="head.components" as="components" template="Solwin_FeaturedPro::js/components.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <block class="Solwin\FeaturedPro\Block\Sidebar\FeaturedList" name="right.featured.block" ifconfig="featuredpro_settings/featured_products_sidebar/enable_sidebar" />
+        </referenceContainer>
+        <referenceBlock name="top.links">
+            <block class="Solwin\FeaturedPro\Block\Link" name="featuredpro-top" ifconfig="featuredpro_settings/featured_products/enable_toplink" />
+        </referenceBlock>
+        <referenceBlock name="footer_links">
+            <block class="Solwin\FeaturedPro\Block\Link" name="featuredpro-footer" ifconfig="featuredpro_settings/featured_products/enable_footerlink" />
+        </referenceBlock>
+    </body>
+</page>

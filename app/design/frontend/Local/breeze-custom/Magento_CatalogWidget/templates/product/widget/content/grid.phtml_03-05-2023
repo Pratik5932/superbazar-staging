@@ -1,0 +1,186 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Magento\Framework\App\Action\Action;
+
+if($block->getBestSelling()){
+$collection = $block->getLayout()->createBlock('Superbazaar\General\Block\BestSellerProducts')->getProductCollection();
+}else{
+$collection =$block->getProductCollection();
+}
+
+/** @var \Magento\CatalogWidget\Block\Product\ProductsList $block */
+
+// phpcs:disable Generic.Files.LineLength.TooLong
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundHelper
+?>
+<?php if ($exist = ($collection && $collection->getSize())): ?>
+    <?php
+    $type = 'widget-product-grid';
+
+    $mode = 'grid';
+
+    $image = 'new_products_content_widget_grid';
+    $items = $block->getProductCollection()->getItems();
+
+    $showWishlist = true;
+    $showCompare = true;
+    $showCart = true;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    $description = false;
+    ?>
+    <div class="block widget block-products-list <?= /* @noEscape */ $mode ?>">
+        <?php if ($block->getTitle()): ?>
+            <div class="block-title">
+                <strong><?= $block->escapeHtml(__($block->getTitle())) ?></strong>
+            </div>
+        <?php endif ?>
+        <div class="block-content">
+            <?= /* @noEscape */ '<!-- ' . $image . '-->' ?>
+            <div class="products-<?= /* @noEscape */ $mode ?> <?= /* @noEscape */ $mode ?>">
+                <ol class="product-items <?= /* @noEscape */ $type ?>">
+                    <?php $iterator = 1; ?>
+                    <?php foreach ($items as $_item): ?>
+                        <?= /* @noEscape */ ($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
+                        <div class="product-item-info">
+                            <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product-item-photo">
+                                <?= $block->getImage($_item, $image)->toHtml() ?>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="<?= $block->escapeHtml($_item->getName()) ?>"
+                                       href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
+                                       class="product-item-link">
+                                        <?= $block->escapeHtml($_item->getName()) ?>
+                                    </a>
+                                </strong>
+                                <?php if ($templateType): ?>
+                                    <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
+                                <?php endif; ?>
+
+                                <?= $block->getProductPriceHtml($_item, $type) ?>
+
+<?php
+                                        $expireDate_attribute = $_item->getResource()->getAttribute('previous_order_expiry_date');
+										
+                                        if ($expireDate_attribute->getFrontend()->getValue($_item) && $_item->isSaleable()) {
+                                            $date = str_replace('/', '-', $expireDate_attribute->getFrontend()->getValue($_item));
+
+                                            $to_date = strtotime(date('Y-m-d'));
+                                            $ex_date = strtotime(date("Y-m-d", strtotime($date)));
+                                            
+                                            if ($to_date > $ex_date || $to_date === $ex_date) {
+                                                $clr = "red";
+                                            } 
+                                            else 
+                                            {
+                                                $clr = "#000"; 
+                                            }
+
+                                            $expireDate = date("d-M-Y", strtotime($date));
+                                        ?>
+                                            <div class="expire-date" style="color:<?= $clr ?>;">
+                                                <span>Best Before Date : <b><?php echo $expireDate; ?></b></span>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="expire-date" style="color: #fff;">
+                                                <span>Best Before Date :</span>
+                                            </div>
+                                        <?php } ?>
+                                        <span class="t_price" style="color:#e64834;font-size: 12px;">
+                                       
+                                            <?php
+                                            if ($_item->getTierPrice()) {
+                                                $tier_price = $_item->getTierPrice();
+                                                foreach ($tier_price as $key => $value) {
+                                                    $qty = (int)$value['price_qty'];
+                                                    $price = $value['price'];
+                                                    $formattedPrice = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency(number_format($price, 2), true, false);
+                                                    $savePercentageFormat = ceil(100 - ((100 / $_item->getFinalPrice()) * $value['price'])) . "%";
+                                                    echo "Buy $qty for " . $formattedPrice . " each and save " . $savePercentageFormat;
+                                                    echo "<br>";
+                                                }
+                                            } ?>
+                                        </span>
+										
+                                <?= $block->getProductDetailsHtml($_item) ?>
+
+                                <?php if ($showWishlist || $showCompare || $showCart): ?>
+                                    <div class="product-item-inner">
+                                        <div class="product-item-actions">
+                                            <?php if ($showCart): ?>
+                                                <div class="actions-primary">
+                                                    <?php if ($_item->isSaleable()): ?>
+                                                        <?php $postParams = $block->getAddToCartPostParams($_item); ?>
+                                                        <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_item->getSku()) ?>" action="<?= $block->escapeUrl($postParams['action']) ?>" method="post">
+                                                            <input type="hidden" name="product" value="<?= $block->escapeHtmlAttr($postParams['data']['product']) ?>">
+                                                            <input type="hidden" name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                                                            <?= $block->getBlockHtml('formkey') ?>
+                                                            <button type="submit"
+                                                                    title="<?= $block->escapeHtml(__('Add to Cart')) ?>"
+                                                                    class="action tocart primary">
+                                                                <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                                            </button>
+                                                        </form>
+                                                    <?php else: ?>
+                                                        <?php if ($_item->isAvailable()): ?>
+                                                            <div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+                                                        <?php else: ?>
+                                                            <div class="stock unavailable"><span><?= $block->escapeHtml(__('Out of stock')) ?></span></div>
+															<?php 
+														$formKey = $customHelper->getFormKey();
+														 $this->urlHelper = $this->helper('Magento\Framework\Url\Helper\Data');
+														?>
+															<a href="<?php echo $this->getUrl(
+                                                        'productalert/add/stock',
+                                                        [
+                                                            'product_id' => $_product->getId(),
+                                                            \Magento\Framework\App\ActionInterface::PARAM_NAME_URL_ENCODED => $this->urlHelper->getEncodedUrl()
+                                                        ]
+                                                    ); ?>" title="Notify me when this product is in stock" class="action alert">
+                                            <?php echo __("Notify me when this product is in stock");?> </a>
+                                                        <?php endif; ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if ($showWishlist || $showCompare): ?>
+                                                <div class="actions-secondary" data-role="add-to-links">
+                                                    <?php if ($this->helper(\Magento\Wishlist\Helper\Data::class)->isAllow() && $showWishlist): ?>
+                                                        <a href="#"
+                                                           data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($_item) ?>' class="action towishlist" data-action="add-to-wishlist" title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>">
+                                                            <span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                    <?php if ($block->getAddToCompareUrl() && $showCompare): ?>
+                                                        <?php $compareHelper = $this->helper(\Magento\Catalog\Helper\Product\Compare::class);?>
+                                                        <a href="#" class="action tocompare" data-post='<?= /* @noEscape */ $compareHelper->getPostDataParams($_item) ?>' title="<?= $block->escapeHtmlAttr(__('Add to Compare')) ?>">
+                                                            <span><?= $block->escapeHtml(__('Add to Compare')) ?></span>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?= ($iterator == count($items) + 1) ? '</li>' : '' ?>
+                    <?php endforeach ?>
+                </ol>
+            </div>
+            <?= $block->getPagerHtml() ?>
+        </div>
+    </div>
+    <?php if($block->getBlockHtml('formkey')): ?>
+    <script type="text/x-magento-init">
+    {
+        ".block.widget [data-role=tocart-form]": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+    </script>
+    <?php endif;?>
+<?php endif;?>

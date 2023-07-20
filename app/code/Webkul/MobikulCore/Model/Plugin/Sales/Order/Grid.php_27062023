@@ -1,0 +1,52 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ *
+ *
+ * @category  Webkul
+ * @package   Webkul_MobikulCore
+ * @author    Webkul <support@webkul.com>
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html ASL Licence
+ * @link      https://store.webkul.com/license.html
+ */
+
+namespace Webkul\MobikulCore\Model\Plugin\Sales\Order;
+
+use Magento\Framework\DB\Select;
+use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\DB\Adapter\AdapterInterface;
+
+/**
+ * Grid Class for order purchase point.
+ */
+class Grid
+{
+    protected $resourceConnection;
+
+    public function __construct(
+        ResourceConnection $resourceConnection
+    ) {
+        $this->resourceConnection = $resourceConnection;
+    }
+
+    public function afterSearch($interceptor, $collection)
+    {
+        $select = $collection->getSelect();
+        $mainTable = $collection->getConnection()->getTableName('sales_order_grid');
+        $leftJoinTable = $collection->getConnection()->getTableName('mobikul_orderPurchasePoint');
+
+        $select->joinLeft(
+            ['co' => $leftJoinTable],
+            'co.order_id = main_table.entity_id',
+            ['purchase_point' => 'co.purchase_point']
+        );
+
+        $where = $select->getPart(Select::WHERE);
+
+        $select->setPart(Select::WHERE, $where);
+
+        return $collection;
+    }
+}

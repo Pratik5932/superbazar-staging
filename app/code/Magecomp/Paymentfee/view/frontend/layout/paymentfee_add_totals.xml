@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="order_totals">
+            <block class="Magecomp\Paymentfee\Block\Sales\Order\Paymentfee" name="payment_fee_order"/>
+        </referenceContainer>
+        <referenceContainer name="invoice_totals">
+            <block class="Magecomp\Paymentfee\Block\Sales\Order\Paymentfee" name="payment_fee_invoice"/>
+        </referenceContainer>
+        <referenceContainer name="creditmemo_totals">
+            <block class="Magecomp\Paymentfee\Block\Sales\Order\Paymentfee" name="payment_fee_creditmemo"/>
+        </referenceContainer>
+    </body>
+</page>

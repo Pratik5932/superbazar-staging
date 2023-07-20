@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_MpStripe
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="marketplace_stripe_customer" resource="default" engine="innodb" comment="Stripe customer for payment">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" padding="10" identity="true" comment="Entity Id"/>
+        <column xsi:type="smallint" name="website_id" unsigned="true" nullable="true" comment="Webiste Id"/>
+        <column xsi:type="smallint" name="strore_id" unsigned="true" nullable="true" comment="Store Id"/>
+        <column xsi:type="smallint" name="is_active" padding="5" nullable="false" default="1" comment="Is Active"/>
+        <column xsi:type="int" name="customer_id" comment="Customer Id"/>
+        <column xsi:type="text" name="stripe_customer_id" nullable="false" comment="Stripe Customer Id"/>
+        <column xsi:type="int" name="expiry_month" comment="stripe card expiry month"/>
+        <column xsi:type="int" name="expiry_year" comment="stripe card expiry year"/>
+        <column xsi:type="text" name="last4" nullable="false" comment="last four digits of the card"/>
+        <column xsi:type="text" name="fingerprint" nullable="true" comment="stripe card unique fingertype"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="false" comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+    <table name="marketplace_stripe_seller" resource="default" engine="innodb" comment="Stripe seller connect details">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" padding="10" identity="true" comment="Entity Id"/>
+        <column xsi:type="smallint" name="website_id" unsigned="true" nullable="true" comment="Webiste Id"/>
+        <column xsi:type="smallint" name="strore_id" unsigned="true" nullable="true" comment="Store Id"/>
+        <column xsi:type="smallint" name="is_active" padding="5" nullable="false" default="1" comment="Is Active"/>
+        <column xsi:type="int" name="seller_id" comment="Seller Id"/>
+        <column xsi:type="int" name="integration_type" comment="stripe account integration type"/>
+        <column xsi:type="text" name="email" comment="Seller Email"/>
+        <column xsi:type="text" name="access_token" comment="Access Token"/>
+        <column xsi:type="text" name="refresh_token" comment="Referesh Token"/>
+        <column xsi:type="text" name="stripe_key" comment="Stripe Key"/>
+        <column xsi:type="text" name="stripe_user_id" comment="Stripe User Id"/>
+        <column xsi:type="text" name="isverified" comment="is verified"/>
+        <column xsi:type="text" name="user_type" comment="User Type"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="false" comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+    <table name="sales_order" resource="sales" comment="Sales Flat Order">
+        <column xsi:type="text" name="stripe_payment_intent" comment="stripe payment intent id"/>
+    </table>
+    <table name="marketplace_orders" resource="default" engine="innodb" comment="Marketplace Orders Table">
+        <column xsi:type="text" name="stripe_payment_intent_transfer_id" comment="stripe payment intent transfer id"/>
+    </table>
+
+</schema>

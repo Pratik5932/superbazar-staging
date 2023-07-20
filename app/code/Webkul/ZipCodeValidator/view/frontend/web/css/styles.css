@@ -1,0 +1,229 @@
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_ZipCodeValidator
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+ .wk-zcv-regionlist {
+    padding-top: 15px;
+}
+.wk-zcv-regionlist-table {
+    margin-top: 15px;
+    border: 1px solid #ddd;
+}
+.wk-zcv-edit {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url("../images/icon-edit.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+.wk-zcv-delete {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url("../images/icon-delete.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+.wk-ssp-mass-action {
+    width: 10%;
+    border: 1px solid #504d4d;
+}
+.wk-zcv-zipcode {
+    padding: 5px;
+    border: 1px solid #928c8c;
+    width: 25%;
+    margin-top: 15px;
+    height: 32px;
+}
+.wk-zcv-log #login{
+    color: #16C5F1;
+    cursor: pointer;
+}
+input[type="text"][id^=wk-zcv-zipcode] {
+    width:80%;
+    float: left;
+}
+.wk-zcv-icons {
+    padding-left: 5px;
+    float: left;
+    padding-top: 7px;
+}
+#wk-ssp-zip-add-button .wk-zipcode-add-btn{
+    margin-top:10px;
+}
+.wk-zcv-multiple-select{
+    height:200px;
+    width:25%;
+    margin-top: 8px;
+    background: none;
+}
+.wk-zcv-label {
+    font-weight: 600;
+}
+.wk-zcv-zipbox{
+    padding-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+}
+.wk-zcv-zip{
+    font-size: 16px ;
+    font-weight: 600 ;
+    display: inline-block;
+    width: 100%;
+}
+.wk-zcv-wrapper{
+    display: inline-block;
+    width: 100%;
+}
+.wk-zcv-zipcodeform{
+    position: relative;
+    width: 60% ;
+    display: inline-block;
+    float: left;
+}
+.wk-zcv-zipcodeform-seller {
+    position: relative;
+    width: 80% ;
+    display: inline-block;
+    float: left;
+}
+div [class^=wk-zcv-zipform]{
+    float:left;
+    background-image: url(../images/new-icon.png) ;
+    padding-left: 26px ;
+    padding-right: 50px ;
+    background-repeat: no-repeat ;
+    border:none !important;
+    border-bottom: 2px solid #1979c3 !important;
+}
+[id^=wk-zcv-check]{
+    color: #1979c3;
+    cursor: pointer;
+    cursor: pointer;
+    font-size: 14px;
+    position: absolute;
+    right:0px;
+}
+div [class^=wk-zcv-zipcookie] {
+    background: #fff none repeat scroll 0 0;
+    position: absolute;
+    z-index: 10;
+    left: 0px;
+    top: 34px;
+    width: 100%;
+    box-shadow: 0 1px 4px 0 rgba(204,204,204,0.3);
+}
+[id^=wk-zcv-addr]{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    display: none;
+}
+ul li.wk-zcv-saveaddr{
+    font-size: 12px;
+    font-weight: 600;
+    color: #212121;
+    cursor: auto;
+}
+ul li .wk-zcv-address{
+    font-size: 12px;
+    font-weight: 600;
+}
+[id^=wk-zcv-cookie]{
+    border-bottom:1px solid #ddd;
+}
+[class^=wk-zcv-loader] {
+    width: 41px;
+    height: 32px;
+    float: left;
+    background-image: url(../images/ajaxloader.gif) ;
+    background-repeat: no-repeat ;
+    background-position: 9px 1px;
+    background-size: 32px 32px ;
+    display:none;
+}
+[class^=wk-zcv-ziperror]{
+    color: red;
+    font-size: 13px;
+    font-weight: 500;
+    display: none;
+}
+[class^=wk-zcv-zipsuccess]{
+    color:green;
+    font-size: 13px;
+    font-weight: 500;
+    display: none;
+}
+div [class^=wk-zcv-zipform]:focus{
+    box-shadow:unset;
+}
+.wk-zcv-level{
+    float: left;
+    padding-top: 3px;
+    font-weight: 600;
+}
+[class^=wk-zcv-zipcookie] ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    display: none;
+}
+[id^=wk-zcv-login]{
+    list-style: none ;
+    margin: 0px;
+    padding: 0px;
+    border-bottom:1px solid #ddd;
+    display: none;
+}
+[class^=wk-zcv-zipcookie] ul li{
+    margin-bottom: 1px ;
+    padding-left: 10px;
+    padding-top: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor:pointer;
+    line-height: 2;
+}
+[class^=wk-zcv-zipcookie] ul li:hover {background: #f4f4f4;}
+div ul .wk-zcv-history{
+    font-size: 12px;
+    font-weight: 600;
+    color: #212121;
+    cursor: auto;
+}
+div ul .wk-zcv-history:hover{
+    background: #fff;
+}
+ul li.wk-zcv-saveaddr:hover{
+    background: #fff;
+}
+div ul .wk-zcv-log{
+    font-size: 12px;
+    cursor: auto;
+}
+div ul .wk-zcv-log:hover{
+    background: #fff;
+}
+.wk-zcv-login-popup{
+    display: none;
+    position: absolute;
+    width: 30%;
+    background: ghostwhite;
+    padding: 3%;
+    border: 5px solid #3071a9;
+    border-radius: 20px;
+    z-index: 999;
+}
+.wk-zcv-login-popup > span.close-login-popup {
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #f36060;
+    cursor: pointer;
+}

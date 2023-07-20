@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="footer-top" remove="true"/>
+        <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true"/>
+        <referenceBlock name="customer_account_navigation">
+            <referenceBlock name="customer-account-navigation-my-credit-cards-link" remove="true"/>
+        </referenceBlock>
+        <referenceBlock name="sms-notification" remove="true"/>
+        
+    </body>
+</page>
+

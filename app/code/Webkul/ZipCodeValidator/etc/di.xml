@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_ZipCodeValidator
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Quote\Model\ShippingMethodManagement">
+        <plugin name="Webkul_ZipCodeValidator::shippingmethodmanagement" type="Webkul\ZipCodeValidator\Plugin\Quote\Model\ShippingMethodManagement" sortOrder="1" />
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="zipcodevalidator_region_list_data_source" xsi:type="string">Webkul\ZipCodeValidator\Model\ResourceModel\Region\Grid\Collection</item>
+                <item name="zipcodevalidator_zipcode_list_data_source" xsi:type="string">Webkul\ZipCodeValidator\Model\ResourceModel\Zipcode\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Webkul\ZipCodeValidator\Model\ResourceModel\Region\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">zipcodevalidator_region</argument>
+            <argument name="eventPrefix" xsi:type="string">zipcodevalidator_region_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">region_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Webkul\ZipCodeValidator\Model\ResourceModel\Region</argument>
+        </arguments>
+    </type>
+    <type name="Webkul\ZipCodeValidator\Model\ResourceModel\Zipcode\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">zipcodevalidator_zipcode</argument>
+            <argument name="eventPrefix" xsi:type="string">zipcodevalidator_zipcode_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">zipcode_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Webkul\ZipCodeValidator\Model\ResourceModel\Zipcode</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="ZipCodeValidatorGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="RegionGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Webkul\ZipCodeValidator\Model\ResourceModel\Region\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">ZipCodeValidatorGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ZipcodeGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Webkul\ZipCodeValidator\Model\ResourceModel\Zipcode\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">ZipCodeValidatorGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Webkul\ZipCodeValidator\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Webkul\ZipCodeValidator\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">zipcodevalidatorLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Webkul\ZipCodeValidator\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

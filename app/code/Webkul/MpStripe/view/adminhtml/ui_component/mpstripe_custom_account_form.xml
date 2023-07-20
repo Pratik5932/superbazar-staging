@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mpstripe_custom_account_form.mpstripe_custom_account_form_data_source</item>
+            <item name="deps" xsi:type="string">mpstripe_custom_account_form.mpstripe_custom_account_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Employee Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">mpstripe_custom_account_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+
+        <item name="buttons" xsi:type="array">
+            <item name="save" xsi:type="string">Webkul\MpStripe\Block\Adminhtml\General\Edit\SaveButton</item>
+        </item>
+
+    </argument>
+    <dataSource name="mpstripe_custom_account_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Webkul\MpStripe\Model\DataProvider</argument>
+            <argument name="name" xsi:type="string">mpstripe_custom_account_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">seller_id</argument>
+            <argument name="requestFieldName" xsi:type="string">seller_id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="mpstripe/manage/save"/>
+        </settings>
+    </dataSource>
+    <fieldset name="stripe_user_details">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Stripe Account Details</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <!-- already connected account details -->
+            <container name="stripe_container" >
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="sortOrder" xsi:type="number">30</item>
+                    </item>
+                </argument>
+                <htmlContent name="html_content">
+                    <argument name="block" xsi:type="object">Webkul\MpStripe\Block\Adminhtml\Manage\ConnectAccount</argument>
+                </htmlContent>
+            </container>
+        <!-- end here -->
+        <field name="user_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">User Id</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">mpstripe</item>
+                    <item name="dataScope" xsi:type="string">stripe_user.user_id</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </field>
+        <field name="account_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Account Id</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">mpstripe</item>
+                    <item name="dataScope" xsi:type="string">stripe_user.account_id</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </field>
+        <field name="country">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Webkul\MpStripe\Model\Source\Country</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Country</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">mpstripe</item>
+                    <item name="dataScope" xsi:type="string">stripe_user.country</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="email">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Email</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">mpstripe</item>
+                    <item name="dataScope" xsi:type="string">stripe_user.email</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="business_profile">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Webkul\MpStripe\Model\Source\BusinessIndustry</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Business Industry</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">mpstripe</item>
+                    <item name="dataScope" xsi:type="string">stripe_user.business_profile.mcc</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="business_type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Webkul\MpStripe\Model\Source\AccountType</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Business Type</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">mpstripe</item>
+                    <item name="dataScope" xsi:type="string">stripe_user.business_type</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="component" xsi:type="string">Webkul_MpStripe/js/form/element/options</item>
+                </item>
+            </argument>
+        </field>
+    <!-- business dependable fields start-->
+        <!-- individal form fields start -->
+            <field name="individual_address_line1">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Individual Address Line 1</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.individual.address.line1</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">individual</item>
+                        <item name="visible" xsi:type="boolean">false</item>                        
+                    </item>
+                </argument>
+            </field>
+            <field name="individual_address_line2">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Individual Address Line 2</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.individual.address.line2</item>
+                        <item name="visibleValue" xsi:type="string">individual</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="individual_address_city">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Individual Address City</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.individual.address.city</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">individual</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="individual_address_state">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Individual Address State</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.individual.address.state</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">individual</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="individual_address_postal_code">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Individual Address Postal Code</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.individual.address.postal_code</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">individual</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="individual_first_name">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Individual First Name</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.individual.first_name</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">individual</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="individual_last_name">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Individual Last Name</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.individual.last_name</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">individual</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="individual_dob">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="label" xsi:type="string" translate="true">Individual Date of Birth</item>
+                        <item name="formElement" xsi:type="string">date</item>
+                        <item name="sortOrder" xsi:type="number">40</item>
+                        <item name="source" xsi:type="string">page</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.individual.dob</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="options" xsi:type="array">
+                            <item name="dateFormat" xsi:type="string">dd/MM/yyy</item>
+                            <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                            <item name="showsTime" xsi:type="boolean">false</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">individual</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="individual_phone">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Individual Phone</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.individual.phone</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">individual</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="individual_id_number">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Individual Id Number</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.individual.id_number</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">individual</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="individual_business_profile_url">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Business Website</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.business_profile.url</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                            <item name="validate-url" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">individual</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="individual_document_front">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="label" xsi:type="string" translate="true">Verification Document Front Side</item>
+                        <item name="formElement" xsi:type="string">fileUploader</item>
+                        <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                        <item name="previewTmpl" xsi:type="string">Webkul_MpStripe/image-preview</item>
+                        <item name="required" xsi:type="boolean">false</item>
+                        <item name="uploaderConfig" xsi:type="array">
+                            <item name="url" xsi:type="url" path="mpstripe/verification/upload"/>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">individual</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="individual_document_back">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="label" xsi:type="string" translate="true">Verification Document Back Side</item>
+                        <item name="formElement" xsi:type="string">fileUploader</item>
+                        <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                        <item name="previewTmpl" xsi:type="string">Webkul_MpStripe/image-preview</item>
+                        <item name="required" xsi:type="boolean">false</item>
+                        <item name="uploaderConfig" xsi:type="array">
+                            <item name="url" xsi:type="url" path="mpstripe/verification/upload"/>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">individual</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+
+        <!-- individual form fields end -->
+        <!-- business form fields start -->
+            <field name="company_address_line1">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Company Address Line 1</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.company.address.line1</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>                        
+                    </item>
+                </argument>
+            </field>
+            <field name="company_address_line2">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Company Address Line 2</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.company.address.line2</item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="company_address_city">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Company Address City</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.company.address.city</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="company_address_state">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Company Address State</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.company.address.state</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="company_address_postal_code">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Company Address Postal Code</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.company.address.postal_code</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="company_name">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Company Name</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.company.name</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="company_phone">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Company Phone</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.company.phone</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="company_tax_id">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Company Tax Id</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.company.tax_id</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="company_business_profile_url">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Business Website</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.business_profile.url</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                            <item name="validate-url" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="company_document_front">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="label" xsi:type="string" translate="true">Verification Document Front Side</item>
+                        <item name="formElement" xsi:type="string">fileUploader</item>
+                        <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                        <item name="previewTmpl" xsi:type="string">Webkul_MpStripe/image-preview</item>
+                        <item name="required" xsi:type="boolean">false</item>
+                        <item name="uploaderConfig" xsi:type="array">
+                            <item name="url" xsi:type="url" path="mpstripe/verification/upload"/>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="company_document_back">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="label" xsi:type="string" translate="true">Verification Document Back Side</item>
+                        <item name="formElement" xsi:type="string">fileUploader</item>
+                        <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                        <item name="previewTmpl" xsi:type="string">Webkul_MpStripe/image-preview</item>
+                        <item name="required" xsi:type="boolean">false</item>
+                        <item name="uploaderConfig" xsi:type="array">
+                            <item name="url" xsi:type="url" path="mpstripe/verification/upload"/>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <!-- owner details start -->
+            <field name="owner_address_line1">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">OwnerAddress Line 1</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.owner.address.line1</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>                        
+                    </item>
+                </argument>
+            </field>
+            <field name="owner_address_line2">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Owner Address Line 2</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.owner.address.line2</item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="owner_address_city">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Owner Address City</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.owner.address.city</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="owner_address_state">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Owner Address State</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.owner.address.state</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="owner_address_postal_code">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Owner Address Postal Code</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.owner.address.postal_code</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            
+            <field name="owner_first_name">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Owner First Name</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.owner.first_name</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="owner_last_name">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Owner Last Name</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.owner.last_name</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="owner_job_title">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Owner Job Title</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.owner.job_title</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="owner_dob">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="label" xsi:type="string" translate="true">Owner Date of Birth</item>
+                        <item name="formElement" xsi:type="string">date</item>
+                        <item name="sortOrder" xsi:type="number">100</item>
+                        <item name="source" xsi:type="string">page</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.owner.dob</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="options" xsi:type="array">
+                            <item name="dateFormat" xsi:type="string">dd/MM/yyy</item>
+                            <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                            <item name="showsTime" xsi:type="boolean">false</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="owner_phone">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Owner Phone</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.owner.phone</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="owner_id_number">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Owner Id Number</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.owner.id_number</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="owner_ssn">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Owner Social Security Number Last 4 digits</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="dataScope" xsi:type="string">stripe_user.owner.ssn</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="owner_document_front">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="label" xsi:type="string" translate="true">Verification Document Front Side</item>
+                        <item name="formElement" xsi:type="string">fileUploader</item>
+                        <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                        <item name="previewTmpl" xsi:type="string">Webkul_MpStripe/image-preview</item>
+                        <item name="required" xsi:type="boolean">false</item>
+                        <item name="uploaderConfig" xsi:type="array">
+                            <item name="url" xsi:type="url" path="mpstripe/verification/upload"/>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="owner_document_back">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="source" xsi:type="string">mpstripe</item>
+                        <item name="label" xsi:type="string" translate="true">Verification Document Back Side</item>
+                        <item name="formElement" xsi:type="string">fileUploader</item>
+                        <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                        <item name="previewTmpl" xsi:type="string">Webkul_MpStripe/image-preview</item>
+                        <item name="required" xsi:type="boolean">false</item>
+                        <item name="uploaderConfig" xsi:type="array">
+                            <item name="url" xsi:type="url" path="mpstripe/verification/upload"/>
+                        </item>
+                        <item name="visibleValue" xsi:type="string">company</item>
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <!-- owner details end -->
+        <!-- business form fields end -->
+    <!-- business dependable fields end -->
+    </fieldset>
+    <fieldset name="external_accounts">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Bank Account Details</item>
+                <item name="sortOrder" xsi:type="number">120</item>
+            </item>
+        </argument>
+        <field name="country">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Webkul\MpStripe\Model\Source\Country</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Bank Account Country</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">mpstripe</item>
+                    <item name="dataScope" xsi:type="string">stripe_user.external_accounts.country</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="currency">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Webkul\MpStripe\Model\Source\CurrencyList</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Bank Account Currency</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">mpstripe</item>
+                    <item name="dataScope" xsi:type="string">stripe_user.external_accounts.currency</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="account_holder_type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Webkul\MpStripe\Model\Source\AccountType</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Bank Account Holder Type</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">mpstripe</item>
+                    <item name="dataScope" xsi:type="string">stripe_user.external_accounts.account_holder_type</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="account_holder_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Bank Account Holder Name:</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">mpstripe</item>
+                    <item name="dataScope" xsi:type="string">stripe_user.external_accounts.account_holder_name</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="routing_number">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="notice" xsi:type="string" translate="true">The routing number, or other country-appropriate institution number for the bank account</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Bank Account Routing Number:</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">mpstripe</item>
+                    <item name="dataScope" xsi:type="string">stripe_user.external_accounts.routing_number</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="account_number">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="notice" xsi:type="string" translate="true">The account number for the bank account, in string form. Must be a checking account.</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Bank Account Number:</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">mpstripe</item>
+                    <item name="dataScope" xsi:type="string">stripe_user.external_accounts.account_number</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <container name="banner_container" >
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="sortOrder" xsi:type="number">140</item>
+            </item>
+        </argument>
+        <htmlContent name="html_content">
+            <argument name="block" xsi:type="object">Webkul\MpStripe\Block\Adminhtml\Manage\StripeConsent</argument>
+        </htmlContent>
+    </container>
+</form>

@@ -1,0 +1,66 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_MpHyperLocal
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+// @codingStandardsIgnoreFile
+
+$seller = $block->getOrigin();
+if ($seller->getIsSeller()) {
+?>	
+<div class="wk-mp-design">
+		<form action="<?php echo $block->getSaveAction() ?>" method="POST" id="form-customer-attr-new" data-mage-init='{"validation":{}}'>
+			<fieldset class="info wk-mp-fieldset fieldset" id="associate-product">
+			<legend class="legend">
+				<span><?php echo __('Add your shipping origin address')?></span>
+				<button class="button wk-mp-btn" title="Save" type="submit" id="save-btn">
+					<span><span><?php echo __('Save')?></span></span>
+				</button>
+			</legend>			
+			<?php echo $block->getBlockHtml('formkey'); ?>
+			<?php echo $block->getBlockHtml('seller.formkey'); ?>
+			<div class="fieldset form-list" id="cust">
+				<div class="field required">
+					<label class="label"><?php echo __('Enter Location')?></label>
+					<div class="control">
+						<input class="input-text required-entry" value="<?php echo $seller->getOriginAddress()?>" name="origin_address" id="autocompleteform" type="text" />
+					</div>
+				</div>
+				<div class="field required">
+					<label class="label"><?php echo __('Latitude')?></label>
+					<div class="control">
+						<input class="required-entry input-text" value="<?php echo $seller->getLatitude()?>" readonly="readonly" name="latitude" id="latitude" type="text" />
+					</div>
+				</div>
+				<div class="field required">
+					<label class="label"><?php echo __('Longitude')?></label>
+					<div class="control">
+						<input class="required-entry input-text" value="<?php echo $seller->getLongitude()?>" readonly="readonly" name="longitude" id="longitude" type="text" />
+					</div>
+				</div>
+			</div>
+			</fieldset>
+		</form>
+	
+	<div class="buttons-set">
+		<p class="back-link">
+			<a href="javascript:;" onclick="javascript: window.history.back();" class="left">&laquo; <?php /* @escapeNotVerified */ echo __('Back') ?></a>
+		</p>
+	</div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "origin": {
+    			"googleApiKey":"<?php echo $block->getGoogleApiKey()?>",
+				"filter" : "<?= $block->getFilter() ?>"
+            }
+        }
+    }
+</script>
+<?php } ?>

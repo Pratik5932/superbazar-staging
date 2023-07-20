@@ -1,0 +1,70 @@
+<?php
+
+$transactions = $block->getSellerTransactions();
+
+?>
+
+<div class="wk-mp-design">
+    <fieldset class="fieldset info">
+        <legend class="legend">
+            <span><?= /*@noEscape*/  __('Transfer Overview') ?></span>
+        </legend>   
+        <?php if ($transactions) { ?>
+                <table cellspacing="0" class="border table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <?= /*@noEscape*/ __('Date paid'); ?>
+                            </th>
+                            <th>
+                                <?= /*@noEscape*/ __('Amount'); ?>
+                            </th>
+                            <th>
+                                <?= /*@noEscape*/ __('ID'); ?>
+                            </th>
+                            <th>
+                                <?= /*@noEscape*/ __('Transaction ID'); ?>
+                            </th>
+                            <th>
+                                <?= /*@noEscape*/ __('Transfer group'); ?>
+                            </th>
+                        </tr>
+                    </thead>        
+                    <?php foreach ($transactions as $transfer) { ?>
+                        <tr>
+                            <td>
+                                <label class="label">
+                                    <?= $block->escapeHtml(date('d/M/Y h:i:s', $transfer['created'])); ?>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="label">
+                                    <?= /*@noEscape*/ $block->getPriceHtml($transfer['amount']); ?>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="label">
+                                    <?= $block->escapeHtml($transfer['id']); ?>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="label">
+                                    <?= $block->escapeHtml($transfer['balance_transaction']); ?>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="label">
+                                    <?= $block->escapeHtml($transfer['transfer_group']); ?>
+                                </label>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </table>
+                
+        <?php } else { ?>
+                <div class="emptymsg">
+                        <?= /*@noEscape*/ __('No Transactions available') ?>
+                </div>
+        <?php   } ?>
+    </fieldset>
+</div>

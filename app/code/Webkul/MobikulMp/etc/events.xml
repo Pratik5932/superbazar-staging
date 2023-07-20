@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_MobikulMp
+ * @author    Webkul <support@webkul.com>
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html ASL Licence
+ * @link      https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_save_after">
+        <observer name="webkul_mobikulmp_order_placed_observer" instance="Webkul\MobikulMp\Observer\OrderStatusNotification"/>
+    </event>
+    <event name="mp_approve_product">
+        <observer name="webkul_mobikulmp_product_approved_observer" instance="Webkul\MobikulMp\Observer\ProductApprovalNotification"/>
+    </event>
+    <event name="mp_approve_seller">
+        <observer name="webkul_mobikulmp_seller_approved_observer" instance="Webkul\MobikulMp\Observer\SellerApprovalNotification"/>
+    </event>
+    <!-- <event name="checkout_submit_all_after">
+        <observer name="webkul_sales_order_place_after" instance="Webkul\MobikulMp\Observer\SalesOrderSuccessObserver" />
+    </event> -->
+</config>

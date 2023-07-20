@@ -1,0 +1,20 @@
+{
+    "name": "webkul/marketplace-hyperlocal",
+    "description": "Webkul Magento2 Marketplace Hyperlocal Module",
+    "require": {
+        "webkul/module-marketplace": "2.2.*"
+    },
+    "type": "magento2-module",
+    "version": "2.1.0",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Webkul\\MpHyperLocal\\": ""
+        }
+    }
+}

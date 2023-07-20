@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+ 
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/mobikul/paypal/api" method="POST">
+        <service class="Webkul\Customisation\Api\PaypalApiManagementInterface" method="getApiData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/mobikul/paypal/seller/info/save" method="POST">
+        <service class="Webkul\Customisation\Api\PaypalSellerInfoSaveApiManagementInterface" method="getApiData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/mobikul/paypal/seller/info" method="POST">
+        <service class="Webkul\Customisation\Api\PaypalSellerInfoApiManagementInterface" method="getApiData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/mobikul/stripe/cards/index" method="POST">
+        <service class="Webkul\Customisation\Api\StripeSaveCardApiManagementInterface" method="getApiData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/mobikul/stripe/seller/transaction" method="POST">
+        <service class="Webkul\Customisation\Api\StripeSellerTransactionApiManagementInterface" method="getApiData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/mobikul/stripe/seller/remove" method="POST">
+        <service class="Webkul\Customisation\Api\StripeSellerRemoveApiManagementInterface" method="getApiData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/mobikul/stripe/seller/update" method="POST">
+        <service class="Webkul\Customisation\Api\StripeSellerUpdateApiManagementInterface" method="getApiData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/mobikul/stripe/seller/account" method="POST">
+        <service class="Webkul\Customisation\Api\StripeSellerAccountApiManagementInterface" method="getApiData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/mobikul/stripe/card/delete" method="POST">
+        <service class="Webkul\Customisation\Api\StripeDeleteSaveCardApiManagementInterface" method="getApiData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/mobikul/stripe/payment/intent" method="POST">
+        <service class="Webkul\Customisation\Api\StripePaymentIntentCreateApiManagementInterface" method="getApiData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

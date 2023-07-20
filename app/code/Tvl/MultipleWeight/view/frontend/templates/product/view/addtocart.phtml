@@ -1,0 +1,126 @@
+<?php
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php $hideqty = __(''); ?>
+<?php if ($_product->isSaleable()): ?>
+    <?php if($_product->getRequiredWeight()):?>
+        <?php $hideqty = __('hide-qty'); ?>
+
+        <?php
+        $availbleWeight = [];
+        foreach ($_product->getWeights() as $item) {
+            if (!isset($item['qty']) || $item['qty'] <= 0) continue;
+            $availbleWeight[] = $item;
+        }
+        # print_r($availbleWeight);exit;
+        ?>
+        <script>
+            window.weightDatas = {
+                price: <?php echo $_product->getFinalPrice()?>,
+                price_one_five: <?php echo $_product->getPriceOneFive() ? : $_product->getFinalPrice()?>,
+                price_five: <?php echo $_product->getPriceFive() ? : $_product->getFinalPrice()?>,
+                weights: <?php echo json_encode($availbleWeight, true);?>,
+                currency: '<?= $_product->getStore()->getCurrentCurrency()->getCurrencySymbol()?>'
+            };
+        </script>
+        <div id="multiple-weights">
+            <div data-bind="scope: 'multiple_weight'">
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+        </div>
+        <div id="display-selected-weight" style="display:none">
+            <dl class="item-options" > 
+                <!--<dt>Weight</dt>
+                <dd id="selected-weight" ></dd>-->
+                <dt>Weight Detail</dt>
+                <dd id="selected-weight-detail"></dd>
+            </dl>
+        </div>
+        <?php endif;?>
+    <div class="box-tocart">
+        <div class="fieldset">
+            <?php if ($block->shouldRenderQuantity()): ?>
+                <div class="field qty <?php echo $hideqty; ?>">
+                    <label class="label" for="qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></label>
+                    <div class="control">
+                        <input type="number"
+                            name="qty"
+                            id="qty"
+                            value="<?= /* @escapeNotVerified */ $block->getProductDefaultQty() * 1 ?>"
+                            title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+                            class="input-text qty"
+                            data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                            />
+                    </div>
+                </div>
+                <?php endif; ?>
+            <div class="actions">
+                <button type="submit"
+                    title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                    class="action primary tocart"
+                    id="product-addtocart-button">
+                    <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+                </button>
+                <?= $block->getChildHtml('', true) ?>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
+
+<script type="text/x-magento-init">
+    {
+        "#multiple-weights": {
+            "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>
+        }
+    }
+</script>
+<?php if ($block->isRedirectToCartEnabled()) : ?>
+    <script type="text/x-magento-init">
+        {
+            "#product_addtocart_form": {
+                "Magento_Catalog/product/view/validation": {
+                    "radioCheckboxClosest": ".nested"
+                }
+            },
+            "#multiple-weights": {
+                "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>
+            }
+        }
+    </script>
+    <?php else : ?>
+    <script type="text/x-magento-init">
+        {
+            "#product_addtocart_form": {
+                "Magento_Catalog/js/validate-product": {}
+            }
+        }
+    </script>
+    <?php endif; ?>
+<style type="text/css">
+    .column.main .block:last-child{
+        clear: both;
+    }
+    .column.main .block.upsell .product-item{
+        padding-left: 0 !important;
+        padding-bottom: 5px;
+    }
+    .products-grid .product-item-info{
+        text-align: center;
+    }
+    .products-grid .product-item-details{
+        text-align: left;
+    }
+    .box-tocart .field.qty.hide-qty{
+        display: none;
+    }
+</style>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="salesrule_rule_condition_combine">
+        <observer name="addAdditionalPromotions" instance="Mexbs\AdditionalPromotions\Observer\CombineChildSelect" />
+    </event>
+    <event name="adminhtml_controller_salesrule_prepare_save">
+        <observer name="apAddActionDetailsToRequest" instance="Mexbs\AdditionalPromotions\Observer\AddActionDetailsToRequest" />
+        <observer name="apPreparePopupImageRequestData" instance="Mexbs\AdditionalPromotions\Observer\PreparePopupImageRequestData" />
+    </event>
+    <event name="magento_salesrule_api_data_ruleinterface_save_after">
+        <observer name="apMoveSalesRuleImageFromTmp" instance="Mexbs\AdditionalPromotions\Observer\MoveSalesRuleImageFromTmp" />
+        <observer name="apBdInvalidateIndexAfterRuleSave" instance="Mexbs\AdditionalPromotions\Observer\InvalidateIndexAfterRuleSave" />
+    </event>
+    <event name="catalog_product_delete_commit_after">
+        <observer name="apDeleteFromIndex" instance="Mexbs\AdditionalPromotions\Observer\DeleteFromIndex" />
+    </event>
+</config>

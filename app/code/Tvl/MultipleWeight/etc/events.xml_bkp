@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_submit_all_after">
+        <observer name="update_product_weight_data" instance="Tvl\MultipleWeight\Observer\CheckoutSubmit"/>
+    </event>
+    <event name="checkout_submit_before">
+        <observer name="update_product_weight_data" instance="Tvl\MultipleWeight\Observer\CheckoutSubmitBefore"/>
+    </event>
+    <event name="order_cancel_after">
+        <observer name="weight_order_cancel" instance="Tvl\MultipleWeight\Observer\OrderCancelAfter"/>
+    </event>
+    <event name="sales_order_payment_refund">
+        <observer name="weigh_order_refund" instance="Tvl\MultipleWeight\Observer\OrderRefundAfter"/>
+    </event>
+    <event name="magento_catalog_api_data_productinterface_save_after">
+        <observer name="weight_product_save" instance="Tvl\MultipleWeight\Observer\ProductSaveAfter"/>
+    </event>
+</config>

@@ -1,0 +1,31 @@
+{
+    "name": "webkul/module-customisation",
+    "description": "Webkul Magento2 Customisation Module",
+    "require": {
+        "magento/module-config": "101.*.*",
+        "magento/module-store": "101.*.*",
+        "magento/module-sales": "103.*.*",
+        "magento/module-quote": "101.*.*",
+        "magento/module-customer": "103.*.*",
+        "magento/module-backend": "101.*.*",
+        "magento/module-directory": "100.*.*",
+        "magento/module-catalog": "104.*.*",
+        "magento/module-catalog-inventory": "100.*.*",
+        "magento/module-eav": "102.*.*",
+        "magento/framework": "103.*.*",
+        "magento/module-ui": "101.*.*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Webkul\\Customisation\\": ""
+        }
+    }
+}

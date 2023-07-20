@@ -1,0 +1,24 @@
+Legend
+
++ Features
+- Bugs
+
+-------------------------------- Version 3.1.0 -------------------------------
+	- Fixed some minor bugs
+	+ Completely compatible with the single app
+	+ Feature of dominant color
+	+ Improved code quality.
+
+-------------------------------- Version 3.0.2 -------------------------------
+	- Fixed some minor bugs
+	+ Token based customer authentication implemented
+
+-------------------------------- Version 3.0.1 -------------------------------
+	+ Product add, edit and delete feature for simple and virtual type
+	+ Digest authentication implemented
+
+-------------------------------- Version 3.0.0 -------------------------------
+	+ improved seller dashboard
+	+ seller profile add feature
+	+ supports magento 2.x.x
+	+ seller can also view and download their transaction list

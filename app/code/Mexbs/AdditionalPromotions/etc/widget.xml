@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="apbase_promos_list" class="Mexbs\AdditionalPromotions\Block\Widget\PromosList">
+        <label translate="true">Mexbs Promotions List</label>
+        <description translate="true">List of Promotions</description>
+    </widget>
+</widgets>

@@ -1,0 +1,923 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category Webkul
+ * @package Webkul_MpStripe
+ * @author Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+$marketplaceHelper = $block->marketplaceHelper();
+$helper = $block->getStripeHelper();
+$class = "savempstripedata";
+
+    /**
+     * $seller seller data
+     * @var Magento\Customer\Model\Customer
+     */
+    $seller = $block->getCurrentCustomer();
+    
+    $integrationType = $block->getIntegration();
+
+    /**
+     * $selleremail seller email
+     * @var string
+     */
+    $selleremail = $seller->getEmail();
+
+    /**
+     * $sellerid seller id
+     * @var int
+     */
+    $sellerid = $seller->getId();
+
+    /**
+     * $partner get Seller Profile Details
+     * @var Webkul\Marketplace\Model\Seller
+     */
+    $partner = $block->getSellerDataBySellerId();
+
+    /**
+     * $request request data
+     * @var array
+     */
+    $request = $block->getRequestData();
+
+    $shopName = $partner['shop_title'];
+    $customerFname = $seller->getFirstName();
+    $customerLname = $seller->getLastName();
+
+    $storeUrl = $block->getUrl('marketplace/seller/profile/'.$partner['shop_url']);
+    $baseurl = $block->getUrl('mpstripe/seller/connect');
+
+    $contactEmail = $selleremail;
+    $storePhone = $seller['phone'];
+    $storeCity = $seller['city'];
+    $storeStreet = $seller['street'];
+    $storeZip = $seller['postcode'];
+    $accessToken = '';
+    $refreshToken = '';
+    $stripeUserId = '';
+    $stripePublishableKey = '';
+    $stripeClientId = $helper->getConfigValue('client_secret');
+    $stripeClientSecret = $helper->getConfigValue('api_key');
+    $sellerCollection = $block->getStripeSellerFactory();
+foreach ($sellerCollection as $value) {
+    $accessToken = $value['access_token'];
+    $stripeUserId = $value['stripe_user_id'];
+}
+?>
+
+    <ul class="messages" id="mpstripe_msg" style="display:none;">
+        <li class="error-msg">
+            <ul>
+                <li>
+                    <span id="paymenterrors"></span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <?php
+    // stripe connect integration
+    if ($integrationType) {
+        if ($accessToken != '') {
+            $flag = $block->checkValidAccount();
+            if ($flag == 2) { ?>
+                <div class="fieldset">
+                    <h4 class="legend"><?= /*@noEscape*/ __('Remove Previous Details & Reconnect') ?></h4>
+                    <p>
+                    <?= /*@noEscape*/
+                    __("Application access may have been revoked. ").
+                    __("Please remove the previous connection and reauthorize using the Stripe system.");
+                    ?>
+                    </p>
+                    <div class="row">
+                        <form action="<?= $block
+                        ->escapeUrl($block->getUrl("mpstripe/seller/remove/"));?>" method="post">
+                            <?= /*@noEscape*/ $block->getBlockHtml('formkey')?>
+                            <button type="submit" title="Save" class="button">
+                                <span>
+                                    <span><?= /*@noEscape*/ __('Remove Previous Details') ?></span>
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            <?php } else { ?>
+                <div class="fieldset">
+                    <h4 class="legend"><?= /*@noEscape*/__('Update Account Information') ?></h4>
+                    <p>
+                    <?= /*@noEscape*/
+                    __("Save your bank account information using stripe connect if not added. ").
+                    __("If routing number or any other information changes please reauthorize using the Stripe system");
+                    ?>
+                    </p>
+                    <div class="row">
+                        <a href="https://dashboard.stripe.com/account/transfers">
+                            <button type="submit" title="Save" class="button">
+                                <span>
+                                    <span><?= /*@noEscape*/__('Update Account Information') ?></span>
+                                </span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            <?php } ?>
+            <?php
+        } else {
+            if (isset($request['code']) && $request['code']) {
+                $code = $request['code'];
+                $tokenRequestBody = [
+                    'grant_type' => 'authorization_code',
+                    'client_id' => $stripeClientId,
+                    'code' => $code,
+                    'client_secret' => $stripeClientSecret
+                ];
+
+                $resp = $block->getStripeTokens($tokenRequestBody);
+
+                if (isset($resp['error_description'])
+                    && $resp['error_description'] != ''
+                ) { ?>
+                    <ul class="messages" id="mpstripe_msg" style="display:none;">
+                        <li class="error-msg">
+                            <ul>
+                                <li>
+                                    <span id="paymenterrors">
+                                        <?= $block->escapeHtml($resp['error_description']);
+                                        ?>
+                                    </span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <?php
+                } else {
+                    $accessToken = $resp['access_token'];
+                    $refreshToken = $resp['refresh_token'];
+                    $stripePublishableKey = $resp['stripe_publishable_key'];
+                    $stripeUserId = $resp['stripe_user_id'];
+                }
+            } elseif (isset($request['error'])) {
+                $error = $request['error_description'];
+                if ($error != '') { ?>
+                    <ul class="messages" id="mpstripe_msg">
+                        <li class="error-msg">
+                            <ul>
+                                <li>
+                                    <span id="paymenterrors">
+                                        <?= $block->escapeHtml($error); ?>
+                                    </span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <?php
+                }
+            }
+            $data='&response_type=code&stripe_landing=register&scope=read_write&';
+            $errorValue = $block->checkKeys(
+                $stripeClientId,
+                $contactEmail,
+                $data,
+                $storeUrl,
+                $partner['country_pic'],
+                $seller->getId(),
+                $customerFname,
+                $customerLname,
+                $storePhone,
+                $shopName,
+                $block->getUrl('mpstripe/seller/connect')
+            );
+            if ($errorValue) {
+                $class = "";
+                ?>
+                <p id="danger"><?=/*@noEscape*/ __("Invalid credentials. Please contact admin to correct them");?></p>
+                <?php
+            }
+            ?>
+            <div class="fieldset">
+                <h4 class="legend"><?= /*@noEscape*/ __('Connect to Stripe') ?></h4>
+                <form enctype="multipart/form-data" method="post" id="mpstrip_payment_form">
+                    <input
+                    type="hidden"
+                    name="client_id"
+                    id="client_id"
+                    title="client_id"
+                    value="<?= $block->escapeHtml($stripeClientId);?>"
+                    />
+                    <input
+                    type="hidden"
+                    name="response_type"
+                    id="response_type"
+                    title="response_type"
+                    value="code"
+                    />
+                    <input
+                    type="hidden"
+                    name="stripe_landing"
+                    id="stripe_landing"
+                    title="stripe_landing"
+                    value="register"
+                    />
+                    <input
+                    type="hidden"
+                    name="scope"
+                    id="scope"
+                    title="scope"
+                    value="read_write"
+                    />
+                    <input
+                    type="hidden"
+                    name="stripe_user[email]"
+                    id="stripe_user[email]"
+                    title="stripe_user[email]"
+                    value="<?= $block->escapeHtml($contactEmail) ?>"
+                    />
+                    <input
+                    type="hidden"
+                    name="stripe_user[url]"
+                    id="stripe_user[url]"
+                    title="stripe_user[url]"
+                    value="<?= $block->escapeHtml($storeUrl) ?>"
+                    />
+                    <input
+                    type="hidden"
+                    name="stripe_user[country]"
+                    id="stripe_user[country]"
+                    value="<?= $block->escapeHtml($partner['country_pic'])?>"
+                    />
+                    <input
+                    type="hidden"
+                    name="stripe_user[currency]"
+                    id="stripe_user[currency]"
+                    value="<?= $block->escapeHtml('usd') ?>"
+                    />
+                    <input
+                    type="hidden"
+                    name="userid"
+                    id="userid"
+                    value="<?= $block->escapeHtml($seller->getId()); ?>"
+                    title="userid"
+                    />
+                    <input
+                    type="hidden"
+                    name="stripe_user[first_name]"
+                    id="stripe_user[first_name]"
+                    value="<?= $block->escapeHtml($customerFname) ?>"
+                    />
+                    <input
+                    type="hidden"
+                    name="stripe_user[last_name]"
+                    id="stripe_user[last_name]"
+                    value="<?= $block->escapeHtml($customerLname) ?>"
+                    />
+                    <input
+                    type="hidden"
+                    name="stripe_user[phone_number]"
+                    id="stripe_user[phone_number]"
+                    value="<?= $block->escapeHtml($storePhone) ?>"
+                    />
+                    <input
+                    type="hidden"
+                    name="stripe_user[business_name]"
+                    id="stripe_user[business_name]"
+                    value="<?= $block->escapeHtml($shopName) ?>"
+                    />
+                    <input
+                    type="hidden"
+                    name="stripe_user[redirect_uri]"
+                    id="stripe_user[redirect_uri]"
+                    value="<?= $block->escapeUrl($block->getUrl('mpstripe/seller/connect'));?>"
+                    />
+
+                    <img
+                    style="cursor:pointer;"
+                    class="<?= $block->escapeHtml($class); ?>"
+                    src="
+                    <?= $block->escapeUrl($block
+                    ->getViewFileUrl('Webkul_MpStripe::images/blue-on-light.png'))
+                    ?>"
+                    title="<?= /*@noEscape*/ __('Connect to Stripe') ?>"/>
+                </form>
+
+                <form
+                enctype="multipart/form-data"
+                method="post"
+                id="form-mpstripepayment-save"
+                style="display: hidden"
+                >
+                    <?= $block->getBlockHtml('seller.formkey')?>
+                    <?= $block->getBlockHtml('formkey') ?>
+                    <input
+                    type="hidden"
+                    name="user_id"
+                    id="userid"
+                    value="<?= $block->escapeHtml($seller->getId()); ?>"
+                    title="userid"
+                    />
+                    <input
+                    type="hidden"
+                    name="stripe_user_id"
+                    id="stripe_user_id"
+                    value="<?= $block->escapeHtml($stripeUserId);?>"
+                    title="access"
+                    />
+                    <input
+                    type="hidden"
+                    name="access_token"
+                    id="access"
+                    value="<?= $block->escapeHtml($accessToken);?>"
+                    title="access"
+                    />
+                    <input
+                    type="hidden"
+                    name="refresh_token"
+                    id="refresh"
+                    value="<?= $block->escapeHtml($refreshToken) ?>"
+                    title="refresh"
+                    />
+                    <input
+                    type="hidden"
+                    name="key"
+                    id="key"
+                    value="<?= $block->escapeHtml($stripePublishableKey); ?>"
+                    title="key"
+                    />
+                    <input
+                    type="hidden"
+                    name="user_type"
+                    id="user_type"
+                    value="seller"
+                    title="user_type"
+                    />
+                    <input
+                    type="hidden"
+                    name="integration_type"
+                    id="integration_type"
+                    value="1"
+                    title="integration_type"
+                    />
+                    <input
+                    type="hidden"
+                    name="isverified"
+                    id="isverified"
+                    value=""
+                    title="key"
+                    />
+                </form>
+            </div>
+
+            <?php
+                $code = 0;
+            if (isset($request['code']) && $request['code']) {
+                $code = $request['code'];
+            }
+            ?>
+
+            
+            <script type="text/x-magento-init">
+            {
+                ".savempstripedata":{
+                    "stripeConnectJs":{
+                        "connectData": {
+                            "mpstrip_payment_form":"#mpstrip_payment_form",
+                            "code": "<?= $block->escapeHtml($code); ?>",
+                            "postUrl": "<?= $block->escapeUrl($block->getUrl('mpstripe/seller_connect/save')) ?>",
+                            "formId": "#form-mpstripepayment-save",
+                            "homeUrl": "<?= $block->escapeUrl($block->getUrl('mpstripe/seller/connect')) ?>"
+                        }
+                    }
+                }
+            }
+            </script>
+            <?php
+        }
+    } else {
+        // stripe custom accounts integration
+        $countryList = $block->getCountries();
+        $businessType = $block->getBusinessType();
+        $businessIndustry = $block->getBusinessIndustry();
+        $currencyList = $block->getCurrencyList();
+        $allowManagement = $helper->getConfigValue('allow_management');
+        
+        if ($stripeUserId != '') {
+            $stripeAccount = $block->getStripeCustomAccount($stripeUserId);
+            ?>
+            <div class="wk-mp-design" id="wk-bodymain">
+                <p><?= /*@noEscape*/ __('You have the following active capabilities'); ?></p>
+                <ul>
+                <?php
+                if ($stripeAccount['capabilities']['card_payments'] == 'active') {
+                    ?>
+                    <li>
+                    <?= /*@noEscape*/ __('Card Payments') ?>
+                    </li>
+                    <?php
+                }
+                if ($stripeAccount['capabilities']['platform_payments'] == 'active') {
+                    ?>
+                    <li>
+                    <?= /*@noEscape*/ __('Transfers') ?>
+                    </li>
+                    <?php
+                }
+                ?>
+                </ul>
+                
+            </div>
+            <?php
+        } elseif (!$allowManagement) {
+            ?>
+            <div class="wk-mp-design" id="wk-bodymain">
+                <p>
+                    <?= /*@noEscape*/ __('Please Contact admin for any discussion on Stripe Accounts'); ?>
+                </p>
+            </div>
+            <?php
+        } else {
+            ?>
+            <form action="<?= $block->escapeUrl($block
+            ->getUrl('mpstripe/seller_connect/account', ['_secure' => $block->getRequest()->isSecure()])) ?>"
+            enctype="multipart/form-data" method="post" id="edit-custom-accounts"
+            data-form="edit-custom-accounts" data-mage-init='{"validation":{}}'>
+                <div class="wk-mp-design" id="wk-bodymain">
+                    <fieldset class="fieldset info wk-mp-fieldset">
+                        <div data-mage-init='{"formButtonAction": {}}' class="wk-mp-page-title legend">
+                            <span><?=  /*@noEscape*/ __('Create Stripe Account') ?></span>
+                            <button class="button wk-mp-btn"
+                            title="<?=  /*@noEscape*/ __('Create Stripe Account') ?>" type="submit" id="save-btn">
+                                <span><span><?=  /*@noEscape*/ __('Create Stripe Account') ?></span></span>
+                            </button>
+                        </div>
+                        <?= $block->getBlockHtml('formkey')?>
+                        <input
+                        type="hidden"
+                        name="stripe_user[user_id]"
+                        id="userid"
+                        value="<?= $block->escapeHtml($seller->getId()); ?>"
+                        title="userid"
+                        />
+                        <div class="field required">
+                            <label class="label"><?=  /*@noEscape*/ __('Country') ?>:</label>
+                            <div class="control">
+                                <select id="Country" class=" required-entry select" name="stripe_user[country]">
+                                    <option value=""><?=  /*@noEscape*/ __('Please Select')?></option>
+                                    <?php foreach ($countryList as $value):
+                                        if ($value['value'] != '') { ?>
+                                        <option value="<?= $block->escapeHtml($value['value']) ?>">
+                                            <?= $block->escapeHtml($value['label']) ?></option>
+                                    <?php } endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field required">
+                            <label class="label"><?=  /*@noEscape*/ __('Email') ?>:</label>
+                            <div class="control">
+                                <input type="email" name="stripe_user[email]" id="stripe_user[email]"
+                                title="stripe_user[email]" class="required-entry validate-email select"
+                                value="<?= $block->escapeHtml($contactEmail) ?>"/>
+                            </div>
+                        </div>
+                        <div class="field required">
+                            <label class="label"><?=  /*@noEscape*/ __('Business Industry') ?>:</label>
+                            <div class="control">
+                                <select id="business_type" class=" required-entry select"
+                                name="stripe_user[business_profile][mcc]">
+                                    <option value=""><?=  /*@noEscape*/ __('Please Select')?></option>
+                                    <?php foreach ($businessIndustry as $value):
+                                        if ($value['value'] != '') { ?>
+                                        <option value="<?= $block->escapeHtml($value['value']) ?>">
+                                            <?= $block->escapeHtml($value['label']) ?></option>
+                                    <?php } endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field required">
+                            <label class="label"><?=  /*@noEscape*/ __('Business Type') ?>:</label>
+                            <div class="control">
+                                <select id="business_type" class=" required-entry select"
+                                name="stripe_user[business_type]">
+                                    <option value=""><?=  /*@noEscape*/ __('Please Select')?></option>
+                                    <?php foreach ($businessType as $value):
+                                        if ($value['value'] != '') { ?>
+                                        <option value="<?= $block->escapeHtml($value['value']) ?>">
+                                            <?= $block->escapeHtml($value['label']) ?></option>
+                                    <?php } endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="customaccount-type-wise-fileds fieldset">
+            
+                        </div>
+
+                        <div class="customaccount-company-owner fieldset">
+            
+                        </div>
+
+                        <!-- bank account details -->
+                        <input type="hidden" value="bank_account" name="stripe_user[external_accounts][object]">
+                        <div class="field required">
+                            <label class="label"><?=  /*@noEscape*/ __('Bank Account Country') ?>:</label>
+                            <div class="control">
+                                <select id="Country" class=" required-entry select"
+                                name="stripe_user[external_accounts][country]">
+                                    <option value=""><?=  /*@noEscape*/ __('Please Select')?></option>
+                                    <?php foreach ($countryList as $value):
+                                        if ($value['value'] != '') { ?>
+                                        <option value="<?= $block->escapeHtml($value['value']) ?>">
+                                            <?= $block->escapeHtml($value['label']) ?></option>
+                                    <?php } endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field required">
+                            <label class="label"><?=  /*@noEscape*/ __('Bank Account Currency') ?>:</label>
+                            <div class="control">
+                                <select id="currency" class=" required-entry select"
+                                name="stripe_user[external_accounts][currency]">
+                                    <option value=""><?=  /*@noEscape*/ __('Please Select')?></option>
+                                    <?php foreach ($currencyList as $value):
+                                        if ($value['value'] != '') { ?>
+                                        <option value="<?= $block->escapeHtml($value['value']) ?>">
+                                            <?= $block->escapeHtml($value['label']) ?></option>
+                                    <?php } endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field required">
+                            <label class="label"><?=  /*@noEscape*/ __('Bank Account Holder Type') ?>:</label>
+                            <div class="control">
+                                <select id="account_holder_type" class=" required-entry select"
+                                name="stripe_user[external_accounts][account_holder_type]">
+                                    <option value=""><?=  /*@noEscape*/ __('Please Select')?></option>
+                                    <?php foreach ($businessType as $value):
+                                        if ($value['value'] != '') { ?>
+                                        <option value="<?= $block->escapeHtml($value['value']) ?>">
+                                            <?= $block->escapeHtml($value['label']) ?></option>
+                                    <?php } endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field required">
+                            <label class="label"><?=  /*@noEscape*/ __('Bank Account Holder Name') ?>:</label>
+                            <div class="control">
+                            <input type="text" name="stripe_user[external_accounts][account_holder_name]"
+                            value="" id="account_holder_name" class="input-text required-entry" />
+                            </div>
+                        </div>
+                        <div class="field business_routing_number required">
+                            <label class="label" for="business_routing_number">
+                            <span><?= /*@noEscape*/ __('Bank Account Routing Number') ?></span></label>
+                            <div class="control">
+                                <input type="text" name="stripe_user[external_accounts][routing_number]" value=""
+                                id="business_routing_number" class="input-text required-entry validate-digits" />
+                            </div>
+                            <?= /*@noEscape*/ $block->getPreviousMessage(); ?>
+                        </div>
+                        <div class="field business_account_number required">
+                            <label class="label" for="business_account_number">
+                            <span><?= /*@noEscape*/ __('Bank Account Number') ?></span></label>
+                            <div class="control">
+                                <input type="text" name="stripe_user[external_accounts][account_number]" value=""
+                                id="business_account_number" class="input-text required-entry validate-digits" />
+                            </div>
+                            <?= /*@noEscape*/
+                            __("The account number for the bank account, in string form. Must be a checking account.")
+                            ?>
+                        </div>
+                        <div>
+                        <?= /*@noEscape*/ $block->getConsentMessage() ?>
+                        </div>
+                    </fieldset>
+                </div>
+            </form>
+            <script id="company_template" type="text/x-magento-template">
+                <div class="field business_line1 required">
+                    <label class="label" for="business_line1">
+                    <span><?= /*@noEscape*/ __('Company Address Line 1') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[company][address][line1]" value=""
+                        id="business_address" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_line2">
+                    <label class="label" for="business_line1">
+                    <span><?= /*@noEscape*/ __('Company Address Line 2') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[company][address][line2]" value=""
+                        id="business_address" class="input-text" />
+                    </div>
+                </div>
+                <div class="field business_city required">
+                    <label class="label" for="business_city">
+                    <span><?= /*@noEscape*/ __('Company Address City') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[company][address][city]" value=""
+                        id="business_address" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_state required">
+                    <label class="label" for="business_state">
+                    <span><?= /*@noEscape*/ __('Company Address State') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[company][address][state]" value=""
+                        id="business_address" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_postal_code required">
+                    <label class="label" for="business_postal_code">
+                    <span><?= /*@noEscape*/ __('Company Address Postal Code') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[company][address][postal_code]" value=""
+                        id="business_address" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_name required">
+                    <label class="label" for="business_name">
+                    <span><?= /*@noEscape*/ __('Company Name') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[company][name]" value=""
+                        id="business_name" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_phone required">
+                    <label class="label" for="business_phone">
+                    <span><?= /*@noEscape*/ __('Company Phone') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[company][phone]" value=""
+                        id="business_phone" class="input-text required-entry validate-length maximum-length-10 minimum- 
+                        length-10 validate-digits" />
+                    </div>
+                </div>
+                <div class="field business_tax_id required">
+                    <label class="label" for="business_tax_id">
+                    <span><?= /*@noEscape*/ __('Company Tax Id') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[company][tax_id]" value=""
+                        id="business_tax_id" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_url required">
+                    <label class="label" for="business_url">
+                    <span><?= /*@noEscape*/ __('Business Website') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[business_profile][url]" value=""
+                        id="business_url" class="input-text required-entry validate-url" />
+                    </div>
+                </div>
+                <div class="field business_verification_document_front required">
+                    <label class="label" for="business_verification_document_front">
+                    <span><?= /*@noEscape*/ __('Verification Document Front Side') ?></span></label>
+                    <div class="control">
+                        <input type="file" id="document-front" name="document_front"
+                        title="Document Front" class="banner" size="26" />
+                    </div>
+                </div>
+                <div class="field business_verification_document_back required">
+                    <label class="label" for="business_verification_document_back">
+                    <span><?= /*@noEscape*/ __('Verification Document Back Side') ?></span></label>
+                    <div class="control">
+                        <input type="file" id="document-back" name="document_back"
+                        title="Document Back" class="banner" size="26" />
+                    </div>
+                </div>
+
+            </script>
+            <script id="individual_template" type="text/x-magento-template">
+                <div class="field business_line1 required">
+                    <label class="label" for="business_line1">
+                    <span><?= /*@noEscape*/ __('Individual Address Line 1') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[individual][address][line1]" value=""
+                        id="business_address" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_line2 ">
+                    <label class="label" for="business_line1">
+                    <span><?= /*@noEscape*/ __('Individual Address Line 2') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[individual][address][line2]" value=""
+                        id="business_address" class="input-text" />
+                    </div>
+                </div>
+                <div class="field business_city required">
+                    <label class="label" for="business_city">
+                    <span><?= /*@noEscape*/ __('Individual Address City') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[individual][address][city]" value=""
+                        id="business_address" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_state required">
+                    <label class="label" for="business_state">
+                    <span><?= /*@noEscape*/ __('Individual Address State') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[individual][address][state]" value=""
+                        id="business_address" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_postal_code required">
+                    <label class="label" for="business_postal_code">
+                    <span><?= /*@noEscape*/ __('Individual Address Postal Code') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[individual][address][postal_code]" value=""
+                        id="business_address" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_first_name required">
+                    <label class="label" for="business_first_name">
+                    <span><?= /*@noEscape*/ __('Individual First Name') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[individual][first_name]" value=""
+                        id="business_first_name" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_last_name required">
+                    <label class="label" for="business_last_name">
+                    <span><?= /*@noEscape*/ __('Individual Last Name') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[individual][last_name]" value=""
+                        id="business_last_name" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_dob required">
+                    <label class="label" for="business_dob">
+                    <span><?= /*@noEscape*/ __('Individual Date of Birth') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[individual][dob]" value=""
+                        id="business_dob" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_phone required">
+                    <label class="label" for="business_phone">
+                    <span><?= /*@noEscape*/ __('Individual Phone') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[individual][phone]" value=""
+                        id="business_phone" class="input-text required-entry validate-length maximum-length-10
+                         minimum-length-10 validate-digits" />
+                    </div>
+                </div>
+                <div class="field business_id_number required">
+                    <label class="label" for="business_id_number">
+                    <span><?= /*@noEscape*/ __('Individual Id Number') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[individual][id_number]" value=""
+                        id="business_id_number" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field business_url required">
+                    <label class="label" for="business_url">
+                    <span><?= /*@noEscape*/ __('Business Website') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[business_profile][url]" value=""
+                        id="business_url" class="input-text required-entry validate-url" />
+                    </div>
+                </div>
+                <div class="field business_verification_document_front required">
+                    <label class="label" for="business_verification_document_front">
+                    <span><?= /*@noEscape*/ __('Verification Document Front Side') ?></span></label>
+                    <div class="control">
+                        <input type="file" id="document-front" name="document_front" title="Document Front"
+                        class="banner" size="26" />
+                    </div>
+                </div>
+                <div class="field business_verification_document_back required">
+                    <label class="label" for="business_verification_document_back">
+                    <span><?= /*@noEscape*/ __('Verification Document Back Side') ?></span></label>
+                    <div class="control">
+                        <input type="file" id="document-back" name="document_back" title="Document Back"
+                        class="banner" size="26" />
+                    </div>
+                </div>
+            </script>
+            <script id="owner_template" type="text/x-magento-template">
+                <div class="field owner_line1 required">
+                    <label class="label" for="owner_line1">
+                    <span><?= /*@noEscape*/ __('Owner Address Line 1') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[owner][address][line1]" value=""
+                        id="owner_address" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field owner_line2 ">
+                    <label class="label" for="owner_line1">
+                    <span><?= /*@noEscape*/ __('Owner Address Line 2') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[owner][address][line2]" value=""
+                        id="owner_address" class="input-text" />
+                    </div>
+                </div>
+                <div class="field owner_city required">
+                    <label class="label" for="owner_city">
+                    <span><?= /*@noEscape*/ __('Owner Address City') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[owner][address][city]" value=""
+                        id="owner_address" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field owner_state required">
+                    <label class="label" for="owner_state">
+                    <span><?= /*@noEscape*/ __('Owner Address State') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[owner][address][state]" value=""
+                        id="owner_address" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field owner_postal_code required">
+                    <label class="label" for="owner_postal_code">
+                    <span><?= /*@noEscape*/ __('Owner Address Postal Code') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[owner][address][postal_code]" value=""
+                        id="owner_address" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field owner_first_name required">
+                    <label class="label" for="owner_first_name">
+                    <span><?= /*@noEscape*/ __('Owner First Name') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[owner][first_name]" value=""
+                        id="owner_first_name" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field owner_last_name required">
+                    <label class="label" for="owner_last_name">
+                    <span><?= /*@noEscape*/ __('Owner Last Name') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[owner][last_name]" value=""
+                        id="owner_last_name" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field owner_job_title required">
+                    <label class="label" for="owner_job_title">
+                    <span><?= /*@noEscape*/ __('Owner Job Title') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[owner][job_title]" value=""
+                        id="owner_job_title" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field owner_dob required">
+                    <label class="label" for="owner_dob">
+                    <span><?= /*@noEscape*/ __('Owner Date of Birth') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[owner][dob]" value=""
+                        id="owner_dob" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field owner_phone required">
+                    <label class="label" for="owner_phone">
+                    <span><?= /*@noEscape*/ __('Owner Phone') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[owner][phone]" value=""
+                        id="owner_phone" class="input-text required-entry validate-length maximum-length-10 minimum- 
+                        length-10 validate-digits" />
+                    </div>
+                </div>
+                <div class="field owner_id_number required">
+                    <label class="label" for="owner_id_number">
+                    <span><?= /*@noEscape*/ __('Owner Id Number') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[owner][id_number]" value=""
+                        id="owner_id_number" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field owner_ssn required">
+                    <label class="label" for="owner_ssn">
+                    <span><?= /*@noEscape*/ __('Owner Social Security Number Last 4 digits') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="stripe_user[owner][ssn]" value=""
+                        id="owner_ssn" class="input-text required-entry" />
+                    </div>
+                </div>
+                <div class="field owner_verification_document_front required">
+                    <label class="label" for="owner_verification_document_front">
+                    <span><?= /*@noEscape*/ __('Verification Document Front Side') ?></span></label>
+                    <div class="control">
+                        <input type="file" id="document-front" name="owner_document_front"
+                        title="Document Front" class="banner" size="26" />
+                    </div>
+                </div>
+                <div class="field owner_verification_document_back required">
+                    <label class="label" for="owner_verification_document_back">
+                    <span><?= /*@noEscape*/ __('Verification Document Back Side') ?></span></label>
+                    <div class="control">
+                        <input type="file" id="document-back" name="owner_document_back"
+                        title="Document Back" class="banner" size="26" />
+                    </div>
+                </div>
+            </script>
+
+            <script type="text/x-magento-init">
+                {
+                    "*": {
+                        "customAccount": {
+                                "accountType": ""
+                        }
+                    }
+                }
+            </script>
+
+            <?php
+        }
+    }

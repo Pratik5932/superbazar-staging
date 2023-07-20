@@ -1,0 +1,138 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_MpHyperLocal
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+namespace Webkul\MpHyperLocal\Block;
+
+use Magento\Framework\View\Element\Template\Context;
+use Webkul\MpHyperLocal\Helper\Data as HelperData;
+
+class AddressForm extends \Magento\Framework\View\Element\Template
+{
+    /**
+     * @var Session
+     */
+    /**
+     * @var Webkul\MpHyperLocal\Model\ShipAreaFactory
+     */
+    private $shipArea;
+
+        protected $_registry;
+		protected $ShipAreaFactory;
+		private $httpContext;
+
+
+    /**
+     * @param Context $context,
+     * @param HelperData $helperData,
+     * @param array   $data = []
+     */
+    public function __construct(
+        Context $context,
+        HelperData $helperData,
+		 \Magento\Framework\Registry $registry,
+		 \Webkul\MpHyperLocal\Model\ShipAreaFactory $ShipAreaFactory,
+		 \Magento\Framework\App\Http\Context $httpContext,
+        array $data = []
+    ) {
+        $this->helperData = $helperData;
+		 $this->_registry = $registry;
+		     $this->ShipAreaFactory = $ShipAreaFactory;
+			 $this->httpContext = $httpContext;
+
+        parent::__construct($context, $data);
+    }
+
+    /**
+     * Return ajax url for button.
+     *
+     * @return string
+     */
+	 
+	public function getPostcodes(){
+		$address = $this->isAddressSet();
+		$loca = "";
+		if($address){
+		$loca = $address['address']; 
+		}
+		$product = $this->getCurrentProduct();
+		$storeLocation =  $product->getAttributeText('store_location');
+		$postCodes = [];
+		$collection = $this->ShipAreaFactory->create()
+		->getCollection()
+		->addFieldToSelect('seller_id')
+		->addFieldToFilter('address_type', 'postcode')          
+		->addFieldToFilter('postcode', $storeLocation);
+		$sellerId = $collection->getColumnValues('seller_id');
+		if($storeLocation == "3024" ){
+			$sellerId = array("6637");
+		}
+		$collectionpostcode = $this->ShipAreaFactory->create()
+		->getCollection()
+		->addFieldToSelect('postcode')
+		->addFieldToFilter('address_type', 'postcode')          
+		->addFieldToFilter('seller_id', $sellerId);
+		$postCodes = $collectionpostcode->getColumnValues('postcode');
+		$postCodes[] = $loca;
+		sort($postCodes);
+		$postCodes = implode(',', $postCodes);
+		return $postCodes;
+		
+
+
+		
+	}
+		
+	  public function isCustomerLoggedIn()
+    {        
+	$isLoggedIn = $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
+        return $isLoggedIn;
+    } 
+	
+	 public function getCurrentProduct()
+    {        
+        return $this->_registry->registry('current_product');
+    }  
+    public function getGoogleApiKey()
+    {
+        return trim($this->_scopeConfig->getValue('mphyperlocal/general_settings/google_api_key'));
+    }
+
+    /**
+     * Return ajax url for button.
+     *
+     * @return string
+     */
+    public function getLocationPopupWindow()
+    {
+        return $this->_scopeConfig->getValue('mphyperlocal/general_settings/location_popup_window');
+    }
+
+    /**
+     * getSaveAction
+     * @return string
+     */
+    public function getSaveAction()
+    {
+        return $this->getUrl('mphyperlocal/index/setaddress', ['_secure' => $this->getRequest()->isSecure()]);
+    }
+
+    /**
+     * isAddressSet
+     * @return bool
+     */
+    public function isAddressSet()
+    {
+        return $this->helperData->getSavedAddress();
+    }
+
+    public function getFilter() {
+        return $this->helperData->getCollectionFilter();
+    }
+}

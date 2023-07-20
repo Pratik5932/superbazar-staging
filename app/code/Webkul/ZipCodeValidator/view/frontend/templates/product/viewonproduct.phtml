@@ -1,0 +1,69 @@
+<?php
+/**
+ * Webkul software.
+ * @category Webkul
+ * @package Webkul_ZipCodeValidator
+ * @author Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+
+$helper = $this->helper('Webkul\ZipCodeValidator\Helper\Data');
+$product = $block->getProduct(); 
+$type = $product->getTypeId();
+$stock = $block->getStockValue($product->getId());
+
+if($helper->getEnableDisable()
+	&& ($type != 'virtual' && $type != 'downloadable')
+	&& $block->isDisplayValidatorField($product->getId())
+	&& $stock
+) {
+	$data = json_encode(['url' => $block->getUrl() ]); 
+	$postcode = $block->getCustomerZipcode(); ?>
+	<div class="wk-zcv-zipbox">
+		<div class="wk-zcv-zip">
+			<div class="wk-zcv-wrapper">
+				<div class="wk-zcv-zipcodeform">
+					<form autocomplete="off">
+						<input type="text"
+							name="zipcode"
+							placeholder="<?php echo __('Enter Delivery Zipcode'); ?>"
+							class="wk-zcv-zipform0"
+							title="<?php echo __('Enter Delivery Zipcode'); ?>"
+							data-id="<?php echo $product->getId(); ?>"
+							seller-data-id="0"
+							value="<?php echo $postcode ; ?>"
+							autocomplete="off"/>
+						<div id="wk-zcv-check0" data-pro-id="<?php echo $product->getId(); ?>" data-id="0">
+							<span><?php echo __('Check'); ?></span>
+						</div>
+					</form>
+					<div class="wk-zcv-zipcookie0">
+						<ul id="wk-zcv-addr0"></ul>
+						<ul id="wk-zcv-cookie0"></ul>
+						<ul id="wk-zcv-login0"></ul>
+					</div>
+				</div>
+				<div class="wk-zcv-loader0"></div>
+			</div>
+			<div class="wk-zcv-ziperror0" id="wk-zcv-error"></div>
+			<div class="wk-zcv-zipsuccess0"></div>
+		</div>
+	</div>
+	<div class="wk-zcv-login-popup" id="modal-popup">
+		<span class="close-login-popup">x</span>
+		<?php echo $this->getLayout()->createBlock(
+			"Magento\Customer\Block\Form\Login"
+		)->setTemplate(
+			"Webkul_ZipCodeValidator::customer/form/login.phtml"
+		)->toHtml();?>
+	</div>
+	<script type="text/x-magento-init">
+	{
+		"body": {
+			"Webkul_ZipCodeValidator/js/viewonproduct": <?php echo $data ?>
+		}
+	}
+	</script>
+<?php
+}?>

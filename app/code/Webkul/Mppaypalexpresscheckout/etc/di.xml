@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Mppaypalexpresscheckout
+ * @author    Webkul Software Private Limited
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Webkul\Mppaypalexpresscheckout\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Webkul\Mppaypalexpresscheckout\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">marketplaceExpressCheckout</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Webkul\Mppaypalexpresscheckout\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magento\GroupedProduct\Block\Order\Email\Items\Order\Grouped" type="Webkul\Mppaypalexpresscheckout\Block\Order\Grouped" />
+    <type name="\Webkul\Marketplace\Helper\Data">
+        <plugin name="Webkul_Mppaypalexpresscheckout::updatedMpHelperData"
+                type="Webkul\Mppaypalexpresscheckout\Plugin\Helper\Data"
+                sortOrder="101" />
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mppaypalexpresscheckout_sellerdetails_list_data_source" xsi:type="string">Webkul\Mppaypalexpresscheckout\Model\ResourceModel\Mppaypalexpresscheckout\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Webkul\Mppaypalexpresscheckout\Model\ResourceModel\Mppaypalexpresscheckout\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">marketplace_mppaypalexpresscheckout</argument>
+            <argument name="eventPrefix" xsi:type="string">mppaypalexpresscheckout_sellerdetails_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">sellerdetails_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Webkul\Mppaypalexpresscheckout\Model\ResourceModel\Mppaypalexpresscheckout</argument>
+        </arguments>
+    </type>
+    <virtualType name="MppaypalexpresscheckoutGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Webkul\Mppaypalexpresscheckout\Model\ResourceModel\Mppaypalexpresscheckout\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">MarketplaceGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Sales\Model\Order\Creditmemo\Total\Tax">
+        <plugin name="Webkul_Mppaypalexpresscheckout::afterCollect" type="Webkul\Mppaypalexpresscheckout\Plugin\Model\Order\Creditmemo\Total\Tax" sortOrder="100" />
+    </type>
+</config>

@@ -1,0 +1,367 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ * 
+ *
+ *
+ * @category  Webkul
+ * @package   Webkul_MobikulCore
+ * @author    Webkul <support@webkul.com>
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html ASL Licence
+ * @link      https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="webkul" translate="label" sortOrder="10">
+            <label>Webkul</label>
+        </tab>
+        <section id="mobikul" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Mobikul</label>
+            <tab>webkul</tab>
+            <resource>Webkul_MobikulCore::config_mobikul</resource>
+            <group id="configuration" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Mobikul Basic Configuration</label>
+                <field id="apiusername" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Username</label>
+                </field>
+                <field id="apikey" translate="label" type="obscure" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Password</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="pagesize" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Collection Page Size</label>
+                    <validate>validate-digits validate-not-nigative-number validate-zero-or-greater validate-digits-range digits-range-1-100</validate>
+                </field>
+                <field id="featuredproduct" translate="label" sortOrder="4" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable random featured product in home page?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cms" translate="label" sortOrder="5" type="multiselect" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allowed CMS Pages</label>
+                    <source_model>Webkul\MobikulCore\Model\Cmspages</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+            <group id="notification" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>FCM Push Notification Parameters</label>
+                <field id="apikey" translate="label" sortOrder="1" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>API key</label>
+                </field>
+                <field id="andoridtopic" translate="label" sortOrder="2" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Android Topic</label>
+                    <comment>eg. local</comment>
+                </field>
+                <field id="iostopic" translate="label" sortOrder="3" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>iOS Topic</label>
+                    <comment>eg. local</comment>
+                </field>
+            </group>
+            <group id="searchsuggestion" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Mobikul Catalog Search Configuration</label>
+                <field id="displaytag" translate="label" sortOrder="1" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Display Tags in Search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tagcount" translate="label" sortOrder="2" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Number of Tags to display in Search</label>
+                    <depends>
+                        <field id="displaytag">1</field>
+                    </depends>
+                </field>
+                <field id="displayproduct" translate="label" sortOrder="3" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Display Products in Search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="productcount" translate="label" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Number of Products to display in Search</label>
+                    <depends>
+                        <field id="displayproduct">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="appdownload" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Application Download from Website</label>
+                <field id="allowAndroid" translate="label" sortOrder="1" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable android application download</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="androidlink" translate="label" sortOrder="2" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Your application's, play store application link</label>
+                    <depends>
+                        <field id="allowAndroid">1</field>
+                    </depends>
+                    <validate>required-entry validate-url</validate>
+                </field>
+                <field id="allowiOS" translate="label" sortOrder="3" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable ios application download</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="ioslink" translate="label" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Your application's, app store application link</label>
+                    <depends>
+                        <field id="allowiOS">1</field>
+                    </depends>
+                    <validate>required-entry validate-url</validate>
+                </field>
+                <field id="enabletoplink" translate="label" sortOrder="5" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Top link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enablebottomlink" translate="label" sortOrder="6" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Bottom link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="downloadlinktheme" translate="label" sortOrder="7" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Choose Download link theme</label>
+                    <source_model>Webkul\MobikulCore\Model\System\Downloadlinktheme</source_model>
+                </field>
+            </group>
+            <group id="cachesettings" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Mobikul Api Cache Settings</label>
+                <field id="enable" translate="label" sortOrder="1" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Cache</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="counter" translate="label" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Refresh cache rate</label>
+                    <validate>required-entry validate-zero-or-greater</validate>
+                    <tooltip>Cache  will be refreshed automatically, after provided number of times when api called.</tooltip>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="clear" translate="label" sortOrder="4" type="button" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Clear Cache</label>
+                    <frontend_model>Webkul\MobikulCore\Block\Adminhtml\Clearcache</frontend_model>
+                </field>
+            </group>
+            <group id="themeConfig" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Home Layout Configuration</label>
+                <field id="themeType" translate="label" sortOrder="5" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Layout Type</label>
+                    <source_model>Webkul\MobikulCore\Model\ThemeType</source_model>
+                </field>
+            </group>
+             <group id="tab_category_view" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>App Category View</label>
+                <field id="tab_category_view" translate="label" sortOrder="5" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Category Type</label>
+                    <source_model>Webkul\MobikulCore\Model\CategoryViewType</source_model>
+                </field>
+            </group>
+            <group id="launcher_icon_config" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Launcher icon configuration</label>
+                <field id="launcher_icon_type" translate="label" sortOrder="5" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Launcher Icon Type</label>
+                    <source_model>Webkul\MobikulCore\Model\IconType</source_model>
+                    <!-- <comment>This is a one time configuration if you change this setting after app configuration you have to reconfigure the app.</comment> -->
+                </field>
+
+                <!-- <field id="launcher_icon_one" translate="label comment" type="image" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload Launcher Icon</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mobikul/launcher</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">mobikul/launcher</upload_dir>
+                    <depends>
+                        <field id="launcher_icon_type">1</field>
+                    </depends>
+                </field>
+                <field id="launcher_zip_one" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Upload Launcher Zip</label>
+                    <comment>Allowed file types: zip.</comment>
+                    <backend_model>Webkul\MobikulCore\Model\Config\Backend\LauncherZip</backend_model>
+                    <upload_dir config="system" scope_info="1">mobikul/launcherzip</upload_dir>
+                    <depends>
+                        <field id="launcher_icon_type">1</field>
+                    </depends>
+                </field>
+
+                <field id="launcher_icon_two" translate="label comment" type="image" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload Launcher Icon</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mobikul/launcher</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">mobikul/launcher</upload_dir>
+                    <depends>
+                        <field id="launcher_icon_type">2</field>
+                    </depends>
+                </field>
+                <field id="launcher_zip_two" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Upload Launcher Zip</label>
+                    <comment>Allowed file types: zip.</comment>
+                    <backend_model>Webkul\MobikulCore\Model\Config\Backend\LauncherZip</backend_model>
+                    <upload_dir config="system" scope_info="1">mobikul/launcherzip</upload_dir>
+                    <depends>
+                        <field id="launcher_icon_type">2</field>
+                    </depends>
+                </field>
+
+                <field id="launcher_icon_three" translate="label comment" type="image" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload Launcher Icon</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mobikul/launcher</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">mobikul/launcher</upload_dir>
+                    <depends>
+                        <field id="launcher_icon_type">3</field>
+                    </depends>
+                </field>
+                <field id="launcher_zip_three" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Upload Launcher Zip</label>
+                    <comment>Allowed file types: zip.</comment>
+                    <backend_model>Webkul\MobikulCore\Model\Config\Backend\LauncherZip</backend_model>
+                    <upload_dir config="system" scope_info="1">mobikul/launcherzip</upload_dir>
+                    <depends>
+                        <field id="launcher_icon_type">3</field>
+                    </depends>
+                </field>
+
+                <field id="launcher_icon_four" translate="label comment" type="image" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload Launcher Icon</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mobikul/launcher</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">mobikul/launcher</upload_dir>
+                    <depends>
+                        <field id="launcher_icon_type">4</field>
+                    </depends>
+                </field>
+                <field id="launcher_zip_four" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Upload Launcher Zip</label>
+                    <comment>Allowed file types: zip.</comment>
+                    <backend_model>Webkul\MobikulCore\Model\Config\Backend\LauncherZip</backend_model>
+                    <upload_dir config="system" scope_info="1">mobikul/launcherzip</upload_dir>
+                    <depends>
+                        <field id="launcher_icon_type">4</field>
+                    </depends>
+                </field>
+
+                <field id="launcher_icon_five" translate="label comment" type="image" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload Launcher Icon</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mobikul/launcher</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">mobikul/launcher</upload_dir>
+                    <depends>
+                        <field id="launcher_icon_type">5</field>
+                    </depends>
+                </field>
+                <field id="launcher_zip_five" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Upload Launcher Zip</label>
+                    <comment>Allowed file types: zip.</comment>
+                    <backend_model>Webkul\MobikulCore\Model\Config\Backend\LauncherZip</backend_model>
+                    <upload_dir config="system" scope_info="1">mobikul/launcherzip</upload_dir>
+                    <depends>
+                        <field id="launcher_icon_type">5</field>
+                    </depends>
+                </field> -->
+            </group>
+            <group id="dark_mode_config" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Dark Mode Theme Configuration</label>
+                <field id="dark_app_button_color" translate="label" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>App Button Color</label>
+                    <frontend_model>Webkul\MobikulCore\Block\Color</frontend_model> 
+                    <validate>validate-hexadecimal-color-length</validate>
+                </field>
+                <field id="dark_app_theme_color" translate="label" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>App Theme Color</label>
+                    <frontend_model>Webkul\MobikulCore\Block\Color</frontend_model> 
+                    <validate>validate-hexadecimal-color-length</validate>
+                </field>
+                <field id="dark_app_theme_text_color" translate="label" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>App Theme Text Color</label>
+                    <frontend_model>Webkul\MobikulCore\Block\Color</frontend_model> 
+                    <validate>validate-hexadecimal-color-length</validate>
+                </field>
+                <field id="dark_button_text_color" translate="label" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>App Button Text Color</label>
+                    <frontend_model>Webkul\MobikulCore\Block\Color</frontend_model> 
+                    <validate>validate-hexadecimal-color-length</validate>
+                </field>
+                <!-- <field id="dark_app_background_color" translate="label" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>App Background Color</label>
+                    <frontend_model>Webkul\MobikulCore\Block\Color</frontend_model> 
+                </field> -->
+                <field id="dark_app_demo" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Webkul\MobikulCore\Block\DarkAppDemo</frontend_model>
+                </field>
+                <field id="dark_logo" translate="label comment" type="image" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload App Logo</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mobikul/logo</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">mobikul/logo</upload_dir>
+                    <comment>This will show Logo in App</comment>
+                </field>
+                <field id="dark_splash_image" translate="label comment" type="image" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload Splash Image</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mobikul/splash</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">mobikul/splash</upload_dir>
+                    <comment>Please upload image in 18:9 ratio.</comment>
+                </field>
+            </group>
+            <group id="light_mode_config" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                <!-- <label>Logo and Icons</label> -->
+                <label>Light Mode Theme Configuration</label>
+                <field id="light_app_button_color" translate="label" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>App Button Color</label>
+                    <frontend_model>Webkul\MobikulCore\Block\Color</frontend_model> 
+                    <validate>validate-hexadecimal-color-length</validate>
+                </field>
+                <field id="light_app_theme_color" translate="label" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>App Theme Color</label>
+                    <frontend_model>Webkul\MobikulCore\Block\Color</frontend_model> 
+                    <validate>validate-hexadecimal-color-length</validate>
+                </field>
+                <field id="light_app_theme_text_color" translate="label" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>App Theme Text Color</label>
+                    <frontend_model>Webkul\MobikulCore\Block\Color</frontend_model> 
+                    <validate>validate-hexadecimal-color-length</validate>
+                </field>
+                <field id="light_button_text_color" translate="label" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>App Button Text Color</label>
+                    <frontend_model>Webkul\MobikulCore\Block\Color</frontend_model> 
+                    <validate>validate-hexadecimal-color-length</validate>
+                </field>
+                <!-- <field id="light_app_background_color" translate="label" sortOrder="4" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>App Background Color</label>
+                    <frontend_model>Webkul\MobikulCore\Block\Color</frontend_model> 
+                </field> -->
+                <field id="light_app_demo" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Webkul\MobikulCore\Block\LightAppDemo</frontend_model>
+                </field>
+                <field id="light_logo" translate="label comment" type="image" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload App Logo</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mobikul/logo</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">mobikul/logo</upload_dir>
+                    <comment>This will show Logo in App</comment>
+                </field>
+                <field id="light_splash_image" translate="label comment" type="image" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload Splash Image</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mobikul/splash</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">mobikul/splash</upload_dir>
+                    <comment>Please upload image in 18:9 ratio.</comment>
+                </field>
+            </group>
+            <group id="walkthrough" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Walk Through settings</label>
+                <field id="walkthrough_version" translate="label" sortOrder="3" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Walk Through Version</label>
+                    <backend_model>Webkul\MobikulCore\Model\Config\Backend\Walkthrough</backend_model>
+                    <comment>Version shoud be greater than the current version. Ex: Current version is 1.0 then you shoud enter 1.1</comment>
+                    <validate>required-entry validate-number</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
