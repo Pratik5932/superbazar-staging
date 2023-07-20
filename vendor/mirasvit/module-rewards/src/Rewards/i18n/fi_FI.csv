@@ -1,0 +1,353 @@
+"My Reward Points","Omat korotuspisteet"
+"Checkout now and earn <b>%1</b> for this order.","<b>Tarkista</b> nyt ja ansaitse <b>%1</b> tilauksesta."
+"Applies only to registered customers, may vary when logged in.","Koskee vain rekisteröityneitä asiakkaita, saattaa vaihdella kirjautuneena."
+"Possible discount %1 %2","Mahdollinen alennus %1 %2"
+"Earn %1 %2","Ansaita %1 %2"
+Grid,Ruudukko
+List,Lista
+All,Kaikki
+"Referral %1","Viittaus %1"
+"Something went wrong while saving your subscription.","Jotain meni pieleen tallentamassa tilaustasi."
+"We removed your subscription on expiring points notification.","Poistimme tilauksesi vanhentumispisteiden ilmoituksessa."
+"Cannot apply points.","Ei voi käyttää pisteitä."
+"You've earned %1 for Facebook Like!","Olet ansainnut %1 Facebookille!"
+"You've earned %1 for Facebook Share!","Olet ansainnut %1 Facebook Share!"
+"Facebook Like Points has been canceled","Facebook Like Points on peruutettu"
+"You've earned %1 for Google+!","Olet ansainnut %1 Google+ -palvelulle!"
+"G+1 Points has been canceled","G + 1 pistettä on peruutettu"
+"You've earned %1 for Pin!","Olet ansainnut %1 Pinille!"
+"Invalid form key. Try again","Virheellinen lomaketta. Yritä uudelleen"
+"Customer with email %1 has been already invited to our store","Asiakas sähköpostilla %1 on jo kutsuttu kauppaan"
+"Your invitations were sent. Thanks!","Kutsuasi lähetettiin. Kiitos!"
+"You've earned %1 for Tweet!","Olet ansainnut %1: n Tweet!"
+"You received %1 for signing up","Sait %1 rekisteröitymistä varten"
+"You received %1 for sending this product","Olet saanut %1 tämän tuotteen lähettämiseen"
+"You received %1 for sign up for newsletter","Sait %1 ilmoittautumiseen uutiskirjeeksi"
+"You received %1 for sign up for push notifications","Sait %1 ilmoittaaksesi push-ilmoitukset"
+"You will receive %1 after approving of this tag","Saat %1 tämän tunnuksen hyväksymisen jälkeen"
+"You will receive %1 after approving of this review","Saat %1 tämän tarkistuksen hyväksymisen jälkeen"
+"You received %1 for sign up of referral customer.","Sait %1 vastaanottomiehen rekisteröimiseksi."
+"You received %1 for order of referral customer.","Sait %1 vastaanottajan tilaukselle."
+"Happy birthday! You received %1.","Hyvää syntymäpäivää! Sait %1."
+"You received %1 for joining the affiliate program.","Sait %1 liittyäkseen kumppaniohjelmaan."
+"%1 were applied.","%1 sovellettiin."
+"Minimum number is %1.","Vähimmäismäärä on %1."
+"Maximum number is %1.","Enimmäismäärä on %1."
+"%1 was canceled.","%1 peruttiin."
+"Cannot apply %1.","Ei voida soveltaa %1."
+"You can use the following variables:","Voit käyttää seuraavia muuttujia:"
+Pattern,Kuvio
+"Attribute Value",Attribuuttiarvo
+Default,Oletusarvo
+Integer,Kokonaisluku
+Price,Hinta
+"Strip Tags","Strip Tagit"
+"Primary Attributes","Ensisijaiset ominaisuudet"
+"Stock Attributes",Kantaominaisuudet
+"Prices & Taxes","Hinnat ja verot"
+Images,Kuvat
+"Custom Attributes","Mukautetut määritykset"
+Mapping,Kartoitus
+Category,Kategoria
+"Amasty Meta Tags","Amasty Meta Tags"
+"Others Attributes","Muut ominaisuudet"
+Flexible,Joustava
+Fixed,Kiinteä
+"Customer signs up in store","Asiakas kirjautuu liikkeelle"
+"Customer places order","Asiakas tekee tilauksen"
+"Customer refer a friend","Asiakas viittaa ystävällesi"
+"Customer adds tag to a product","Asiakas lisää tagin tuotteeseen"
+"Customer writes a product review","Asiakas kirjoittaa tuotteen tarkastelun"
+"Customer has a birthday","Asiakkaalla on syntymäpäivä"
+"Customer is inactive for long time","Asiakas ei ole aktiivinen pitkään"
+"Newsletter sign up","Ilmoittaudu uutiskirjeeseen"
+"Facebook Share",Facebook-jako
+"Facebook Like","Facebook Like"
+"Twitter Tweet","Twitter Tweet"
+"Google+ Like","Google+ Like"
+"Pinterest Pin","Pinterest Pin"
+"Customer joins the affiliate program","Asiakas liittyy kumppaniohjelmaan"
+"Push Notifications sign up","Push Ilmoitukset Rekisteröidy"
+"Referred customer signs up in store","Viitattu asiakas kirjautuu liikkeelle"
+"Order from referred customer","Tilaus asiakkaalta"
+"Points to Currency","Pisteitä valuuttaan"
+"Currency to Points","Valuutta pisteisiin"
+"Customer Account > My Reward Points","Asiakastili&gt; Omat Palkintopisteet"
+"Customer Account > My Referrals","Asiakastili&gt; Omat viittaukset"
+"Cart Page","Ostoskori Sivu"
+"Message Sent","Viesti lähetetty"
+"Signed Up",Allekirjoitettu
+"Made Order",Tilaus
+"Visited by Referral Link","Vieraillut referral linkillä"
+"Subtotal + Tax","Välisumma + vero"
+"Subtotal + Tax + Shipping","Subtotal + Tax + Shipping"
+"Product Rule","Tuotteen sääntö"
+"Cart Rule","Cart Rule"
+"Behavior Rule",Käyttäytymissääntö
+"Transaction #%1 is expired","Tapahtuma #%1 on vanhentunut"
+"Update the Product","Päivitä tuote"
+"Is Rewards Points used","Käytetään palkintojen pisteitä"
+"Coupon Used","Käytetty kuponki"
+"Coupon Code",Kuponkikoodi
+No,Ei
+Yes,Joo
+"Conditions Combination","Ehdot Yhdistelmä"
+"Product attribute combination","Tuotemääritteen yhdistelmä"
+"Products subselection","Tuotteiden valinta"
+"Conditions combination","Olosuhteiden yhdistelmä"
+"Cart Attribute","Ostoskori ominaisuus"
+Customer,Asiakas
+"Last 7-days Clicks","Viimeiset 7 päivän napsautukset"
+"Last 7-days Orders","Viimeiset 7 päivän tilaukset"
+"Last 7-days Revenue","Viimeiset 7 päivän tulot"
+"Is Referee","Tuomari on"
+"Is Referral","On viittaus"
+Email,Sähköposti
+Group,Ryhmä
+"Lifetime Sales",Lifetime-myynti
+"Lifetime Spent Points","Lifetime Spent Points"
+"Number of Orders","Tilausten määrä"
+"Is subscriber of newsletter","Onko uutiskirjeen tilaaja"
+"Number of reviews","Arvostelujen lukumäärä"
+"Number of referred friends signups","Kavereiden ilmoittautumisten lukumäärä"
+"Number of referred friends orders","Lähetettyjen ystävien tilausten määrä"
+"Sum of referred friends orders","Ystävien ystävien tilausten summa"
+"Number of referrals who ordered at least once","Vähintään kerran tilannut siirtopyyntöjen määrä"
+"Not registered","Ei rekisteröity"
+"Attribute Set","Attribute Set"
+Quantity,Määrä
+"Product Type",Tuotetyyppi
+"Base Image",Peruskuva
+Thumbnail,Thumbnail
+"Small Image","Pieni kuva"
+"Base Image Size (bytes)","Peruskuvan koko (tavua)"
+"Thumbnail Size (bytes)","Pikkukuvan koko (tavua)"
+"Small Image Size (bytes)","Pienikokoinen kuvakoko (tavua)"
+"PHP Condition","PHP kunnossa"
+"Base Price",Lähtöhinta
+"Final Price","Lopullinen hinta"
+"Special Price",Erikoishinta
+"Open Chooser","Avaa valitsija"
+"Referred: Group","Viitattu: Ryhmä"
+"Referred: Lifetime Sales","Viitattu: elinikäinen myynti"
+"Referred: Number of Orders","Viitattu: Tilausten määrä"
+"Referred: Is subscriber of newsletter","Viitattu: Onko uutiskirjeen tilaaja"
+"Referred: Number of reviews","Viitattu: arvioiden määrä"
+"Please specify a website.","Määritä verkkosivusto."
+"Please specify a customer email.","Määritä asiakkaan sähköpostiosoite."
+"We found an invalid value in a website column.","Sivustoparametrin virheellinen arvo löytyi."
+"Please enter a valid email.","Anna kelvollinen sähköposti."
+"Please make sure attribute ""%1"" is not empty.","Varmista, että attribuutti &quot;%1&quot; ei ole tyhjä."
+"We can't find a customer who matches this email and website code.","Emme löydä asiakkaita, jotka vastaavat tätä sähköpostiosoitetta ja verkkosivustokoodia."
+"-- Please Select --","-- Ole hyvä ja valitse --"
+"Discount Used","Käytetty alennus"
+"Custom Product Attributes","Mukautetut tuoteominaisuudet"
+"- Disable these emails -","- Poista nämä sähköpostit käytöstä -"
+"Give X points to customer","Anna X-pisteitä asiakkaalle"
+"Give X points for every spent Y","Anna X-pistettä jokaiselle Y: lle"
+"Give X points for every Z quantity","Anna X-pistettä jokaiselle Z-määrälle"
+"For every Y, give X points","Jokaiselle Y: lle, anna X-pisteitä"
+Pending,Odotettaessa
+Approved,Hyväksytty
+Discarded,"Käytöstä poistetut"
+"You do not have permissions to create transactions. Please contact your site administrator.","Sinulla ei ole oikeuksia luoda tapahtumia. Ota yhteyttä sivuston ylläpitäjään."
+"%1 has been added.","%1 on lisätty."
+"%1 has been deducted.","%1 on vähennetty."
+"You earned %1 and spent %2 for this order.","Ansaitsit %1 ja käytät %2 tätä tilausta varten."
+"You spent %1 for this order.","Käytit %1 tätä tilausta varten."
+"You earned %1 for this order.","Ansaitsit tämän tilauksen %1."
+"Earned points will be enrolled to your account after we finish processing your order.","Ansaitut pisteet kirjataan tilillesi, kun olemme suorittaneet tilauksesi käsittelyn."
+"Rewards error occurred on the server. Please try to place the order again.","Palvelimessa oli palkkio-virhe. Yritä antaa tilaus uudelleen."
+"Earn at least %1 %2","Ansaitse vähintään %1 %2"
+"Reward Points",Palkintopisteet
+Edit,Muokata
+Back,Takaisin
+Delete,Poistaa
+"Are you sure you want to do this?","Haluatko varmasti tehdä tämän?"
+Reset,"Asettaa uudelleen"
+"Save and Continue Edit","Tallenna ja jatka Muokkaa"
+Save,Tallentaa
+"Points Summary","Pisteen yhteenveto"
+"To unsubscribe from points expiring notification click %1","Jos haluat irtisanoa pisteitä, jotka vanhentuvat, napsauta %1"
+"You have <b>%1</b> in your account.","Sinulla on <b>tiliäsi %1</b> ."
+"Transactions History",Tapahtumahistoria
+ID,ID
+Comment,Kommentti
+Points,Pistettä
+Created,Luotu
+Expires,Vanhenee
+"There are no Transactions.","Tapahtumia ei ole."
+"Pending Transactions","Odottavat tapahtumat"
+Order,Tilata
+Status,Status
+"Your points balance will expire in %1 days.","Pisteiden saldo vanhenee %1 päivää."
+"Visit My Reward Points Section","Käy Omat Palkitsemispisteet -osiossa"
+"Login to earn %1 for sharing!","Kirjaudu sisään ansaitsemaan %1 jakamista varten!"
+"Earn %1 for sharing!","Ansaitse %1 jakamista varten!"
+"Like this page and earn %1","Kuten tämä sivu ja ansaitse %1"
+Share,Jaa
+"Share this page and earn %1","Jaa tämä sivu ja ansaitse %1"
+"Plus this page and earn %1","Plus tämä sivu ja ansaitse %1"
+"Pin this page and earn %1","Napauta tämä sivu ja ansaitse %1"
+"Refer Friends",Kavereita
+"Refer friend and earn %1. More friends more points!","Kerro kaverille ja ansaitse %1. Lisää ystäviä lisää pisteitä!"
+Tweet,Piipittää
+"Tweet this page and earn %1","Twittaa tämä sivu ja ansaitse %1"
+"Check this out!","Tsekkaa tämä!"
+"You have <b>%1</b> available.","Sinulla on <b>%1</b> käytettävissä."
+"Enter amount of points to spend:","Anna vietettävien pisteiden määrä:"
+"Use maximum %1","Käytä korkeintaan %1"
+"Apply Points","Käytä pisteitä"
+Apply,Käytä
+"Cancel Points","Peruuta pisteitä"
+Cancel,Peruuttaa
+"Use %1","Käytä 1__"
+"You Earn","Sinä ansaitset"
+"You Spend",Käytät
+"Discount amount","Alennuksen määrä"
+"Use Reward Points","Käytä palkitsemispisteitä"
+"This is a required field","Tämä on pakollinen kenttä"
+"Subscription to Points Expiration Notification","Pisteiden päättymisilmoituksen tilaaminen"
+"Earning %1","Ansainta %1"
+"Buy to earn %1","Osta ansaita %1"
+"You'll earn %1 for this item","Ansaitset tämän kohteen kohdalla %1"
+"Share with Friends","Jaa ystävien kanssa"
+"Share the referral link in the social media and get points!","Jaa viittauslinkki sosiaalisessa mediassa ja saat pisteitä!"
+"Tweet on Twitter","Tweet Twitterissä"
+"Your referral link:",Viittauslinkisi:
+"Send Invitations","Lähettää kutsuja"
+"Enter contacts of your friends to invite them.","Anna ystävien yhteystiedot kutsumalla heitä."
+Name,Nimi
+Message,Viesti
+Referrals,Lähetteet
+"Referred by link","Viitattu linkin kautta"
+"There are no Referrals","Viittauksia ei ole"
+"You have","Sinulla on"
+available.,käytettävissä.
+"Use maximum","Käytä maksimiarvoa"
+"Enter amount of points to spend","Anna vietettävien pisteiden määrä"
+Use,Käyttää
+"Notification Rules' messages","Ilmoitussääntöjen viestit"
+Template,Sapluuna
+"Notification Rule Template",Ilmoitussääntömalli
+"My Referrals","Omat viittaukset"
+"Referrals List",Viittausluettelo
+today,tänään
+ago,sitten
+"Cannot delete transaction with id %1","Transaktiota ei voi poistaa tunnuksella %1"
+"Expires in",Vanhenee
+"How to earn","Miten ansaita"
+"Spend points and receive discounts","Vietä pisteitä ja saat alennuksia"
+"Total number of referred friends: %1","Ystävien kokonaismäärä: %1"
+"Or you may send this link in your messages to anyone","Tai voit lähettää tämän linkin viesteihisi kenelle tahansa"
+"Your Transactions",Tapahtumat
+"My Points","Omat pisteet"
+"Share & Save","Jaa Tallenna"
+History,Historia
+"in %1 %2","vuonna %1 %2"
+"in %1 days","%1 päivää"
+"in %1 day","%1 päivää"
+"%1 %2 ago","%1 %2 sitten"
+"%1 days ago","__1 päivää sitten"
+"%1 day ago","__1 päivä sitten"
+"How to earn points","Miten pisteitä saadaan"
+"You have invited %1 friends","Olet kutsunut %1 ystäviä"
+"Share the referral link in the social media","Jaa viittauslinkki sosiaalisessa mediassa"
+"You may send this link in your messages to anyone","Voit lähettää tämän linkin viesteihisi kenelle tahansa"
+"Page not found.","Sivua ei löydetty."
+"Customer tier up","Asiakasryhmä ylöspäin"
+"Customer tier down","Asiakaslasku alas"
+"sum of earned points","ansaittujen pisteiden summa"
+"sum of spent %1","käytetty määrä %1"
+"Customer does not assign to website","Asiakas ei osoita verkkosivustoa"
+"Payment Method",Maksutapa
+"This tier is assign to %1 customer(s). Please reassign customer(s) to other tier.","Tämä taso on osoitettu %1 asiakkaalle. Sijoita asiakkaat uudelleen toiseen tasoon."
+"You Spend Points","Voit käyttää pisteitä"
+"Spend Amount","Kuluta summaa"
+"Spend Minimum Points","Käytä minimipisteitä"
+"Spend Maximum Points","Käytä enimmäispisteitä"
+"Cannot delete tier with id %1","Riviä ei voi poistaa tunnuksella %1"
+"Unable to find tier for customer ""%1"". Please check tier configuration.","Asiakkaalle ei löydy tasoa &quot;%1&quot;. Tarkista riviasetukset."
+"Customer Earning Style","Asiakkaan ansaitseva tyyli"
+"Number of Points (X)","Pisteiden määrä (X)"
+"Step (Y)","Vaihe (Y)"
+"In base currency",Perusvaluutassa
+"Quantity Step (Z)","Määrä Vaihe (Z)"
+"Maximum number of earned points for one customer per day","Ansaittujen pisteiden enimmäismäärä yhdelle asiakkaalle päivässä"
+"Set 0 to disable limit","Aseta 0 poistaaksesi rajan"
+"Do not change","Älä vaihda"
+"Assign customer to Group","Määritä asiakas ryhmään"
+"Earn Maximum","Ansaitse maksimi"
+"Maximum Distributed Points","Suurin hajautettu piste"
+Tiers,Kolmas
+"%1 for each $%2","%1 jokaisesta $ %2"
+"All Groups","Kaikki ryhmät"
+Actions,Toimet
+"Points spending style","Pisteiden menotyyli"
+"For each spent X points","Jokaiselle kulutetulle X-pisteelle"
+"Number of points.",Pistemäärä.
+"Customer receive Y discount","Asiakas saa Y-alennuksen"
+"You can enter amount in base currency or percent. e.g. 100 or 5%.","Voit syöttää summan perusvaluuttaan tai prosenttiin. esim. 100 tai 5%."
+"You can enter amount of points or percent. e.g. 100 or 5%. Leave empty to disable.","Voit kirjoittaa pistemäärän tai prosenttiosuuden. esim. 100 tai 5%. Jätä tyhjäksi poistaaksesi."
+"Spend minimum","Käytä vähimmäismäärää"
+"Spend maximum","Vietä maksimi"
+"Minimum sum of spent %1","Käytetyn summan vähimmäismäärä %1"
+"Minimum points number to reach the tier","Vähimmäispistemäärä, jotta saavutetaan taso"
+"Delete the record with ID ""%1""","Poista tietue ID: llä &quot;%1&quot;"
+"Are you sure you wan't to delete the record with ID ""%1""?","Oletko varma, että et halua poistaa rekisteriä tunnuksella &quot;%1&quot;?"
+"Anonymous visitor","Anonyymi kävijä"
+"Your current tier is <a href=""#"" class=""open-popup""><b>%1</b></a>","Nykyinen <a href=""#"" class=""open-popup""><b>tasosi</b></a> on <a href=""#"" class=""open-popup""><b>%1</b></a>"
+"Earn <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","Ansaitse <b>%1</b> päästäksesi <a class=""open-popup""><b>%2</b></a>"
+"Spend <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","Kuluta <b>%1</b> päästäksesi <a class=""open-popup""><b>%2</b></a>"
+"in 1 day","1 päivä"
+"1 day ago","1 päivä sitten"
+"Earn %1","Ansaitse %1"
+"Earned %1 for the order #%2.","Ansaitsi %1 tilaukselle #%2."
+"Spent %1 for the order #%2.","Vietti %1 tilaukselle #%2."
+"Restore spent %1 for the order #%2.","Palauta käytetty %1 tilaus nro #%2."
+"Cancel earned %1 for the order #%2.","Peruuta ansaittu %1 tilauksesta #%2."
+"Refunded %1 (creditmemo #%2, order #%3).","Palautettu %1 (creditmemo #%2, tilaus #%3)."
+"Will expire %1","Vanhenee %1"
+Expired,Vanhentunut
+Active,Aktiivinen
+"Points are expired","Pisteet ovat vanhentuneet"
+"Will be ready for use %1","Valmis käyttövalmiiksi %1"
+"We subscribed you on expiring points notification.","Tilasimme vanhenemispisteilmoituksen."
+"Possible discount %1","Mahdollinen alennus %1"
+Subtotal,Välisumma
+"Rewards Discount","Palkitsee alennuksen"
+"Field 'Spend maximum' can not be less or equal then field 'Spend minimum'","Kenttä &quot;Vietä enimmäismäärä&quot; ei voi olla pienempi tai yhtä suuri kuin &quot;Kuluta minimi&quot;"
+"Field 'For each spent X points' should be integer","Kenttä &#39;Jokaiselle käytetylle X pisteelle&#39; on oltava kokonaisluku"
+"Rewards discount","Palkkiot alennus"
+"Cannot delete rule with id %1","Sääntöä, jonka tunnus on %1, ei voida poistaa"
+"Status Description","Tila Kuvaus"
+"Checkout now and earn <b class='message-earn-points-label'>%1</b> for this order.","Kassalle nyt ja ansaitse <b class='message-earn-points-label'>%1</b> tästä tilauksesta."
+"Cannot apply %1. %2 %3","Ei voida soveltaa %1. %2 %3"
+"%1 were cancelled.","%1 peruutettiin."
+"Customer creates RMA","Asiakas luo RMA: n"
+"Use Magento settings","Käytä Magento-asetuksia"
+"After Tax","Verojen jälkeen"
+"Additional Product Attribute",Lisätuoteominaisuus
+"Additional Payment Method",Lisämaksutapa
+Reasons,Syyt
+Conditions,Olosuhteet
+Resolutions,Päätöslauselmat
+Statuses,Tilat
+"Apply to items","Käytä kohteisiin"
+"Apply to totals","Käytä kokonaissummiin"
+"Rewards Refunded","Palkkiot palautettu"
+"Send notification before points expires (in days)","Lähetä ilmoitus ennen pisteiden voimassaolon päättymistä (päivinä)"
+"Cancel the earned points after the order has been refunded","Peruuta ansaitut pisteet tilauksen palautuksen jälkeen"
+"Restore the points spent after the order has been refunded","Palauta kuluneet pisteet tilauksen palautuksen jälkeen"
+"Allow to display maximum number of possible points for configurable products.","Anna näyttää enimmäismäärä mahdollisia pisteitä konfiguroitaville tuotteille."
+"Send notification before points expires(in days)","Lähetä ilmoitus ennen pisteiden voimassaolon päättymistä (päivinä)"
+"In determining tiers, take into account, it only lasts for N days","Ota huomioon, kun määrität tasoja, se kestää vain N päivää"
+"Show pending transactions in the customer's account","Näytä asiakkaan tilillä odottavat transaktiot"
+"Use this option to explain to your customer why the Rewards spending block isn't displaying in checkout","Käytä tätä vaihtoehtoa selittääksesi asiakkaallesi, miksi Rewards-kulutuslohko ei näy kassalla"
+"If the theme overrides Magento way of including styles, this option will add extension's styles to the page","Jos teema ohittaa Magento-tavan sisällyttää tyylit, tämä vaihtoehto lisää laajennuksen tyylit sivulle"
+"In some configuration, the method 'Apply to items' may have a slight error in calculation","Joissakin kokoonpanoissa menetelmä &#39;Käytä kohteisiin&#39; saattaa olla pieni virhe laskelmissa"
+"For detailed explanation, see the <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>documentation</a>","Katso yksityiskohtaiset ohjeet <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>ohjeista</a>"
+"Minimum points number to reach each tier","Pisteiden vähimmäismäärä kunkin tason saavuttamiseksi"
+"Delete the record with ID %1","Poista tietue, jonka tunnus on %1"
+"Are you sure you want to delete the record with ID %1","Haluatko varmasti poistaa tietueen tunnuksella %1"
+"To subscribe to points expiring and balance update notification click %1","Jos haluat tilata vanhentuvien pisteiden ilmoituksen ja saldopäivitysilmoituksen, napsauta %1"

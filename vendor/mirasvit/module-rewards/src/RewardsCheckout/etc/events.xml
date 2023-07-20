@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+    <event name="checkout_submit_all_after">
+        <observer name="rewards" instance="\Mirasvit\RewardsCheckout\Observer\SpendOnOrderPlaceAfter"/>
+        <observer name="rewardsOriginalCheckout" instance="\Mirasvit\RewardsCheckout\Observer\ProcessReferrals"/>
+    </event>
+    <event name="paypal_express_place_order_success">
+        <observer name="rewards" instance="\Mirasvit\RewardsCheckout\Observer\SpendOnOrderPlaceAfter"/>
+        <observer name="rewardsPaypalCheckout" instance="\Mirasvit\RewardsCheckout\Observer\ProcessReferrals"/>
+    </event>
+    <!-- compatibility with Ebizmarts SagePay -->
+    <event name="sales_order_place_after">
+        <observer name="rewards" instance="\Mirasvit\RewardsCheckout\Observer\SpendOnOrderPlaceAfter"/>
+        <observer name="rewardsSagePayCheckout" instance="\Mirasvit\RewardsCheckout\Observer\ProcessReferrals"/>
+    </event>
+    <!-- /compatibility with Ebizmarts SagePay -->
+    <event name="order_cancel_after">
+        <observer name="rewards" instance="\Mirasvit\RewardsCheckout\Observer\RestorePointsOnOrderCancelAfter"/>
+    </event>
+<!--    <event name="sales_order_place_before">-->
+<!--        <observer name="rewards" instance="\Mirasvit\RewardsCheckout\Observer\LockPurchaseOnOrderPlaceBefore"/>-->
+<!--    </event>-->
+    <event name="controller_action_predispatch_checkout_onepage_success">
+        <observer name="rewards" instance="\Mirasvit\RewardsCheckout\Observer\ShowNotificationOnCheckoutSuccess"/>
+    </event>
+    <event name="sales_order_invoice_save_commit_after">
+        <observer name="mst_reward_model_observer_invoice" instance="\Mirasvit\RewardsCheckout\Observer\EarnOnInvoiceSaveAfter"/>
+    </event>
+
+    <event name="payment_cart_collect_items_and_amounts">
+        <observer name="mirasvit_rewards_payment_discount"
+                  instance="Mirasvit\RewardsCheckout\Observer\AddRewardsDiscountOnCartCollectItems" />
+    </event>
+
+    <event name="securecheckout_get_reload_section_after">
+        <observer name="mst_rewards_onepagecheckout" instance="\Mirasvit\RewardsCheckout\Observer\ThirdParty\SecureCheckout\AddSectionOnReloadSectionAfter"/>
+    </event>
+</config>

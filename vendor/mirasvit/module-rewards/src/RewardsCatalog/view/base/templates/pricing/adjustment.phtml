@@ -1,0 +1,24 @@
+<?php /** @var \Mirasvit\RewardsCatalog\Pricing\Render\Adjustment $block */ ?>
+<?php if ($block->isShowPoints() && $block->isFront()): ?>
+    <span class="rewards__product-earn-points rewards__product-points" data-role="rewards__product-earn-points"
+          data-rewards-base-price="<?= $block->getBaseProductPrice() ?>"
+          data-rewards-min-price="<?= $block->getMinProductPrice() ?>"
+          data-rewards-max-price="<?= $block->getMaxProductPrice() ?>"
+          data-origin-rewards-base-price="<?= $block->getBaseProductPrice() ?>"
+          data-default-selected-rewards-product-price-amount="<?= $block->getDefaultSelectedProductPriceAmount()?>"
+          data-product-id="<?= $block->getProductId() ?>"
+    >
+        <span class="price"></span>
+        <img class="points-loader loader" src="<?= $block->getViewFileUrl('images/loader-1.gif') ?>" alt="Reward Points Loader" style="display: none;">
+    </span>
+
+    <script type="text/x-magento-init">
+    {
+        "[data-role=rewards__product-earn-points]": {
+            "Mirasvit_RewardsCatalog/js/product/earn-points-renderer": {
+                "requestUrl": "<?php /* @noEscape */ echo $block->getPointsRequestUrl() ?>"
+            }
+        }
+    }
+    </script>
+<?php endif; ?>

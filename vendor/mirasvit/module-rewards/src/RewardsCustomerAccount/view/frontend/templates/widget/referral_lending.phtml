@@ -1,0 +1,87 @@
+<?php
+/** @var \Mirasvit\RewardsCustomerAccount\Block\Widget\Referral $block */
+
+$collection    = $block->getReferralCollection();
+$addThisScript = $block->getAddThisScript();
+?>
+<div class="block block-rewards-account-summary order-details-items invitations">
+    <div class="invite">
+        <div class="column-referral">
+            <div class="mst-referral-widget">
+                <div class="block-content">
+                    <div class="block">
+                        <div class="block-title">
+                            <span><span><?= __('Share with your friends') ?></span></span>
+                        </div>
+                        <div class="block-content">
+                            <?php if ($block->isCustomerLoggedIn()): ?>
+                                <div class="addthis_inline_share_toolbox" data-url= <?= $block->getShareUrl() ?>></div>
+                                <form action="<?= $block->getUrl('rewards/referral/post') ?>" method="POST"
+                                      enctype="multipart/form-data" id="referralForm">
+                                    <?= $block->getBlockHtml('formkey') ?>
+                                    <div class="table-wrapper orders-recent">
+                                        <?= $block->getChildHtml('rewards.notification') ?>
+                                        <table class="data-table table">
+                                            <strong><?= __('Send Invitations to your friends and get Rewards') ?></strong>
+                                            <tbody>
+
+                                            <?php for ($i = 1; $i <= 3; $i++): ?>
+                                                <tr class="first odd">
+                                                    <td data-th="<?= __('Name') ?>">
+                                                        <input name="name[<?= $i ?>]" id="name<?= $i ?>"
+                                                               class="input-text <?= $i == 1 ? 'required-entry' : '' ?>" type="text" placeholder="Friend name"/>
+                                                    </td>
+                                                    <td data-th="<?= __('Email') ?>" class="last">
+                                                        <input name="email[<?= $i ?>]" id="email<?= $i ?>"
+                                                               class="input-text validate-email <?= $i == 1 ? 'required-entry' : '' ?>" type="text" placeholder="Friend e-mail"/>
+                                                    </td>
+                                                </tr>
+                                            <?php endfor ?>
+                                            </tbody>
+                                        </table>
+                                        <br>
+                                        <div class="field field-name-lastname required">
+                                            <p class="rewards-referral-link">
+                                                <?= __('Send this link to your friends %1', $block->getShareUrl()) ?>
+                                            </p>
+                                            <label for="message" class="label">
+                                                <span><?= __('Message') ?></span>
+                                            </label>
+                                            <div class="control">
+                                                <textarea style="width: 100%" name="message" id='message' class="required-entry"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="buttons-set">
+                                            <button type="submit" title="<?= __('Send Invitations') ?>" class="action primary">
+                                                <span><span><?= __('Send Invitations') ?></span></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            <?php else: ?>
+                                <div class="addthis_inline_share_toolbox" data-url= <?= $block->getHomeUrl() ?>></div>
+                                <span><span><?= __('Register to refer friends and get rewards') ?></span></span>
+                            <?php endif; ?>
+
+                            <script>
+                                require.config({
+                                    deps:     [
+                                        'jquery',
+                                        "mage/mage"
+                                    ],
+                                    callback: function ($) {
+                                        'use strict';
+                                        var dataForm = $('#referralForm');
+                                        dataForm.mage('validation', {});
+                                    }
+                                });
+                            </script>
+
+                            <?= $addThisScript ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

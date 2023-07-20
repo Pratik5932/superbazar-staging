@@ -1,0 +1,122 @@
+<?php /** @var \Mirasvit\RewardsCustomerAccount\Block\Account\Tiers $block */ ?>
+<?php
+$remainingPoints = $block->getRemainingPoints();
+$nextTierName = $block->getNextTierName();
+$currentTierName = $block->getCurrentTierName();
+$balance = $block->getBalance();
+$tiers = array_merge($block->getTiers(), []);
+?>
+<div class="rewards-account__tiers">
+
+    <?php $size = count($tiers) ?>
+
+    <div class="tier-progress-bar">
+        <div class="points">
+            <?php foreach ($tiers as $k => $tier): ?>
+                <?php
+                $nextTierStart = isset($tiers[$k + 1]) ? $tiers[$k + 1]->getMinEarnPoints() : 999999999;
+                ?>
+                <div class="tier-point <?php if ($balance >= $tier->getMinEarnPoints()): ?>closed<?php endif ?>">
+                    <?php if ($tier->getTierLogo()): ?>
+                        <div class="tier-logo"><img src="<?= $block->getTierLogoUrl($tier); ?>" title="<?= $tier->getTierLogo(); ?>"/></div>
+                    <?php endif ?>
+                    <div class="label" data-tier="<?= $block->escapeHtml($tier->getName()) ?>"
+                         <?php if ($tier->getName()): ?>data-description="<?= $block->getTierDescription($tier) ?>"<?php endif ?>>
+                        <?= $tier->getName() ?>
+                    </div>
+                    <?php if (!isset($tiers[$k + 1])): ?>
+                        <div class="number"><span><?= $block->displayPoints($tier->getMinEarnPoints()) ?>+</span></div>
+                    <?php elseif ($k == 0): ?>
+                        <div class="number"><span><?= $block->displayPoints(0) ?></span></div>
+                    <?php else: ?>
+                        <div class="number"><span><?= $block->displayPoints($tier->getMinEarnPoints()) ?></span>
+                        </div>
+                    <?php endif ?>
+                </div>
+            <?php endforeach ?>
+        </div>
+        <?php
+        $p = 100 / ($size - 1);
+        $idx = 0;
+        $previousMax = 0;
+        $closed = 100;
+        $css = '';
+        ?>
+        <div class="closers">
+            <?php foreach ($tiers as $k => $tier): ?>
+                <?php if ($size - $idx > 1): ?>
+                    <?php
+                    $nextTierStart = $tiers[$k + 1]->getMinEarnPoints();
+                    if ($balance >= $nextTierStart) {
+                        $closed = 100;
+                    } elseif ($closed == 100) {
+                        $closed = (($balance - $tier->getMinEarnPoints()) / ($nextTierStart - $tier->getMinEarnPoints())) * 100;
+                        if ($closed < 0) {
+                            $closed = 0;
+                        }
+                    } else {
+                        $closed = 0;
+                    }
+                    ?>
+                    <div class="closer closer<?= $k ?>">
+                        <div class="progress" style="width: <?= $closed ?>%"></div>
+                    </div>
+                    <?php
+                        $css .= '.rewards-account__tiers .tier-progress-bar .closers .closer' . $k . '{width: ' . $p . '%;left: ' . $idx * $p . '%;}';
+                        $css .= '[dir="rtl"] .rewards-account__tiers .tier-progress-bar .closers .closer' . $k . '{width: ' . $p . '%;right: ' . $idx * $p . '%;}';
+                        $idx++;
+                    ?>
+                <?php endif ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <div class="to-next">
+        <?= __('Your current tier is <a href="#" class="open-popup"><b>%1</b></a>', $currentTierName) ?>
+    </div>
+    <?php if ($nextTierName): ?>
+        <?php if ($block->isTierTypePoints()): ?>
+            <div class="to-next">
+                <?= __('Earn <b>%1</b> to get to <a class="open-popup"><b>%2</b></a>', $block->displayPoints($remainingPoints, true), $nextTierName) ?>
+            </div>
+        <?php else: ?>
+            <div class="to-next">
+                <?= __('Spend <b>%1</b> to get to <a class="open-popup"><b>%2</b></a>', $block->displayPoints($remainingPoints, true), $nextTierName) ?>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>
+<?php if ($css): ?>
+    <style>
+        <?= $css; ?>
+    </style>
+<?php endif; ?>
+<script>
+    require(['jquery', 'Magento_Ui/js/modal/modal'], function ($, modal) {
+        $('.open-popup').click(function (e) {
+            e.preventDefault();
+            $('[data-tier="' + $('b', this).html() + '"]').click();
+        });
+        $('[data-description]').click(function (e) {
+            var name = $(e.target).data('tier');
+            var description = $(e.target).data('description');
+
+            var modalInstance = modal({
+                autoOpen:         true,
+                modalClass:       'rewards-tier-popup',
+                responsive:       true,
+                clickableOverlay: true,
+                title:            name,
+                type:             'popup',
+                buttons:          []
+            });
+
+            // close handler
+            $(modalInstance.options.modalCloseBtn).on('click', function () {
+                modalInstance.closeModal();
+            });
+
+            $('.rewards-tier-popup .modal-content').html(description);
+        });
+
+    })
+</script>

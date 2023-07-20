@@ -1,0 +1,29 @@
+<?php /** @var \Mirasvit\RewardsBehavior\Block\Buttons $block */ ?>
+<?php
+if (!$block->isShowOnProductPage()) {
+    return;
+}
+?>
+<div id="fb-root"></div>
+<script>
+    var fbLocaleCode = '<?= $block->getLocaleCode(); ?>';
+    var fbAppId = '<?= $block->getAppId(); ?>';
+    var fbShareUrl = '<?= $block->getShareUrl(); ?>';
+    var fbLikeUrl = '<?= $block->getLikeUrl(); ?>';
+    var fbUnlikeUrl = '<?= $block->getUnlikeUrl(); ?>';
+    var rewardsFacebookApiVersion = '<?php echo $block->getFbApiVersion(); ?>';
+</script>
+<script>
+    // facebook
+    (function(d, s, id) {
+        if (d.getElementById(id)) { // reinit FB on Magento cache load
+            d.getElementById(id).remove();
+            delete FB;
+        }
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/" + fbLocaleCode + "/all.js#xfbml=1&appId=" + fbAppId + "&version=" + rewardsFacebookApiVersion;
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>

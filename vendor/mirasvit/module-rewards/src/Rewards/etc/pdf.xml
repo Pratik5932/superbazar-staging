@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Sales:etc/pdf_file.xsd">
+    <totals>
+        <total name="rewards">
+            <title translate="true">Rewards Discount</title>
+            <model>Mirasvit\Rewards\Model\Printpage\Pdf\Total\Discount</model>
+            <source_field>rewards_discount</source_field>
+            <amount_prefix>-</amount_prefix>
+            <display_zero>false</display_zero>
+            <sort_order>600</sort_order>
+        </total>
+        <total name="rewards_refund">
+            <title translate="true">Rewards Refunded</title>
+            <model>Mirasvit\Rewards\Model\Printpage\Pdf\Total\Refund</model>
+            <source_field>rewards_refunded</source_field>
+            <amount_prefix>0</amount_prefix>
+            <display_zero>false</display_zero>
+            <sort_order>620</sort_order>
+        </total>
+        <total name="rewards_earn">
+            <title translate="true">Rewards Earned</title>
+            <model>Mirasvit\Rewards\Model\Printpage\Pdf\Total\Earned</model>
+            <source_field>rewards_earned</source_field>
+            <amount_prefix>0</amount_prefix>
+            <display_zero>false</display_zero>
+            <sort_order>630</sort_order>
+        </total>
+    </totals>
+</config>

@@ -1,0 +1,96 @@
+.breeze-z-layer {
+    & when (@critical) {
+        opacity: 0;
+        position: absolute;
+        pointer-events: none;
+        .right(0);
+        top: -9999px;
+    }
+
+    & when not (@critical) {
+        &:extend(.breeze-invert-colors-reset);
+        .transition();
+        padding: var(--dropdown-padding);
+        width: var(--dropdown-width);
+        transform-origin: top;
+        transform: scale(.95);
+        z-index: 850;
+        visibility: hidden;
+        margin-top: @0-5;
+        color: @z-layer__color;
+        background: @z-layer__background;
+        .lib-css(box-shadow, @dropdown__shadow);
+        .lib-css(border, @dropdown__border);
+        .lib-css(border-radius, @dropdown__border-radius);
+        .text-align(left);
+    }
+}
+.breeze-z-layer-visible {
+    & when not (@critical) {
+        z-index: 851;
+        opacity: 1;
+        pointer-events: all;
+        visibility: visible;
+        transform: scale(1);
+        top: auto;
+    }
+}
+
+.breeze-dropdown {
+    .breeze-z-layer();
+    & when not (@critical) {
+        .breeze & {
+            display: block !important; // override inline style to enable amination
+        }
+    }
+}
+.breeze-dropdown-visible {
+    .breeze-z-layer-visible();
+}
+
+.breeze-dropdown-item {
+    & when (@critical) {
+        display: block;
+        .lib-css(padding, @dropdown-item__padding);
+        .lib-css(border-radius, @dropdown-item__border-radius);
+    }
+    & when not (@critical) {
+        .lib-css(--divider-alpha, @dropdown-item__hover__background-alpha);
+        cursor: pointer;
+        &:hover {
+            .lib-css(color, @dropdown-item__hover__color);
+            .lib-css(background, @dropdown-item__hover__background);
+        }
+    }
+}
+
+.breeze-dropdown-toggler {
+    & when (@critical) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: @0-5;
+    }
+    & when not (@critical) {
+        cursor: pointer;
+    }
+}
+
+.breeze-dropdown-toggler-icon {
+    & when (@critical) {
+        content: '';
+        height: @5;
+        width: @5;
+        transform: rotate(90deg);
+    }
+    & when not (@critical) {
+        .transition();
+        .breeze-icon(@icon-chevron, @3);
+    }
+}
+
+.breeze-dropdown-toggler-icon-active {
+    & when (@critical) {
+        transform: rotate(-90deg);
+    }
+}

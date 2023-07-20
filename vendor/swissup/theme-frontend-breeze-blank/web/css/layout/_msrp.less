@@ -1,0 +1,66 @@
+.map-popup {
+    &:extend(.breeze-dropdown all);
+    &.active {
+        &:extend(.breeze-dropdown-visible);
+    }
+}
+
+& when (@critical) {
+    .old-price.map-old-price {
+        text-decoration: none;
+        .price-wrapper {
+            text-decoration: line-through;
+            .lib-css(text-decoration-color, @price-old__text-decoration-color);
+        }
+    }
+    .map-fallback-price {
+        display: none;
+    }
+    .map-show-info,
+    .minimal-price-link {
+        &:extend(.breeze-link all);
+    }
+    .map-show-info {
+        .margin-right(@1);
+    }
+}
+
+& when not (@critical) {
+    .map-popup {
+        &:extend(.dropdown-xl);
+        transition: opacity var(--transition-duration), visibility var(--transition-duration) 0s;
+        width: 100%;
+        .right(auto);
+        .left(0);
+        &.active {
+            z-index: 950; /* Move above modal since map can be triggered within the modal */
+        }
+        .action.tocart {
+            width: 100%;
+        }
+        &-wrapper.ui-dialog {
+            .action.close {
+                z-index: 951;
+            }
+        }
+    }
+    .map-form-addtocart {
+        margin: @2 0;
+    }
+    .actual-price {
+        font-weight: 500;
+    }
+    .additional-addtocart-box {
+        margin: @2 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: @2;
+
+        &:empty {
+            display: none;
+        }
+        > div {
+            max-width: ~"calc(50% - @{1})";
+        }
+    }
+}

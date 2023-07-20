@@ -1,0 +1,165 @@
+.minisearch {
+    .search-autocomplete {
+        &:extend(.breeze-dropdown all);
+        &:not(:empty):not([style*="display:none"]):not([style*="display: none"]) {
+            &:extend(.breeze-dropdown-visible);
+        }
+        [role="listbox"] li {
+            &:extend(.breeze-dropdown-item all);
+        }
+    }
+    .label::before,
+    .action.search::before {
+        .breeze-icon-critical(@icon-search);
+    }
+}
+
+& when (@critical) {
+    @media @minisearch__media-desktop {
+        .block-search {
+            position: relative;
+        }
+    }
+    .header .block-search {
+        .block-title {
+            display: none;
+        }
+        .label {
+            &::before {
+                display: none;
+            }
+            span {
+                &:extend(.breeze-sr-only);
+            }
+        }
+        @media @minisearch__media-mobile {
+            .label::before {
+                display: block;
+            }
+        }
+    }
+
+    .minisearch {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        .lib-rgb(--input-border-color, @minisearch-input__border-color);
+        .lib-rgb(--input-bg, @minisearch-input__background-color);
+
+        .control {
+            padding: @minisearch__padding;
+            background: @base__background;
+            position: absolute;
+            top: @minisearch__top;
+            margin: 0 !important;
+            .left(-9999px);
+
+            & when (@header__dark) {
+                :where(.header) & {
+                    .lib-css(background, @header__background);
+                    & when (@header__background = false) {
+                        .lib-css(background, @theme__dark-color);
+                    }
+                }
+            }
+
+            @media @minisearch__media-desktop {
+                background: transparent;
+                position: static;
+                display: block;
+                padding: 0;
+            }
+            .input-text {
+                .padding-right(@9);
+                text-overflow: ellipsis;
+                min-width: 240px;
+            }
+            .nested {
+                display: none;
+                position: absolute;
+                top: 100%;
+                .breeze-text-sm();
+            }
+        }
+
+        .actions {
+            display: none;
+            position: absolute;
+            top: ~"calc(100% + @{6})";
+            .right(@4);
+            @media @minisearch__media-desktop {
+                display: flex;
+                position: static;
+            }
+        }
+
+        .action.search {
+            & when (@minisearch-button__reset) {
+                &:extend(.breeze-button-reset all);
+                .margin-left(-@8);
+            }
+            & when not (@minisearch-button__reset) {
+                .lib-rgb(--button-color, @minisearch-button__text-color);
+                .lib-rgb(--button-bg, @minisearch-button__background-color);
+                width: @16;
+                .margin-left(-@16);
+            }
+
+            &:focus-visible {
+                .lib-rgb(--button-bg, @minisearch-button__focus__background-color);
+            }
+
+            &:disabled {
+                .lib-css(opacity, @minisearch-button__disabled__opacity);
+            }
+
+            @media @minisearch__media-mobile {
+                display: none; // must be hidden on mobile view (fix for blur event)
+            }
+
+            span {
+                &:extend(.breeze-sr-only);
+            }
+        }
+    }
+}
+
+& when not (@critical) {
+    .minisearch {
+        .label {
+            &::before {
+                position: relative;
+                cursor: pointer;
+            }
+        }
+        &.active {
+            .control {
+                display: block;
+                z-index: 40;
+                left: 0;
+                right: 0;
+            }
+            .actions {
+                display: flex;
+                z-index: 41;
+            }
+        }
+        .search-autocomplete {
+            .right(auto);
+
+            [role="listbox"] {
+                li {
+                    display: flex;
+                    align-items: center;
+                    gap: @1;
+                    &.selected {
+                        background: @muted__background;
+                    }
+                }
+                .amount {
+                    opacity: .5;
+                }
+            }
+        }
+    }
+}

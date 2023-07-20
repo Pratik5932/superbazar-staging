@@ -1,1 +1,0 @@
-[02-Jul-2021 14:51:39 UTC] PHP Fatal error:  Interface 'Magento\Framework\Event\ObserverInterface' not found in /home/superbaz/public_html/backup/C4B/FreeProduct/Observer/RemoveGiftItems.php on line 21

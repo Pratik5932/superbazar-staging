@@ -1,0 +1,99 @@
+& when (@critical) {
+    .opc-estimated-wrapper {
+        .showcart {
+            &:extend(.breeze-button-reset all);
+        }
+    }
+    @media @media-md-down {
+        .opc-estimated-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: @base__background;
+            padding: var(--checkout-step-padding-y) var(--checkout-step-padding-x);
+            margin-bottom: @4;
+            width: 100%;
+            .clear(left);
+
+            .estimated-block {
+                .breeze-text-lg();
+            }
+            .estimated-price {
+                font-weight: 500;
+            }
+        }
+    }
+    @media @media-md {
+        .opc-estimated-wrapper {
+            display: none;
+        }
+        .opc-sidebar {
+            .modal-content {
+                overflow: visible;
+            }
+        }
+    }
+
+    .opc-summary-wrapper {
+        .action-edit {
+            &:extend(.breeze-button-reset all);
+            &:extend(.breeze-link all);
+            text-transform: capitalize;
+        }
+        .shipping-information {
+            display: flex;
+            gap: @2;
+            color: @muted__color;
+            padding-top: @3;
+            border-top: 1px solid @divider__color;
+
+            > div {
+                width: ~"calc(50% - @{1})";
+            }
+
+            &-title {
+                font-weight: 500;
+                margin-bottom: @1-5;
+            }
+        }
+
+        .table-totals {
+            margin-top: @1;
+        }
+        .totals-tax,
+        .totals:not(.grand) {
+            color: @muted__color;
+            border: 0;
+            th, td {
+                font-weight: 400;
+                padding-top: @1;
+                padding-bottom: @1;
+            }
+        }
+        .grand.totals {
+            .breeze-text-xl();
+        }
+    }
+
+    .opc-block-summary {
+        display: flex;
+        flex-direction: column;
+        gap: @2;
+        margin-bottom: @2;
+
+        .title {
+            order: -10;
+        }
+        .items-in-cart {
+            order: -5;
+            margin-top: -@2;
+            > .title {
+                .breeze-text-sm();
+                text-transform: uppercase;
+                strong {
+                    font-weight: 450;
+                }
+            }
+        }
+    }
+}

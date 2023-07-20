@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="other_settings">
+        <fieldset name="breeze">
+            <settings>
+                <level>1</level>
+                <collapsible>true</collapsible>
+                <label translate="true">Breeze</label>
+            </settings>
+            <field name="breeze_enabled" formElement="select">
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Enable Breeze Experience</label>
+                    <notice translate="true">Breeze module will replace all scripts with its own simplified version. It will also remove all custom and third-party modules scripts.</notice>
+                    <dataScope>breeze_enabled</dataScope>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Swissup\Breeze\Model\Config\Source\YesNoTheme"/>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="breeze_excluded_urls" formElement="textarea">
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Disable Breeze for specified URLs</label>
+                    <notice translate="true">One url per line. Example: /helpdesk or ?param=1</notice>
+                    <dataScope>breeze_excluded_urls</dataScope>
+                </settings>
+            </field>
+            <field name="breeze_turbo" formElement="select">
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Enable Turbo Feature</label>
+                    <notice translate="true">This feature adds a turbo.js library that provides a speed of a single-page web application for your store.</notice>
+                    <dataScope>breeze_turbo</dataScope>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Swissup\Breeze\Model\Config\Source\YesNoTheme"/>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="breeze_responsive_images" formElement="select">
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Enable Responsive Images</label>
+                    <notice translate="true">This feature allows to serve most suitable image size per device. Theme developer must describe srcset property in view.xml file in order to enable this feature.</notice>
+                    <dataScope>breeze_responsive_images</dataScope>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Swissup\Breeze\Model\Config\Source\YesNoTheme"/>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="breeze_debug_mode" formElement="select">
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Debug Mode</label>
+                    <notice translate="true">Allows to force breeze status via query parameter: ?breeze=1 or ?breeze=0</notice>
+                    <dataScope>breeze_debug_mode</dataScope>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Magento\Config\Model\Config\Source\YesNo"/>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+        </fieldset>
+    </fieldset>
+</form>

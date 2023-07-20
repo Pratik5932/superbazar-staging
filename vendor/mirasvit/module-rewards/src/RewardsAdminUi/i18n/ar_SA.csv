@@ -1,0 +1,300 @@
+Reward Points,نقاط المكافأة
+Rewards Information,معلومات المكافآت
+Available Points Balance,رصيد النقاط المتوفرة
+Change Balance,تغيير الرصيد
+Enter positive or negative number of points. E.g. 10 or -10,أدخل عدد النقاط الموجب أو السالب. على سبيل المثال 10 أو -10
+Message in the rewards history,رسالة في سجل المكافآت
+Customer will see this in his account,سوف يرى العميل هذا في حسابه
+No Records Found,لم يتم العثور على سجلات
+ID,معرف
+Balance Change,تغيير الرصيد
+Comment,التعليق
+Created At,تم الإنشاء عند
+Expires At,تنتهي عند
+Apply the rule only to cart items matching the following conditions (leave blank for all items),تطبيق القاعدة فقط على عناصر العربة المطابقة للشروط التالية (اترك مساحة لجميع الأصناف)
+Apply To,تنطبق على
+Apply the rule only if the following conditions are met (leave blank for all products),تطبيق القاعدة فقط إذا تم استيفاء الشروط التالية (اترك مساحة لكافة المنتجات)
+Conditions,الظروف
+Earning Rules,قواعد الكسب
+Spending Rules,قواعد الإنفاق
+Notification Rules,قواعد الإعلام
+Tiers,مستويات
+Transactions,المعاملات
+Customer Referrals,إحالات العملاء
+Reports,التقارير
+Refresh Statistics,تحديث الإحصائيات
+Settings,اعدادات
+Save,حفظ
+Delete,حذف
+Save And Continue Edit,حفظ ومتابعة التحرير
+Edit Referral '%1',تحرير الإحالة '%1'
+Create New Referral,إنشاء مرجع جديد
+%1 %2 Refunded,1% 2% مسترد
+%1 %2 Spent,1%2% تم إنفاقه
+%1 Earned,%1 تم كسبه
+%1 Spent,%1 تم إنفاقه
+'%1 Earned' .,'%1 تم الحصول عليه .
+Customer Name,اسم العميل
+Customer Email,البريد الإلكتروني للعميل
+Customer Group,مجموعة العملاء
+Action,العمل
+Code,التعليمات البرمجية
+Is expired,انتهت مدة صلاحيتها
+Is sent,يتم إرسال
+Amount Used,المبلغ المستخدم
+New Earning Rule,قاعدة الأرباح الجديدة
+Earning Rule was successfully deleted,تم حذف قاعدة الكسب بنجاح
+Edit Earning Rule '%1',تحرير قاعدة الأرباح '%1'
+The Earning Rule does not exist.,قاعدة الكسب غير موجودة.
+Total of %1 record(s) were successfully updated,تم تحديث إجمالي سجل (1) سجل (1) بنجاح
+Please select Earning Rule(s),الرجاء تحديد قاعدة (قواعد) الأرباح
+Total of %1 record(s) were successfully deleted,تم حذف إجمالي سجل (1) سجل (1) بنجاح
+Earning Rule was successfully saved,تم حفظ قاعدة الكسب بنجاح
+Unable to find Earning Rule to save,غير قادر على العثور على قاعدة الكسب لحفظ
+Number of Points (X),عدد النقاط (X)
+Quantity Step (Z),كمية الخطوة (Z)
+Step (Y),الخطوة (Y)
+"Field ""%1"" should be valid number, i.e. 5 or 7.5","يجب أن يكون الحقل ""%1"" رقم صالح، أي 5 أو 7.5"
+"Field ""%1"" should be valid number and percent should be equal or less then 100","يجب أن يكون الحقل ""%1"" رقم صحيح وينبغي أن تكون النسبة المئوية مساوية أو أقل ثم 100"
+New Notification Rule,قاعدة إعلام جديدة
+Notification Rule was successfully deleted,تم حذف قاعدة الإعلام بنجاح
+Edit Notification Rule '%1',تحرير قاعدة الإعلام '%1'
+The Notification Rule does not exist.,قاعدة الإعلام غير موجود.
+Please select Notification Rule(s),الرجاء تحديد قاعدة الإشعارات
+Notification Rule was successfully saved,تم حفظ قاعدة الإعلام بنجاح
+Unable to find Notification Rule to save,تعذر العثور على قاعدة الإعلام لحفظها
+Please select Referral(s),الرجاء اختيار الإحالة (ق)
+Statistics was successfully updated,تم تحديث الإحصائيات بنجاح
+Database error. Please contact developers.,خطأ في قاعدة البيانات. يرجى الاتصال بالمطورين.
+Rewards,المكافات
+You have not any statistic. Please refresh statistic.,ليس لديك أي إحصائية. الرجاء تحديث الإحصائيات.
+New Spending Rule,قاعدة الإنفاق الجديدة
+Spending Rule was successfully deleted,تم حذف قاعدة الإنفاق بنجاح
+Edit Spending Rule '%1',تحرير قاعدة الإنفاق '%1'
+The Spending Rule does not exist.,قاعدة الإنفاق غير موجودة.
+Please select Spending Rule(s),الرجاء تحديد قاعدة الإنفاق (القواعد)
+Spending Rule was successfully saved,تم حفظ قاعدة الإنفاق بنجاح
+Unable to find Spending Rule to save,تعذر العثور على قاعدة الإنفاق للحفظ
+Customer receive Y discount,العميل يحصل على خصم Y
+Spend minimum,إنفاق الحد الأدنى
+Spend maximum,إنفاق الحد الأقصى
+New Tier,فئة جديدة
+Tier was successfully deleted,تم حذف المستوى بنجاح
+Edit Tier '%1',تحرير المستوى '%1'
+The Tier does not exist.,المستوى غير موجود.
+Please select Tier(s),الرجاء اختيار الطبقة (الطبقات)
+Unable to find Tier to save,تعذر العثور على المستوى الذي تريد حفظه
+New Transaction,حركة جديدة
+Transaction was successfully deleted,تم حذف الحركة بنجاح
+Total of %1 record(s) were successfully activated,تم تنشيط إجمالي سجل (1) سجل (1) بنجاح
+Please select Transaction(s),الرجاء تحديد المعاملة (المعاملات)
+Transaction was successfully saved,تم حفظ الحركة بنجاح
+Unable to find Transaction to save,تعذر العثور على المعاملة التي تريد حفظها
+Please specify a website.,يرجى تحديد موقع على شبكة الانترنت.
+Please specify a customer email.,الرجاء تحديد بريد إلكتروني للعميل.
+We found an invalid value in a website column.,وجدنا قيمة غير صالحة في عمود موقع ويب.
+Please enter a valid email.,الرجاء إدخال بريد إلكتروني صالح.
+"Please make sure attribute ""%1"" is not empty.","الرجاء التأكد من أن السمة ""%1"" غير فارغة."
+We can't find a customer who matches this email and website code.,لا يمكننا العثور على عميل يطابق رمز البريد الإلكتروني هذا والموقع.
+- Disable these emails -,- تعطيل هذه الرسائل الإلكترونية -
+Apply to items,تطبيق على العناصر
+Apply to totals,تطبيق على الإجماليات
+Give X points to customer,إعطاء نقاط X للعميل
+Give X points for every spent Y,إعطاء X نقاط لكل Y المستهلك
+Give X points for every Z quantity,إعطاء نقاط X لكل كمية Z
+"For every Y, give X points",لكل Y، اعطي X نقاط
+Pending,المعلقه
+Approved,وافقت
+Discarded,تجاهل
+You do not have permissions to create transactions. Please contact your site administrator.,ليس لديك أذونات لإنشاء المعاملات. الرجاء الاتصال بمسؤول الموقع.
+%1 has been added.,تمت إضافة %1.
+%1 has been deducted.,تم خصم %1.
+Customer Earning Style,نمط كسب العملاء
+In base currency,بالعملة الأساسية
+Maximum number of earned points for one customer per day,الحد الأقصى لعدد النقاط المكتسبة لعميل واحد في اليوم
+Set 0 to disable limit,تعيين 0 لتعطيل الحد
+Do not change,لا تتغير
+Assign customer to Group,تعيين عميل إلى المجموعة
+Earn Maximum,اكسب الحد الأقصى
+Maximum Distributed Points,الحد الأقصى للنقاط الموزعة
+%1 for each $%2,%1 لكل %2 دولار
+Edit,تحرير
+Back,عودة
+Are you sure you want to do this?,هل أنت متأكد من أنك تريد أن تفعل هذا؟
+Reset,اعاده تعيين
+Save and Continue Edit,حفظ ومتابعة تحرير
+All Groups,كافة المجموعات
+Actions,الاجراءات
+Points spending style,نمط الإنفاق النقاط
+For each spent X points,لكل نقاط X المستهلكة
+Number of points.,عدد النقاط.
+You can enter amount in base currency or percent. e.g. 100 or 5%.,يمكنك إدخال المبلغ بالعملة الأساسية أو في المائة. على سبيل المثال 100 أو 5٪
+You can enter amount of points or percent. e.g. 100 or 5%. Leave empty to disable.,يمكنك إدخال مقدار النقاط أو النسبة المئوية. على سبيل المثال 100 أو 5٪ اتركه فارغاً لتعطيله.
+Minimum sum of spent %1,الحد الأدنى لمجموع المبلغ المستغرق %1
+Minimum points number to reach the tier,الحد الأدنى لعدد النقاط للوصول إلى المستوى
+"Delete the record with ID ""%1""","حذف السجل ""%1"" "
+"Are you sure you want to delete the record with ID ""%1""?","هل تريد بالتأكيد حذف السجل الذي به معرف ""%1""؟"
+Refund amount of applied %1,مبلغ استرداد المبلغ المطبّق %1
+"Money equivalent, (%1)",مكافئ النقود، (%1)
+Use Reward Points,استخدام نقاط المكافأة
+%1 have <b>%2</b> available.,%1 لديه <b>%2</b> متوفر.
+Enter amount of points to spend:,أدخل مقدار النقاط التي يجب إنفاقها: 
+Apply Points,تطبيق النقاط
+Cancel Points,إلغاء النقاط
+Use maximum %1,استخدام الحد الأقصى لـ %1
+Rewards Earn,المكافآت كسب
+Rewards Spend,إنفاق المكافآت
+Rewards Discount,خصم المكافآت
+Point Unit Name,اسم وحدة النقطة
+"Reward points expire after, days",تنتهي صلاحية نقاط المكافأة بعد، أيام
+Approve earned points on invoice,الموافقة على النقاط المكتسبة في الفاتورة
+Approve earned points on shipment,الموافقة على النقاط المكتسبة على الشحن
+Approve earned points if order has status,الموافقة على النقاط المكتسبة إذا كان الأمر بحالة
+"Delay usage of rewards points for, days",تأخير استخدام نقاط المكافآت للأيام
+After login to account redirect a customer to My Reward Points section,بعد تسجيل الدخول لحساب إعادة توجيه عميل إلى بلدي نقاط مكافأة القسم
+Cancel the earned points after the order has been refunded,إلغاء النقاط المكتسبة بعد استرداد الطلب
+Restore the points spent after the order has been refunded,استعادة النقاط التي تم إنفاقها بعد استرداد الطلب
+Include discount for Earning rules,تضمين خصم لقواعد الكسب
+Include tax for Earning rules,تضمين ضريبة لقواعد الكسب
+Include tax for Spending rules,تضمين قواعد ضريبة الإنفاق
+Apply Spending Points Discount After Tax,تطبيق خصم نقاط الإنفاق بعد الضريبة
+Allow to earn points from shipping charges,السماح لكسب نقاط من رسوم الشحن
+Allow to spend points for shipping charges,السماح لإنفاق النقاط لرسوم الشحن
+Allow to place orders with grand total = 0,السماح بوضع الأوامر بإجمالي الكلي = 0
+Allow to display product points as currency equivalent,السماح بعرض نقاط المنتج كمكافئ للعملة
+Allow to display maximum number of possible points for configurable products.,السماح بعرض أقصى عدد من النقاط الممكنة للمنتجات القابلة للتكوين.
+Email Sender,مرسل البريد الإلكتروني
+Balance update Email,البريد الإلكتروني لتحديث الرصيد
+Transaction inactive Email,البريد الإلكتروني غير النشط للمعاملة
+Points expire Email,البريد الإلكتروني للنقاط المنتهية
+Send notification before points expires(in days),إرسال إشعار قبل انتهاء صلاحية النقاط (في أيام)
+Switch between tiers based on,التبديل بين المستويات على أساس
+Use orders in status,استخدام الأوامر في الحالة
+Include Tax,تضمين الضريبة
+Include Discount,تضمين خصم
+Include Shipping,تشمل الشحن
+"In determining tiers, take into account, it only lasts for N days",في تحديد المستويات، تأخذ في الاعتبار، فإنه يستمر فقط ل... لأيام 
+Automatically move customer to a lower tier if he does not meet minimum tier requirements,نقل العميل تلقائيا إلى الطبقة السفلى إذا كان لا يلبي الحد الأدنى من متطلبات الطبقة
+Enable Referral System,تمكين نظام الإحالة
+Invitation Email Template,قالب البريد الإلكتروني للدعوة
+Show rewards points menu on frontend,إظهار قائمة نقاط المكافآت على الواجهة الأمامية
+Show rewards points on category page,إظهار نقاط المكافآت في صفحة الفئة
+Show number of points on the product page,إظهار عدد النقاط في صفحة المنتج
+Show pending transactions in the customer's account,إظهار الحركات المعلقة في حساب العميل
+Checkout Notification,إخطار السحب
+Spending discount calculation method,أسلوب حساب خصم الإنفاق
+Round earning points down,جولة كسب نقاط إلى أسفل
+Custom Behavior Events,أحداث السلوك المخصص
+Force to apply styles,فرض تطبيق الأنماط
+Social Networks Settings,إعدادات الشبكات الاجتماعية
+Facebook App ID,معرف تطبيق فيسبوك
+Facebook API Version,إصدار واجهة برمجة التطبيقات على فيسبوك
+Show Facebook Like button,إظهار زر الإعجاب علي الفيسبوك
+Show Facebook Share button,إظهار زر المشاركة علي فيسبوك
+Show Twitter Follow button,"إظهار الزر ""متابعة"" علي تويتر."
+Show Pinterest pin button,إظهار زر دبوس Pinterest
+Show AddThis,"إظهار ""إضافة هذا"""
+AddThis Code,"رمز ""إضافة هذا"""
+Show Social Buttons block on category page,إظهار حظر الأزرار الاجتماعية في صفحة الفئة
+Tier,المستوي
+Rewards Balance,رصيد المكافآت
+Name,اسم
+Email,البريد الإلكتروني
+Group,مجموعه
+Phone,الهاتف
+ZIP,الرمز البريدي
+Country,البلد
+State/Province,ولاية/مقاطعة
+Customer Since,العميل منذ
+Web Site,موقع ويب
+General Information,معلومات عامة
+Rule Name,اسم القاعدة
+Display Name,اسم العرض
+Type,نوع
+Is Active,نشط
+Active From,نشط من
+Active To,نشط إلى
+Websites,المواقع
+Stop further rules processing,إيقاف معالجة القواعد الإضافية
+Priority,الأولوية
+Arranged in the ascending order. 0 is the highest.,مرتبة في ترتيب تصاعدي صفر هو الأعلى.
+Number of Inactive Days,عدد الأيام غير النشطة
+Notification,الاعلام
+Message for customer notification email,رسالة البريد الإلكتروني لإعلام العميل
+"You can use the following variables:<br/>
+                        {{var customer.name}} - customer name<br/>
+                        {{store url=""""}} - store URL<br/>
+                        {{var store.getFrontendName()}} - store name<br/>
+                        {{var transaction_amount}} - formatted amount of current transaction (e.g 10 Rewards Points)<br/>
+                        {{var balance_total}} - formatted balance of customer account (e.g. 100 Rewards Points)<br/>
+                        Leave empty to use default notification email.<br/>
+                        
+                    ","يمكنك استخدام المتغيرات التالية:   
+                        {{اسم العميل}} -  customer name<br/>
+                        {{عنوان المتجر=""""}} -  store URL<br/>
+                        {{الحصول علي اسم الواجهة الأمامية للمتجر()}} -  store name<br/>
+                        {{مبلغ المعاملات}} - formatted amount of current transaction (10 نقط مكافئة مثلا)<br/>
+نقاط المكافئة                 
+       {{مجموع الحساب}} - formatted balance of customer account (100 نقطة مكافئة مثلا)<br/>
+ اتركها فارغة لاستخدام البريد الإلكتروني الافتراضي للإشعار.<br/>"
+Is show on the product page,هو عرض على صفحة المنتج
+Message,رسالة
+"You can use the following variables:<br/>
+                        {{var customer.name}} - customer name<br/>
+                        {{store url=""""}} - store URL<br/>
+                        {{var store.getFrontendName()}} - store name<br/>
+                        {{var balance_total}} - formatted balance of customer account (e.g. 100 Rewards Points)<br/>
+                        
+                    ","
+يمكنك استخدام المتغيرات التالية:
+                        {{اسم العميل}} - customer name<br/>
+                        {{عنوان المتجر=""""}} - store URL<br/>
+                        {{الحصول علي اسم الواجهة الأمامية للمتجر()}} - store name<br/>
+                        {{إجمالي رصيد الحساب}} - formatted balance of customer account (مئة نقطة مكافئة مثلا 
+"
+Add New,إضافة جديد
+Delete items,حذف عناصر
+Delete selected items?,هل تريد حذف العناصر المحددة؟
+Change status,تغيير الحالة
+Enable,تمكين
+Disable,تعطيل
+Number of points to earn,عدد النقاط التي يجب كسبها
+Website,الموقع
+Show message on,إظهار الرسالة على
+Affiliate Customer,العميل التابع
+Referral Customer,عميل الإحالة
+Referee's Email,البريد الإلكتروني للحكم
+Referee's name,اسم الحكم
+Status,حاله
+Store,تخزين
+Discount,الخصم
+you can switch to reward points or base currency in the extension settings,يمكنك التبديل إلى نقاط المكافأة أو العملة الأساسية في إعدادات التمديد
+Email Template,قالب البريد الإلكتروني
+"Email template chosen based on theme fallback, when the ""Default"" option is selected.","قالب البريد الإلكتروني الذي تم اختياره بناءً على النسق الاحتياطي، عند تحديد الخيار ""الافتراضي""."
+Logo,شعار
+Description,وصف
+Minimum points number to reach each tier,الحد الأدنى لعدد النقاط للوصول إلى كل مستوى
+Points Balance Change,تغيير رصيد النقاط
+"You can use the following variables:<br>
+                        {{var customer.name}} - customer name<br>
+                        {{store url=""""}} - store URL<br>
+                        {{var store.getFrontendName()}} - store name<br>
+                        {{var transaction_amount}} - formatted amount of current transaction (e.g 10 Rewards Points)<br>
+                        {{var balance_total}} - formatted balance of customer account (e.g. 100 Rewards Points)<br>
+                        Leave empty to use default notification email.<br>
+                        
+                    ","
+يمكنك استخدام المتغيرات التالية:
+                        {{اسم العميل}} - customer name<br/>
+                        {{عنوان المتجر=""""}} - store URL<br/>
+                        {{الحصول علي اسم الواجهة الأمامية للمتجر()}} - store name<br/>
+                        {{إجمالي رصيد الحساب}} - formatted balance of customer account (مئة مكافئة مثلا) "
+Activate items,تنشيط العناصر
+Activate selected items?,هل يتم تنشيط العناصر المحددة؟
+Activate,تنشيط
+CSV,CSV
+Excel XML,Excel XML
+Activated At,التنشيط عند
+Is Activated,تم التنشيط
+
+

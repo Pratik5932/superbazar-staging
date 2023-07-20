@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content" >
+            <block class="Mirasvit\RewardsBehavior\Block\Buttons" name="rewards.social.buttons"
+                   ifconfig="rewardssocial/display_options/is_show_social_block_in_catalog"
+                   template="Mirasvit_RewardsBehavior::buttons.phtml" before="-" />
+        </referenceContainer>
+
+        <referenceContainer name='before.body.end'>
+            <block class="Mirasvit\RewardsBehavior\Block\Buttons" name="rewards.fbscript"
+                   ifconfig="rewardssocial/display_options/is_show_social_block_in_catalog"
+                   template="Mirasvit_RewardsBehavior::buttons/facebook/script.phtml" />
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,28 @@
+@critical: unsure;
+@listing-grid-item__reveal-on-hover: unsure;
+
+& when (@media-common = true) {
+    .breeze {
+        [data-role="password-strength-meter"] {
+            display: none;
+        }
+
+        .breadcrumbs {
+            min-height: 18px;
+        }
+
+        #notice-cookie-block:not([style]) {
+            display: none;
+        }
+    }
+}
+
+@import 'abstracts/_modrtl.less';
+@import 'abstracts/_variables.less';
+@import 'abstracts/_mixins.less';
+
+@import 'components/_carousel.less';
+@import 'components/_gallery.less';
+@import 'components/_magnifier.less';
+@import 'components/_range-slider.less';
+@import 'components/_slider.less';

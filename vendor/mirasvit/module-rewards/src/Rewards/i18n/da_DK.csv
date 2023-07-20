@@ -1,0 +1,353 @@
+"My Reward Points","Mine belønningspoint"
+"Checkout now and earn <b>%1</b> for this order.","Checkout nu og tjen <b>%1</b> for denne ordre."
+"Applies only to registered customers, may vary when logged in.","Gælder kun for registrerede kunder, kan variere, når de er logget ind."
+"Possible discount %1 %2","Mulig rabat %1 %2"
+"Earn %1 %2","Tjen %1 %2"
+Grid,Grid
+List,Liste
+All,Alle
+"Referral %1","Henvisning %1"
+"Something went wrong while saving your subscription.","Noget gik galt, mens du gemte dit abonnement."
+"We removed your subscription on expiring points notification.","Vi har fjernet dit abonnement på udløbsrapporter."
+"Cannot apply points.","Kan ikke anvende punkter."
+"You've earned %1 for Facebook Like!","Du har tjent %1 for Facebook Ligesom!"
+"You've earned %1 for Facebook Share!","Du har tjent %1 for Facebook Share!"
+"Facebook Like Points has been canceled","Facebook Like Points er blevet annulleret"
+"You've earned %1 for Google+!","Du har tjent %1 for Google+!"
+"G+1 Points has been canceled","G + 1 point er blevet annulleret"
+"You've earned %1 for Pin!","Du har tjent %1 for Pin!"
+"Invalid form key. Try again","Ugyldig formular nøgle. Prøv igen"
+"Customer with email %1 has been already invited to our store","Kunden med e-mail %1 er allerede inviteret til vores butik"
+"Your invitations were sent. Thanks!","Dine invitationer blev sendt. Tak!"
+"You've earned %1 for Tweet!","Du har tjent %1 for Tweet!"
+"You received %1 for signing up","Du modtog %1 for tilmelding"
+"You received %1 for sending this product","Du har modtaget %1 for at sende dette produkt"
+"You received %1 for sign up for newsletter","Du modtog %1 for at tilmelde dig nyhedsbrev"
+"You received %1 for sign up for push notifications","Du modtog %1 for at tilmelde dig push-underretninger"
+"You will receive %1 after approving of this tag","Du vil modtage %1 efter godkendelse af dette mærke"
+"You will receive %1 after approving of this review","Du modtager %1 efter godkendelse af denne anmeldelse"
+"You received %1 for sign up of referral customer.","Du modtog %1 for tilmelding af henvisningskunde."
+"You received %1 for order of referral customer.","Du modtog %1 for bestilling af henvisningskunde."
+"Happy birthday! You received %1.","Tillykke med fødselsdagen! Du modtog %1."
+"You received %1 for joining the affiliate program.","Du modtog %1 for at deltage i affilieret program."
+"%1 were applied.","%1 blev anvendt."
+"Minimum number is %1.","Mindste nummer er %1."
+"Maximum number is %1.","Maksimalt tal er %1."
+"%1 was canceled.","%1 blev annulleret."
+"Cannot apply %1.","Kan ikke anvende %1."
+"You can use the following variables:","Du kan bruge følgende variabler:"
+Pattern,Mønster
+"Attribute Value",Egenskabsværdi
+Default,Standard
+Integer,Heltal
+Price,Pris
+"Strip Tags","Strip Tags"
+"Primary Attributes","Primær attributter"
+"Stock Attributes","Lager attributter"
+"Prices & Taxes","Priser og skatter"
+Images,Billeder
+"Custom Attributes","Brugerdefinerede attributter"
+Mapping,Kortlægning
+Category,Kategori
+"Amasty Meta Tags","Amasty Meta Tags"
+"Others Attributes","Andre attributter"
+Flexible,Fleksibel
+Fixed,Fast
+"Customer signs up in store","Kunde tegn op i butikken"
+"Customer places order","Kunde placerer ordre"
+"Customer refer a friend","Kunde henvise til en ven"
+"Customer adds tag to a product","Kunde tilføjer tag til et produkt"
+"Customer writes a product review","Kunden skriver en produktanmeldelse"
+"Customer has a birthday","Kunde har en fødselsdag"
+"Customer is inactive for long time","Kunden er inaktiv i lang tid"
+"Newsletter sign up","Nyhedsbrev tilmelding"
+"Facebook Share","Facebook Share"
+"Facebook Like","Facebook lignende"
+"Twitter Tweet","Twitter Tweet"
+"Google+ Like","Google+ Ligesom"
+"Pinterest Pin","Pinterest Pin"
+"Customer joins the affiliate program","Kunden tiltræder affilieret program"
+"Push Notifications sign up","Tryk meddelelser tilmeld"
+"Referred customer signs up in store","Henvisede kunde tegn op i butikken"
+"Order from referred customer","Bestilling fra henvist kunde"
+"Points to Currency","Points til Valuta"
+"Currency to Points","Valuta til Punkter"
+"Customer Account > My Reward Points","Kundekonto&gt; Mit belønningspoint"
+"Customer Account > My Referrals","Kundekonto&gt; Mine henvisninger"
+"Cart Page",Indkøbskurv
+"Message Sent","Besked sendt"
+"Signed Up",Tilmeldt
+"Made Order","Made Order"
+"Visited by Referral Link","Besøgt af Henvisning Link"
+"Subtotal + Tax","Subtotal + Skat"
+"Subtotal + Tax + Shipping","Subtotal + Skat + Forsendelse"
+"Product Rule",Produktregel
+"Cart Rule","Cart Rule"
+"Behavior Rule","Adfærd regel"
+"Transaction #%1 is expired","Transaktion #%1 er udløbet"
+"Update the Product","Opdater produktet"
+"Is Rewards Points used","Er belønningspoint brugt"
+"Coupon Used","Kupon bruges"
+"Coupon Code",Kuponkode
+No,Ingen
+Yes,Ja
+"Conditions Combination","Betingelser Kombination"
+"Product attribute combination",Produktattributkombination
+"Products subselection","Produkter underselektion"
+"Conditions combination","Betingelser kombination"
+"Cart Attribute",Indkøbsegenskab
+Customer,Kunde
+"Last 7-days Clicks","Sidste 7-dages klik"
+"Last 7-days Orders","Sidste 7-dages ordrer"
+"Last 7-days Revenue","Sidste 7-dages indtjening"
+"Is Referee","Er dommer"
+"Is Referral","Er henvisning"
+Email,E-mail
+Group,Gruppe
+"Lifetime Sales",Livstidssalg
+"Lifetime Spent Points","Levetid brugt point"
+"Number of Orders","Antal ordrer"
+"Is subscriber of newsletter","Er abonnent af nyhedsbrev"
+"Number of reviews","Antal anmeldelser"
+"Number of referred friends signups","Antal henviste venner tilmeldinger"
+"Number of referred friends orders","Antal henvendte venner ordrer"
+"Sum of referred friends orders","Summen af ​​henvendte venner ordrer"
+"Number of referrals who ordered at least once","Antal henvisninger, der bestilte mindst en gang"
+"Not registered","Ikke registreret"
+"Attribute Set",Egenskabssæt
+Quantity,Antal
+"Product Type",Produkttype
+"Base Image","Base billede"
+Thumbnail,Miniature
+"Small Image","Lille billede"
+"Base Image Size (bytes)","Base Image Size (bytes)"
+"Thumbnail Size (bytes)","Miniaturestørrelse (bytes)"
+"Small Image Size (bytes)","Lille billedstørrelse (bytes)"
+"PHP Condition","PHP betingelse"
+"Base Price",Basispris
+"Final Price",Slutpris
+"Special Price","Speciel pris"
+"Open Chooser","Åbn vælger"
+"Referred: Group","Henvist: Gruppe"
+"Referred: Lifetime Sales","Henvist: Lifetime Sales"
+"Referred: Number of Orders","Henvist: Antal Ordrer"
+"Referred: Is subscriber of newsletter","Henvist: Er abonnent af nyhedsbrev"
+"Referred: Number of reviews","Henvist: Antal anmeldelser"
+"Please specify a website.","Angiv venligst en hjemmeside."
+"Please specify a customer email.","Angiv en kunde e-mail."
+"We found an invalid value in a website column.","Vi har fundet en ugyldig værdi i en websitetskolonne."
+"Please enter a valid email.","Indtast venligst en gyldig email."
+"Please make sure attribute ""%1"" is not empty.","Sørg for at attribut &quot;%1&quot; ikke er tomt."
+"We can't find a customer who matches this email and website code.","Vi kan ikke finde en kunde, der matcher denne email og web-kode."
+"-- Please Select --","-- Vælg venligst --"
+"Discount Used","Rabat brugt"
+"Custom Product Attributes","Brugerdefinerede produktattributter"
+"- Disable these emails -","- Deaktiver disse e-mails -"
+"Give X points to customer","Giv X point til kunde"
+"Give X points for every spent Y","Giv X point for hver brugt Y"
+"Give X points for every Z quantity","Giv X point for hver Z-mængde"
+"For every Y, give X points","For hver Y, giv X point"
+Pending,Verserende
+Approved,Godkendt
+Discarded,Kasseret
+"You do not have permissions to create transactions. Please contact your site administrator.","Du har ikke tilladelser til at oprette transaktioner. Kontakt venligst din webstedsadministrator."
+"%1 has been added.","%1 er blevet tilføjet."
+"%1 has been deducted.","%1 er blevet fratrukket."
+"You earned %1 and spent %2 for this order.","Du har tjent %1 og brugt %2 for denne ordre."
+"You spent %1 for this order.","Du brugte %1 til denne ordre."
+"You earned %1 for this order.","Du har tjent %1 for denne ordre."
+"Earned points will be enrolled to your account after we finish processing your order.","Optjente point vil blive tilmeldt din konto, når vi har afsluttet behandlingen af ​​din ordre."
+"Rewards error occurred on the server. Please try to place the order again.","Belønningsfejl opstod på serveren. Prøv at placere ordren igen."
+"Earn at least %1 %2","Tjen mindst %1 %2"
+"Reward Points",Belønningspoint
+Edit,Redigere
+Back,Tilbage
+Delete,Slet
+"Are you sure you want to do this?","Er du sikker på, at du vil gøre dette?"
+Reset,Nulstil
+"Save and Continue Edit","Gem og Fortsæt Rediger"
+Save,Gemme
+"Points Summary","Point Sammendrag"
+"To unsubscribe from points expiring notification click %1","For at afmelde fra punkter, der udløber, skal du klikke på %1"
+"You have <b>%1</b> in your account.","Du har <b>%1</b> i din konto."
+"Transactions History",Transaktionshistorik
+ID,ID
+Comment,Kommentar
+Points,Points
+Created,Lavet
+Expires,Udløber
+"There are no Transactions.","Der er ingen transaktioner."
+"Pending Transactions","Afventer transaktioner"
+Order,Bestille
+Status,Status
+"Your points balance will expire in %1 days.","Din pointsaldo udløber i %1 dage."
+"Visit My Reward Points Section","Besøg mit belønningspoint-afsnit"
+"Login to earn %1 for sharing!","Log ind for at tjene %1 for deling!"
+"Earn %1 for sharing!","Tjen %1 for at dele!"
+"Like this page and earn %1","Synes godt om denne side og tjen %1"
+Share,Del
+"Share this page and earn %1","Del denne side og tjen %1"
+"Plus this page and earn %1","Plus denne side og tjen %1"
+"Pin this page and earn %1","Pin denne side og tjen %1"
+"Refer Friends","Se venner"
+"Refer friend and earn %1. More friends more points!","Se ven og tjen %1. Flere venner flere point!"
+Tweet,Tweet
+"Tweet this page and earn %1","Tweet denne side og tjen %1"
+"Check this out!","Se lige det her!"
+"You have <b>%1</b> available.","Du har <b>%1</b> tilgængelig."
+"Enter amount of points to spend:","Indtast antal point at bruge:"
+"Use maximum %1","Brug maksimum %1"
+"Apply Points","Anvend punkter"
+Apply,Ansøge
+"Cancel Points","Annuller punkter"
+Cancel,Afbestille
+"Use %1","Brug %1"
+"You Earn","Du tjener"
+"You Spend","Du bruger"
+"Discount amount",Rabatbeløb
+"Use Reward Points","Brug belønningspoint"
+"This is a required field","Dette er et obligatorisk felt"
+"Subscription to Points Expiration Notification","Abonnement på punktudløbsmeddelelse"
+"Earning %1","Tjene %1"
+"Buy to earn %1","Køb for at tjene %1"
+"You'll earn %1 for this item","Du tjener %1 for denne vare"
+"Share with Friends","Del med venner"
+"Share the referral link in the social media and get points!","Del henvisningslinket i de sociale medier og få point!"
+"Tweet on Twitter","Tweet på Twitter"
+"Your referral link:","Dit henvisnings link:"
+"Send Invitations","Send invitationer"
+"Enter contacts of your friends to invite them.","Indtast kontakter af dine venner for at invitere dem."
+Name,Navn
+Message,Besked
+Referrals,Henvisninger
+"Referred by link","Henvist til link"
+"There are no Referrals","Der er ingen henvisninger"
+"You have","Du har"
+available.,ledig.
+"Use maximum","Brug maksimum"
+"Enter amount of points to spend","Indtast antal point at bruge"
+Use,Brug
+"Notification Rules' messages","Meddelelsesregler &#39;meddelelser"
+Template,Skabelon
+"Notification Rule Template","Meddelelsesregel skabelon"
+"My Referrals","Mine henvisninger"
+"Referrals List",Henvisningsliste
+today,"i dag"
+ago,siden
+"Cannot delete transaction with id %1","Kan ikke slette transaktionen med id %1"
+"Expires in","Udløber i"
+"How to earn","Hvordan tjene man"
+"Spend points and receive discounts","Brug point og modtag rabatter"
+"Total number of referred friends: %1","Samlet antal henviste venner: %1"
+"Or you may send this link in your messages to anyone","Eller du kan sende dette link i dine meddelelser til nogen"
+"Your Transactions","Dine transaktioner"
+"My Points","Mine point"
+"Share & Save","Del - Gem"
+History,Historie
+"in %1 %2","i %1 %2"
+"in %1 days","i %1 dage"
+"in %1 day","i %1 dag"
+"%1 %2 ago","%1 %2 siden"
+"%1 days ago","%1 dage siden"
+"%1 day ago","%1 dag siden"
+"How to earn points","Hvordan man tjener point"
+"You have invited %1 friends","Du har inviteret %1 venner"
+"Share the referral link in the social media","Del henvisningslinket i de sociale medier"
+"You may send this link in your messages to anyone","Du kan sende dette link i dine meddelelser til nogen"
+"Page not found.","Siden blev ikke fundet."
+"Customer tier up","Kunde tier op"
+"Customer tier down","Kunde tier ned"
+"sum of earned points","summen af optjening point"
+"sum of spent %1","summen af brugt %1"
+"Customer does not assign to website","Kunden overdrager ikke til hjemmesiden"
+"Payment Method",Betalingsmetode
+"This tier is assign to %1 customer(s). Please reassign customer(s) to other tier.","Denne klasse er tildelt %1 kunde (r). Venligst omdirigere kunde (r) til anden niveau."
+"You Spend Points","Du bruger point"
+"Spend Amount","Brug beløb"
+"Spend Minimum Points","Tilbring minimumspoint"
+"Spend Maximum Points","Tilbring maksimale point"
+"Cannot delete tier with id %1","Kan ikke slette tier med id %1"
+"Unable to find tier for customer ""%1"". Please check tier configuration.","Kan ikke finde niveau for kunde &quot;%1&quot;. Kontroller tierkonfiguration."
+"Customer Earning Style","Kundefortjent stil"
+"Number of Points (X)","Antal point (X)"
+"Step (Y)","Trin (Y)"
+"In base currency","I basisvaluta"
+"Quantity Step (Z)","Antal trin (Z)"
+"Maximum number of earned points for one customer per day","Maksimum antal optjeningspoint for en kunde pr. Dag"
+"Set 0 to disable limit","Indstil 0 for at deaktivere grænse"
+"Do not change","Ikke skift"
+"Assign customer to Group","Tildel kunde til gruppe"
+"Earn Maximum","Tjen maksimum"
+"Maximum Distributed Points","Maksimale fordelte point"
+Tiers,Tredje
+"%1 for each $%2","%1 for hver $ %2"
+"All Groups","Alle Grupper"
+Actions,Handlinger
+"Points spending style","Points udgifts stil"
+"For each spent X points","For hver brugt X point"
+"Number of points.","Antal point."
+"Customer receive Y discount","Kunden modtager Y rabat"
+"You can enter amount in base currency or percent. e.g. 100 or 5%.","Du kan indtaste beløb i basisvaluta eller procent. fx 100 eller 5%."
+"You can enter amount of points or percent. e.g. 100 or 5%. Leave empty to disable.","Du kan indtaste antallet af point eller procent. fx 100 eller 5%. Lad være tom for at deaktivere."
+"Spend minimum","Tilbring minimum"
+"Spend maximum","Tilbring maksimum"
+"Minimum sum of spent %1","Mindste sum af brugt %1"
+"Minimum points number to reach the tier","Minimum point nummer for at nå niveauet"
+"Delete the record with ID ""%1""","Slet posten med ID &quot;%1&quot;"
+"Are you sure you wan't to delete the record with ID ""%1""?","Er du sikker på, at du vil slette posten med ID &quot;%1&quot;?"
+"Anonymous visitor","Anonym besøgende"
+"Your current tier is <a href=""#"" class=""open-popup""><b>%1</b></a>","Din nuværende tier er <a href=""#"" class=""open-popup""><b>%1</b></a>"
+"Earn <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","Tjen <b>%1 for</b> at komme til <a class=""open-popup""><b>%2</b></a>"
+"Spend <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","Tilbring <b>%1 for</b> at komme til <a class=""open-popup""><b>%2</b></a>"
+"in 1 day","om 1 dag"
+"1 day ago","1 dag siden"
+"Earn %1","Tjen %1"
+"Earned %1 for the order #%2.","Optjent %1 for ordren #%2."
+"Spent %1 for the order #%2.","Brugt %1 til ordren #%2."
+"Restore spent %1 for the order #%2.","Gendan brugte %1 til ordren #%2."
+"Cancel earned %1 for the order #%2.","Annuller optjent %1 for ordren #%2."
+"Refunded %1 (creditmemo #%2, order #%3).","Tilbagebetalt %1 (kreditmemo #%2, ordre #%3)."
+"Will expire %1","Udløber %1"
+Expired,Udløbet
+Active,Aktiv
+"Points are expired","Point udløber"
+"Will be ready for use %1","Vil være klar til brug %1"
+"We subscribed you on expiring points notification.","Vi abonnerede på dig ved udløb af point-anmeldelse"
+"Possible discount %1","Mulig rabat %1"
+Subtotal,Subtotal
+"Rewards Discount","Bonus rabat"
+"Field 'Spend maximum' can not be less or equal then field 'Spend minimum'","Felt &#39;Brug maksimalt&#39; kan ikke være mindre eller lig da felt &#39;Brug minimum&#39;"
+"Field 'For each spent X points' should be integer","Felt &#39;For hvert brugte X-point&#39; skal være heltal"
+"Rewards discount","Bonus rabat"
+"Cannot delete rule with id %1","Kan ikke slette regel med id %1"
+"Status Description",Statusbeskrivelse
+"Checkout now and earn <b class='message-earn-points-label'>%1</b> for this order.","Checkout nu, og tjen <b class='message-earn-points-label'>%1</b> for denne ordre."
+"Cannot apply %1. %2 %3","Kan ikke anvende %1. %2 %3"
+"%1 were cancelled.","%1 blev annulleret."
+"Customer creates RMA","Kunden opretter RMA"
+"Use Magento settings","Brug Magento-indstillinger"
+"After Tax","Efter skat"
+"Additional Product Attribute","Yderligere produktattribut"
+"Additional Payment Method","Yderligere betalingsmetode"
+Reasons,Grunde
+Conditions,Betingelser
+Resolutions,Beslutninger
+Statuses,Statusser
+"Apply to items","Anvend på varer"
+"Apply to totals","Anvend til totaler"
+"Rewards Refunded","Belønninger refunderes"
+"Send notification before points expires (in days)","Send anmeldelse inden point udløber (om dage)"
+"Cancel the earned points after the order has been refunded","Annuller de optjente point, efter at ordren er blevet refunderet"
+"Restore the points spent after the order has been refunded","Gendan de point, der er brugt, efter at ordren er blevet refunderet"
+"Allow to display maximum number of possible points for configurable products.","Tillad visning af maksimalt antal mulige punkter for konfigurerbare produkter."
+"Send notification before points expires(in days)","Send anmeldelse inden point udløber (om dage)"
+"In determining tiers, take into account, it only lasts for N days","Når du bestemmer niveauer, skal du tage hensyn til, det varer kun i N dage"
+"Show pending transactions in the customer's account","Vis afventende transaktioner på kundens konto"
+"Use this option to explain to your customer why the Rewards spending block isn't displaying in checkout","Brug denne mulighed til at forklare din kunde, hvorfor udgifterne til belønning ikke vises i kassen"
+"If the theme overrides Magento way of including styles, this option will add extension's styles to the page","Hvis temaet tilsidesætter Magento-måde at inkludere stilarter, tilføjer denne indstilling udvidelsens stilarter til siden"
+"In some configuration, the method 'Apply to items' may have a slight error in calculation","I nogle konfigurationer kan metoden &#39;Anvend på poster&#39; have en lille fejlberegning"
+"For detailed explanation, see the <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>documentation</a>","For detaljeret forklaring, se <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>dokumentationen</a>"
+"Minimum points number to reach each tier","Minimumspointantal for at nå hvert niveau"
+"Delete the record with ID %1","Slet posten med ID %1"
+"Are you sure you want to delete the record with ID %1","Er du sikker på, at du vil slette posten med ID %1"
+"To subscribe to points expiring and balance update notification click %1","Klik på %1 for at abonnere på point, der udløber og balanceopdateringsmeddelelse."

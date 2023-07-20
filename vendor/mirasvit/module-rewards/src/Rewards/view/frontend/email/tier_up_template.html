@@ -1,0 +1,11 @@
+<!--@subject New tier gaining @-->
+
+{{template config_path="design/email/header_template"}}
+
+Dear {{var customer.name}}!<br><br>
+
+Congratulations on gaining a new <b>{{var tier.name}}</b> tier at {{var store.getFrontendName()}}.<br>
+Your current balance is <b>{{var balance_total}}</b>.<br>
+Keep on earning {{var points_name}} and using advantages of our discount system.
+
+{{template config_path="design/email/footer_template"}}

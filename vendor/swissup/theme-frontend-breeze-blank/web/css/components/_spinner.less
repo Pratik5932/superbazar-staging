@@ -1,0 +1,55 @@
+& when (@critical) {
+    .loading-mask,
+    .load.indicator {
+        display: none;
+    }
+}
+& when not (@critical) {
+    .loading-mask,
+    .load.indicator {
+        inset: 0;
+        margin: auto;
+        position: fixed;
+        z-index: 800;
+        --base-bg-alpha: .6;
+        background: @base__background;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loading-mask {
+        body > & {
+            position: fixed !important;
+        }
+
+        .loader {
+            &:extend(.spinner);
+            flex-shrink: 0;
+            flex-grow: 0;
+            p,
+            img {
+                display: none;
+            }
+        }
+
+        + .loading-mask {
+            opacity: 0;
+        }
+    }
+
+    .load.indicator {
+        &::before {
+            content: '';
+            display: block;
+            &:extend(.spinner);
+        }
+        span {
+            display: none;
+        }
+    }
+
+    ._block-content-loading {
+        position: relative;
+    }
+}

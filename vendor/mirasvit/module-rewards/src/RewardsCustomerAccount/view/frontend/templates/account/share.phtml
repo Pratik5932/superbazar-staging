@@ -1,0 +1,99 @@
+<?php
+/** @var \Mirasvit\RewardsCustomerAccount\Block\Account\Listing $block */
+$socialRules = $block->getDisplaySocialRules();
+?>
+<?php if ($block->getFacebookIsActive()): ?>
+    <div id="fb-root"></div>
+<?php endif; ?>
+<div class="block block-rewards-account-summary order-details-items">
+    <div class="">
+        <?= $block->getChildHtml('rewards.page.main.title'); ?>
+    </div>
+
+    <?php if ($socialRules->count()): ?>
+        <div class="block-title">
+            <?php if ($block->isReferralActive()): ?>
+                <strong><?= __('Share the referral link in the social media and get points!') ?></strong>
+            <?php endif; ?>
+        </div>
+        <div class="block-content">
+            <ul>
+                <?php foreach ($socialRules as $rule): ?>
+                    <li><?= $rule->getFrontName(); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($block->isReferralActive()): ?>
+        <?php if ($block->isSocialActive()): ?>
+            <div class="block-title">
+                <strong><?= __('Share the referral link in the social media') ?></strong>
+            </div>
+            <div class="block-content">
+                <div class="block-rewards-referral-list">
+                    <div class="rewards-social-buttons">
+                        <div class="fb">
+                            <?php if ($block->isLikeActive()): ?>
+                                <div class="fb-like" data-href="<?= $block->getShareUrl()?>"
+                                     data-layout="button"
+                                     data-action="like"
+                                     data-show-faces="false"
+                                     data-share="false"
+                                     data-font="arial"
+                                     data-width="61"
+                                     data-height="20"
+                                     data-colorscheme="light"></div>
+                            <?php endif; ?>
+                            <?php if ($block->isShareActive()): ?>
+                                <div class="fb-share-button" data-href="<?= $block->getShareUrl() ?>" data-layout="button"></div>
+                            <?php endif; ?>
+                        </div>
+                        <?php if ($block->isTweetActive()): ?>
+                        <div class="tw">
+                            <a href="https://twitter.com/share" class="twitter-share-button"
+                               data-url="<?= $block->getShareUrl() ?>" data-count="none"
+                               data-text="<?= __('Check this out!') ?>"><?= __('Tweet on Twitter') ?></a>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var rewardsCurrentUrl = '<?php echo $block->getCurrentEncodedUrl($block->getCurrentUrl()); ?>';
+                var rewardsShareCurrentUrl = '<?php echo $block->getCurrentUrl(); ?>';
+                var rewardsFacebookApiVersion = '<?php echo $block->getFbApiVersion(); ?>';
+            </script>
+        <?php endif; ?>
+        <div class="block-title earn subtitle">
+            <?php if ($socialRules->count()): ?>
+                <strong><?= __("Or you may send this link in your messages to anyone") ?></strong>
+            <?php else: ?>
+                <strong><?= __("You may send this link in your messages to anyone") ?></strong>
+            <?php endif; ?>
+        </div>
+        <div class="block-content">
+            <span class="rewards-referral-link">
+                <?php echo $block->getShareUrl() ?>
+            </span>
+        </div>
+    <?php endif; ?>
+</div>
+
+<script type="text/javascript">
+    var fbLocaleCode = '<?=$block->getLocaleCode()?>';
+    var fbAppId = '<?=$block->getAppId()?>';
+</script>
+<script>
+    require.config({
+        deps: [
+            'jquery',
+            "mage/mage"
+        ],
+        callback: function ($) {
+            'use strict';
+            var dataForm = $('#referralForm');
+            dataForm.mage('validation', {});
+        }
+    });
+</script>

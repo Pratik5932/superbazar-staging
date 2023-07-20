@@ -1,0 +1,353 @@
+"My Reward Points",คะแนนสะสมของฉัน
+"Checkout now and earn <b>%1</b> for this order.","ชำระเงินทันทีและได้รับ <b>%1</b> สำหรับคำสั่งซื้อนี้"
+"Applies only to registered customers, may vary when logged in.",ใช้กับลูกค้าที่ลงทะเบียนเท่านั้นอาจแตกต่างกันไปเมื่อลงชื่อเข้าใช้
+"Possible discount %1 %2","ส่วนลดที่เป็นไปได้ %1______"
+"Earn %1 %2","ได้รับ %1______"
+Grid,ตะแกรง
+List,รายการ
+All,ทั้งหมด
+"Referral %1","การแนะนำ %1"
+"Something went wrong while saving your subscription.",เกิดข้อผิดพลาดขณะบันทึกการสมัครรับข้อมูลของคุณ
+"We removed your subscription on expiring points notification.",เรานำการสมัครรับข้อมูลของคุณออกเมื่อหมดอายุการแจ้งเตือน
+"Cannot apply points.",ไม่สามารถใช้คะแนนได้
+"You've earned %1 for Facebook Like!","คุณได้รับ %1 สำหรับ Facebook Like!"
+"You've earned %1 for Facebook Share!","คุณได้รับ %1 สำหรับ Facebook Share!"
+"Facebook Like Points has been canceled","Facebook Like Points ถูกยกเลิกแล้ว"
+"You've earned %1 for Google+!","คุณได้รับ %1 สำหรับ Google+!"
+"G+1 Points has been canceled","ยกเลิกคะแนน G + 1 แล้ว"
+"You've earned %1 for Pin!","คุณได้รับ PIN %1!"
+"Invalid form key. Try again","คีย์ฟอร์มไม่ถูกต้อง ลองอีกครั้ง"
+"Customer with email %1 has been already invited to our store","ลูกค้าที่มีอีเมล %1 ได้รับเชิญไปที่ร้านของเราแล้ว"
+"Your invitations were sent. Thanks!","ส่งคำเชิญของคุณแล้ว ขอบคุณ!"
+"You've earned %1 for Tweet!","คุณได้รับ %1 สำหรับทวีตแล้ว!"
+"You received %1 for signing up","คุณได้รับ %1 เพื่อลงทะเบียน"
+"You received %1 for sending this product","คุณได้รับ %1 สำหรับการส่งผลิตภัณฑ์นี้"
+"You received %1 for sign up for newsletter","คุณได้รับ %1 เพื่อลงทะเบียนจดหมายข่าว"
+"You received %1 for sign up for push notifications","คุณได้รับ %1 เพื่อลงชื่อสมัครใช้การแจ้งเตือนแบบพุช"
+"You will receive %1 after approving of this tag","คุณจะได้รับ %1 หลังจากอนุมัติแท็กนี้"
+"You will receive %1 after approving of this review","คุณจะได้รับ %1 หลังจากได้รับการอนุมัติจากรีวิวนี้แล้ว"
+"You received %1 for sign up of referral customer.","คุณได้รับ %1 เพื่อลงทะเบียนลูกค้าแนะนำ"
+"You received %1 for order of referral customer.","คุณได้รับ %1 สำหรับคำสั่งของลูกค้าที่แนะนำ"
+"Happy birthday! You received %1.","สุขสันต์วันเกิด! คุณได้รับ %1"
+"You received %1 for joining the affiliate program.","คุณได้รับ %1 สำหรับการเข้าร่วมโปรแกรมพันธมิตร"
+"%1 were applied.","ใช้ %1"
+"Minimum number is %1.","จำนวนขั้นต่ำคือ %1"
+"Maximum number is %1.","จำนวนสูงสุดคือ %1"
+"%1 was canceled.","%1 ถูกยกเลิกแล้ว"
+"Cannot apply %1.","ไม่สามารถใช้ %1"
+"You can use the following variables:",คุณสามารถใช้ตัวแปรต่อไปนี้:
+Pattern,แบบแผน
+"Attribute Value",ค่าแอตทริบิวต์
+Default,ค่าเริ่มต้น
+Integer,จำนวนเต็ม
+Price,ราคา
+"Strip Tags","แท็ก Strip"
+"Primary Attributes",แอตทริบิวต์หลัก
+"Stock Attributes",แอตทริบิวต์สต็อก
+"Prices & Taxes",ราคาและภาษี
+Images,ภาพ
+"Custom Attributes",แอตทริบิวต์ที่กำหนดเอง
+Mapping,การทำแผนที่
+Category,ประเภท
+"Amasty Meta Tags","แท็ก Amasty Meta"
+"Others Attributes","แอตทริบิวต์อื่น ๆ"
+Flexible,คล่องตัว
+Fixed,คงที่
+"Customer signs up in store",ลูกค้าลงชื่อเข้าใช้
+"Customer places order",คำสั่งซื้อของลูกค้า
+"Customer refer a friend",ลูกค้าแนะนำเพื่อน
+"Customer adds tag to a product",ลูกค้าเพิ่มแท็กลงในผลิตภัณฑ์
+"Customer writes a product review",ลูกค้าเขียนรีวิวผลิตภัณฑ์
+"Customer has a birthday",ลูกค้ามีวันเกิด
+"Customer is inactive for long time",ลูกค้าไม่ได้ใช้งานเป็นเวลานาน
+"Newsletter sign up",ลงทะเบียนจดหมายข่าว
+"Facebook Share","แชร์ Facebook"
+"Facebook Like","ชอบ Facebook"
+"Twitter Tweet","Twitter Tweet"
+"Google+ Like","ชอบ Google+"
+"Pinterest Pin","Pinterest Pin"
+"Customer joins the affiliate program",ลูกค้าเข้าร่วมโปรแกรมพันธมิตร
+"Push Notifications sign up",กดการแจ้งเตือน
+"Referred customer signs up in store",สัญญาณลูกค้าที่ระบุไว้ในร้านค้า
+"Order from referred customer",คำสั่งซื้อจากลูกค้าที่อ้างอิง
+"Points to Currency",ชี้ไปที่สกุลเงิน
+"Currency to Points",สกุลเงินไปยังจุด
+"Customer Account > My Reward Points","บัญชีลูกค้า&gt; คะแนนสะสมของฉัน"
+"Customer Account > My Referrals","บัญชีลูกค้า&gt; การแนะนำผลิตภัณฑ์ของฉัน"
+"Cart Page",หน้ารถเข็น
+"Message Sent",ส่งข้อความ
+"Signed Up",ลงทะเบียน
+"Made Order",สั่งทำ
+"Visited by Referral Link",เข้าชมตามลิงก์การอ้างอิง
+"Subtotal + Tax","ยอดรวม + ภาษี"
+"Subtotal + Tax + Shipping","ยอดรวม + ภาษี + ค่าจัดส่ง"
+"Product Rule",กฎผลิตภัณฑ์
+"Cart Rule",กฎของรถเข็น
+"Behavior Rule",พฤติกรรมกฎ
+"Transaction #%1 is expired","ธุรกรรม #%1 หมดอายุแล้ว"
+"Update the Product",อัพเดตผลิตภัณฑ์
+"Is Rewards Points used",คะแนนสะสมใช้แล้ว
+"Coupon Used",ใช้คูปองแล้ว
+"Coupon Code",รหัสคูปอง
+No,ไม่
+Yes,ใช่
+"Conditions Combination",เงื่อนไขการรวมกัน
+"Product attribute combination",การรวมแอตทริบิวต์ผลิตภัณฑ์
+"Products subselection","ผลิตภัณฑ์ subselection"
+"Conditions combination",ชุดเงื่อนไข
+"Cart Attribute",แอตทริบิวต์รถเข็น
+Customer,ลูกค้า
+"Last 7-days Clicks","คลิกล่าสุด 7 วัน"
+"Last 7-days Orders","คำสั่งซื้อ 7 วันล่าสุด"
+"Last 7-days Revenue","รายได้ล่าสุด 7 วัน"
+"Is Referee",เป็นผู้ตัดสิน
+"Is Referral",เป็นการแนะนำ
+Email,อีเมล์
+Group,กลุ่ม
+"Lifetime Sales",ยอดขายตลอดอายุการใช้งาน
+"Lifetime Spent Points",อายุการใช้งานที่ยาวนาน
+"Number of Orders",จำนวนคำสั่งซื้อ
+"Is subscriber of newsletter",เป็นสมาชิกจดหมายข่าว
+"Number of reviews",จำนวนรีวิว
+"Number of referred friends signups",จำนวนการสมัครรับข้อมูลจากเพื่อน
+"Number of referred friends orders",จำนวนคำสั่งซื้อของเพื่อนที่แนะนำ
+"Sum of referred friends orders",จำนวนคำสั่งซื้อที่เรียกเพื่อน
+"Number of referrals who ordered at least once",จำนวนผู้สั่งซื้อที่สั่งซื้ออย่างน้อยหนึ่งครั้ง
+"Not registered",ยังไม่ได้ลงทะเบียน
+"Attribute Set",ชุดแอตทริบิวต์
+Quantity,ปริมาณ
+"Product Type",ประเภทผลิตภัณฑ์
+"Base Image",ภาพฐาน
+Thumbnail,รูปขนาดย่อ
+"Small Image",รูปภาพขนาดเล็ก
+"Base Image Size (bytes)","ขนาดภาพฐาน (ไบต์)"
+"Thumbnail Size (bytes)","ขนาดย่อ (ไบต์)"
+"Small Image Size (bytes)","ขนาดรูปภาพขนาดเล็ก (ไบต์)"
+"PHP Condition","สภาพ PHP"
+"Base Price",ราคาพื้นฐาน
+"Final Price",ราคาสุดท้าย
+"Special Price",ราคาพิเศษ
+"Open Chooser","เปิด Chooser"
+"Referred: Group","อ้างอิง: กลุ่ม"
+"Referred: Lifetime Sales","อ้างอิง: ยอดขายตลอดอายุการใช้งาน"
+"Referred: Number of Orders","อ้างอิง: จำนวนคำสั่งซื้อ"
+"Referred: Is subscriber of newsletter","อ้างถึง: เป็นสมาชิกจดหมายข่าว"
+"Referred: Number of reviews","อ้างอิง: จำนวนรีวิว"
+"Please specify a website.",โปรดระบุเว็บไซต์
+"Please specify a customer email.",โปรดระบุอีเมลลูกค้า
+"We found an invalid value in a website column.",เราพบค่าที่ไม่ถูกต้องในคอลัมน์เว็บไซต์
+"Please enter a valid email.",กรุณาใส่อีเมลที่ถูกต้อง.
+"Please make sure attribute ""%1"" is not empty.","โปรดตรวจสอบว่าแอตทริบิวต์ &quot;%1&quot; ไม่ว่างเปล่า"
+"We can't find a customer who matches this email and website code.",เราไม่พบลูกค้าที่ตรงกับอีเมลและรหัสเว็บไซต์นี้
+"-- Please Select --","-- โปรดเลือก --"
+"Discount Used",ส่วนลดที่ใช้
+"Custom Product Attributes",แอตทริบิวต์ผลิตภัณฑ์ที่กำหนดเอง
+"- Disable these emails -","- ปิดใช้อีเมลเหล่านี้ -"
+"Give X points to customer","ให้คะแนน X แก่ลูกค้า"
+"Give X points for every spent Y","ให้ X คะแนนสำหรับทุก Y ที่ใช้ไป"
+"Give X points for every Z quantity","ให้คะแนน X สำหรับทุกปริมาณ Z"
+"For every Y, give X points","สำหรับทุก Y ให้คะแนน X"
+Pending,รอดำเนินการ
+Approved,ได้รับการอนุมัติ
+Discarded,ทิ้ง
+"You do not have permissions to create transactions. Please contact your site administrator.","คุณไม่มีสิทธิ์ในการสร้างธุรกรรม โปรดติดต่อผู้ดูแลระบบไซต์ของคุณ"
+"%1 has been added.","เพิ่ม %1 แล้ว"
+"%1 has been deducted.","หัก %1 แล้ว"
+"You earned %1 and spent %2 for this order.","คุณได้รับ %1 และใช้จ่าย %2 สำหรับคำสั่งซื้อนี้"
+"You spent %1 for this order.","คุณใช้เวลา %1 สำหรับคำสั่งซื้อนี้"
+"You earned %1 for this order.","คุณได้รับ %1 สำหรับคำสั่งซื้อนี้"
+"Earned points will be enrolled to your account after we finish processing your order.",คะแนนที่ได้รับจะถูกบันทึกลงในบัญชีของคุณหลังจากที่เราดำเนินการตามคำสั่งซื้อของคุณเสร็จสิ้น
+"Rewards error occurred on the server. Please try to place the order again.","ข้อผิดพลาดเกี่ยวกับรางวัลเกิดขึ้นบนเซิร์ฟเวอร์ โปรดลองสั่งซื้ออีกครั้ง"
+"Earn at least %1 %2","ได้รับอย่างน้อย %1______"
+"Reward Points",คะแนนสะสม
+Edit,แก้ไข
+Back,กลับ
+Delete,ลบ
+"Are you sure you want to do this?",คุณแน่ใจหรือไม่ว่าต้องการทำเช่นนี้?
+Reset,รีเซ็ต
+"Save and Continue Edit",บันทึกและแก้ไขต่อ
+Save,บันทึก
+"Points Summary",สรุปคะแนน
+"To unsubscribe from points expiring notification click %1","หากต้องการยกเลิกการรับข้อมูลจากจุดที่หมดอายุการแจ้งเตือนให้คลิก %1"
+"You have <b>%1</b> in your account.","คุณมี <b>%1</b> ในบัญชีของคุณ"
+"Transactions History",ประวัติการทำธุรกรรม
+ID,ID
+Comment,คิดเห็น
+Points,จุด
+Created,ที่สร้างไว้
+Expires,วันที่หมดอายุ
+"There are no Transactions.",ไม่มีรายการ
+"Pending Transactions",ธุรกรรมที่รอดำเนินการ
+Order,ใบสั่ง
+Status,สถานะ
+"Your points balance will expire in %1 days.","ยอดเงินคงเหลือของคุณจะหมดอายุในอีก %1 วัน"
+"Visit My Reward Points Section",ไปที่ส่วนรางวัลของรางวัลของฉัน
+"Login to earn %1 for sharing!","เข้าสู่ระบบเพื่อรับเงิน %1 เพื่อใช้ร่วมกัน!"
+"Earn %1 for sharing!","รับ %1 เพื่อแบ่งปัน!"
+"Like this page and earn %1","ชอบหน้านี้และได้รับ %1"
+Share,หุ้น
+"Share this page and earn %1","แชร์หน้านี้และรับรายได้ %1"
+"Plus this page and earn %1","บวกหน้านี้และมีรายได้ %1"
+"Pin this page and earn %1","ตรึงหน้านี้และรับ %1"
+"Refer Friends",แนะนำเพื่อน
+"Refer friend and earn %1. More friends more points!","แนะนำเพื่อนและได้รับ %1 เพื่อนเพิ่มเติมจุดมากขึ้น!"
+Tweet,ทวีต
+"Tweet this page and earn %1","Tweet หน้านี้และได้รับ %1"
+"Check this out!",ลองดู!
+"You have <b>%1</b> available.","คุณมี <b>%1</b> พร้อมใช้งานแล้ว"
+"Enter amount of points to spend:",ป้อนจำนวนจุดที่จะใช้จ่าย:
+"Use maximum %1","ใช้จำนวนสูงสุด %1"
+"Apply Points",ใช้คะแนน
+Apply,ใช้
+"Cancel Points",ยกเลิกคะแนน
+Cancel,ยกเลิก
+"Use %1","ใช้ %1"
+"You Earn",คุณได้รับ
+"You Spend",คุณจะใช้จ่าย
+"Discount amount",จำนวนส่วนลด
+"Use Reward Points",ใช้คะแนนสะสม
+"This is a required field",นี่คือข้อมูลที่จำเป็น
+"Subscription to Points Expiration Notification",การบอกรับเป็นสมาชิกการแจ้งข้อมูลการหมดอายุ
+"Earning %1","รายได้ %1"
+"Buy to earn %1","ซื้อเพื่อหารายได้ %1"
+"You'll earn %1 for this item","คุณจะได้รับ %1 สำหรับรายการนี้"
+"Share with Friends","แบ่งปันกับเพื่อน ๆ"
+"Share the referral link in the social media and get points!",แชร์ลิงก์การอ้างอิงในสื่อสังคมออนไลน์และรับคะแนน!
+"Tweet on Twitter","ทวีตบน Twitter"
+"Your referral link:",ลิงก์การแนะนำผลิตภัณฑ์ของคุณ:
+"Send Invitations",ส่งคำเชิญ
+"Enter contacts of your friends to invite them.",ป้อนรายชื่อติดต่อของเพื่อนของคุณเพื่อเชิญพวกเขา
+Name,ชื่อ
+Message,ข่าวสาร
+Referrals,แน่ะ
+"Referred by link",อ้างอิงตามลิงก์
+"There are no Referrals",ไม่มีการแนะนำผลิตภัณฑ์
+"You have",คุณมี
+available.,ใช้ได้
+"Use maximum",ใช้สูงสุด
+"Enter amount of points to spend",ป้อนจำนวนจุดที่จะใช้จ่าย
+Use,ใช้
+"Notification Rules' messages",ข้อความกฎการแจ้งเตือน
+Template,แบบ
+"Notification Rule Template",เทมเพลตกฎการแจ้งเตือน
+"My Referrals",การแนะนำผลิตภัณฑ์ของฉัน
+"Referrals List",รายการการอ้างอิง
+today,ในวันนี้
+ago,มาแล้ว
+"Cannot delete transaction with id %1","ไม่สามารถลบธุรกรรมที่มี ID %1"
+"Expires in",หมดอายุใน
+"How to earn",วิธีการได้รับ
+"Spend points and receive discounts",ใช้คะแนนสะสมและรับส่วนลด
+"Total number of referred friends: %1","จำนวนเพื่อนที่อ้างอิงทั้งหมด: %1"
+"Or you may send this link in your messages to anyone",หรือคุณสามารถส่งลิงก์นี้ในข้อความของคุณไปให้ใครก็ได้
+"Your Transactions",ธุรกรรมของคุณ
+"My Points",คะแนนของฉัน
+"Share & Save",แชร์และบันทึก
+History,ประวัติศาสตร์
+"in %1 %2","ใน %1______"
+"in %1 days","ภายใน %1 วัน"
+"in %1 day","ในวันที่ %1 วัน"
+"%1 %2 ago","%1 %2 ที่ผ่านมา"
+"%1 days ago","%1 วันก่อน"
+"%1 day ago","%1 วันก่อน"
+"How to earn points",วิธีการได้รับคะแนน
+"You have invited %1 friends","คุณเชิญเพื่อน %1 แล้ว"
+"Share the referral link in the social media",แชร์ลิงก์การอ้างอิงในสื่อสังคมออนไลน์
+"You may send this link in your messages to anyone",คุณสามารถส่งลิงก์นี้ในข้อความของคุณไปให้ใครก็ได้
+"Page not found.",ไม่พบหน้านี้.
+"Customer tier up",ลูกค้าขึ้นชั้น
+"Customer tier down",ลูกค้าลดลง
+"sum of earned points",ผลรวมของคะแนนที่ได้รับ
+"sum of spent %1","จำนวนเงินที่ใช้ไป %1"
+"Customer does not assign to website",ลูกค้าไม่ได้กำหนดให้กับเว็บไซต์
+"Payment Method",วิธีการชำระเงิน
+"This tier is assign to %1 customer(s). Please reassign customer(s) to other tier.","ระดับนี้กำหนดให้กับลูกค้า %1 โปรดโอนลูกค้าใหม่ไปที่ชั้นอื่น ๆ"
+"You Spend Points",คุณใช้คะแนน
+"Spend Amount",ใช้จ่ายเงิน
+"Spend Minimum Points",ใช้คะแนนขั้นต่ำ
+"Spend Maximum Points",ใช้คะแนนสูงสุด
+"Cannot delete tier with id %1","ไม่สามารถลบชั้นที่มี ID %1"
+"Unable to find tier for customer ""%1"". Please check tier configuration.","ไม่สามารถหาระดับชั้นสำหรับลูกค้า &quot;%1&quot; โปรดตรวจสอบการกำหนดค่าระดับ"
+"Customer Earning Style",รูปแบบรายได้ของลูกค้า
+"Number of Points (X)","จำนวนจุด (X)"
+"Step (Y)","ขั้นตอน (Y)"
+"In base currency",ในสกุลเงินหลัก
+"Quantity Step (Z)","จำนวนขั้นตอน (Z)"
+"Maximum number of earned points for one customer per day",จำนวนคะแนนสะสมสูงสุดสำหรับลูกค้ารายเดียวต่อวัน
+"Set 0 to disable limit","ตั้งค่า 0 เพื่อปิดใช้งานขีด จำกัด"
+"Do not change",อย่าเปลี่ยน
+"Assign customer to Group",มอบหมายลูกค้าให้กลุ่ม
+"Earn Maximum",ได้รับสูงสุด
+"Maximum Distributed Points",จุดแจกจ่ายสูงสุด
+Tiers,ที่สาม
+"%1 for each $%2","%1 สำหรับแต่ละ $ %2"
+"All Groups",กลุ่มทั้งหมด
+Actions,การปฏิบัติ
+"Points spending style",คะแนนการใช้จ่ายสไตล์
+"For each spent X points","สำหรับแต่ละจุด X ที่ใช้"
+"Number of points.",จำนวนจุด
+"Customer receive Y discount","ลูกค้าได้รับส่วนลด Y"
+"You can enter amount in base currency or percent. e.g. 100 or 5%.","คุณสามารถป้อนจำนวนเงินในสกุลเงินหลักหรือเปอร์เซ็นต์ได้ เช่น 100 หรือ 5%"
+"You can enter amount of points or percent. e.g. 100 or 5%. Leave empty to disable.","คุณสามารถป้อนจำนวนจุดหรือเปอร์เซ็นต์ได้ เช่น 100 หรือ 5% เว้นว่างไว้เพื่อปิดใช้งาน"
+"Spend minimum",ใช้จ่ายขั้นต่ำ
+"Spend maximum",ใช้จ่ายสูงสุด
+"Minimum sum of spent %1","จำนวนรวมขั้นต่ำที่ใช้ไป %1"
+"Minimum points number to reach the tier",หมายเลขจุดต่ำสุดถึงชั้น
+"Delete the record with ID ""%1""","ลบระเบียนที่มี ID &quot;%1&quot;"
+"Are you sure you wan't to delete the record with ID ""%1""?","คุณแน่ใจหรือไม่ว่าจะไม่ลบระเบียนด้วยรหัส &quot;%1&quot;"
+"Anonymous visitor",ผู้เยี่ยมชมที่ไม่ระบุตัวตน
+"Your current tier is <a href=""#"" class=""open-popup""><b>%1</b></a>","ระดับปัจจุบันของคุณคือ <a href=""#"" class=""open-popup""><b>%1</b></a>"
+"Earn <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","ได้รับ <b>%1</b> เพื่อไปที่ <a class=""open-popup""><b>%2</b></a>"
+"Spend <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","ใช้จ่าย <b>%1</b> เพื่อไปที่ <a class=""open-popup""><b>%2</b></a>"
+"in 1 day","ใน 1 วัน"
+"1 day ago","1 วันที่แล้ว"
+"Earn %1","รับ %1"
+"Earned %1 for the order #%2.","รับ %1 สำหรับการสั่งซื้อ #%2"
+"Spent %1 for the order #%2.","ใช้แล้ว %1 สำหรับการสั่งซื้อ #%2"
+"Restore spent %1 for the order #%2.","กู้คืนการใช้จ่าย %1 สำหรับคำสั่งซื้อ #%2"
+"Cancel earned %1 for the order #%2.","ยกเลิกรับ %1 สำหรับการสั่งซื้อ #%2"
+"Refunded %1 (creditmemo #%2, order #%3).","คืนเงินแล้ว %1 (creditmemo #%2 สั่งซื้อ #%3)"
+"Will expire %1","จะหมดอายุ %1"
+Expired,ที่หมดอายุแล้ว
+Active,คล่องแคล่ว
+"Points are expired",คะแนนหมดอายุ
+"Will be ready for use %1","จะพร้อมใช้ %1"
+"We subscribed you on expiring points notification.",เราสมัครคุณเพื่อแจ้งเตือนคะแนนหมดอายุ
+"Possible discount %1","ส่วนลดที่เป็นไปได้ %1"
+Subtotal,ไม่ทั้งหมด
+"Rewards Discount",รางวัลส่วนลด
+"Field 'Spend maximum' can not be less or equal then field 'Spend minimum'","ฟิลด์ &#39;ค่าใช้จ่ายสูงสุด&#39; ต้องไม่น้อยกว่าหรือเท่ากับจากนั้นฟิลด์ &#39;ค่าใช้จ่ายขั้นต่ำ&#39;"
+"Field 'For each spent X points' should be integer","ฟิลด์ &#39;สำหรับแต่ละคะแนน X ที่ใช้ไป&#39; ควรเป็นจำนวนเต็ม"
+"Rewards discount",ส่วนลดรางวัล
+"Cannot delete rule with id %1","ไม่สามารถลบกฎด้วยรหัส %1"
+"Status Description",คำอธิบายสถานะ
+"Checkout now and earn <b class='message-earn-points-label'>%1</b> for this order.","ชำระเงินทันทีและรับ <b class='message-earn-points-label'>%1</b> สำหรับคำสั่งซื้อนี้"
+"Cannot apply %1. %2 %3","ไม่สามารถใช้ %1 %2 %3"
+"%1 were cancelled.","%1 ถูกยกเลิก"
+"Customer creates RMA","ลูกค้าสร้าง RMA"
+"Use Magento settings","ใช้การตั้งค่า Magento"
+"After Tax",หลังหักภาษี
+"Additional Product Attribute",คุณลักษณะเพิ่มเติมของผลิตภัณฑ์
+"Additional Payment Method",วิธีการชำระเงินเพิ่มเติม
+Reasons,เหตุผล
+Conditions,เงื่อนไข
+Resolutions,มติ
+Statuses,สถานะ
+"Apply to items",นำไปใช้กับรายการ
+"Apply to totals",นำไปใช้กับผลรวม
+"Rewards Refunded",คืนรางวัลแล้ว
+"Send notification before points expires (in days)","ส่งการแจ้งเตือนก่อนคะแนนจะหมดอายุ (เป็นวัน)"
+"Cancel the earned points after the order has been refunded",ยกเลิกคะแนนที่ได้รับหลังจากคืนเงินคำสั่งซื้อแล้ว
+"Restore the points spent after the order has been refunded",เรียกคืนคะแนนที่ใช้ไปหลังจากคืนเงินคำสั่งซื้อแล้ว
+"Allow to display maximum number of possible points for configurable products.",อนุญาตให้แสดงจำนวนจุดสูงสุดที่เป็นไปได้สำหรับผลิตภัณฑ์ที่กำหนดค่าได้
+"Send notification before points expires(in days)","ส่งการแจ้งเตือนก่อนคะแนนจะหมดอายุ (เป็นวัน)"
+"In determining tiers, take into account, it only lasts for N days","ในการกำหนดระดับให้คำนึงถึงเวลาเพียง N วัน"
+"Show pending transactions in the customer's account",แสดงธุรกรรมที่รอดำเนินการในบัญชีของลูกค้า
+"Use this option to explain to your customer why the Rewards spending block isn't displaying in checkout",ใช้ตัวเลือกนี้เพื่ออธิบายให้ลูกค้าของคุณทราบว่าเหตุใดบล็อกการใช้จ่ายรางวัลจึงไม่แสดงในขั้นตอนการชำระเงิน
+"If the theme overrides Magento way of including styles, this option will add extension's styles to the page","หากธีมแทนที่วิธีการรวมสไตล์แบบ Magento ตัวเลือกนี้จะเพิ่มสไตล์ของส่วนขยายให้กับเพจ"
+"In some configuration, the method 'Apply to items' may have a slight error in calculation","ในการกำหนดค่าบางอย่างวิธี &quot;ใช้กับรายการ&quot; อาจมีข้อผิดพลาดเล็กน้อยในการคำนวณ"
+"For detailed explanation, see the <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>documentation</a>","สำหรับคำอธิบายโดยละเอียดโปรดดู <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>เอกสารประกอบ</a>"
+"Minimum points number to reach each tier",จำนวนคะแนนขั้นต่ำในการเข้าถึงแต่ละชั้น
+"Delete the record with ID %1","ลบบันทึกด้วย ID %1"
+"Are you sure you want to delete the record with ID %1","คุณแน่ใจหรือว่าต้องการลบบันทึกด้วย ID %1"
+"To subscribe to points expiring and balance update notification click %1","หากต้องการสมัครรับคะแนนที่ใกล้หมดอายุและแจ้งการอัปเดตยอดคงเหลือ คลิก %1"

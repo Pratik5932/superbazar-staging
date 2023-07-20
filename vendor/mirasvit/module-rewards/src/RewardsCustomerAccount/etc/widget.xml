@@ -1,0 +1,11 @@
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Mirasvit\RewardsCustomerAccount\Block\Widget\Referral" id="mst_rewards_widget">
+        <label translate="true">Mirasvit Rewards Referral widget</label>
+        <description><![CDATA[Rewards Referral widget]]></description>
+    </widget>
+    <widget class="Mirasvit\RewardsCustomerAccount\Block\Widget\LendingReferral" id="mst_lending_referral_widget">
+        <label translate="true">Mirasvit Lending Referral widget</label>
+        <description><![CDATA[Mirasvit Lending Referral widget]]></description>
+    </widget>
+</widgets>

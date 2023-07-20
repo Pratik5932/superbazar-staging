@@ -1,0 +1,85 @@
+@baseDir: '../';
+
+@media-common: true;
+@media-target: 'all';
+
+@screen__xxs: 320px;
+@screen__xs: @xs;
+@screen__s: @sm;
+@screen__m: @md;
+@screen__l: @lg;
+@screen__xl: @xl;
+
+@font-family__base: @base__font-family;
+@font-weight__semibold: 500;
+
+@indent__base: @4;
+@indent__xl: @indent__base * 2;
+@indent__l: @indent__base * 1.5;
+@indent__m: @indent__base * 1.25;
+@indent__s: @indent__base / 2;
+@indent__xs: @indent__base / 4;
+
+@layout__max-width: @container__media-xxl__max-width;
+
+@active__color: @brand__color;
+@text__color: @gray-900;
+
+@table__width: 100%;
+
+@form-element-input__background: @input__background;
+@form-element-input__border-color: @input__border-color;
+@form-element-input__border-radius: @input__border-radius;
+@button-primary__background: @button__background;
+@button-primary__color: @button__color;
+@button-primary__hover__background: @button-primary__background;
+@button-primary__active__background: @button-primary__background;
+@button-primary__hover__color: @button-primary__color;
+
+.lib-visually-hidden() {
+    .breeze-sr-only();
+}
+.lib-font-size(@_size) {
+    font-size: @_size;
+}
+.lib-vendor-prefix-display(@_value: flex) {
+    display: @_value;
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {}
+
+& when (@media-target = 'mobile'), (@media-target = 'all') {
+    @media only screen and (max-width: @screen__m) {
+        .media-width('max', (@screen__m + 1));
+    }
+    @media only screen and (max-width: (@screen__m - 1)) {
+        .media-width('max', @screen__m);
+    }
+    @media only screen and (max-width: (@screen__s - 1)) {
+        .media-width('max', @screen__s);
+    }
+    @media only screen and (max-width: (@screen__xs - 1)) {
+        .media-width('max', @screen__xs);
+    }
+    @media only screen and (max-width: (@screen__xxs - 1)) {
+        .media-width('max', @screen__xxs);
+    }
+    @media all and (min-width: @screen__s) {
+        .media-width('min', @screen__s);
+    }
+}
+
+& when (@media-target = 'desktop'), (@media-target = 'all') {
+    @media all and (min-width: @screen__m), print {
+        .media-width('min', @screen__m);
+    }
+    @media all and (min-width: (@screen__m + 1)), print {
+        .media-width('min', (@screen__m + 1));
+    }
+    @media all and (min-width: @screen__l), print {
+        .media-width('min', @screen__l);
+    }
+    @media all and (min-width: @screen__xl), print {
+        .media-width('min', @screen__xl);
+    }
+}

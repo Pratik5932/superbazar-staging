@@ -1,0 +1,16 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--API-->
+    <preference for="Mirasvit\Rewards\Api\ProductPointsInterface" type="Mirasvit\RewardsApi\Model\Product\ProductPoints" />
+    <preference for="Mirasvit\RewardsApi\Api\Repository\ReferredCustomerRepositoryInterface" type="Mirasvit\RewardsApi\Repository\ReferralRepository" />
+    <preference for="Mirasvit\RewardsApi\Api\Repository\TransactionRepositoryInterface" type="Mirasvit\RewardsApi\Repository\TransactionRepository" />
+    <preference for="Mirasvit\Rewards\Api\Repository\ReferralRepositoryInterface" type="Mirasvit\Rewards\Repository\ReferredCustomerRepository" />
+    <preference for="Mirasvit\Rewards\Api\Data\ReferredCustomerSearchResultInterface" type="Magento\Framework\Api\SearchResults" />
+    <type name="\Mirasvit\Rma\Api\Service\Rma\RmaManagement\SaveInterface">
+        <plugin name="AddRewardsPoints for RMA" type="\Mirasvit\RewardsApi\Plugin\Mirasvit\Rma\Api\Service\Rma\RmaManagement\Save\AddRewardsPointsPlugin" sortOrder="1" />
+    </type>
+
+    <type name="\Mirasvit\Credit\Api\CreditManagementInterface">
+        <plugin name="UpdateRewardsAfterCredits" type="\Mirasvit\RewardsApi\Plugin\Mirasvit\Credit\Api\CreditManagement\UpdateRewardsPlugin" sortOrder="1" />
+    </type>
+
+</config>

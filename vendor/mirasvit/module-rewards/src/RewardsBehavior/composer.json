@@ -1,0 +1,35 @@
+{
+    "name": "mirasvit/module-rewards",
+    "description": "Reward Points + Referral program",
+    "version": "3.0.57",
+    "require": {
+        "magento/framework": "100.0.*|100.1.*|101.0.*|102.0.*|103.0.*",
+        "mirasvit/module-core": "dev-master|^1.3.0",
+        "mirasvit/module-report": "dev-master|^1.3.0"
+    },
+    "type": "magento2-module",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "src/Rewards/registration.php",
+            "src/RewardsAdminUi/registration.php",
+            "src/RewardsApi/registration.php",
+            "src/RewardsBehavior/registration.php",
+            "src/RewardsCatalog/registration.php",
+            "src/RewardsCheckout/registration.php",
+            "src/RewardsCustomerAccount/registration.php"
+        ],
+        "psr-4": {
+            "Mirasvit\\Rewards\\": "src/Rewards",
+            "Mirasvit\\RewardsAdminUi\\": "src/RewardsAdminUi",
+            "Mirasvit\\RewardsApi\\": "src/RewardsApi",
+            "Mirasvit\\RewardsBehavior\\": "src/RewardsBehavior",
+            "Mirasvit\\RewardsCatalog\\": "src/RewardsCatalog",
+            "Mirasvit\\RewardsCheckout\\": "src/RewardsCheckout",
+            "Mirasvit\\RewardsCustomerAccount\\": "src/RewardsCustomerAccount"
+        }
+    }
+}
+

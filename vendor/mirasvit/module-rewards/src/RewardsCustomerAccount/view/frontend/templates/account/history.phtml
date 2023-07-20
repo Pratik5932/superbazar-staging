@@ -1,0 +1,61 @@
+<?php
+/** @var \Mirasvit\RewardsCustomerAccount\Block\Account\Listing $block */
+$collection = $block->getTransactionCollection();
+?>
+<div class="block block-rewards-account-summary order-details-items">
+    <div class="">
+        <?= $block->getChildHtml('rewards.page.main.title'); ?>
+        <?php if ($block->isCustomerSubscribed()): ?>
+            <span class="unsubscribe"><?= __('To unsubscribe from points expiring notification click %1', '<a href="'.$block->getUnsubscribeUrl().'">'.__('here').'</a>'); ?></span>
+        <?php else: ?>
+            <span class="unsubscribe"><?= __('To subscribe to points expiring and balance update notification click %1', '<a href="'.$block->getSubscribeUrl().'">'.__('here').'</a>'); ?></span>
+        <?php endif; ?>
+    </div>
+
+    <div class="block block-rewards-account-summary">
+        <div class="block-content">
+            <p><?php echo $block->getChildHtml('rewards.customer.pending_transactions') ?></p>
+        </div>
+    </div>
+
+    <div class="block block-rewards-account-summary">
+        <div class="block-title">
+            <strong><?= __('Transactions History') ?></strong>
+        </div>
+
+        <div class="block-content">
+            <div class="table-wrapper orders-recent">
+                <?php if ($collection->count()): ?>
+                    <?= $block->getToolbarHtml() ?>
+                    <table class="data-table table">
+                        <thead>
+                        <tr>
+                            <th><?= __('ID') ?></th>
+                            <th><?= __('Comment') ?></th>
+                            <th><?= __('Points') ?></th>
+                            <th><?= __('Created') ?></th>
+                            <?php if ($block->getExpirationEnabled()): ?>
+                            <th><?= __('Status Description') ?></th>
+                            <?php endif; ?>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($collection as $transaction): ?>
+                                <?php if ($transaction->getIsActivated()): ?>
+                                    <?= $block->getChildBlock('rewards.customer.active_transactions')->setTransaction($transaction)->toHtml(); ?>
+                                <?php else: ?>
+                                    <?= $block->getChildBlock('rewards.customer.inactive_transactions')->setTransaction($transaction)->toHtml() ?>
+                                <?php endif; ?>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <p><?= __('There are no Transactions.') ?></p>
+                <?php endif ?>
+            </div>
+            <?php if ($block->getPagerHtml()): ?>
+                <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+            <?php endif ?>
+        </div>
+    </div>
+</div>

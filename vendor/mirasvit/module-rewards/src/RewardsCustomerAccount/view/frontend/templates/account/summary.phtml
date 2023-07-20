@@ -1,0 +1,24 @@
+<?php
+/**
+ $block->getRewardsData()  \Mirasvit\Rewards\Helper\Data  $_rewardsData
+ */
+?>
+<?php
+$points   = $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($block->getBalancePoints());
+$logoHtml = $this->helper('Mirasvit\Rewards\Helper\Data')->getLogoHtml();
+?>
+<div class="block block-rewards-account-summary">
+    <div class="block-title">
+        <strong><?=__('Points Summary') ?></strong>
+    </div>
+
+    <div>
+        <?= __('You have %2<b>%1</b> in your account.', $points, $logoHtml); ?>
+        <?php if ($block->getDaysUntilExpiry()): ?>
+           <div class="expiry-points"><?= __('Your points balance will expire in %1 days.', $block->getDaysUntilExpiry()); ?></div>
+        <?php endif; ?>
+    </div>
+    <a href="<?= $block->getUrl('rewards/account'); ?>">
+        <?= __('Visit My Reward Points Section') ?>
+    </a>
+</div>

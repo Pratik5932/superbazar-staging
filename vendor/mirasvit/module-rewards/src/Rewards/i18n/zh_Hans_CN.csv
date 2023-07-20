@@ -1,0 +1,355 @@
+"My Reward Points",我的奖励点
+"Checkout now and earn <b>%1</b> for this order.","现在结账并为此订单赚取<b>%1</b> 。"
+"Applies only to registered customers, may vary when logged in.",仅适用于注册用户，登录后可能会有所不同。
+"Possible discount %1 %2","可能的折扣%1 %2"
+"Earn %1 %2","赚取%1 %2"
+Grid,格
+List,名单
+All,所有
+"Referral %1",推荐%1
+"Something went wrong while saving your subscription.",保存订阅时出现问题。
+"We removed your subscription on expiring points notification.",我们在到期点通知中删除了您的订阅。
+"Cannot apply points.",不能申请积分。
+"You've earned %1 for Facebook Like!",你已经为Facebook赞赚了%1！
+"You've earned %1 for Facebook Share!",你已经为Facebook分享赚了%1！
+"Facebook Like Points has been canceled","Facebook Like Points已被取消"
+"You've earned %1 for Google+!",您已获得Google+的%1使用权！
+"G+1 Points has been canceled","G + 1点已被取消"
+"You've earned %1 for Pin!",Pin已获得%1！
+"Invalid form key. Try again",无效的表单密钥。再试一次
+"Customer with email %1 has been already invited to our store",带有电子邮件%1的客户已被邀请加入我们的商店
+"Your invitations were sent. Thanks!",您的邀请已发送。谢谢！
+"You've earned %1 for Tweet!",你已经获得了%1的推文！
+"You received %1 for signing up",您收到%1注册
+"You received %1 for sending this product",您收到%1发送此产品
+"You received %1 for sign up for newsletter",您收到%1注册简报
+"You received %1 for sign up for push notifications",您收到%1注册推送通知
+"You will receive %1 after approving of this tag",您将在批准此标签后收到%1
+"You will receive %1 after approving of this review",您将在批准此评论后收到%1
+"You received %1 for sign up of referral customer.",您收到%1的推荐客户注册。
+"You received %1 for order of referral customer.",您收到推荐客户的订单%1。
+"Happy birthday! You received %1.",生日快乐！您收到%1。
+"You received %1 for joining the affiliate program.",您收到%1加入联盟计划。
+"%1 were applied.",%1被应用。
+"Minimum number is %1.",最小数量是%1。
+"Maximum number is %1.",最大数量是%1。
+"%1 was canceled.",%1被取消。
+"Cannot apply %1.",无法应用%1。
+"You can use the following variables:",您可以使用以下变量：
+Pattern,模式
+"Attribute Value",属性值
+Default,默认
+Integer,整数
+Price,价钱
+"Strip Tags",带标签
+"Primary Attributes",主要属性
+"Stock Attributes",股票属性
+"Prices & Taxes",价格和税收
+Images,图片
+"Custom Attributes",自定义属性
+Mapping,制图
+Category,类别
+"Amasty Meta Tags","Amasty Meta标签"
+"Others Attributes",其他属性
+Flexible,灵活
+Fixed,固定
+"Customer signs up in store",客户在商店注册
+"Customer places order",客户下订单
+"Customer refer a friend",客户推荐一位朋友
+"Customer adds tag to a product",客户为产品添加标签
+"Customer writes a product review",客户撰写产品评论
+"Customer has a birthday",客户有一个生日
+"Customer is inactive for long time",客户长时间处于非活动状态
+"Newsletter sign up",通讯注册
+"Facebook Share",脸书分享
+"Facebook Like",Facebook喜欢
+"Twitter Tweet","Twitter Tweet"
+"Google+ Like",Google+赞
+"Pinterest Pin","Pinterest Pin"
+"Customer joins the affiliate program",客户加入联盟计划
+"Push Notifications sign up",推送通知注册
+"Referred customer signs up in store",推荐的顾客在店内注册
+"Order from referred customer",来自推荐客户的订单
+"Points to Currency",指向货币
+"Currency to Points",货币对点
+"Customer Account > My Reward Points",客户账户&gt;我的奖励积分
+"Customer Account > My Referrals",客户帐户&gt;我的推荐
+"Cart Page",购物车页面
+"Message Sent",消息已发送
+"Signed Up",注册
+"Made Order",订单
+"Visited by Referral Link",由推荐链接访问
+"Subtotal + Tax",小计+税
+"Subtotal + Tax + Shipping",小计+税金+运费
+"Product Rule",产品规则
+"Cart Rule",购物车规则
+"Behavior Rule",行为规则
+"Transaction #%1 is expired",交易#%1已过期
+"Update the Product",更新产品
+"Is Rewards Points used",是否使用奖励积分？
+"Coupon Used",使用优惠券
+"Coupon Code",优惠券代码
+No,没有
+Yes,是
+"Conditions Combination",条件组合
+"Product attribute combination",产品属性组合
+"Products subselection",产品选择
+"Conditions combination",条件组合
+"Cart Attribute",购物车属性
+Customer,顾客
+"Last 7-days Clicks",最近7天的点击次数
+"Last 7-days Orders",最近7天的订单
+"Last 7-days Revenue",最近7天的收入
+"Is Referee",是裁判员
+"Is Referral",是推荐人
+Email,电子邮件
+Group,组
+"Lifetime Sales",终身销售
+"Lifetime Spent Points",终生消费积分
+"Number of Orders",订单数量
+"Is subscriber of newsletter",通讯订阅者
+"Number of reviews",评论数量
+"Number of referred friends signups",推荐的朋友注册数量
+"Number of referred friends orders",推荐的朋友订单的数量
+"Sum of referred friends orders",介绍的朋友订单总和
+"Number of referrals who ordered at least once",至少订购一次的推荐人数
+"Not registered",未注册
+"Attribute Set",属性集
+Quantity,数量
+"Product Type",产品类别
+"Base Image",基本图像
+Thumbnail,缩略图
+"Small Image",小图片
+"Base Image Size (bytes)",基本图像大小（字节）
+"Thumbnail Size (bytes)",缩略图大小（字节）
+"Small Image Size (bytes)",小图像大小（字节）
+"PHP Condition",PHP条件
+"Base Price",基本价格
+"Final Price",最终价格
+"Special Price",特价
+"Open Chooser",打开选择器
+"Referred: Group",推荐：集团
+"Referred: Lifetime Sales",推荐：终身销售
+"Referred: Number of Orders",推荐数量：订单数量
+"Referred: Is subscriber of newsletter",提到：是通讯的订阅者
+"Referred: Number of reviews",推荐：评论数量
+"Please specify a website.",请指定一个网站。
+"Please specify a customer email.",请指定客户电子邮件。
+"We found an invalid value in a website column.",我们在网站列中找到了无效的值。
+"Please enter a valid email.",请输入有效电子邮件。
+"Please make sure attribute ""%1"" is not empty.",请确保属性“%1”不为空。
+"We can't find a customer who matches this email and website code.",我们无法找到符合此电子邮件和网站代码的客户。
+"-- Please Select --","-  请选择  -"
+"Discount Used",使用折扣
+"Custom Product Attributes",自定义产品属性
+"- Disable these emails -","- 禁用这些电子邮件 -"
+"Give X points to customer",给客户X点
+"Give X points for every spent Y",为每一个花费的Y提供X点
+"Give X points for every Z quantity",为每个Z数量提供X点
+"For every Y, give X points",对于每个Y，给X个点
+Pending,有待
+Approved,批准
+Discarded,废弃
+"You do not have permissions to create transactions. Please contact your site administrator.",您无权创建交易。请联系您的网站管理员。
+"%1 has been added.",%1已添加。
+"%1 has been deducted.",%1已被扣除。
+"You earned %1 and spent %2 for this order.",您赚取了%1并为此订单花费了%2。
+"You spent %1 for this order.",您为此订单花费了%1。
+"You earned %1 for this order.",您为此订单赚取%1。
+"Earned points will be enrolled to your account after we finish processing your order.",完成处理订单后，获得的积分将被注册到您的帐户。
+"Rewards error occurred on the server. Please try to place the order again.",奖励错误发生在服务器上。请尝试再次下单。
+"Earn at least %1 %2","赚取至少%1 %2"
+"Reward Points",奖励分数
+Edit,编辑
+Back,背部
+Delete,删除
+"Are you sure you want to do this?",你确定你要这么做吗？
+Reset,重启
+"Save and Continue Edit",保存并继续编辑
+Save,保存
+"Delete the record with ID ""${ $.$data.transaction_id }""","删除ID为“$ {$。$ data.transaction_id}”的记录"
+"Are you sure you wan't to delete the record with ID ""${ $.$data.transaction_id }""?","你确定你不想删除ID为“$ {$。$ data.transaction_id}”的记录吗？"
+"Points Summary",积分摘要
+"To unsubscribe from points expiring notification click %1",要取消订阅点过期通知，请点击%1
+"You have <b>%1</b> in your account.",您的帐户中有<b>%1个</b>帐户。
+"Transactions History",交易历史
+ID,ID
+Comment,评论
+Points,点
+Created,创建
+Expires,过期
+"There are no Transactions.",没有交易。
+"Pending Transactions",待交易
+Order,订购
+Status,状态
+"Your points balance will expire in %1 days.",您的积分余额将在%1天内过期。
+"Visit My Reward Points Section",访问我的奖励积分部分
+"Login to earn %1 for sharing!",登录赚取%1分享！
+"Earn %1 for sharing!",赚取%1分享！
+"Like this page and earn %1",喜欢这个页面并赚取%1
+Share,分享
+"Share this page and earn %1",分享此页面并赚取%1
+"Plus this page and earn %1",加上这个页面并赚取%1
+"Pin this page and earn %1",固定此页并赚取%1
+"Refer Friends",推荐朋友
+"Refer friend and earn %1. More friends more points!",引荐朋友并赚取%1。更多的朋友更多的点！
+Tweet,鸣叫
+"Tweet this page and earn %1",鸣叫此页并赚取%1
+"Check this out!",看一下这个！
+"You have <b>%1</b> available.",你有<b>%1</b>可用。
+"Enter amount of points to spend:",输入花费的点数：
+"Use maximum %1",使用最大%1
+"Apply Points",应用点
+Apply,应用
+"Cancel Points",取消点数
+Cancel,取消
+"Use %1",使用%1
+"You Earn",你赚钱
+"You Spend",你花费
+"Discount amount",折扣金额
+"Use Reward Points",使用奖励积分
+"This is a required field",这是一个必填字段
+"Subscription to Points Expiration Notification",订阅积分到期通知
+"Earning %1",赚取%1
+"Buy to earn %1",购买赚取%1
+"You'll earn %1 for this item",您将为此物品赚取%1
+"Share with Friends",和朋友分享
+"Share the referral link in the social media and get points!",在社交媒体中分享推介链接并获得积分！
+"Tweet on Twitter",在Twitter上发布Twitter
+"Your referral link:",您的推介链接：
+"Send Invitations",发送邀请
+"Enter contacts of your friends to invite them.",输入朋友的联系人邀请他们。
+Name,名称
+Message,信息
+Referrals,介绍人
+"Referred by link",通过链接引用
+"There are no Referrals",没有推荐
+"You have",你有
+available.,可用。
+"Use maximum",使用最大值
+"Enter amount of points to spend",输入花费的点数
+Use,使用
+"Notification Rules' messages",通知规则“消息
+Template,模板
+"Notification Rule Template",通知规则模板
+"My Referrals",我的推荐
+"Referrals List",推荐名单
+today,今天
+ago,前
+"Cannot delete transaction with id %1",无法删除ID为%1的交易
+"Expires in",过期日期在
+"How to earn",如何赚钱
+"Spend points and receive discounts",消费积分并获得折扣
+"Total number of referred friends: %1",推荐朋友总数：%1
+"Or you may send this link in your messages to anyone",或者您可以在邮件中将此链接发送给任何人
+"Your Transactions",你的交易
+"My Points",我的观点
+"Share & Save",分享和保存
+History,历史
+"in %1 %2","在%1 %2"
+"in %1 days",在%1天
+"in %1 day",在%1天
+"%1 %2 ago","%1 %2前"
+"%1 days ago",%1天前
+"%1 day ago",__1天前
+"How to earn points",如何赚取积分
+"You have invited %1 friends",你邀请了%1个朋友
+"Share the referral link in the social media",在社交媒体中分享推介链接
+"You may send this link in your messages to anyone",您可以将此消息中的链接发送给任何人
+"Page not found.",网页未找到。
+"Customer tier up",客户分层
+"Customer tier down",客户层级下降
+"sum of earned points",获得积分总和
+"sum of spent %1",花费的总和%1
+"Customer does not assign to website",客户不会分配到网站
+"Payment Method",付款方法
+"This tier is assign to %1 customer(s). Please reassign customer(s) to other tier.",此层分配给%1客户。请将客户重新分配给其他级别。
+"You Spend Points",你花点钱
+"Spend Amount",花费金额
+"Spend Minimum Points",花费最低积分
+"Spend Maximum Points",花费最高积分
+"Cannot delete tier with id %1",无法删除ID为%1的图层
+"Unable to find tier for customer ""%1"". Please check tier configuration.",无法找到客户“%1”的等级。请检查层配置。
+"Customer Earning Style",客户收益风格
+"Number of Points (X)",分数（X）
+"Step (Y)",第（Y）步
+"In base currency",以基础货币
+"Quantity Step (Z)",数量步骤（Z）
+"Maximum number of earned points for one customer per day",每位客户每天获得的最大积分数
+"Set 0 to disable limit",设置为0以禁用限制
+"Do not change",不要换
+"Assign customer to Group",将客户分配给组
+"Earn Maximum",赚取最大值
+"Maximum Distributed Points",最大分布点数
+Tiers,第三
+"%1 for each $%2","每个$ %2 %1"
+"All Groups",所有团体
+Actions,操作
+"Points spending style",点消费风格
+"For each spent X points",对于每个花费的X点
+"Number of points.",点数。
+"Customer receive Y discount",客户获得Y折扣
+"You can enter amount in base currency or percent. e.g. 100 or 5%.",您可以以基础货币或百分比输入金额。例如100或5％。
+"You can enter amount of points or percent. e.g. 100 or 5%. Leave empty to disable.",您可以输入积分或百分比。例如100或5％。留空以禁用。
+"Spend minimum",花费最少
+"Spend maximum",花费最多
+"Minimum sum of spent %1",最低花费%1
+"Minimum points number to reach the tier",达到该等级的最小分数
+"Delete the record with ID ""%1""",删除ID为“%1”的记录
+"Are you sure you wan't to delete the record with ID ""%1""?",您确定要删除ID为“%1”的记录吗？
+"Anonymous visitor",匿名访客
+"Your current tier is <a href=""#"" class=""open-popup""><b>%1</b></a>","您当前的等级是<a href=""#"" class=""open-popup""><b>%1</b></a>"
+"Earn <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","赢取<b>%1</b>以获得<a class=""open-popup""><b>%2</b></a>"
+"Spend <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","花<b>%1</b>去<a class=""open-popup""><b>%2</b></a>"
+"in 1 day",在1天内
+"1 day ago",1天前
+"Earn %1",赚了%1
+"Earned %1 for the order #%2.",获得订单#%2的%1。
+"Spent %1 for the order #%2.",为订单#%2花了%1。
+"Restore spent %1 for the order #%2.",恢复用于订单#%2的%1。
+"Cancel earned %1 for the order #%2.",取消订单%1为订单#%2。
+"Refunded %1 (creditmemo #%2, order #%3).","退款%1（creditmemo #%2，订单#%3）。"
+"Will expire %1",将在%1到期
+Expired,已过期
+Active,活性
+"Points are expired",积分已过期
+"Will be ready for use %1",准备使用%1
+"We subscribed you on expiring points notification.",我们订阅了到期通知。
+"Possible discount %1",可能的折扣%1
+Subtotal,小计
+"Rewards Discount",奖励折扣
+"Field 'Spend maximum' can not be less or equal then field 'Spend minimum'",“最大支出”字段不能小于或等于“最小支出”字段
+"Field 'For each spent X points' should be integer",“每花费X点”字段应为整数
+"Rewards discount",奖励折扣
+"Cannot delete rule with id %1",无法删除ID为%1的规则
+"Status Description",状态说明
+"Checkout now and earn <b class='message-earn-points-label'>%1</b> for this order.","立即结帐，并为此订单赚取<b class='message-earn-points-label'>%1</b> 。"
+"Cannot apply %1. %2 %3","无法申请%1。 %2 %3"
+"%1 were cancelled.",%1被取消。
+"Customer creates RMA",客户创建RMA
+"Use Magento settings",使用Magento设置
+"After Tax",税后
+"Additional Product Attribute",附加产品属性
+"Additional Payment Method",额外付款方式
+Reasons,原因
+Conditions,条件
+Resolutions,决议案
+Statuses,状态
+"Apply to items",适用于物品
+"Apply to totals",应用于总计
+"Rewards Refunded",奖励已退款
+"Send notification before points expires (in days)",在积分过期之前发送通知（以天为单位）
+"Cancel the earned points after the order has been refunded",订单退款后取消积分
+"Restore the points spent after the order has been refunded",恢复订单退款后花费的积分
+"Allow to display maximum number of possible points for configurable products.",允许显示可配置产品的最大可能点数。
+"Send notification before points expires(in days)",在积分过期之前发送通知（以天为单位）
+"In determining tiers, take into account, it only lasts for N days",在确定等级时，考虑到它只能持续N天
+"Show pending transactions in the customer's account",在客户帐户中显示待处理的交易
+"Use this option to explain to your customer why the Rewards spending block isn't displaying in checkout",使用此选项向您的客户解释为什么结帐时未显示“奖励”支出块
+"If the theme overrides Magento way of including styles, this option will add extension's styles to the page",如果主题覆盖了Magento包含样式的方式，则此选项将在页面上添加扩展的样式
+"In some configuration, the method 'Apply to items' may have a slight error in calculation",在某些配置中，“应用于项目”方法的计算可能会略有错误
+"For detailed explanation, see the <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>documentation</a>","有关详细说明，请参阅<a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>文档</a>"
+"Minimum points number to reach each tier",达到每个等级的最低点数
+"Delete the record with ID %1","删除 ID 为 %1 的记录"
+"Are you sure you want to delete the record with ID %1","您确定要删除 ID 为 %1 的记录吗"
+"To subscribe to points expiring and balance update notification click %1",要订阅积分到期和余额更新通知，请单击%1

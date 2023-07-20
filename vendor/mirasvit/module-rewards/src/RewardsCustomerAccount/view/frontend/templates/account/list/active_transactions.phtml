@@ -1,0 +1,24 @@
+<?php
+/** @var \Mirasvit\RewardsCustomerAccount\Block\Account\Listing\ActiveTransactions $block */
+$transaction = $block->getTransaction();
+?>
+
+<?php if ($transaction): ?>
+    <tr>
+        <td data-th="<?= __('ID') ?>"><?= $transaction->getId() ?></td>
+        <td data-th="<?= __('Comment') ?>"><?= __($transaction->getComment()) ?></td>
+        <td data-th="<?= __('Points') ?>"><?php
+            if ($transaction->getAmount() > 0) {
+                echo '<span class="green">+' . $transaction->getAmount() . '</span>';
+            } else if ($transaction->getAmount() < 0) {
+                echo '<span class="red">' . $transaction->getAmount() . '</span>';
+            } else {
+                echo '<span>' . $transaction->getAmount() . '</span>';
+            }
+            ?></td>
+        <td data-th="<?= __('Created') ?>"><?= $transaction->getCreatedAtFormatted() ?></td>
+        <?php if ($block->getExpirationEnabled()): ?>
+        <td data-th="<?= __('Status Description') ?>"><?= $block->getStatusDescription() ?></td>
+        <?php endif; ?>
+    </tr>
+<?php endif ?>

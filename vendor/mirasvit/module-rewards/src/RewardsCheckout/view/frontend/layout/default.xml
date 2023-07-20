@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="rewards-total" xsi:type="array">
+                                    <item name="component" xsi:type="string">Mirasvit_RewardsCheckout/js/view/checkout/rewards/points_totals</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Mirasvit_RewardsCheckout/checkout/rewards/points_totals</item>
+                                        <item name="title" xsi:type="string" translate="true">You Earn</item>
+                                    </item>
+                                </item>
+                                <item name="rewards-spend" xsi:type="array">
+                                    <item name="component" xsi:type="string">Mirasvit_RewardsCheckout/js/view/checkout/rewards/points_spend</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Mirasvit_RewardsCheckout/checkout/rewards/points_spend</item>
+                                        <item name="title" xsi:type="string" translate="true">You Spend</item>
+                                    </item>
+                                </item>
+                                <item name="rewards-deduction" xsi:type="array">
+                                    <item name="component" xsi:type="string">Mirasvit_RewardsCheckout/js/view/checkout/rewards/points_discount</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Mirasvit_RewardsCheckout/checkout/rewards/points_discount</item>
+                                        <item name="title" xsi:type="string" translate="true">Rewards Discount</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,54 @@
+Expired,Expired
+Active,Active
+"Points are expired","Points are expired"
+"Will expire %1","Will expire %1"
+"Will be ready for use %1","Will be ready for use %1"
+"Page not found.","Page not found."
+"Something went wrong while saving your subscription.","Something went wrong while saving your subscription."
+"We subscribed you on expiring points notification.","We subscribed you on expiring points notification."
+"We removed your subscription on expiring points notification.","We removed your subscription on expiring points notification."
+"Invalid form key. Try again","Invalid form key. Try again"
+"Customer with email %1 has been already invited to our store","Customer with email %1 has been already invited to our store"
+"Your invitations were sent. Thanks!","Your invitations were sent. Thanks!"
+"To unsubscribe from points expiring notification click %1","To unsubscribe from points expiring notification click %1"
+"Transactions History","Transactions History"
+ID,ID
+Comment,Comment
+Points,Points
+Created,Created
+"Status Description","Status Description"
+"There are no Transactions.","There are no Transactions."
+"Points Summary","Points Summary"
+"You have <b>%1</b> in your account.","You have <b>%1</b> in your account."
+"How to earn points","How to earn points"
+"Spend points and receive discounts","Spend points and receive discounts"
+"Pending Transactions","Pending Transactions"
+Order,Order
+"You have invited %1 friends","You have invited %1 friends"
+"Send Invitations","Send Invitations"
+"Enter contacts of your friends to invite them.","Enter contacts of your friends to invite them."
+Name,Name
+Email,Email
+Message,Message
+Referrals,Referrals
+Status,Status
+"Anonymous visitor","Anonymous visitor"
+"There are no Referrals","There are no Referrals"
+"Share the referral link in the social media and get points!","Share the referral link in the social media and get points!"
+"Share the referral link in the social media","Share the referral link in the social media"
+"Check this out!","Check this out!"
+"Tweet on Twitter","Tweet on Twitter"
+"Or you may send this link in your messages to anyone","Or you may send this link in your messages to anyone"
+"You may send this link in your messages to anyone","You may send this link in your messages to anyone"
+"Your points balance will expire in %1 days.","Your points balance will expire in %1 days."
+"Visit My Reward Points Section","Visit My Reward Points Section"
+"Your current tier is <a href=""#"" class=""open-popup""><b>%1</b></a>","Your current tier is <a href=""#"" class=""open-popup""><b>%1</b></a>"
+"Earn <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","Earn <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>"
+"Spend <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","Spend <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>"
+"Subscription to Points Expiration Notification","Subscription to Points Expiration Notification"
+"Your Transactions","Your Transactions"
+"My Reward Points","My Reward Points"
+"My Points","My Points"
+"Share & Save","Share & Save"
+"My Referrals","My Referrals"
+History,History

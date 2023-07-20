@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <!-- user access -->
+    <route url="/V1/rewards/transaction/:transactionId" method="GET">
+        <service class="Mirasvit\Rewards\Api\Repository\TransactionRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_transaction"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/transaction" method="POST">
+        <service class="Mirasvit\RewardsApi\Api\Repository\TransactionRepositoryInterface" method="saveTransaction"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_transaction"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/transaction/:transactionId" method="PUT">
+        <service class="Mirasvit\RewardsApi\Api\Repository\TransactionRepositoryInterface" method="saveTransaction"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_transaction"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/transaction/:transactionId" method="DELETE">
+        <service class="Mirasvit\Rewards\Api\Repository\TransactionRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_transaction"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/transactions" method="GET">
+        <service class="Mirasvit\Rewards\Api\Repository\TransactionRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_transaction"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/customer/:customerId/transactions" method="GET">
+        <service class="Mirasvit\Rewards\Api\Service\Customer\Management\SearchInterface" method="getTransactions"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_transaction"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/purchase/:orderId" method="GET">
+        <service class="Mirasvit\Rewards\Api\Repository\PurchaseRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_transaction"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/balances" method="GET">
+        <service class="Mirasvit\Rewards\Api\RewardsInterface" method="getBalances"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_transaction"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/balances/:customerId" method="GET">
+        <service class="Mirasvit\Rewards\Api\RewardsInterface" method="getBalance"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_transaction"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/:cartId/apply/:pointAmount" method="POST">
+        <service class="Mirasvit\Rewards\Api\RewardsInterface" method="apply"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_transaction"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/products/points/get" method="POST">
+        <service class="Mirasvit\Rewards\Api\ProductPointsInterface" method="get"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_transaction"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/products/points/multiplicity" method="POST">
+        <service class="Mirasvit\Rewards\Api\ProductPointsInterface" method="getList"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_transaction"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/tiers/:tierId" method="GET">
+        <service class="Mirasvit\Rewards\Api\Repository\TierRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_tier"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/tiers" method="GET">
+        <service class="Mirasvit\Rewards\Api\Repository\TierRepositoryInterface" method="getTiers"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_tier"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/tiers" method="POST">
+        <service class="Mirasvit\Rewards\Api\Repository\TierRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_tier"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/tiers/:tierId" method="PUT">
+        <service class="Mirasvit\Rewards\Api\Repository\TierRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_tier"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/tiers/:tierId" method="DELETE">
+        <service class="Mirasvit\Rewards\Api\Repository\TierRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_tier"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/earningRules" method="GET">
+        <service class="Mirasvit\Rewards\Api\Repository\Earning\RuleRepositoryInterface" method="getRules"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_earning_rule"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/earningRules/:ruleId" method="GET">
+        <service class="Mirasvit\Rewards\Api\Repository\Earning\RuleRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_earning_rule"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/earningRules" method="POST">
+        <service class="Mirasvit\Rewards\Api\Repository\Earning\RuleRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_earning_rule"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/earningRules/:ruleId" method="PUT">
+        <service class="Mirasvit\Rewards\Api\Repository\Earning\RuleRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_earning_rule"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/earningRules/:ruleId" method="DELETE">
+        <service class="Mirasvit\Rewards\Api\Repository\Earning\RuleRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_earning_rule"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/spendingRules" method="GET">
+        <service class="Mirasvit\Rewards\Api\Repository\Spending\RuleRepositoryInterface" method="getRules"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_spending_rule"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/spendingRules/:ruleId" method="GET">
+        <service class="Mirasvit\Rewards\Api\Repository\Spending\RuleRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_spending_rule"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/spendingRules" method="POST">
+        <service class="Mirasvit\Rewards\Api\Repository\Spending\RuleRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_spending_rule"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/spendingRules/:ruleId" method="PUT">
+        <service class="Mirasvit\Rewards\Api\Repository\Spending\RuleRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_spending_rule"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/spendingRules/:ruleId" method="DELETE">
+        <service class="Mirasvit\Rewards\Api\Repository\Spending\RuleRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Mirasvit_Rewards::reward_points_spending_rule"/>
+        </resources>
+    </route>
+
+    <!-- customer customer -->
+    <route url="/V1/rewards/mine/update" method="POST">
+        <service class="Mirasvit\Rewards\Api\RewardsInterface" method="update"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route url="/V1/rewards/mine/transactions" method="GET">
+        <service class="Mirasvit\Rewards\Api\Service\Customer\Management\SearchInterface" method="getTransactions"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/rewards/mine/balance" method="GET">
+        <service class="Mirasvit\Rewards\Api\RewardsInterface" method="getBalance"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/rewards/mine/apply" method="POST">
+        <service class="Mirasvit\Rewards\Api\RewardsInterface" method="apply"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+            <parameter name="pointsAmount" force="true">%pointsAmount%</parameter>
+        </data>
+    </route>
+    <route url="/V1/rewards/mine/purchase/:orderId" method="GET">
+        <service class="Mirasvit\Rewards\Api\Repository\PurchaseRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/rewards/mine/referralCode" method="GET">
+        <service class="Mirasvit\RewardsApi\Api\Repository\ReferredCustomerRepositoryInterface" method="getCode"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/rewards/mine/addReferral" method="POST">
+        <service class="Mirasvit\RewardsApi\Api\Repository\ReferredCustomerRepositoryInterface" method="addReferral"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/rewards/mine/sendReferralMessage" method="POST">
+        <service class="Mirasvit\RewardsApi\Api\Repository\ReferredCustomerRepositoryInterface" method="sendReferralMessage"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/rewards/mine/customer/friends/list" method="GET">
+        <service class="Mirasvit\Rewards\Api\Service\Customer\Management\SearchInterface" method="getFriendsList"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <!-- guest customer -->
+    <route url="/V1/rewards/referral/addGuestReferral" method="POST">
+        <service class="Mirasvit\RewardsApi\Api\Repository\ReferredCustomerRepositoryInterface" method="addGuestReferral"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+</routes>

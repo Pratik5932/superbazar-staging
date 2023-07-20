@@ -1,0 +1,29 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--UI-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="rewards_earning_rule_listing_data_source" xsi:type="string">Mirasvit\Rewards\Model\ResourceModel\Earning\Grid\Collection</item>
+                <item name="rewards_spending_rule_listing_data_source" xsi:type="string">Mirasvit\Rewards\Model\ResourceModel\Spending\Grid\Collection</item>
+                <item name="rewards_notification_rule_listing_data_source" xsi:type="string">Mirasvit\Rewards\Model\ResourceModel\Notification\Grid\Collection</item>
+                <item name="rewards_transaction_listing_data_source" xsi:type="string">Mirasvit\Rewards\Model\ResourceModel\Transaction\Grid\Collection</item>
+                <item name="rewards_referral_listing_data_source" xsi:type="string">Mirasvit\Rewards\Model\ResourceModel\Referral\Grid\Collection</item>
+                <item name="rewards_tier_listing_data_source" xsi:type="string">Mirasvit\Rewards\Model\ResourceModel\Tier\Grid\Collection</item>
+                <item name="rewards_customer_grid_data_source" xsi:type="string">Magento\Customer\Model\ResourceModel\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+    <type name="Mirasvit\Report\Api\Repository\ReportRepositoryInterface">
+        <arguments>
+            <argument name="reports" xsi:type="array">
+                <item name="rewards_overview" xsi:type="string">Mirasvit\RewardsAdminUi\Reports\Overview</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Mirasvit\Report\Ui\DataProvider">
+        <plugin name="override_filter" type="Mirasvit\Rewards\Plugin\DataProviderGroupFilter" sortOrder="1"/>
+    </type>
+</config>

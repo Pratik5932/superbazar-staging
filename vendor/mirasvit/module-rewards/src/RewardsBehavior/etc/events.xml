@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+    <event name="customer_register_success">
+        <observer name="mirasvit_rewards_customer_checkput_register" instance="\Mirasvit\RewardsBehavior\Observer\EarnOnPlumrocketRegisterSuccess"/>
+    </event>
+    <event name="customer_save_after_data_object">
+        <observer name="mirasvit_rewards_customer_checkput_register" instance="\Mirasvit\RewardsBehavior\Observer\EarnOnCustomerRegisterSuccess"/>
+    </event>
+    <event name="newsletter_subscriber_save_commit_after">
+        <observer name="rewards" instance="\Mirasvit\RewardsBehavior\Observer\EarnOnNewsletterSubscriberSave"/>
+    </event>
+    <event name="advn_subscribe_customer_after">
+        <observer name="rewards" instance="\Mirasvit\RewardsBehavior\Observer\EarnOnMirasvitAdvnCustomerSubscribed"/>
+    </event>
+    <event name="mirasvit_rewards_behavior_rule_process">
+        <observer name="mirasvit_rewards_behavior_rule_process" instance="\Mirasvit\RewardsBehavior\Observer\EarnOnInternalEvent"/>
+    </event>
+    <event name="entity_manager_save_before">
+        <observer name="mst_rewards_model_pushnotification_subscriber"
+                  instance="\Mirasvit\RewardsBehavior\Observer\EarnOnPushNotificationSignup"/>
+    </event>
+    <event name="review_save_commit_after">
+        <observer name="mst_review_save_commit_after" instance="\Mirasvit\RewardsBehavior\Observer\EarnOnReviewSubmit"/>
+    </event>
+    <event name="core_abstract_save_commit_after">
+        <observer name="ahead_review_save_commit_after" instance="\Mirasvit\RewardsBehavior\Observer\EarnOnAheadworksReviewSubmit"/>
+    </event>
+</config>

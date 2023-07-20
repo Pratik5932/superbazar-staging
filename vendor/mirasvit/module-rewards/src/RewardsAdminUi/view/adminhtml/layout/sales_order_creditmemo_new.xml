@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="creditmemo_totals">
+            <block name="rewards" class="Mirasvit\RewardsAdminUi\Block\Adminhtml\Sales\Order\Totals"
+                   template="sales/order/totals.phtml" />
+        </referenceBlock>
+        <referenceContainer name="submit_before">
+            <block name="rewards.refunded.form" class="Mirasvit\RewardsAdminUi\Block\Adminhtml\Sales\Order\Creditmemo\Refund"
+                   template="sales/creditmemo/refund.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

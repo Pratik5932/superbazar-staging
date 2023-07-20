@@ -1,0 +1,35 @@
+& when (@critical) {
+    .search-suggestions {
+        display: flex;
+        gap: @4;
+        margin-bottom: @4;
+
+        @media @media-sm-down {
+            flex-direction: column;
+        }
+
+        .block {
+            min-width: 180px;
+            + .block {
+                margin: 0;
+            }
+        }
+
+        a {
+            &:extend(.breeze-link all);
+        }
+    }
+    .search-terms {
+        display: flex;
+        flex-wrap: wrap;
+        gap: @4;
+    }
+}
+
+& when not (@critical) {
+    .search-terms {
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+}

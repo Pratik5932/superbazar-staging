@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+<!--    <event name="sales_quote_save_after">-->
+<!--        <observer name="mst_rewards_model_sales_quote_save_after" instance="\Mirasvit\Rewards\Observer\AdminOrderQuoteAfterSave"/>-->
+<!--    </event>-->
+<!--    <event name="sales_quote_remove_item">-->
+<!--        <observer name="mst_rewards_model_sales_quote_save_after" instance="\Mirasvit\Rewards\Observer\QuoteAfterRemove"/>-->
+<!--    </event>-->
+<!--    <event name="sales_quote_collect_totals_after">-->
+<!--        <observer name="mst_rewards_sales_quote_collect_totals_after" instance="\Mirasvit\Rewards\Observer\Order\OrderQuoteTotalsCollectAfter"/>-->
+<!--    </event>-->
+    <event name="sales_order_invoice_save_after">
+        <observer name="mst_reward_model_observer_invoice" instance="\Mirasvit\RewardsCheckout\Observer\EarnOnInvoiceSaveAfter"/>
+    </event>
+</config>

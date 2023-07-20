@@ -1,0 +1,44 @@
+.tooltip.wrapper {
+    .tooltip.content {
+        &:extend(.breeze-dropdown all);
+    }
+    &:hover,
+    &:focus {
+        .tooltip.content {
+            &:extend(.breeze-dropdown-visible);
+        }
+    }
+}
+
+& when (@critical) {
+    .tooltip.wrapper {
+        position: relative;
+        .tooltip.content {
+            @media @media-xs {
+                .right(auto);
+                .left(0);
+            }
+            top: 100%;
+        }
+    }
+}
+
+& when not (@critical) {
+    .tooltip.wrapper {
+        --dropdown-width: @64;
+        --dropdown-padding: @2 @3;
+        .tooltip.toggle {
+            cursor: help;
+        }
+        .subtitle {
+            .breeze-text-lg();
+            font-weight: 400;
+            display: block;
+            margin-bottom: @2;
+        }
+
+        @media @media-md-down {
+            --dropdown-width: @48;
+        }
+    }
+}

@@ -1,0 +1,303 @@
+"Reward Points","Reward Points"
+"Rewards Information","Rewards Information"
+"Available Points Balance","Available Points Balance"
+"Change Balance","Change Balance"
+"Enter positive or negative number of points. E.g. 10 or -10","Enter positive or negative number of points. E.g. 10 or -10"
+"Message in the rewards history","Message in the rewards history"
+"Customer will see this in his account","Customer will see this in his account"
+"No Records Found","No Records Found"
+ID,ID
+"Balance Change","Balance Change"
+Comment,Comment
+"Created At","Created At"
+"Expires At","Expires At"
+"Apply the rule only to cart items matching the following conditions (leave blank for all items)","Apply the rule only to cart items matching the following conditions (leave blank for all items)"
+"Apply To","Apply To"
+"Apply the rule only if the following conditions are met (leave blank for all products)","Apply the rule only if the following conditions are met (leave blank for all products)"
+Conditions,Conditions
+"Earning Rules","Earning Rules"
+"Spending Rules","Spending Rules"
+"Notification Rules","Notification Rules"
+Tiers,Tiers
+Transactions,Transactions
+"Customer Referrals","Customer Referrals"
+Reports,Reports
+"Refresh Statistics","Refresh Statistics"
+Settings,Settings
+Save,Save
+Delete,Delete
+"Save And Continue Edit","Save And Continue Edit"
+"Edit Referral '%1'","Edit Referral '%1'"
+"Create New Referral","Create New Referral"
+"%1 %2 Refunded","%1 %2 Refunded"
+"%1 %2 Spent","%1 %2 Spent"
+"%1 Earned","%1 Earned"
+"%1 Spent","%1 Spent"
+"'%1 Earned' .","'%1 Earned' ."
+"Customer Name","Customer Name"
+"Customer Email","Customer Email"
+"Customer Group","Customer Group"
+Action,Action
+Code,Code
+"Is expired","Is expired"
+"Is sent","Is sent"
+"Amount Used","Amount Used"
+"New Earning Rule","New Earning Rule"
+"Earning Rule was successfully deleted","Earning Rule was successfully deleted"
+"Edit Earning Rule '%1'","Edit Earning Rule '%1'"
+"The Earning Rule does not exist.","The Earning Rule does not exist."
+"Total of %1 record(s) were successfully updated","Total of %1 record(s) were successfully updated"
+"Please select Earning Rule(s)","Please select Earning Rule(s)"
+"Total of %1 record(s) were successfully deleted","Total of %1 record(s) were successfully deleted"
+"Earning Rule was successfully saved","Earning Rule was successfully saved"
+"Unable to find Earning Rule to save","Unable to find Earning Rule to save"
+"Number of Points (X)","Number of Points (X)"
+"Quantity Step (Z)","Quantity Step (Z)"
+"Step (Y)","Step (Y)"
+"Field ""%1"" should be valid number, i.e. 5 or 7.5","Field ""%1"" should be valid number, i.e. 5 or 7.5"
+"Field ""%1"" should be valid number and percent should be equal or less then 100","Field ""%1"" should be valid number and percent should be equal or less then 100"
+"New Notification Rule","New Notification Rule"
+"Notification Rule was successfully deleted","Notification Rule was successfully deleted"
+"Edit Notification Rule '%1'","Edit Notification Rule '%1'"
+"The Notification Rule does not exist.","The Notification Rule does not exist."
+"Please select Notification Rule(s)","Please select Notification Rule(s)"
+"Notification Rule was successfully saved","Notification Rule was successfully saved"
+"Unable to find Notification Rule to save","Unable to find Notification Rule to save"
+"Please select Referral(s)","Please select Referral(s)"
+"Statistics was successfully updated","Statistics was successfully updated"
+"Database error. Please contact developers.","Database error. Please contact developers."
+Rewards,Rewards
+"You have not any statistic. Please refresh statistic.","You have not any statistic. Please refresh statistic."
+"New Spending Rule","New Spending Rule"
+"Spending Rule was successfully deleted","Spending Rule was successfully deleted"
+"Edit Spending Rule '%1'","Edit Spending Rule '%1'"
+"The Spending Rule does not exist.","The Spending Rule does not exist."
+"Please select Spending Rule(s)","Please select Spending Rule(s)"
+"Spending Rule was successfully saved","Spending Rule was successfully saved"
+"Unable to find Spending Rule to save","Unable to find Spending Rule to save"
+"Customer receive Y discount","Customer receive Y discount"
+"Spend minimum","Spend minimum"
+"Spend maximum","Spend maximum"
+"New Tier","New Tier"
+"Tier was successfully deleted","Tier was successfully deleted"
+"Edit Tier '%1'","Edit Tier '%1'"
+"The Tier does not exist.","The Tier does not exist."
+"Please select Tier(s)","Please select Tier(s)"
+"Unable to find Tier to save","Unable to find Tier to save"
+"New Transaction","New Transaction"
+"Transaction was successfully deleted","Transaction was successfully deleted"
+"Total of %1 record(s) were successfully activated","Total of %1 record(s) were successfully activated"
+"Please select Transaction(s)","Please select Transaction(s)"
+"Transaction was successfully saved","Transaction was successfully saved"
+"Unable to find Transaction to save","Unable to find Transaction to save"
+"Please specify a website.","Please specify a website."
+"Please specify a customer email.","Please specify a customer email."
+"We found an invalid value in a website column.","We found an invalid value in a website column."
+"Please enter a valid email.","Please enter a valid email."
+"Please make sure attribute ""%1"" is not empty.","Please make sure attribute ""%1"" is not empty."
+"We can't find a customer who matches this email and website code.","We can't find a customer who matches this email and website code."
+"- Disable these emails -","- Disable these emails -"
+"Apply to items","Apply to items"
+"Apply to totals","Apply to totals"
+"Give X points to customer","Give X points to customer"
+"Give X points for every spent Y","Give X points for every spent Y"
+"Give X points for every Z quantity","Give X points for every Z quantity"
+"For every Y, give X points","For every Y, give X points"
+Pending,Pending
+Approved,Approved
+Discarded,Discarded
+"You do not have permissions to create transactions. Please contact your site administrator.","You do not have permissions to create transactions. Please contact your site administrator."
+"%1 has been added.","%1 has been added."
+"%1 has been deducted.","%1 has been deducted."
+"Customer Earning Style","Customer Earning Style"
+"In base currency","In base currency"
+"Maximum number of earned points for one customer per day","Maximum number of earned points for one customer per day"
+"Set 0 to disable limit","Set 0 to disable limit"
+"Do not change","Do not change"
+"Assign customer to Group","Assign customer to Group"
+"Earn Maximum","Earn Maximum"
+"Maximum Distributed Points","Maximum Distributed Points"
+"%1 for each $%2","%1 for each $%2"
+Edit,Edit
+Back,Back
+"Are you sure you want to do this?","Are you sure you want to do this?"
+Reset,Reset
+"Save and Continue Edit","Save and Continue Edit"
+"All Groups","All Groups"
+Actions,Actions
+"Points spending style","Points spending style"
+"For each spent X points","For each spent X points"
+"Number of points.","Number of points."
+"You can enter amount in base currency or percent. e.g. 100 or 5%.","You can enter amount in base currency or percent. e.g. 100 or 5%."
+"You can enter amount of points or percent. e.g. 100 or 5%. Leave empty to disable.","You can enter amount of points or percent. e.g. 100 or 5%. Leave empty to disable."
+"Minimum sum of spent %1","Minimum sum of spent %1"
+"Minimum points number to reach the tier","Minimum points number to reach the tier"
+"Delete the record with ID ""%1""","Delete the record with ID ""%1"""
+"Are you sure you want to delete the record with ID ""%1""?","Are you sure you want to delete the record with ID ""%1""?"
+"Refund amount of applied %1","Refund amount of applied %1"
+"Money equivalent, (%1)","Money equivalent, (%1)"
+"Use Reward Points","Use Reward Points"
+"%1 have <b>%2</b> available.","%1 have <b>%2</b> available."
+"Enter amount of points to spend:","Enter amount of points to spend:"
+"Apply Points","Apply Points"
+"Cancel Points","Cancel Points"
+"Use maximum %1","Use maximum %1"
+"Rewards Earn","Rewards Earn"
+"Rewards Spend","Rewards Spend"
+"Rewards Discount","Rewards Discount"
+"Point Unit Name","Point Unit Name"
+"Reward points expire after, days","Reward points expire after, days"
+"Approve earned points on invoice","Approve earned points on invoice"
+"Approve earned points on shipment","Approve earned points on shipment"
+"Approve earned points if order has status","Approve earned points if order has status"
+"Delay usage of rewards points for, days","Delay usage of rewards points for, days"
+"After login to account redirect a customer to My Reward Points section","After login to account redirect a customer to My Reward Points section"
+"Cancel the earned points after the order has been refunded","Cancel the earned points after the order has been refunded"
+"Restore the points spent after the order has been refunded","Restore the points spent after the order has been refunded"
+"Include discount for Earning rules","Include discount for Earning rules"
+"Include tax for Earning rules","Include tax for Earning rules"
+"Include tax for Spending rules","Include tax for Spending rules"
+"Apply Spending Points Discount After Tax","Apply Spending Points Discount After Tax"
+"Allow to earn points from shipping charges","Allow to earn points from shipping charges"
+"Allow to spend points for shipping charges","Allow to spend points for shipping charges"
+"Allow to place orders with grand total = 0","Allow to place orders with grand total = 0"
+"Allow to display product points as currency equivalent","Allow to display product points as currency equivalent"
+"Allow to display maximum number of possible points for configurable products.","Allow to display maximum number of possible points for configurable products."
+"Email Sender","Email Sender"
+"Balance update Email","Balance update Email"
+"Transaction inactive Email","Transaction inactive Email"
+"Points expire Email","Points expire Email"
+"Send notification before points expires(in days)","Send notification before points expires(in days)"
+"Switch between tiers based on","Switch between tiers based on"
+"Use orders in status","Use orders in status"
+"Include Tax","Include Tax"
+"Include Discount","Include Discount"
+"Include Shipping","Include Shipping"
+"In determining tiers, take into account, it only lasts for N days","In determining tiers, take into account, it only lasts for N days"
+"Automatically move customer to a lower tier if he does not meet minimum tier requirements","Automatically move customer to a lower tier if he does not meet minimum tier requirements"
+"Enable Referral System","Enable Referral System"
+"Invitation Email Template","Invitation Email Template"
+"Show rewards points menu on frontend","Show rewards points menu on frontend"
+"Show rewards points on category page","Show rewards points on category page"
+"Show number of points on the product page","Show number of points on the product page"
+"Show pending transactions in the customer's account","Show pending transactions in the customer's account"
+"Checkout Notification","Checkout Notification"
+"Spending discount calculation method","Spending discount calculation method"
+"Round earning points down","Round earning points down"
+"Custom Behavior Events","Custom Behavior Events"
+"Force to apply styles","Force to apply styles"
+"Social Networks Settings","Social Networks Settings"
+"Facebook App ID","Facebook App ID"
+"Facebook API Version","Facebook API Version"
+"Show Facebook Like button","Show Facebook Like button"
+"Show Facebook Share button","Show Facebook Share button"
+"Show Twitter Follow button","Show Twitter Follow button"
+"Show Pinterest pin button","Show Pinterest pin button"
+"Show AddThis","Show AddThis"
+"AddThis Code","AddThis Code"
+"Show Social Buttons block on category page","Show Social Buttons block on category page"
+Tier,Tier
+"Rewards Balance","Rewards Balance"
+Name,Name
+Email,Email
+Group,Group
+Phone,Phone
+ZIP,ZIP
+Country,Country
+State/Province,State/Province
+"Customer Since","Customer Since"
+"Web Site","Web Site"
+"General Information","General Information"
+"Rule Name","Rule Name"
+"Display Name","Display Name"
+Type,Type
+"Is Active","Is Active"
+"Active From","Active From"
+"Active To","Active To"
+Websites,Websites
+"Stop further rules processing","Stop further rules processing"
+Priority,Priority
+"Arranged in the ascending order. 0 is the highest.","Arranged in the ascending order. 0 is the highest."
+"Number of Inactive Days","Number of Inactive Days"
+Notification,Notification
+"Message for customer notification email","Message for customer notification email"
+"You can use the following variables:<br/>
+                        {{var customer.name}} - customer name<br/>
+                        {{store url=""""}} - store URL<br/>
+                        {{var store.getFrontendName()}} - store name<br/>
+                        {{var transaction_amount}} - formatted amount of current transaction (e.g 10 Rewards Points)<br/>
+                        {{var balance_total}} - formatted balance of customer account (e.g. 100 Rewards Points)<br/>
+                        Leave empty to use default notification email.<br/>
+                        
+                    ","You can use the following variables:<br/>
+                        {{var customer.name}} - customer name<br/>
+                        {{store url=""""}} - store URL<br/>
+                        {{var store.getFrontendName()}} - store name<br/>
+                        {{var transaction_amount}} - formatted amount of current transaction (e.g 10 Rewards Points)<br/>
+                        {{var balance_total}} - formatted balance of customer account (e.g. 100 Rewards Points)<br/>
+                        Leave empty to use default notification email.<br/>
+                        
+                    "
+"Is show on the product page","Is show on the product page"
+Message,Message
+"You can use the following variables:<br/>
+                        {{var customer.name}} - customer name<br/>
+                        {{store url=""""}} - store URL<br/>
+                        {{var store.getFrontendName()}} - store name<br/>
+                        {{var balance_total}} - formatted balance of customer account (e.g. 100 Rewards Points)<br/>
+                        
+                    ","You can use the following variables:<br/>
+                        {{var customer.name}} - customer name<br/>
+                        {{store url=""""}} - store URL<br/>
+                        {{var store.getFrontendName()}} - store name<br/>
+                        {{var balance_total}} - formatted balance of customer account (e.g. 100 Rewards Points)<br/>
+                        
+                    "
+"Add New","Add New"
+"Delete items","Delete items"
+"Delete selected items?","Delete selected items?"
+"Change status","Change status"
+Enable,Enable
+Disable,Disable
+"Number of points to earn","Number of points to earn"
+Website,Website
+"Show message on","Show message on"
+"Affiliate Customer","Affiliate Customer"
+"Referral Customer","Referral Customer"
+"Referee's Email","Referee's Email"
+"Referee's name","Referee's name"
+Status,Status
+Store,Store
+Discount,Discount
+"you can switch to reward points or base currency in the extension settings","you can switch to reward points or base currency in the extension settings"
+"Email Template","Email Template"
+"Email template chosen based on theme fallback, when the ""Default"" option is selected.","Email template chosen based on theme fallback, when the ""Default"" option is selected."
+Logo,Logo
+Description,Description
+"Minimum points number to reach each tier","Minimum points number to reach each tier"
+"Points Balance Change","Points Balance Change"
+"You can use the following variables:<br>
+                        {{var customer.name}} - customer name<br>
+                        {{store url=""""}} - store URL<br>
+                        {{var store.getFrontendName()}} - store name<br>
+                        {{var transaction_amount}} - formatted amount of current transaction (e.g 10 Rewards Points)<br>
+                        {{var balance_total}} - formatted balance of customer account (e.g. 100 Rewards Points)<br>
+                        Leave empty to use default notification email.<br>
+                        
+                    ","You can use the following variables:<br>
+                        {{var customer.name}} - customer name<br>
+                        {{store url=""""}} - store URL<br>
+                        {{var store.getFrontendName()}} - store name<br>
+                        {{var transaction_amount}} - formatted amount of current transaction (e.g 10 Rewards Points)<br>
+                        {{var balance_total}} - formatted balance of customer account (e.g. 100 Rewards Points)<br>
+                        Leave empty to use default notification email.<br>
+                        
+                    "
+"Activate items","Activate items"
+"Activate selected items?","Activate selected items?"
+Activate,Activate
+CSV,CSV
+"Excel XML","Excel XML"
+"Activated At","Activated At"
+"Is Activated","Is Activated"
+"You can enter amount of points. Leave empty to disable.","You can enter amount of points. Leave empty to disable."

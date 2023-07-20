@@ -1,0 +1,284 @@
+:where(input:not([type=range])),
+textarea,
+select {
+    &:extend(.breeze-input all);
+}
+
+button,
+.action.primary,
+input[type='submit'],
+input[type='reset'],
+input[type='button'] {
+    &:extend(.breeze-button all);
+}
+
+.action.primary,
+.action-primary,
+[type='submit'] {
+    &:extend(.breeze-button-primary all);
+}
+
+:where(button:not([type='submit']):not(.action-primary):not(.primary):not(.pagebuilder-button-link):not(.pagebuilder-button-primary):not(.select)),
+input[type='reset'],
+input[type='button'] {
+    &:extend(.breeze-button-secondary all);
+}
+
+button,
+.pagebuilder-button-primary,
+.pagebuilder-button-secondary {
+    .button-ghost & {
+        &:extend(.breeze-button-ghost all);
+    }
+}
+
+.field-tooltip-content {
+    &:extend(.breeze-dropdown all);
+    &[aria-hidden="false"] {
+        &:extend(.breeze-dropdown-visible);
+    }
+}
+
+& when (@critical) {
+    button,
+    .pagebuilder-button-primary,
+    .pagebuilder-button-secondary,
+    .pagebuilder-button-link {
+        .button-xs & {
+            &:extend(.breeze-button-xs);
+        }
+        .button-lg & {
+            &:extend(.breeze-button-lg);
+        }
+        .button-xl & {
+            &:extend(.breeze-button-xl);
+        }
+    }
+    fieldset,
+    .fieldset {
+        margin-bottom: @8;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        &.field {
+            margin-bottom: 0;
+        }
+    }
+    label {
+        button {
+            &:extend(.breeze-button-reset all);
+            &:extend(.breeze-link all);
+        }
+        a {
+            &:extend(.breeze-link all);
+        }
+    }
+    form {
+        + form,
+        + .fieldset {
+            margin-top: @5;
+        }
+        .legend {
+            .breeze-text-xl();
+            width: 100%;
+            margin: 0 0 @5;
+            padding: 0 0 @0-5;
+            border-bottom: 1px solid @divider__color;
+
+            + br {
+                display: none;
+            }
+        }
+        .label + br {
+            display: none;
+        }
+        .actions-toolbar {
+            margin-top: @5;
+            margin-bottom: @5;
+            &:empty {
+                display: none;
+            }
+        }
+    }
+    .fields {
+        display: flex;
+        gap: @2;
+        .field + .field {
+            margin-top: 0;
+        }
+    }
+    .nested > .field,
+    button + .field,
+    .field + .fieldset,
+    .field + .field-recaptcha,
+    .field + script + .field,
+    .field + script + script + .field,
+    .field + .field {
+        margin-top: @3;
+    }
+    .field {
+        .choice + .choice {
+            margin-top: @0-5;
+        }
+        .addon {
+            display: flex;
+            align-items: center;
+            gap: @2;
+        }
+        .range {
+            > .field:first-child .control {
+                display: flex;
+                gap: @2;
+                align-items: center;
+
+                &::after {
+                    content: '—';
+                }
+            }
+            .field + .field {
+                margin-top: 0;
+            }
+        }
+        &.required,
+        &._required {
+            > .label {
+                display: flex;
+                gap: @1;
+                &::after {
+                    content: '*';
+                    color: @danger__color;
+                }
+            }
+        }
+        &.choice {
+            display: flex;
+            gap: @1-5;
+            align-items: flex-start;
+            line-height: @base__line-height;
+            clear: left;
+            position: relative;
+            > [type="radio"],
+            > [type="checkbox"] {
+                margin-top: ~"calc(@{base__line-height} / 2 - @{checkbox__size} / 2)";
+            }
+            .field-tooltip {
+                margin-top: ~"calc(@{base__line-height} / 2 - @{4-5} / 2)";
+            }
+            div.mage-error {
+                .right(0);
+                .padding-left(@2);
+                margin-top: 0;
+                position: absolute;
+                background: @base__background;
+                z-index: 11;
+            }
+        }
+        .control {
+            position: relative;
+        }
+        .label + .control {
+            margin-top: @0-5;
+        }
+        ._with-tooltip {
+            input, select, textarea {
+                width: ~"calc(100% - @{7})";
+            }
+            .field-tooltip {
+                position: absolute;
+                .right(@1);
+                top:~"calc(@{base__line-height} / 2 - @{1} / 2)";
+                z-index: 11;
+            }
+        }
+        &.street {
+            .control {
+                label {
+                    &:extend(.breeze-sr-only);
+                }
+            }
+        }
+    }
+    .control {
+        .note {
+            .breeze-text-sm();
+            display: block;
+            margin-top: @1;
+        }
+    }
+    .field-tooltip {
+        display: inline-block;
+        position: relative;
+        .label {
+            &:extend(.breeze-sr-only);
+        }
+    }
+    .field-tooltip-action {
+        color: @muted__color;
+        &,
+        &::before {
+            display: block;
+            width: @5;
+            height: @5;
+        }
+        &::before {
+            content: '';
+        }
+        span {
+            &:extend(.breeze-sr-only);
+        }
+    }
+    .ui-datepicker-trigger {
+        &:extend(.breeze-button-reset);
+        position: absolute !important;
+        .right(@2);
+        top:~"calc(50% - @{6} / 2)";
+        color: @muted__color;
+
+        &::before {
+            content: '';
+            display: block;
+            width: @6;
+            height: @6;
+        }
+        span {
+            &:extend(.breeze-sr-only);
+        }
+    }
+    .required-captcha.checkbox {
+        &:extend(.breeze-sr-only);
+    }
+    .control.captcha-image {
+        margin-top: @2;
+        display: flex;
+        align-items: center;
+        gap: @2;
+    }
+}
+
+& when not (@critical) {
+    div.mage-error,
+    div.field-error {
+        margin-top: @0-5;
+        font-size: .9rem;
+        color: @danger__color;
+    }
+    .field-tooltip {
+        --dropdown-width: @72;
+        --dropdown-padding: @2 @3;
+    }
+    .field-tooltip-action {
+        &::before {
+            .breeze-icon(@icon-question-mark-circle, @5);
+        }
+    }
+    .ui-datepicker {
+        .ui-datepicker-calendar td {
+            padding: 0;
+        }
+        &-trigger {
+            &::before {
+                .breeze-icon(@icon-calendar, @6);
+            }
+        }
+    }
+}

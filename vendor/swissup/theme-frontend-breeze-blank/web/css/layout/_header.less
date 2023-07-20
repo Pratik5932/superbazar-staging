@@ -1,0 +1,227 @@
+& when (@critical) {
+    :root {
+        & when (@header-panel__slideout) {
+            --header-panel-slideout: true;
+        }
+    }
+
+    .header.panel,
+    .header.links,
+    .header.content {
+        display: flex;
+        gap: @4;
+    }
+
+    .header.links {
+        a .counter {
+            .breeze-text-sm();
+            opacity: .6;
+            white-space: nowrap;
+            &::before {
+                content: '(';
+            }
+            &::after {
+                content: ')';
+            }
+        }
+    }
+
+    .header.panel {
+        &:extend(.container);
+        justify-content: flex-end;
+        align-items: center;
+
+        @media @media-xs-down {
+            flex-wrap: wrap;
+            justify-content: center;
+            .header-panel-info {
+                width: 100%;
+                margin: 0;
+                justify-content: center;
+            }
+            > .switcher {
+                max-width: 50%;
+            }
+        }
+    }
+
+    .header.content {
+        &:extend(.container);
+        .lib-css(padding-top, @header-content__padding-top);
+        .lib-css(padding-bottom, @header-content__padding-bottom);
+        .lib-css(background, @header-content__background);
+        .lib-css(position, @header-content__position);
+        align-items: center;
+    }
+
+    .page-header {
+        & when (@header__dark) {
+            &:extend(.breeze-invert-colors all);
+            & when (@header__background = false) {
+                .lib-css(background, @theme__dark-color);
+            }
+        }
+
+        position: relative;
+        .lib-css(background, @header__background);
+        .lib-css(box-shadow, @header__box-shadow);
+        .lib-css(border, @header__border);
+        .lib-css(border-width, @header__border-width);
+
+        .panel.wrapper {
+            & when (@header-panel__dark) {
+                &:extend(.breeze-invert-colors all);
+                & when (@header-panel__background = false) {
+                    .lib-css(background, @theme__dark-color);
+                }
+            }
+
+            .lib-css(color, @header-panel__color);
+            .lib-css(background, @header-panel__background);
+            .lib-css(border, @header-panel__border);
+            .lib-css(border-width, @header-panel__border-width);
+        }
+
+        .switcher .label {
+            &:extend(.breeze-sr-only);
+        }
+
+        .logo {
+            img {
+                &:not([width]) {
+                    width: 100%;
+                    min-width: 80px;
+                    max-width: 170px;
+                }
+
+                & when (@header__dark = false) {
+                    & when (@respect-color-scheme = true) {
+                        @media @media-dark {
+                            .lib-css(filter, @logo__dark__filter);
+                        }
+                    }
+                }
+            }
+            + *,
+            + .navigation-wrapper + * {
+                .margin-left(auto);
+            }
+        }
+
+        .block .block-title {
+            font-size: @4;
+            margin: 0;
+        }
+    }
+
+    .header-panel-info {
+        .lib-css(font-weight, @header-panel-info__font-weight);
+        .lib-css(font-size, @header-panel-info__font-size);
+        .lib-css(letter-spacing, @header-panel-info__letter-spacing);
+        .margin(@header-panel-info__margin);
+        .padding(@header-panel-info__padding);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: @3;
+
+        .heading,
+        > .switcher-label {
+            display: none;
+        }
+        .icon {
+            width: @5;
+            height: @5;
+        }
+        a {
+            color: currentColor;
+            display: flex;
+            align-items: center;
+            gap: @1;
+        }
+    }
+    @media @navigation__media-mobile {
+        & when (@header-panel__slideout) {
+            .page-header .panel.wrapper {
+                display: none;
+            }
+        }
+    }
+    @media @navigation__media-desktop {
+        .navigation-wrapper .mobile-header-panel {
+            display: none;
+        }
+    }
+
+    .header.content > .switcher > .actions > .action {
+        .lib-css(color, @header-actions__color);
+        .lib-css(gap, @header-actions__gap);
+        strong {
+            .lib-css(font-weight, @header-actions__font-weight);
+        }
+
+        @media @media-md-down {
+            span {
+                display: none;
+            }
+        }
+    }
+
+    .account-dropdown,
+    .wishlist-dropdown {
+        > .action::before {
+            flex-shrink: 0;
+        }
+    }
+    .account-dropdown > .action::before {
+        .breeze-icon-critical(@header-actions-icon__account, @header-actions-icon__width, @header-actions-icon__height);
+    }
+    .wishlist-dropdown > .action::before {
+        .breeze-icon-critical(@header-actions-icon__wishlist, @header-actions-icon__width, @header-actions-icon__height);
+    }
+}
+
+& when not (@critical) {
+    .header.links {
+        .dropdown & {
+            flex-direction: column;
+            gap: 0;
+        }
+    }
+
+    .mobile-header-panel {
+        margin-top: @4;
+        padding-top: @2;
+        border-top: 1px solid @divider__color;
+
+        .heading,
+        .switcher-label {
+            display: block;
+            text-transform: uppercase;
+            font-size: @font-size__sm;
+            font-weight: 600;
+            color: @muted__color;
+        }
+        .switcher .label {
+            &:extend(.breeze-sr-only-reset);
+        }
+        .switcher,
+        .header-panel-info {
+            margin-top: @4;
+            padding: 0 @2;
+            display: flex;
+            gap: @3;
+            a:not(.toggle) {
+                opacity: .7;
+            }
+        }
+        .switcher + .switcher {
+            margin-top: @2;
+        }
+        .header-panel-info {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: @2;
+        }
+    }
+}

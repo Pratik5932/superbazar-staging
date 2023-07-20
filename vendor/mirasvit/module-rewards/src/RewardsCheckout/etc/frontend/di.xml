@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="checkout_rewards_points_before" type="Mirasvit\RewardsCheckout\Plugin\FixM22BugInCheckoutConfig" sortOrder="1000" />
+        <plugin name="checkout_rewards_points" type="Mirasvit\RewardsCheckout\Plugin\AddRewardsConfigToCheckoutConfig" />
+    </type>
+    <type name="Magento\Checkout\Model\Cart">
+        <plugin name="recollect_empty_quote_purchase" type="Mirasvit\RewardsCheckout\Plugin\RecollectEmptyQuotePurchase" sortOrder="1000" />
+    </type>
+</config>

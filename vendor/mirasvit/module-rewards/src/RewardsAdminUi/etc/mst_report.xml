@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../module-report/src/ReportApi/etc/mst_report.xsd">
+    <table name="mst_rewards_points_aggregated_hour">
+        <fk name="customer_id" table="customer_entity"/>
+
+        <column name="period" label="Purchased On" type="date"/>
+
+        <column name="store_id" label="Store" type="store"/>
+        <column name="customer_group_id" label="Customer Groups" type="select" options="Magento\Customer\Model\ResourceModel\Group\Collection"/>
+
+        <column name="order_earn" label="Earned for order" type="number"/>
+        <column name="inactivity" label="Customer inactivity" type="number"/>
+        <column name="send_link" label="Customer refers friend" type="number"/>
+        <column name="order_earn_cancel" label="Canceled earned points" type="number"/>
+        <column name="order_refund" label="Refunded from creditmemo" type="number"/>
+        <column name="order_spend" label="Spent points" type="number"/>
+        <column name="order_spend_restore" label="Spent points restored" type="number"/>
+        <column name="expired_points" label="Expired points" type="number"/>
+        <column name="total_points_spent_in_money" label="Total Spent Points in money equivalent" type="money"/>
+        <column name="admin_transaction" label="Admin Transactions" type="number"/>
+        <column name="facebook_like" label="Earned for Facebook Like" type="number"/>
+        <column name="pinterest_pin" label="Earned for Pin" type="number"/>
+        <column name="twitter_tweet" label="Earned for tweet" type="number"/>
+        <column name="create_rma" label="Earned for RMA" type="number"/>
+        <column name="signup" label="Earned for signup" type="number"/>
+    </table>
+</config>

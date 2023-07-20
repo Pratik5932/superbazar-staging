@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <update handle="rewards_account_info_links"/>
+    <move element="page.main.title" destination="rewards.account.list" as="rewards.page.main.title"/>
+    <head>
+        <script src="Mirasvit_RewardsBehavior::js/social.js" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="rewards.tiers" class="Mirasvit\RewardsCustomerAccount\Block\Account\Tiers" template="account/tiers.phtml" before="links"/>
+            <block name="rewards.account.list" class="Mirasvit\RewardsCustomerAccount\Block\Account\Listing" template="account/share.phtml" cacheable="false">
+            </block>
+        </referenceContainer>
+        <referenceContainer name='before.body.end'>
+            <block class="Mirasvit\RewardsBehavior\Block\Buttons" name="rewards.fbscript"
+                   template="Mirasvit_RewardsBehavior::buttons/facebook/script.phtml" />
+        </referenceContainer>
+    </body>
+</page>

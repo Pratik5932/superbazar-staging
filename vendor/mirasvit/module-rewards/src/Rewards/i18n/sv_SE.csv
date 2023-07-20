@@ -1,0 +1,353 @@
+"My Reward Points","Mina belöningspoäng"
+"Checkout now and earn <b>%1</b> for this order.","Kassa nu och tjäna <b>%1</b> för denna beställning."
+"Applies only to registered customers, may vary when logged in.","Gäller endast för registrerade kunder, kan variera vid inloggning."
+"Possible discount %1 %2","Möjlig rabatt %1 %2"
+"Earn %1 %2","Tjäna %1 %2"
+Grid,Rutnät
+List,Lista
+All,Allt
+"Referral %1","Hänvisning %1"
+"Something went wrong while saving your subscription.","Något gick fel när du sparade din prenumeration."
+"We removed your subscription on expiring points notification.","Vi tog bort din prenumeration på meddelandet om utgående poäng."
+"Cannot apply points.","Kan inte tillämpa poäng."
+"You've earned %1 for Facebook Like!","Du har tjänat %1 för Facebook som!"
+"You've earned %1 for Facebook Share!","Du har tjänat %1 för Facebook Dela!"
+"Facebook Like Points has been canceled","Facebook Like Points har blivit avbrutna"
+"You've earned %1 for Google+!","Du har tjänat %1 för Google+!"
+"G+1 Points has been canceled","G + 1 poäng har blivit avbrutna"
+"You've earned %1 for Pin!","Du har tjänat %1 för Pin!"
+"Invalid form key. Try again","Ogiltig formulärnyckel. Försök igen"
+"Customer with email %1 has been already invited to our store","Kund med e-post %1 har redan blivit inbjuden till vår butik"
+"Your invitations were sent. Thanks!","Dina inbjudningar skickades. Tack!"
+"You've earned %1 for Tweet!","Du har tjänat %1 för Tweet!"
+"You received %1 for signing up","Du fick %1 för att anmäla dig"
+"You received %1 for sending this product","Du fick %1 för att skicka den här produkten"
+"You received %1 for sign up for newsletter","Du fick %1 för anmälan till nyhetsbrev"
+"You received %1 for sign up for push notifications","Du fick %1 för anmälan till push-meddelanden"
+"You will receive %1 after approving of this tag","Du kommer att få %1 efter godkännande av den här taggen"
+"You will receive %1 after approving of this review","Du kommer att få %1 efter godkännande av denna recension"
+"You received %1 for sign up of referral customer.","Du fick %1 för registrering av referenskund."
+"You received %1 for order of referral customer.","Du fick %1 för beställning av hänvisningskund."
+"Happy birthday! You received %1.","Grattis på födelsedagen! Du fick %1."
+"You received %1 for joining the affiliate program.","Du fick %1 för att ansluta till affiliate-programmet."
+"%1 were applied.","%1 applicerades."
+"Minimum number is %1.","Minsta antal är %1."
+"Maximum number is %1.","Maximalt tal är %1."
+"%1 was canceled.","%1 avbröts."
+"Cannot apply %1.","Kan inte gälla %1."
+"You can use the following variables:","Du kan använda följande variabler:"
+Pattern,Mönster
+"Attribute Value","Attribut Värde"
+Default,Standard
+Integer,Heltal
+Price,Pris
+"Strip Tags","Strip Taggar"
+"Primary Attributes","Primär Egenskaper"
+"Stock Attributes","Lager attribut"
+"Prices & Taxes","Priser och skatter"
+Images,Bilder
+"Custom Attributes","Anpassade attribut"
+Mapping,Kartläggning
+Category,Kategori
+"Amasty Meta Tags","Amasty Meta Tags"
+"Others Attributes","Andra attribut"
+Flexible,Flexibel
+Fixed,Fast
+"Customer signs up in store","Kundskyltar finns i butik"
+"Customer places order","Kunden placerar order"
+"Customer refer a friend","Kunden hänvisar till en vän"
+"Customer adds tag to a product","Kund lägger till tagg till en produkt"
+"Customer writes a product review","Kunden skriver en produktrecension"
+"Customer has a birthday","Kunden har en födelsedag"
+"Customer is inactive for long time","Kunden är inaktiv under lång tid"
+"Newsletter sign up","Nyhetsbrev anmäl dig"
+"Facebook Share","Facebook delning"
+"Facebook Like","Facebook gillar"
+"Twitter Tweet","Twitter Tweet"
+"Google+ Like","Google+ Gilla"
+"Pinterest Pin","Pinterest Pin"
+"Customer joins the affiliate program","Kunden ansluter sig till affiliateprogrammet"
+"Push Notifications sign up","Push Notifications registrera dig"
+"Referred customer signs up in store","Hänvisade kundskyltar i butik"
+"Order from referred customer","Beställning från refererad kund"
+"Points to Currency","Pekar på Valuta"
+"Currency to Points","Valuta till poäng"
+"Customer Account > My Reward Points","Kundkonto&gt; Mina belöningspoäng"
+"Customer Account > My Referrals","Kundkonto&gt; Mina hänvisningar"
+"Cart Page",Varukorg
+"Message Sent","Meddelande skickat"
+"Signed Up","Anmält sig"
+"Made Order","Gjord beställning"
+"Visited by Referral Link","Besökts av Referral Link"
+"Subtotal + Tax","Subtotal + Skatt"
+"Subtotal + Tax + Shipping","Subtotal + Skatt + Frakt"
+"Product Rule",Produktregel
+"Cart Rule",Varukorg
+"Behavior Rule",Beteenderegel
+"Transaction #%1 is expired","Transaktion #%1 är utgått"
+"Update the Product","Uppdatera produkten"
+"Is Rewards Points used","Används belöningspoäng"
+"Coupon Used","Kupong används"
+"Coupon Code",Kupongskod
+No,Nej
+Yes,Ja
+"Conditions Combination","Villkor Kombination"
+"Product attribute combination","Produkt attribut kombination"
+"Products subselection","Produkter subselection"
+"Conditions combination","Villkor kombination"
+"Cart Attribute",Varukorg
+Customer,Kund
+"Last 7-days Clicks","Senaste 7-dagars klick"
+"Last 7-days Orders","Senaste 7-dagars order"
+"Last 7-days Revenue","Senaste 7-dagars intäkter"
+"Is Referee","Är domare"
+"Is Referral","Är hänvisning"
+Email,E-post
+Group,Grupp
+"Lifetime Sales",Livstidsförsäljning
+"Lifetime Spent Points","Livstidsutnyttjad poäng"
+"Number of Orders","Antal order"
+"Is subscriber of newsletter","Är abonnent på nyhetsbrev"
+"Number of reviews","Antal recensioner"
+"Number of referred friends signups","Antal hänvisade vänner anmälningar"
+"Number of referred friends orders","Antal hänvisade vänner order"
+"Sum of referred friends orders","Summan av hänvisade vänner order"
+"Number of referrals who ordered at least once","Antal hänvisningar som beställde minst en gång"
+"Not registered","Inte registrerad"
+"Attribute Set",Attributuppsättning
+Quantity,Kvantitet
+"Product Type",Produkttyp
+"Base Image",Basbild
+Thumbnail,Miniatyr
+"Small Image","Liten bild"
+"Base Image Size (bytes)","Basbildstorlek (byte)"
+"Thumbnail Size (bytes)","Miniatyrstorlek (byte)"
+"Small Image Size (bytes)","Små bildstorlek (byte)"
+"PHP Condition","PHP villkor"
+"Base Price",Grundpris
+"Final Price","Slutgiltigt pris"
+"Special Price",Specialpris
+"Open Chooser","Öppna väljaren"
+"Referred: Group","Hänvisat: Grupp"
+"Referred: Lifetime Sales","Hänvisat: Lifetime Sales"
+"Referred: Number of Orders","Hänvisat: Antal order"
+"Referred: Is subscriber of newsletter","Hänvisat: Är abonnent på nyhetsbrev"
+"Referred: Number of reviews","Hänvisat: Antal recensioner"
+"Please specify a website.","Ange en hemsida."
+"Please specify a customer email.","Ange en kundens e-postadress."
+"We found an invalid value in a website column.","Vi hittade ett ogiltigt värde i en webbplatskolumn."
+"Please enter a valid email.","Ange ett giltigt e-postmeddelande."
+"Please make sure attribute ""%1"" is not empty.","Se till att attributet &quot;%1&quot; inte är tomt."
+"We can't find a customer who matches this email and website code.","Vi kan inte hitta en kund som matchar den här e-postadressen och hemsidan."
+"-- Please Select --","-- Vänligen välj --"
+"Discount Used","Rabatt används"
+"Custom Product Attributes","Anpassade produktegenskaper"
+"- Disable these emails -","- Inaktivera dessa e-postmeddelanden -"
+"Give X points to customer","Ge X-poäng till kunden"
+"Give X points for every spent Y","Ge X poäng för varje förbrukad Y"
+"Give X points for every Z quantity","Ge X poäng för varje Z kvantitet"
+"For every Y, give X points","För varje Y, ge X poäng"
+Pending,Avvaktan
+Approved,Godkänd
+Discarded,Kasserad
+"You do not have permissions to create transactions. Please contact your site administrator.","Du har inte behörigheter att skapa transaktioner. Kontakta din webbplatsadministratör."
+"%1 has been added.","%1 har lagts till"
+"%1 has been deducted.","%1 har dras av."
+"You earned %1 and spent %2 for this order.","Du tjänade %1 och tillbringade %2 för denna beställning."
+"You spent %1 for this order.","Du spenderade %1 för denna beställning."
+"You earned %1 for this order.","Du har tjänat %1 för denna beställning."
+"Earned points will be enrolled to your account after we finish processing your order.","Intunna poäng kommer att vara inskrivna på ditt konto efter att vi har avslutat behandlingen av din beställning."
+"Rewards error occurred on the server. Please try to place the order again.","Belöningsfel inträffade på servern. Försök att placera ordern igen."
+"Earn at least %1 %2","Tjäna minst %1 %2"
+"Reward Points",Belöningspoäng
+Edit,Redigera
+Back,Tillbaka
+Delete,Radera
+"Are you sure you want to do this?","Är du säker på att du vill göra det här?"
+Reset,Återställa
+"Save and Continue Edit","Spara och fortsätt Redigera"
+Save,Spara
+"Points Summary",Poängsammanfattning
+"To unsubscribe from points expiring notification click %1","För att avregistrera från poäng som upphör med anmälan klickar du på %1"
+"You have <b>%1</b> in your account.","Du har <b>%1</b> i ditt konto."
+"Transactions History",Transaktionshistoria
+ID,ID
+Comment,Kommentar
+Points,Points
+Created,Skapad
+Expires,Utgår
+"There are no Transactions.","Det finns inga transaktioner."
+"Pending Transactions","Väntande transaktioner"
+Order,Beställa
+Status,Status
+"Your points balance will expire in %1 days.","Din poängsaldo utgår i %1 dagar."
+"Visit My Reward Points Section","Besök mitt avsnitt om belöningspoäng"
+"Login to earn %1 for sharing!","Logga in för att tjäna %1 för att dela!"
+"Earn %1 for sharing!","Tjäna %1 för att dela!"
+"Like this page and earn %1","Gilla den här sidan och tjäna %1"
+Share,"Dela med sig"
+"Share this page and earn %1","Dela den här sidan och tjäna %1"
+"Plus this page and earn %1","Plus denna sida och tjäna %1"
+"Pin this page and earn %1","Pin denna sida och tjäna %1"
+"Refer Friends","Referera Vänner"
+"Refer friend and earn %1. More friends more points!","Hänvisa till vän och tjäna %1. Fler vänner fler poäng!"
+Tweet,Tweet
+"Tweet this page and earn %1","Tweet denna sida och tjäna %1"
+"Check this out!","Kolla in det här!"
+"You have <b>%1</b> available.","Du har <b>%1</b> tillgänglig."
+"Enter amount of points to spend:","Ange antal poäng att spendera:"
+"Use maximum %1","Använd maximalt %1"
+"Apply Points","Tillämpa poäng"
+Apply,Tillämpa
+"Cancel Points","Avbryt poäng"
+Cancel,Annullera
+"Use %1","Använd 1__"
+"You Earn","Du tjänar"
+"You Spend","Du spenderar"
+"Discount amount",Rabattbelopp
+"Use Reward Points","Använd belöningspoäng"
+"This is a required field","Detta är ett obligatoriskt fält"
+"Subscription to Points Expiration Notification","Prenumeration på Poäng Utlämningsmeddelande"
+"Earning %1","Tjäna %1"
+"Buy to earn %1","Köp för att tjäna %1"
+"You'll earn %1 for this item","Du tjänar %1 för det här objektet"
+"Share with Friends","Dela med vänner"
+"Share the referral link in the social media and get points!","Dela referenslänken i sociala medier och få poäng!"
+"Tweet on Twitter","Tweet på Twitter"
+"Your referral link:","Din hänvisningslänk:"
+"Send Invitations","Skicka inbjudningar"
+"Enter contacts of your friends to invite them.","Ange dina vänners kontakter för att bjuda in dem."
+Name,Namn
+Message,Meddelande
+Referrals,Remisser
+"Referred by link","Hänvisas av länk"
+"There are no Referrals","Det finns inga hänvisningar"
+"You have","Du har"
+available.,tillgängliga.
+"Use maximum","Använd maximalt"
+"Enter amount of points to spend","Ange antal poäng att spendera"
+Use,"Använda sig av"
+"Notification Rules' messages","Meddelanderegler &quot;meddelanden"
+Template,Mall
+"Notification Rule Template",Anmälningsregelmall
+"My Referrals","Mina hänvisningar"
+"Referrals List",Hänvisningslista
+today,"i dag"
+ago,sedan
+"Cannot delete transaction with id %1","Kan inte radera transaktion med id %1"
+"Expires in","Går ut om"
+"How to earn","Hur man tjänar"
+"Spend points and receive discounts","Tillbringa poäng och få rabatter"
+"Total number of referred friends: %1","Totalt antal hänvisade vänner: %1"
+"Or you may send this link in your messages to anyone","Eller du kan skicka den här länken i dina meddelanden till någon annan"
+"Your Transactions","Dina transaktioner"
+"My Points","Mina poäng"
+"Share & Save","Dela och spara"
+History,Historia
+"in %1 %2","i %1 %2"
+"in %1 days","på %1 dagar"
+"in %1 day","på %1 dag"
+"%1 %2 ago","%1 %2 sedan"
+"%1 days ago","%1 dagar sedan"
+"%1 day ago","__1 dag sedan"
+"How to earn points","Hur man tjänar poäng"
+"You have invited %1 friends","Du har bjudit %1 vänner"
+"Share the referral link in the social media","Dela referenslänken i sociala medier"
+"You may send this link in your messages to anyone","Du kan skicka den här länken i dina meddelanden till någon annan"
+"Page not found.","Sidan hittas inte."
+"Customer tier up","Kunden klarar sig"
+"Customer tier down","Kunden släpper ner"
+"sum of earned points","summan av intjänade poäng"
+"sum of spent %1","summan av använt %1"
+"Customer does not assign to website","Kunden tilldelar inte webbplatsen"
+"Payment Method",Betalningsmetod
+"This tier is assign to %1 customer(s). Please reassign customer(s) to other tier.","Denna nivå är tilldelad %1 kund (er). Vänligen hänvisa kund (er) till annan nivå."
+"You Spend Points","Du spenderar poäng"
+"Spend Amount","Tillbringa belopp"
+"Spend Minimum Points","Tillbringa minsta poäng"
+"Spend Maximum Points","Tillbringa maximala poäng"
+"Cannot delete tier with id %1","Kan inte ta bort tier med id %1"
+"Unable to find tier for customer ""%1"". Please check tier configuration.","Det gick inte att hitta tier för kunden &quot;%1&quot;. Vänligen kontrollera tierkonfigurationen."
+"Customer Earning Style","Kunder som tjänar stil"
+"Number of Points (X)","Antal poäng (X)"
+"Step (Y)","Steg (Y)"
+"In base currency","I basvaluta"
+"Quantity Step (Z)","Antal steg (Z)"
+"Maximum number of earned points for one customer per day","Maximalt antal intjänade poäng för en kund per dag"
+"Set 0 to disable limit","Ställ 0 för att inaktivera gränsen"
+"Do not change","Ändra inte"
+"Assign customer to Group","Tilldela kund till grupp"
+"Earn Maximum","Tjäna maximalt"
+"Maximum Distributed Points","Maximala fördelade poäng"
+Tiers,Tredje
+"%1 for each $%2","%1 för varje $ %2"
+"All Groups","Alla grupper"
+Actions,Åtgärder
+"Points spending style","Poäng spenderar stil"
+"For each spent X points","För varje använt X-poäng"
+"Number of points.","Antal poäng."
+"Customer receive Y discount","Kunden får Y-rabatt"
+"You can enter amount in base currency or percent. e.g. 100 or 5%.","Du kan ange belopp i basvaluta eller procent. t ex 100 eller 5%."
+"You can enter amount of points or percent. e.g. 100 or 5%. Leave empty to disable.","Du kan ange antal poäng eller procent. t ex 100 eller 5%. Lämna tomma för att inaktivera."
+"Spend minimum","Tillbringa minst"
+"Spend maximum","Tillbringa maximalt"
+"Minimum sum of spent %1","Minsta summa förbrukad %1"
+"Minimum points number to reach the tier","Minsta poängtal för att nå nivån"
+"Delete the record with ID ""%1""","Ta bort posten med ID &quot;%1&quot;"
+"Are you sure you wan't to delete the record with ID ""%1""?","Är du säker på att du vill radera posten med ID &quot;%1&quot;?"
+"Anonymous visitor","Anonym besökare"
+"Your current tier is <a href=""#"" class=""open-popup""><b>%1</b></a>","Din nuvarande nivå är <a href=""#"" class=""open-popup""><b>%1</b></a>"
+"Earn <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","Tjäna <b>%1 för</b> att komma till <a class=""open-popup""><b>%2</b></a>"
+"Spend <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","Tillbringa <b>%1 för</b> att komma till <a class=""open-popup""><b>%2</b></a>"
+"in 1 day","om 1 dag"
+"1 day ago","1 dag sedan"
+"Earn %1","Tjäna %1"
+"Earned %1 for the order #%2.","Fick %1 för beställningen #%2."
+"Spent %1 for the order #%2.","Tillbringade %1 för beställningen #%2."
+"Restore spent %1 for the order #%2.","Återställ använt %1 för beställningen #%2."
+"Cancel earned %1 for the order #%2.","Avbryt tjänat %1 för beställningen #%2."
+"Refunded %1 (creditmemo #%2, order #%3).","Återbetalas %1 (kreditmemo #%2, beställning nr%3)."
+"Will expire %1","Förfaller %1"
+Expired,Utgånget
+Active,Aktiva
+"Points are expired","Poäng har gått ut"
+"Will be ready for use %1","Kommer att vara redo att användas %1"
+"We subscribed you on expiring points notification.","Vi prenumererade dig vid utgående poängmeddelande."
+"Possible discount %1","Möjlig rabatt %1"
+Subtotal,Delsumma
+"Rewards Discount","Belöningar rabatt"
+"Field 'Spend maximum' can not be less or equal then field 'Spend minimum'","Fältet &quot;Spend maximum&quot; kan inte vara mindre eller lika då fältet &quot;Spend minimum&quot;"
+"Field 'For each spent X points' should be integer","Fältet &quot;För varje använt X-poäng&quot; ska vara heltal"
+"Rewards discount",Belöningsrabatt
+"Cannot delete rule with id %1","Det går inte att radera regeln med ID %1"
+"Status Description",Statusbeskrivning
+"Checkout now and earn <b class='message-earn-points-label'>%1</b> for this order.","Kassa nu och tjäna <b class='message-earn-points-label'>%1</b> för den här beställningen."
+"Cannot apply %1. %2 %3","Kan inte tillämpa %1. %2 %3"
+"%1 were cancelled.","%1 avbröts."
+"Customer creates RMA","Kunden skapar RMA"
+"Use Magento settings","Använd Magento-inställningar"
+"After Tax","Efter skatt"
+"Additional Product Attribute","Ytterligare produktattribut"
+"Additional Payment Method","Ytterligare betalningsmetod"
+Reasons,Anledningar
+Conditions,Betingelser
+Resolutions,Beslut
+Statuses,Status
+"Apply to items","Applicera på artiklar"
+"Apply to totals","Tillämpa på totaler"
+"Rewards Refunded","Belöningar återbetalas"
+"Send notification before points expires (in days)","Skicka meddelande innan poäng löper ut (i dagar)"
+"Cancel the earned points after the order has been refunded","Avbryt de intjänade poängen efter att beställningen har återbetalats"
+"Restore the points spent after the order has been refunded","Återställ poäng som spenderats efter att beställningen har återbetalats"
+"Allow to display maximum number of possible points for configurable products.","Låt visa maximalt antal möjliga poäng för konfigurerbara produkter."
+"Send notification before points expires(in days)","Skicka meddelande innan poäng löper ut (i dagar)"
+"In determining tiers, take into account, it only lasts for N days","Vid bestämning av nivåer, ta hänsyn till, det varar bara i N dagar"
+"Show pending transactions in the customer's account","Visa väntande transaktioner på kundens konto"
+"Use this option to explain to your customer why the Rewards spending block isn't displaying in checkout","Använd det här alternativet för att förklara för din kund varför belöningsblocket Rewards inte visas i kassan"
+"If the theme overrides Magento way of including styles, this option will add extension's styles to the page","Om temat åsidosätter Magento-sättet att inkludera stilar lägger detta alternativ till tilläggets stilar på sidan"
+"In some configuration, the method 'Apply to items' may have a slight error in calculation","I vissa konfigurationer kan metoden &#39;Apply to items&#39; ha ett litet fel vid beräkningen"
+"For detailed explanation, see the <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>documentation</a>","För detaljerad förklaring se <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>dokumentationen</a>"
+"Minimum points number to reach each tier","Minsta poängantal för att nå varje nivå"
+"Delete the record with ID %1","Ta bort posten med ID %1"
+"Are you sure you want to delete the record with ID %1","Är du säker på att du vill ta bort posten med ID %1"
+"To subscribe to points expiring and balance update notification click %1","För att prenumerera på poäng som löper ut och balansuppdateringsmeddelande klicka på %1"

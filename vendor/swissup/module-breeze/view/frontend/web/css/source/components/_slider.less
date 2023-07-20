@@ -1,0 +1,85 @@
+& when (@media-common = true) {
+& when (@critical = unsure), (@critical) {
+    .breeze {
+        // reset default styles
+        div[data-content-type='slider'] {
+            visibility: visible;
+            [data-content-type='slide'] + [data-content-type='slide'] {
+                height: initial;
+                min-height: inherit;
+            }
+        }
+
+        // add some new styles
+        div[data-content-type='slider'] {
+            display: flex;
+            position: relative;
+            overflow-x: auto;
+            [data-content-type='slide'] {
+                width: 100%;
+                flex: none;
+                scroll-snap-align: center;
+            }
+        }
+        .pagebuilder-slider,
+        .slick-list {
+            // hide scrollbar
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+        .slick-list {
+            display: flex;
+            width: 100%;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            > div {
+                flex-shrink: 0;
+            }
+        }
+        .slick-dots {
+            position: absolute;
+            bottom: 6px;
+            li {
+                z-index: 5;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            div[data-content-type='slider'].containered {
+                opacity: 0;
+                transition: 180ms opacity ease-in-out;
+
+                &.slick-initialized {
+                    opacity: 1;
+                }
+
+                .slick-list {
+                    gap: 5px;
+                    &::before,
+                    &::after {
+                        content: '';
+                        width: 1000px;
+                        flex-shrink: 0;
+                    }
+                }
+                &:not(.slick-initialized) {
+                    gap: 5px;
+                    scroll-snap-type: x mandatory;
+                    &::before {
+                        content: '';
+                        width: 1000px;
+                        flex-shrink: 0;
+                    }
+                }
+                [data-content-type='slide'] {
+                    max-width: var(--container-max-width, 1240px);
+                }
+            }
+        }
+    }
+}
+}

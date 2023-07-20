@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Theme\Model\Design\Config\MetadataProvider">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="breeze_enabled" xsi:type="array">
+                    <item name="path" xsi:type="string">design/breeze/enabled</item>
+                    <item name="fieldset" xsi:type="string">other_settings/breeze</item>
+                </item>
+                <item name="breeze_excluded_urls" xsi:type="array">
+                    <item name="path" xsi:type="string">design/breeze/excluded_urls</item>
+                    <item name="fieldset" xsi:type="string">other_settings/breeze</item>
+                </item>
+                <item name="breeze_turbo" xsi:type="array">
+                    <item name="path" xsi:type="string">design/breeze/turbo</item>
+                    <item name="fieldset" xsi:type="string">other_settings/breeze</item>
+                </item>
+                <item name="breeze_responsive_images" xsi:type="array">
+                    <item name="path" xsi:type="string">design/breeze/responsive_images</item>
+                    <item name="fieldset" xsi:type="string">other_settings/breeze</item>
+                </item>
+                <item name="breeze_debug_mode" xsi:type="array">
+                    <item name="path" xsi:type="string">design/breeze/debug</item>
+                    <item name="fieldset" xsi:type="string">other_settings/breeze</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Swissup\Breeze\Model\JsBuild">
+        <arguments>
+            <argument name="minifier" xsi:type="object">jsMinificationAdapter</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Swissup\Breeze\Model\LayoutProcessorFactory" type="Magento\Framework\View\Layout\ProcessorFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Swissup\Breeze\Model\LayoutProcessor</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Swissup\Breeze\Plugin\Bundle">
+        <arguments>
+            <argument name="layoutProcessorFactory" xsi:type="object">Swissup\Breeze\Model\LayoutProcessorFactory</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Deploy\Config\BundleConfig">
+        <plugin name="swissup_breeze" type="Swissup\Breeze\Plugin\BundleConfig" />
+    </type>
+    <type name="Magento\Deploy\Service\Bundle">
+        <plugin name="swissup_breeze" type="Swissup\Breeze\Plugin\Bundle" />
+    </type>
+
+    <type name="Magento\Catalog\Block\Product\ImageFactory">
+        <plugin name="swissup_breeze" type="Swissup\Breeze\Plugin\ProductImageFactory" />
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="swissupBreezeModuleCreate" xsi:type="object">Swissup\Breeze\Console\Command\ModuleCreateCommand</item>
+                <item name="swissupBreezeThemeCreate" xsi:type="object">Swissup\Breeze\Console\Command\ThemeCreateCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

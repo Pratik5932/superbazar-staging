@@ -1,0 +1,46 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Mirasvit\Rewards\Api\RewardsInterface" type="Mirasvit\RewardsCheckout\Model\Checkout\Rewards" />
+
+    <!--OVERRIDES-->
+    <type name="Klarna\Core\Model\Checkout\Orderline\AbstractLine">
+        <plugin name="mstRewardsCheckoutKlarnaOrderLine" type="Mirasvit\RewardsCheckout\Plugin\Klarna\Core\Model\Checkout\Orderline\RewardsOrderLinePlugin" sortOrder="1000"/>
+    </type>
+
+    <type name="Klarna\Kp\Model\Api\Request\Orderline">
+        <plugin name="mstRewardsCheckoutKlarnaOrderLine245" type="Mirasvit\RewardsCheckout\Plugin\Klarna\Core\Model\Checkout\Orderline\RewardsOrderLinePlugin245" sortOrder="1000"/>
+    </type>
+
+    <type name="Klarna\Base\Model\Checkout\Orderline\Items\Items">
+        <plugin name="mstRewardsApplyDiscountToItem" type="Mirasvit\RewardsCheckout\Plugin\Klarna\Base\Model\Checkout\Orderline\ApplyDiscountToItemPlugin" sortOrder="1000"/>
+    </type>
+
+    <type name="Klarna\Orderlines\Model\Items\Items">
+        <plugin name="mstRewardsApplyDiscountToItem245" type="Mirasvit\RewardsCheckout\Plugin\Klarna\Base\Model\Checkout\Orderline\ApplyDiscountToItemPlugin245" sortOrder="1000"/>
+    </type>
+
+    <type name="\Bambora\Online\Model\Method\Epay\Payment">
+        <plugin name="AddRewardsPoints discount for Bambora Online" type="\Mirasvit\RewardsCheckout\Plugin\ThirdParty\BamboraOnlineAddRewardsPointsDiscount" sortOrder="1" />
+    </type>
+
+    <type name="\Amasty\CommonRules\Model\Modifiers\ModifierInterface">
+        <plugin name="AmastyShippingRestrictionCompatibility" type="\Mirasvit\RewardsCheckout\Plugin\ThirdParty\AmastyCommonRulesAddRewardsDiscount" sortOrder="1" />
+    </type>
+
+    <type name="Magento\Quote\Model\QuoteRepository">
+        <plugin name="cart_repository1" type="Mirasvit\RewardsCheckout\Model\Cart\CartRepositoryPlugin" sortOrder="1" />
+    </type>
+    <!-- compatibility with Customweb_DocDataCw -->
+    <type name="Customweb\DocDataCw\Controller\Checkout\Failure">
+        <plugin name="remove_purchase_order_on_checkout_failure" type="Mirasvit\RewardsCheckout\Plugin\ThirdParty\CustomwebDocDataCwResetPurchaseOrderPlugin" sortOrder="1" />
+    </type>
+    <type name="Magento\Quote\Model\Quote\Address">
+        <plugin name="mst_minimum_order_amount_rewards" type="Mirasvit\RewardsCheckout\Plugin\BeforeMinimumOrderAmountValidation" sortOrder="9999" />
+    </type>
+    <type name="Magento\Quote\Model\Quote\Address">
+        <plugin name="mst_minimum_order_amount_rewards" type="Mirasvit\RewardsCheckout\Plugin\AfterMinimumOrderAmountValidation" sortOrder="1" />
+    </type>
+    <type name="Magento\Quote\Model\Quote\Address">
+        <plugin name="mst_minimum_order_amount_rewards" type="Mirasvit\RewardsCheckout\Plugin\BaseSubtotalForMinimumOrderAmountValidation" sortOrder="9999" />
+    </type>
+
+</config>

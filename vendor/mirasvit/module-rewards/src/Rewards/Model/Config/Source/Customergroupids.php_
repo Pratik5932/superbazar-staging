@@ -1,0 +1,19 @@
+<?php
+
+namespace Mirasvit\Rewards\Model\Config\Source;
+
+class Customergroupids implements \Magento\Framework\Option\ArrayInterface
+{
+    /**
+     * @return array
+     */
+    public function toOptionArray()
+    {
+        $result = [];
+        foreach ($this->toArray() as $k => $v) {
+            $result[] = ['value' => $k, 'label' => $v];
+        }
+
+        return $result;
+    }
+}

@@ -1,0 +1,34 @@
+<?php
+/** @var Mirasvit\RewardsCheckout\Block\Checkout\Cart\Tooltip $block */
+?>
+<?php
+$points = $block->getEarnPoints();
+?>
+<div class="reward-message">
+    <div class="messages">
+        <div class="success message" <?php if (!$points): ?>style="display: none;" <?php endif;?>>
+            <span class="message-earn-points">
+                <?= __("Checkout now and earn <b class='message-earn-points-label'>%1</b> for this order.", $points) ?>
+            </span>
+            <?php if ($block->hasGuestNote()):?>
+                <p class="limit">
+                    <?= __('Applies only to registered customers, may vary when logged in.')?>
+                </p>
+            <?php endif;?>
+		</div>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "rewardsEarnMessage": {
+                        "component": "Mirasvit_RewardsCheckout/js/checkout/cart/tooltip",
+                        "url": "<?= $block->getNotificationUrl() ?>"
+                    }
+                }
+            }
+        }
+    }
+</script>

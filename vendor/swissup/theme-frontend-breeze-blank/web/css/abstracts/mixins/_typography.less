@@ -1,0 +1,282 @@
+.breeze-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+.breeze-sr-only-reset {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+.breeze-focus-ring {
+    outline: @ring__width solid @ring__color;
+    outline-offset: @ring__offset;
+}
+
+.breeze-text-xs {
+    font-size: @font-size__xs;
+    line-height: @line-height__xs;
+}
+.breeze-text-sm {
+    font-size: @font-size__sm;
+    line-height: @line-height__sm;
+}
+.breeze-text-base {
+    font-size: @font-size__base;
+    line-height: @line-height__base;
+}
+.breeze-text-lg {
+    font-size: @font-size__lg;
+    line-height: @line-height__lg;
+}
+.breeze-text-xl {
+    font-size: @font-size__xl;
+    line-height: @line-height__xl;
+}
+.breeze-text-2xl {
+    font-size: @font-size__2xl;
+    line-height: @line-height__2xl;
+}
+.breeze-text-3xl {
+    font-size: @font-size__3xl;
+    line-height: @line-height__3xl;
+}
+.breeze-text-4xl {
+    font-size: @font-size__4xl;
+    line-height: @line-height__4xl;
+}
+.breeze-text-5xl {
+    font-size: @font-size__5xl;
+    line-height: @line-height__5xl;
+}
+
+.breeze-link {
+    color: @link__color;
+    text-decoration: @link__text-decoration;
+    &:hover {
+        --link-alpha: 1;
+        text-decoration: @link__hover__text-decoration;
+    }
+}
+
+.breeze-table {
+    display: block;
+    thead {
+        display: none;
+    }
+    tbody,
+    tfoot,
+    th,
+    tr,
+    td {
+        display: block;
+    }
+    tr {
+        margin-bottom: @3;
+        padding-bottom: @3;
+    }
+    td,
+    th {
+        padding: @1 0;
+        &[data-th]::before {
+            .padding-right(10px);
+            content: attr(data-th) ': ';
+            display: inline-block;
+            color: @muted__color;
+            font-weight: 500;
+        }
+    }
+    tfoot {
+        .text-align(right);
+    }
+}
+.breeze-striped-table {
+    > tbody {
+        > tr {
+            border-bottom: 0;
+            &:nth-child(odd) {
+                background: @muted__background;
+            }
+        }
+    }
+}
+
+.breeze-prose {
+    :where(a:not(.product-item-link):not(.action)) {
+        .breeze-link();
+    }
+    p,
+    table,
+    figure {
+        margin-bottom: @3;
+    }
+    :where(ul:not(.unstyled):not(.items)),
+    :where(ol:not(.unstyled):not(.product-items)) {
+        margin-top: @3;
+        margin-bottom: @3;
+    }
+    :where(ul:not(.unstyled):not([role=tablist]):not(.items) li),
+    :where(ol:not(.unstyled):not(.product-items) li) {
+        margin-top: @1;
+        margin-bottom: @1;
+    }
+    section {
+        margin-bottom: @4;
+    }
+    :where(ul:not(.unstyled):not(.items)),
+    :where(ol:not(.unstyled):not(.product-items)) {
+        .padding-left(@5);
+    }
+    :where(ul:not(.unstyled):not(.items)) {
+        list-style: disc;
+    }
+    :where(ol:not(.unstyled):not(.product-items)) {
+        list-style: auto;
+    }
+    li::marker {
+        --muted-alpha: .4;
+        color: @muted__color;
+    }
+    blockquote {
+        margin: @6 0;
+        .padding-left(@4);
+        .border-left(4px solid @divider__color);
+        font-style: italic;
+        font-weight: 500;
+    }
+    code {
+        font-weight: 600;
+        &::before,
+        &::after {
+            content: "`";
+        }
+    }
+    pre {
+        margin: @4 0;
+        padding: @4;
+        overflow-x: auto;
+        background: @muted__background;
+        code {
+            font-weight: 400;
+            &:before,
+            &:after {
+                content: '';
+            }
+        }
+    }
+    hr {
+        margin: @8 0;
+    }
+    figcaption {
+        margin-top: @2;
+        color: @muted__color;
+    }
+    .lead {
+        .breeze-text-xl();
+        color: @muted__color;
+    }
+}
+
+.breeze-prose-reset {
+    a {
+        --link-alpha: 1;
+        --link-color: var(--base-color);
+
+        text-decoration: none;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    p,
+    table,
+    figure {
+        margin-bottom: 0 !important;
+    }
+    ul,
+    ol,
+    li {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    ol, ul {
+        .padding-left(~"0 !important");
+    }
+    li::marker {
+        color: initial !important;
+    }
+    ul {
+        list-style: none !important;
+    }
+    ol {
+        list-style: none !important;
+    }
+}
+
+.breeze-invert-colors {
+    color: @base__color;
+
+    .lib-rgb(--base-color, @base__inverted__text-color);
+    .lib-css(--base-alpha, @base__inverted__text-alpha);
+    .lib-rgb(--headings-color, @headings__inverted__text-color);
+    .lib-css(--headings-alpha, @headings__inverted__text-alpha);
+    .lib-rgb(--link-color, @link__inverted__text-color);
+    .lib-css(--link-alpha, @link__inverted__text-alpha);
+    .lib-rgb(--muted-bg, @muted__inverted__background-color);
+    .lib-css(--muted-bg-alpha, @muted__inverted__background-alpha);
+    .lib-rgb(--ring-color, @ring__inverted__text-color);
+    .lib-css(--ring-alpha, @ring__inverted__text-alpha);
+    .lib-rgb(--button-bg, @button__inverted__background-color);
+    .lib-rgb(--button-border-color, @button__inverted__border-color);
+    .lib-rgb(--button-color, @button__inverted__text-color);
+    .lib-rgb(--input-color, @base__inverted__text-color);
+    .lib-css(--input-alpha, @base__inverted__text-alpha);
+    .lib-rgb(--input-bg, @input__inverted__background-color);
+    .lib-css(--input-bg-alpha, @input__inverted__background-alpha);
+    .lib-rgb(--input-border-color, @input__inverted__border-color);
+    .lib-css(--input-border-alpha, @input__inverted__border-alpha);
+}
+
+.breeze-invert-colors-reset {
+    color: @base__color;
+
+    .lib-rgb(--base-color, @base__text-color);
+    .lib-css(--base-alpha, @base__text-alpha);
+    .lib-rgb(--headings-color, @headings__text-color);
+    .lib-css(--headings-alpha, @headings__text-alpha);
+    .lib-rgb(--link-color, @link__text-color);
+    .lib-css(--link-alpha, @link__text-alpha);
+    .lib-rgb(--muted-bg, @muted__background-color);
+    .lib-css(--muted-bg-alpha, 1);
+    .lib-rgb(--ring-color, @ring__text-color);
+    .lib-css(--ring-alpha, 1);
+    .lib-rgb(--button-bg, @button__background-color);
+    .lib-rgb(--button-border-color, @button__border-color);
+    .lib-rgb(--button-color, @button__text-color);
+    .lib-rgb(--input-color, @base__text-color);
+    .lib-css(--input-alpha, 1);
+    .lib-rgb(--input-bg, @input__background-color);
+    .lib-css(--input-bg-alpha, 1);
+    .lib-rgb(--input-border-color, @input__border-color);
+    .lib-css(--input-border-alpha, 1);
+
+    & when (@respect-color-scheme = true) {
+        @media @media-dark {
+            .lib-rgb(--base-color, @base__dark__text-color);
+            .lib-rgb(--muted-bg, @muted__dark__background-color);
+            .lib-rgb(--input-color, @base__dark__text-color);
+            .lib-rgb(--input-border-color, @input__dark__border-color);
+        }
+    }
+}

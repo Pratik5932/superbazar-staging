@@ -1,0 +1,112 @@
+.block-collapsible-nav {
+    > .title {
+        &:extend(.breeze-dropdown-toggler);
+        &::after {
+            &:extend(.breeze-dropdown-toggler-icon);
+        }
+        &.active {
+            &::after {
+                &:extend(.breeze-dropdown-toggler-icon-active);
+            }
+        }
+    }
+}
+
+& when (@critical) {
+    .block-collapsible-nav {
+        .breeze-text-base();
+        @media @media-md-down {
+            .sidebar & {
+                background: @base__background;
+                position: absolute;
+                margin: 0 !important;
+                top: 0;
+                width: 100%;
+            }
+        }
+
+        > .title {
+            @media @media-md {
+                .breeze-sr-only();
+            }
+        }
+        .content {
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .item {
+                > a,
+                > strong {
+                    display: block;
+                    padding: @1 0;
+                    color: inherit;
+                }
+            }
+            .delimiter {
+                display: block;
+                border-top: 1px solid @divider__color;
+                margin-top: @3;
+                margin-bottom: @3;
+            }
+
+            @media @media-md-down {
+                display: none;
+                &::after {
+                    content: '';
+                    display: block;
+                    width: 100%;
+                    height: 10px;
+                    margin-top: -10px;
+                    box-shadow: 0 10px 10px @base__background;
+                }
+                &.active {
+                    display: block;
+                }
+            }
+            @media @media-md {
+                padding: @3 0;
+                background: @muted__background;
+
+                .item {
+                    > a,
+                    > strong {
+                        padding: @1-5 @3;
+                        .border-left(3px solid transparent);
+                    }
+                }
+                .current {
+                    > a,
+                    > strong {
+                        border-color: @brand__color;
+                    }
+                }
+                .delimiter {
+                    margin-left: @3;
+                    margin-right: @3;
+                }
+            }
+        }
+    }
+}
+
+& when not (@critical) {
+    .block-collapsible-nav {
+        .title {
+            cursor: pointer;
+        }
+        .content {
+            a:hover {
+                text-decoration: none;
+                --base-bg-alpha: .8;
+                background: @base__background;
+            }
+            @media @media-md {
+                position: sticky;
+                top: @2;
+                .left(0);
+            }
+        }
+    }
+}

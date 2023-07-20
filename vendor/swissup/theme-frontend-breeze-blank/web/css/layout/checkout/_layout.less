@@ -1,0 +1,143 @@
+& when (@critical) {
+    .page-layout-checkout {
+        --container-max-width: 980px;
+
+        .page-main {
+            padding-top: @5;
+        }
+
+        .page-title-wrapper,
+        .nav-toggle {
+            display: none;
+        }
+        .header.content {
+            justify-content: center;
+            --container-padding: @4 @2 @1 @2;
+        }
+        .page-title-wrapper ~ .columns {
+            margin-top: 0;
+        }
+    }
+
+    .checkout-container {
+        --sidebar-width: 320px;
+        --sidebar-gap: @4;
+
+        --checkout-step-padding-x: @4;
+        --checkout-step-padding-y: var(--checkout-step-padding-x);
+
+        @media @media-md {
+            --checkout-step-padding-x: @8;
+        }
+
+        @media @media-lg {
+            --sidebar-width: 380px;
+            --sidebar-gap: @10;
+        }
+
+        display: flow-root;
+
+        a {
+            &:extend(.breeze-link all);
+        }
+
+        .messages {
+            clear: both;
+        }
+
+        .action {
+            &.continue,
+            &.checkout {
+                &:extend(.breeze-button-lg);
+            }
+        }
+    }
+
+    .opc {
+        .actions-toolbar {
+            justify-content: flex-end;
+        }
+
+        .step-title,
+        .field-select-billing .label,
+        &-block-summary > .title {
+            .breeze-text-xl();
+            display: block;
+            font-weight: 500;
+            margin-bottom: @3;
+        }
+
+        > li {
+            padding: var(--checkout-step-padding-y) var(--checkout-step-padding-x);
+            position: relative;
+        }
+
+        @media @media-md {
+            &-wrapper {
+                .float(left);
+                .clear(left);
+                margin-bottom: @4;
+                width: ~"calc(100% - var(--sidebar-width) - var(--sidebar-gap))";
+            }
+
+            &-sidebar.modal-custom {
+                position: sticky;
+                z-index: initial;
+                top: @4;
+                padding: 0;
+                width: var(--sidebar-width);
+                margin-bottom: @6;
+                .float(right);
+                visibility: visible;
+                pointer-events: all;
+                .modal-inner-wrap {
+                    opacity: 1;
+                    transform: none;
+                    box-shadow: none;
+                    max-height: none;
+                    border-radius: 0;
+                }
+                .modal-content {
+                    margin: 0;
+                    padding: var(--checkout-step-padding-y) var(--checkout-step-padding-x);
+                }
+                [data-role="focusable-start"],
+                [data-role="focusable-end"],
+                .modal-header,
+                .modal-footer {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+& when not (@critical) {
+    .page-layout-checkout {
+        .lib-css(background, @checkout__background);
+    }
+    .opc {
+        .lib-css(background, @checkout-opc__background);
+        .lib-css(box-shadow, @checkout-opc__box-shadow);
+        .lib-css(border, @checkout-opc__border);
+        .lib-css(border-radius, @checkout-opc__border-radius);
+        @media @media-md {
+            &-sidebar.modal-custom {
+                .lib-css(background, @checkout-sidebar__background);
+                .lib-css(box-shadow, @checkout-sidebar__box-shadow);
+                .lib-css(border, @checkout-sidebar__border);
+                .lib-css(border-radius, @checkout-sidebar__border-radius);
+                .minicart-items-wrapper::after {
+                    background: linear-gradient(~"rgba(var(--base-bg), 0)", ~"rgba(var(--base-bg), 1)");
+                }
+            }
+        }
+
+        &-estimated-wrapper {
+            .lib-css(background, @checkout-sidebar__background);
+            .lib-css(box-shadow, @checkout-sidebar__box-shadow);
+            .lib-css(border, @checkout-sidebar__border);
+            .lib-css(border-radius, @checkout-sidebar__border-radius);
+        }
+    }
+}

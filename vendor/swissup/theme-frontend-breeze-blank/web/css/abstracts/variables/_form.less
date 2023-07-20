@@ -1,0 +1,93 @@
+@input__font-family: false;
+@input__text-color: var(--base-color);
+@input__color: ~"rgba(var(--input-color), var(--input-alpha))";
+@input__background-color: var(--base-bg);
+@input__background: ~"rgba(var(--input-bg), var(--input-bg-alpha))";
+@input__padding: @2 @3;
+@input__border-width: 1px;
+@input__border-color: @gray-400;
+@input__border: @input__border-width solid ~"rgba(var(--input-border-color), var(--input-border-alpha))";
+@input__border-radius: 0;
+@input__shadow: ~"0 0 0 var(--input-shadow-spread, 0) rgba(var(--input-border-color), var(--input-border-alpha))";
+@input__focus__background-color: false;
+@input__focus__border-color: var(--brand-color);
+@input__focus__shadow-spread: 1px;
+@input__focus__outline-color: var(--input-border-color);
+@input__focus__outline: 2px solid ~"rgba(var(--input-outline-color), var(--input-outline-alpha))";
+@input__focus__outline-alpha: 0;
+@input__focus__outline-offset: 2px;
+
+@input__lg__font-weight: false;
+@input__lg__padding: false;
+
+@input__xl__font-weight: false;
+@input__xl__padding: @3 @3;
+
+@select__padding-right: @10;
+
+@checkbox__size: @4;
+@checkbox__border-radius: @input__border-radius;
+@checkbox__text-color: @input__focus__border-color;
+@checkbox__color: ~"rgba(var(--checkbox-color), var(--checkbox-alpha, 1))";
+@checkbox__focus__shadow: ~"0 0 0 2px rgb(var(--base-bg)), 0 0 0 4px rgb(var(--checkbox-color))";
+
+@button__font-weight: 400;
+@button__font-family: false;
+@button__font-size: false;
+@button__text-color: @white;
+@button__color: ~"rgba(var(--button-color), var(--button-alpha, 1))";
+@button__background-color: var(--brand-color);
+@button__background: ~"rgba(var(--button-bg), var(--button-bg-alpha))";
+@button__background-alpha: 1;
+@button__border-width: @input__border-width;
+@button__border-alpha: 0;
+@button__border-color: var(--button-bg);
+@button__border: @button__border-width solid ~"rgba(var(--button-border-color), var(--button-border-alpha))";
+@button__border-radius: @input__border-radius;
+@button__padding: @2 @5;
+@button__shadow: false;
+@button__text-decoration: none;
+@button__text-transform: false;
+@button__text-shadow: false;
+@button__hover__text-color: false;
+@button__hover__background-color: false;
+@button__hover__background-alpha: .9;
+@button__hover__border-color: @button__hover__background-color;
+@button__hover__text-decoration: none;
+@button__focus__text-color: false;
+@button__focus__background-color: false;
+@button__focus__border-color: @button__focus__background-color;
+@button__focus__outline: 2px solid @ring__color;
+@button__focus__outline-alpha: 1;
+@button__focus__outline-offset: 2px;
+
+@button-primary__hover__text-color: false;
+@button-primary__hover__background-color: false;
+@button-primary__hover__border-color: @button-primary__hover__background-color;
+
+@button-secondary__text-color: var(--gray-600);
+@button-secondary__background-color: var(--gray-200);
+@button-secondary__border-color: var(--button-secondary-bg);
+@button-secondary__hover__text-color: false;
+@button-secondary__hover__background-color: false;
+@button-secondary__hover__border-color: @button-secondary__hover__background-color;
+
+@button__xs__font-size: @font-size__xs;
+@button__xs__line-height: @line-height__xs;
+@button__xs__font-weight: false;
+@button__xs__padding: @1 @2;
+
+@button__sm__font-size: @font-size__sm;
+@button__sm__line-height: @line-height__sm;
+@button__sm__font-weight: false;
+@button__sm__padding: @2 @4;
+
+@button__lg__font-size: @font-size__lg;
+@button__lg__line-height: @line-height__lg;
+@button__lg__font-weight: 500;
+@button__lg__padding: false;
+
+@button__xl__font-size: @font-size__xl;
+@button__xl__line-height: @line-height__xl;
+@button__xl__font-weight: 500;
+@button__xl__padding: @3 @10;

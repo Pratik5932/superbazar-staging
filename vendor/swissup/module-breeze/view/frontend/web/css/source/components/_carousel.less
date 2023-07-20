@@ -1,0 +1,69 @@
+& when (@media-common = true) {
+& when (@critical = unsure), (@critical) {
+    .breeze {
+        .products-grid.slick-initialized,
+        [data-content-type='products'][data-appearance='carousel'] {
+            position: relative;
+            display: grid; // preserve proper arrows position when hover-reveal is used
+
+            &[data-show-dots="true"] {
+                padding-bottom: 55px;
+            }
+
+            .slick-list,
+            > .product-items {
+                // space for arrows
+                padding-left: 15px;
+                padding-right: 15px;
+
+                // space for items with small negative margins
+                margin-top: -15px;
+                padding-top: 15px;
+                margin-bottom: -15px;
+                padding-bottom: 15px;
+
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                scroll-snap-type: none;
+
+                // hide scrollbar
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+
+            & when not (@listing-grid-item__reveal-on-hover = false) {
+                @media (hover: hover) {
+                    &.scrolling {
+                        .product-item {
+                            pointer-events: none;
+                        }
+                    }
+
+                    &:focus-within,
+                    &.slide-item-hovered {
+                        .slick-list,
+                        > .product-items {
+                            margin-top: -20px;
+                            padding-top: 20px;
+                            margin-bottom: -300px;
+                            padding-bottom: 300px;
+                            z-index: 3; // cover other below list content
+                        }
+                    }
+                }
+            }
+
+            li.product-item {
+                flex-shrink: 0;
+                display: inline-block;
+                visibility: visible;
+            }
+        }
+    }
+}
+}

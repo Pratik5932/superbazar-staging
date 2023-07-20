@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Swissup\Breeze\Block\Css" name="breeze.css"/>
+        </referenceBlock>
+
+
+        <!-- <referenceContainer name="footer-middle">
+        <block class="Magento\Cms\Block\Block" name="breeze_footer">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">breeze_footer</argument>
+                </arguments>
+            </block>
+        </referenceContainer> -->
+    </body>
+</page>

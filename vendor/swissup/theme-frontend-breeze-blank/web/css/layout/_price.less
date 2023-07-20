@@ -1,0 +1,58 @@
+& when (@critical) {
+    .price-box {
+        .lib-css(color, @price__color);
+        .lib-css(font-family, @price__font-family);
+        .lib-css(font-weight, @price__font-weight);
+        .lib-css(font-size, @price__font-size);
+        .lib-css(line-height, @price__line-height);
+        .product-item & {
+            .lib-css(color, @listing-price__color);
+            .lib-css(font-size, @listing-price__font-size);
+        }
+        p {
+            margin: 0;
+        }
+    }
+    .price-label,
+    .price-box .label {
+        .lib-css(color, @price-label__color);
+        .lib-css(font-size, @price-label__font-size);
+        .lib-css(line-height, @price-label__line-height);
+        .lib-css(font-weight, @price-label__font-weight);
+    }
+    .price-box a {
+        .lib-css(color, @price-link__color);
+        .lib-css(font-weight, @price-label__font-weight);
+        .lib-css(line-height, @price-label__line-height);
+        .lib-css(font-size, @price-label__font-size);
+    }
+    .normal-price {
+        & when (@price-normal-label__display = none) {
+            .price-label {
+                &:extend(.breeze-sr-only);
+            }
+        }
+    }
+    .minimal-price-link {
+        & when (@price-minimal__display = none) {
+            &:extend(.breeze-sr-only);
+        }
+    }
+    .special-price {
+        .lib-css(color, @price-special__color);
+        .price-label {
+            &:extend(.breeze-sr-only);
+        }
+    }
+    .old-price {
+        .lib-css(color, @price-old__color);
+        .lib-css(text-decoration, @price-old__text-decoration);
+        .lib-css(text-decoration-color, @price-old__text-decoration-color);
+
+        & when (@price-old-label__display = none) {
+            .price-label {
+                &:extend(.breeze-sr-only);
+            }
+        }
+    }
+}

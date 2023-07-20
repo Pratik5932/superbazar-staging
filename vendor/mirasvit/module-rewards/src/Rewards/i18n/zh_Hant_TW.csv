@@ -1,0 +1,353 @@
+"My Reward Points",我的獎勵點
+"Checkout now and earn <b>%1</b> for this order.","現在結賬並為此訂單賺取<b>%1</b> 。"
+"Applies only to registered customers, may vary when logged in.",僅適用於註冊用戶，登錄後可能會有所不同。
+"Possible discount %1 %2","可能的折扣%1 %2"
+"Earn %1 %2","賺取%1 %2"
+Grid,格
+List,名單
+All,所有
+"Referral %1",推薦%1
+"Something went wrong while saving your subscription.",保存訂閱時出現問題。
+"We removed your subscription on expiring points notification.",我們在到期點通知中刪除了您的訂閱。
+"Cannot apply points.",不能申請積分。
+"You've earned %1 for Facebook Like!",你已經為Facebook贊賺了%1！
+"You've earned %1 for Facebook Share!",你已經為Facebook分享賺了%1！
+"Facebook Like Points has been canceled","Facebook Like Points已被取消"
+"You've earned %1 for Google+!",您已獲得Google+的%1使用權！
+"G+1 Points has been canceled","G + 1點已被取消"
+"You've earned %1 for Pin!",Pin已獲得%1！
+"Invalid form key. Try again",無效的表單密鑰。再試一次
+"Customer with email %1 has been already invited to our store",帶有電子郵件%1的客戶已被邀請加入我們的商店
+"Your invitations were sent. Thanks!",您的邀請已發送。謝謝！
+"You've earned %1 for Tweet!",你已經獲得了%1的推文！
+"You received %1 for signing up",您收到%1註冊
+"You received %1 for sending this product",您收到%1發送此產品
+"You received %1 for sign up for newsletter",您收到%1註冊簡報
+"You received %1 for sign up for push notifications",您收到%1註冊推送通知
+"You will receive %1 after approving of this tag",您將在批准此標籤後收到%1
+"You will receive %1 after approving of this review",您將在批准此評論後收到%1
+"You received %1 for sign up of referral customer.",您收到%1的推薦客戶註冊。
+"You received %1 for order of referral customer.",您收到推薦客戶的訂單%1。
+"Happy birthday! You received %1.",生日快樂！您收到%1。
+"You received %1 for joining the affiliate program.",您收到%1加入聯盟計劃。
+"%1 were applied.",%1被應用。
+"Minimum number is %1.",最小數量是%1。
+"Maximum number is %1.",最大數量是%1。
+"%1 was canceled.",%1被取消。
+"Cannot apply %1.",無法應用%1。
+"You can use the following variables:",您可以使用以下變量：
+Pattern,模式
+"Attribute Value",屬性值
+Default,默認
+Integer,整數
+Price,價錢
+"Strip Tags",帶標籤
+"Primary Attributes",主要屬性
+"Stock Attributes",股票屬性
+"Prices & Taxes",價格和稅收
+Images,圖片
+"Custom Attributes",自定義屬性
+Mapping,製圖
+Category,類別
+"Amasty Meta Tags","Amasty Meta標籤"
+"Others Attributes",其他屬性
+Flexible,靈活
+Fixed,固定
+"Customer signs up in store",客戶在商店註冊
+"Customer places order",客戶下訂單
+"Customer refer a friend",客戶推荐一位朋友
+"Customer adds tag to a product",客戶為產品添加標籤
+"Customer writes a product review",客戶撰寫產品評論
+"Customer has a birthday",客戶有一個生日
+"Customer is inactive for long time",客戶長時間處於非活動狀態
+"Newsletter sign up",通訊註冊
+"Facebook Share",臉書分享
+"Facebook Like",Facebook喜歡
+"Twitter Tweet","Twitter Tweet"
+"Google+ Like",Google+贊
+"Pinterest Pin","Pinterest Pin"
+"Customer joins the affiliate program",客戶加入聯盟計劃
+"Push Notifications sign up",推送通知註冊
+"Referred customer signs up in store",推薦的顧客在店內註冊
+"Order from referred customer",來自推薦客戶的訂單
+"Points to Currency",指向貨幣
+"Currency to Points",貨幣對點
+"Customer Account > My Reward Points",客戶賬戶&gt;我的獎勵積分
+"Customer Account > My Referrals",客戶帳戶&gt;我的推薦
+"Cart Page",購物車頁面
+"Message Sent",消息已發送
+"Signed Up",註冊
+"Made Order",訂單
+"Visited by Referral Link",由推薦鏈接訪問
+"Subtotal + Tax",小計+稅
+"Subtotal + Tax + Shipping",小計+稅金+運費
+"Product Rule",產品規則
+"Cart Rule",購物車規則
+"Behavior Rule",行為規則
+"Transaction #%1 is expired",交易#%1已過期
+"Update the Product",更新產品
+"Is Rewards Points used",是否使用獎勵積分？
+"Coupon Used",使用優惠券
+"Coupon Code",優惠券代碼
+No,沒有
+Yes,是
+"Conditions Combination",條件組合
+"Product attribute combination",產品屬性組合
+"Products subselection",產品選擇
+"Conditions combination",條件組合
+"Cart Attribute",購物車屬性
+Customer,顧客
+"Last 7-days Clicks",最近7天的點擊次數
+"Last 7-days Orders",最近7天的訂單
+"Last 7-days Revenue",最近7天的收入
+"Is Referee",是裁判員
+"Is Referral",是推薦人
+Email,電子郵件
+Group,組
+"Lifetime Sales",終身銷售
+"Lifetime Spent Points",終生消費積分
+"Number of Orders",訂單數量
+"Is subscriber of newsletter",通訊訂閱者
+"Number of reviews",評論數量
+"Number of referred friends signups",推薦的朋友註冊數量
+"Number of referred friends orders",推薦的朋友訂單的數量
+"Sum of referred friends orders",介紹的朋友訂單總和
+"Number of referrals who ordered at least once",至少訂購一次的推薦人數
+"Not registered",未註冊
+"Attribute Set",屬性集
+Quantity,數量
+"Product Type",產品類別
+"Base Image",基本圖像
+Thumbnail,縮略圖
+"Small Image",小圖片
+"Base Image Size (bytes)",基本圖像大小（字節）
+"Thumbnail Size (bytes)",縮略圖大小（字節）
+"Small Image Size (bytes)",小圖像大小（字節）
+"PHP Condition",PHP條件
+"Base Price",基本價格
+"Final Price",最終價格
+"Special Price",特價
+"Open Chooser",打開選擇器
+"Referred: Group",推薦：集團
+"Referred: Lifetime Sales",推薦：終身銷售
+"Referred: Number of Orders",推薦數量：訂單數量
+"Referred: Is subscriber of newsletter",提到：是通訊的訂閱者
+"Referred: Number of reviews",推薦：評論數量
+"Please specify a website.",請指定一個網站。
+"Please specify a customer email.",請指定客戶電子郵件。
+"We found an invalid value in a website column.",我們在網站列中找到了無效的值。
+"Please enter a valid email.",請輸入有效電子郵件。
+"Please make sure attribute ""%1"" is not empty.",請確保屬性“%1”不為空。
+"We can't find a customer who matches this email and website code.",我們無法找到符合此電子郵件和網站代碼的客戶。
+"-- Please Select --","-  請選擇  -"
+"Discount Used",使用折扣
+"Custom Product Attributes",自定義產品屬性
+"- Disable these emails -","- 禁用這些電子郵件 -"
+"Give X points to customer",給客戶X點
+"Give X points for every spent Y",為每一個花費的Y提供X點
+"Give X points for every Z quantity",為每個Z數量提供X點
+"For every Y, give X points",對於每個Y，給X個點
+Pending,有待
+Approved,批准
+Discarded,廢棄
+"You do not have permissions to create transactions. Please contact your site administrator.",您無權創建交易。請聯繫您的網站管理員。
+"%1 has been added.",%1已添加。
+"%1 has been deducted.",%1已被扣除。
+"You earned %1 and spent %2 for this order.",您賺取了%1並為此訂單花費了%2。
+"You spent %1 for this order.",您為此訂單花費了%1。
+"You earned %1 for this order.",您為此訂單賺取%1。
+"Earned points will be enrolled to your account after we finish processing your order.",完成處理訂單後，獲得的積分將被註冊到您的帳戶。
+"Rewards error occurred on the server. Please try to place the order again.",獎勵錯誤發生在服務器上。請嘗試再次下單。
+"Earn at least %1 %2","賺取至少%1 %2"
+"Reward Points",獎勵分數
+Edit,編輯
+Back,背部
+Delete,刪除
+"Are you sure you want to do this?",你確定你要這麼做嗎？
+Reset,重啟
+"Save and Continue Edit",保存並繼續編輯
+Save,保存
+"Points Summary",積分摘要
+"To unsubscribe from points expiring notification click %1",要取消訂閱點過期通知，請點擊%1
+"You have <b>%1</b> in your account.",您的帳戶中有<b>%1個</b>帳戶。
+"Transactions History",交易歷史
+ID,ID
+Comment,評論
+Points,點
+Created,創建
+Expires,過期
+"There are no Transactions.",沒有交易。
+"Pending Transactions",待交易
+Order,訂購
+Status,狀態
+"Your points balance will expire in %1 days.",您的積分餘額將在%1天內過期。
+"Visit My Reward Points Section",訪問我的獎勵積分部分
+"Login to earn %1 for sharing!",登錄賺取%1分享！
+"Earn %1 for sharing!",賺取%1分享！
+"Like this page and earn %1",喜歡這個頁面並賺取%1
+Share,分享
+"Share this page and earn %1",分享此頁面並賺取%1
+"Plus this page and earn %1",加上這個頁面並賺取%1
+"Pin this page and earn %1",固定此頁並賺取%1
+"Refer Friends",推薦朋友
+"Refer friend and earn %1. More friends more points!",引薦朋友並賺取%1。更多的朋友更多的點！
+Tweet,鳴叫
+"Tweet this page and earn %1",鳴叫此頁並賺取%1
+"Check this out!",看一下這個！
+"You have <b>%1</b> available.",你有<b>%1</b>可用。
+"Enter amount of points to spend:",輸入花費的點數：
+"Use maximum %1",使用最大%1
+"Apply Points",應用點
+Apply,應用
+"Cancel Points",取消點數
+Cancel,取消
+"Use %1",使用%1
+"You Earn",你賺錢
+"You Spend",你花費
+"Discount amount",折扣金額
+"Use Reward Points",使用獎勵積分
+"This is a required field",這是一個必填字段
+"Subscription to Points Expiration Notification",訂閱積分到期通知
+"Earning %1",賺取%1
+"Buy to earn %1",購買賺取%1
+"You'll earn %1 for this item",您將為此物品賺取%1
+"Share with Friends",和朋友分享
+"Share the referral link in the social media and get points!",在社交媒體中分享推介鏈接並獲得積分！
+"Tweet on Twitter",在Twitter上發布Twitter
+"Your referral link:",您的推介鏈接：
+"Send Invitations",發送邀請
+"Enter contacts of your friends to invite them.",輸入朋友的聯繫人邀請他們。
+Name,名稱
+Message,信息
+Referrals,介紹人
+"Referred by link",通過鏈接引用
+"There are no Referrals",沒有推薦
+"You have",你有
+available.,可用。
+"Use maximum",使用最大值
+"Enter amount of points to spend",輸入花費的點數
+Use,使用
+"Notification Rules' messages",通知規則“消息
+Template,模板
+"Notification Rule Template",通知規則模板
+"My Referrals",我的推薦
+"Referrals List",推薦名單
+today,今天
+ago,前
+"Cannot delete transaction with id %1",無法刪除ID為%1的交易
+"Expires in",過期日期在
+"How to earn",如何賺取
+"Spend points and receive discounts",花點積分並享受折扣
+"Total number of referred friends: %1",推薦朋友的總數：%1
+"Or you may send this link in your messages to anyone",或者您可以將此鏈接發送給任何人
+"Your Transactions",您的交易
+"My Points",我的觀點
+"Share & Save",分享和保存
+History,歷史
+"in %1 %2","在%1 %2"
+"in %1 days",在%1天
+"in %1 day",在%1天
+"%1 %2 ago","%1 %2前"
+"%1 days ago",%1天前
+"%1 day ago",__1天前
+"How to earn points",如何賺取積分
+"You have invited %1 friends",你邀請了%1個朋友
+"Share the referral link in the social media",在社交媒體中分享推介鏈接
+"You may send this link in your messages to anyone",您可以將此消息中的鏈接發送給任何人
+"Page not found.",網頁未找到。
+"Customer tier up",客戶分層
+"Customer tier down",客戶層級下降
+"sum of earned points",獲得積分總和
+"sum of spent %1",花費的總和%1
+"Customer does not assign to website",客戶不會分配到網站
+"Payment Method",付款方法
+"This tier is assign to %1 customer(s). Please reassign customer(s) to other tier.",此層分配給%1客戶。請將客戶重新分配給其他級別。
+"You Spend Points",你花點錢
+"Spend Amount",花費金額
+"Spend Minimum Points",花費最低積分
+"Spend Maximum Points",花費最高積分
+"Cannot delete tier with id %1",無法刪除ID為%1的圖層
+"Unable to find tier for customer ""%1"". Please check tier configuration.",無法找到客戶“%1”的等級。請檢查層配置。
+"Customer Earning Style",客戶收益風格
+"Number of Points (X)",分數（X）
+"Step (Y)",第（Y）步
+"In base currency",以基礎貨幣
+"Quantity Step (Z)",數量步驟（Z）
+"Maximum number of earned points for one customer per day",每位客戶每天獲得的最大積分數
+"Set 0 to disable limit",設置為0以禁用限制
+"Do not change",不要換
+"Assign customer to Group",將客戶分配給組
+"Earn Maximum",賺取最大值
+"Maximum Distributed Points",最大分佈點數
+Tiers,第三
+"%1 for each $%2","每個$ %2 %1"
+"All Groups",所有團體
+Actions,操作
+"Points spending style",點消費風格
+"For each spent X points",對於每個花費的X點
+"Number of points.",點數。
+"Customer receive Y discount",客戶獲得Y折扣
+"You can enter amount in base currency or percent. e.g. 100 or 5%.",您可以以基礎貨幣或百分比輸入金額。例如100或5％。
+"You can enter amount of points or percent. e.g. 100 or 5%. Leave empty to disable.",您可以輸入積分或百分比。例如100或5％。留空以禁用。
+"Spend minimum",花費最少
+"Spend maximum",花費最多
+"Minimum sum of spent %1",最低花費%1
+"Minimum points number to reach the tier",達到該等級的最小分數
+"Delete the record with ID ""%1""",刪除ID為“%1”的記錄
+"Are you sure you wan't to delete the record with ID ""%1""?",您確定要刪除ID為“%1”的記錄嗎？
+"Anonymous visitor",匿名訪客
+"Your current tier is <a href=""#"" class=""open-popup""><b>%1</b></a>","您當前的等級是<a href=""#"" class=""open-popup""><b>%1</b></a>"
+"Earn <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","贏取<b>%1</b>以獲得<a class=""open-popup""><b>%2</b></a>"
+"Spend <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","花<b>%1</b>去<a class=""open-popup""><b>%2</b></a>"
+"in 1 day",在1天內
+"1 day ago",1天前
+"Earn %1",賺了%1
+"Earned %1 for the order #%2.",獲得訂單#%2的%1。
+"Spent %1 for the order #%2.",為訂單#%2花了%1。
+"Restore spent %1 for the order #%2.",恢復用於訂單#%2的%1。
+"Cancel earned %1 for the order #%2.",取消訂單%1為訂單#%2。
+"Refunded %1 (creditmemo #%2, order #%3).","退款%1（creditmemo #%2，訂單#%3）。"
+"Will expire %1",將在%1到期
+Expired,已過期
+Active,活性
+"Points are expired",積分已過期
+"Will be ready for use %1",準備使用%1
+"We subscribed you on expiring points notification.",我們訂閱了到期通知。
+"Possible discount %1",可能的折扣%1
+Subtotal,小計
+"Rewards Discount",獎勵折扣
+"Field 'Spend maximum' can not be less or equal then field 'Spend minimum'",“最大支出”字段不能小於或等於“最小支出”字段
+"Field 'For each spent X points' should be integer",“每花費X點”字段應為整數
+"Rewards discount",獎勵折扣
+"Cannot delete rule with id %1",無法刪除ID為%1的規則
+"Status Description",狀態說明
+"Checkout now and earn <b class='message-earn-points-label'>%1</b> for this order.","立即結帳，並為此訂單賺取<b class='message-earn-points-label'>%1</b> 。"
+"Cannot apply %1. %2 %3","無法申請%1。 %2 %3"
+"%1 were cancelled.",%1被取消。
+"Customer creates RMA",客戶創建RMA
+"Use Magento settings",使用Magento設置
+"After Tax",稅後
+"Additional Product Attribute",附加產品屬性
+"Additional Payment Method",額外付款方式
+Reasons,原因
+Conditions,條件
+Resolutions,決議案
+Statuses,狀態
+"Apply to items",適用於物品
+"Apply to totals",應用於總計
+"Rewards Refunded",獎勵已退款
+"Send notification before points expires (in days)",在積分過期之前發送通知（以天為單位）
+"Cancel the earned points after the order has been refunded",訂單退款後取消積分
+"Restore the points spent after the order has been refunded",恢復訂單退款後花費的積分
+"Allow to display maximum number of possible points for configurable products.",允許顯示可配置產品的最大可能點數。
+"Send notification before points expires(in days)",在積分過期之前發送通知（以天為單位）
+"In determining tiers, take into account, it only lasts for N days",在確定等級時，考慮到它只能持續N天
+"Show pending transactions in the customer's account",在客戶帳戶中顯示待處理的交易
+"Use this option to explain to your customer why the Rewards spending block isn't displaying in checkout",使用此選項向您的客戶解釋為什麼結帳時未顯示“獎勵”支出塊
+"If the theme overrides Magento way of including styles, this option will add extension's styles to the page",如果主題覆蓋了Magento包含樣式的方式，則此選項將在頁面上添加擴展的樣式
+"In some configuration, the method 'Apply to items' may have a slight error in calculation",在某些配置中，“應用於項目”方法的計算可能會略有錯誤
+"For detailed explanation, see the <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>documentation</a>","有關詳細說明，請參閱<a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>文檔</a>"
+"Minimum points number to reach each tier",達到每個等級的最低點數
+"Delete the record with ID %1","刪除 ID 為 %1 的記錄"
+"Are you sure you want to delete the record with ID %1","您確定要刪除 ID 為 %1 的記錄嗎"
+"To subscribe to points expiring and balance update notification click %1",要訂閱積分到期和余額更新通知，請單擊%1

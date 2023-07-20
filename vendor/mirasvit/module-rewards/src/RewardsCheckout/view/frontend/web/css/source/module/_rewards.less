@@ -1,0 +1,179 @@
+.block-rewards-account-summary {
+
+    margin-bottom: 2rem !important;
+    border: none;
+
+    .invite {
+        background: url(../Mirasvit_Rewards/images/lending.png) no-repeat;
+        background-size: contain;
+        background-position: center;
+        display: flex;
+        justify-content: flex-end;
+        height: 100%;
+
+        .column-referral {
+            padding:    150px 50px;
+            background: #f4f4f4;
+            opacity: 0.9;
+            border-radius: 6px;
+        }
+    }
+
+    .unsubscribe {
+        font-size:   14px !important;
+        padding-top: 10px;
+    }
+
+    .block-title.earn.subtitle > strong {
+        font-weight:   bold !important;
+    }
+
+    .block-title.spend.subtitle > strong {
+        font-weight:   bold !important;
+    }
+
+    .mst-referral-widget {
+        .block-title {
+            font-size: 34px !important;
+        }
+
+        .block-content {
+            .block {
+                .block-content {
+                    > span {
+                        font-size: 20px;
+                    }
+                }
+            }
+            .table-wrapper {
+                margin: 2rem auto;
+
+                > strong {
+                    font-size: 20px;
+                }
+                .buttons-set {
+
+                    > button {
+                        background: #eeeeee;
+                        border:     solid 1px #cccccc;
+
+                        > span {
+                            color: #41362f;
+                        }
+                    }
+
+                    text-align: right;
+                }
+
+                .field-name-lastname {
+                    text-align: left;
+
+                    > span {
+                        font-size: 20px;
+                        text-align: left;
+                    }
+                }
+
+                > table {
+
+                    > thead {
+                        padding-bottom: 0;
+                    }
+
+                    > tbody {
+
+                        > tr {
+
+                            > td {
+                                border-top: none;
+                                padding: 0 10px 6px;
+
+
+                                    ::-webkit-input-placeholder {
+                                        color: #cccccc;
+                                    }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        text-align: center;
+    }
+}
+
+.block-rewards-account-summary .order-details-items .invitations {
+    border: none;
+}
+
+.rewards-notification-block {
+    list-style-type: none;
+    padding:         0;
+    background:      #ecfdff;
+
+    > li {
+        padding: 1rem;
+    }
+}
+
+.rewards-referral-link {
+    font-weight: 600;
+}
+
+.link.rewards {
+    .counter {
+        .lib-css(color, @text__color__muted);
+        white-space: nowrap;
+
+        &:before {
+            content: "(";
+        }
+
+        &:after {
+            content: ")";
+        }
+    }
+}
+
+.mst-rewards-logo {
+    height: 14px;
+}
+
+.mst-rewards-account-amount-wrapper {
+    display:       flex;
+    align-items:   flex-end;
+    margin-bottom: 25px;
+
+    .mst-rewards-account-amount {
+        display:     flex;
+        align-items: flex-end;
+
+        .points {
+            font-size:   36px;
+            font-weight: bold;
+            line-height: 36px;
+        }
+
+        .unit {
+            color:       #6d6d6d;
+            margin-left: 5px;
+        }
+
+        > img {
+            height: 28px;
+        }
+    }
+
+    .mst-rewards-account-subtitle {
+        font-size:     16px;
+        margin-bottom: 10px;
+        font-weight:   600;
+    }
+
+    .mst-rewards-logo {
+        height:      36px;
+        margin-left: 15px;
+    }
+}

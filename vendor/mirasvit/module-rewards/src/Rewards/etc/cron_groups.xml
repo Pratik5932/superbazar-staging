@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/cron_groups.xsd">
+    <group id="rewards_tier">
+        <schedule_generate_every>600</schedule_generate_every>
+        <schedule_ahead_for>2400</schedule_ahead_for>
+        <schedule_lifetime>1200</schedule_lifetime>
+        <history_cleanup_every>6000</history_cleanup_every>
+        <history_success_lifetime>36000</history_success_lifetime>
+        <history_failure_lifetime>360000</history_failure_lifetime>
+        <use_separate_process>1</use_separate_process>
+    </group>
+    <group id="rewards_transactions">
+        <schedule_generate_every>14400</schedule_generate_every>
+        <schedule_ahead_for>57600</schedule_ahead_for>
+        <schedule_lifetime>28800</schedule_lifetime>
+        <history_cleanup_every>144000</history_cleanup_every>
+        <history_success_lifetime>288000</history_success_lifetime>
+        <history_failure_lifetime>1440000</history_failure_lifetime>
+        <use_separate_process>1</use_separate_process>
+    </group>
+    <group id="rewards_report">
+        <schedule_generate_every>600</schedule_generate_every>
+        <schedule_ahead_for>2400</schedule_ahead_for>
+        <schedule_lifetime>1200</schedule_lifetime>
+        <history_cleanup_every>6000</history_cleanup_every>
+        <history_success_lifetime>36000</history_success_lifetime>
+        <history_failure_lifetime>360000</history_failure_lifetime>
+        <use_separate_process>1</use_separate_process>
+    </group>
+    <group id="rewards_purchase">
+        <schedule_generate_every>40320</schedule_generate_every>
+        <schedule_ahead_for>2400</schedule_ahead_for>
+        <schedule_lifetime>1200</schedule_lifetime>
+        <history_cleanup_every>6000</history_cleanup_every>
+        <history_success_lifetime>36000</history_success_lifetime>
+        <history_failure_lifetime>360000</history_failure_lifetime>
+        <use_separate_process>1</use_separate_process>
+    </group>
+</config>

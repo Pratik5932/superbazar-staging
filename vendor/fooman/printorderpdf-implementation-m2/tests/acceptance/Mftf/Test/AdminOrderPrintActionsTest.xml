@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../../../../../dev/tests/acceptance/vendor/magento/magento2-functional-testing-framework/src/Magento/FunctionalTestingFramework/Test/etc/testSchema.xsd">
+    <test name="AdminOrderPrintActionsTest">
+        <annotations>
+            <features value="Print Order PDF"/>
+            <stories value="Check the order print actions"/>
+            <title value="Check the order print actions"/>
+            <description value="Check the order print actions"/>
+
+            <severity value="CRITICAL"/>
+            <group value="Fooman_All"/>
+            <group value="Fooman_PrintOrderPdf"/>
+        </annotations>
+        <before>
+            <actionGroup ref="AdminLoginActionGroup" stepKey="loginToAdminArea"/>
+        </before>
+        <after>
+            <actionGroup ref="AdminLogoutActionGroup" stepKey="logoutFromAdminArea"/>
+        </after>
+        <amOnPage url="{{AdminOrdersPage.url}}" stepKey="onOrdersPage"/>
+        <waitForPageLoad stepKey="waitForIndexPageLoad"/>
+        <click selector="{{AdminOrdersGridSection.bulkActionDropdown}}" stepKey="clickDropdown"/>
+        <click selector="{{AdminOrdersGridSection.bulkActionOption('Print Orders')}}" stepKey="clickMassAction"/>
+    </test>
+</tests>

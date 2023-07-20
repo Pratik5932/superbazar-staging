@@ -1,0 +1,18 @@
+{
+    "name": "swissup/module-breeze-integrations",
+    "description": "Third-party modules integrations with Breeze Frontend",
+    "type": "magento2-module",
+    "version": "1.2.8",
+    "license": "OSL-3.0",
+    "require": {
+        "swissup/module-breeze": "^2.3.1"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Swissup\\BreezeIntegrations\\": ""
+        }
+    }
+}

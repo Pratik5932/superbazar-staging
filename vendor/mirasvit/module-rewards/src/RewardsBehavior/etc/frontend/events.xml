@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+    <event name="cms_controller_router_match_before">
+        <observer name="mst_rewards" instance="\Mirasvit\RewardsBehavior\Observer\ReferralRedirectOnCmsRouteMatch"/>
+    </event>
+    <event name="sendfriend_product">
+        <observer name="mst_rewards_send_product_link" instance="\Mirasvit\RewardsBehavior\Observer\EarnOnSendToFriend" />
+    </event>
+</config>

@@ -1,0 +1,32 @@
+& when (@critical) {
+    .action.skip {
+        &:not(:focus-within) {
+            &:extend(.breeze-sr-only);
+        }
+    }
+}
+
+& when not (@critical) {
+    .action.skip {
+        .page-header & {
+            .lib-rgb(--base-color, @base__text-color);
+            --base-alpha: 1;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: 40;
+            text-align: center;
+            background: @base__background;
+            color: @base__color;
+            &:hover {
+                text-decoration: underline;
+            }
+            &:focus-within {
+                outline: none;
+                border-bottom: 1px solid @divider__color;
+                padding: @container__padding;
+            }
+        }
+    }
+}

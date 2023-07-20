@@ -1,0 +1,103 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Mirasvit\Core\Block\Adminhtml\Menu">
+        <arguments>
+            <argument name="menu" xsi:type="array">
+                <item name="rewards" xsi:type="object">Mirasvit\RewardsAdminUi\Block\Adminhtml\Menu</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Mirasvit\RewardsAdminUi\Ui\DataProvider\Tier\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="modifier_name" xsi:type="array">
+                    <item name="class" xsi:type="string">Mirasvit\RewardsAdminUi\Ui\Tier\Form\Modifier\Tier</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Mirasvit\RewardsAdminUi\Ui\DataProvider\Tier\Listing\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="modifier_name" xsi:type="array">
+                    <item name="class" xsi:type="string">Mirasvit\RewardsAdminUi\Ui\Tier\Listing\Modifier\Tier</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Mirasvit\RewardsAdminUi\Ui\DataProvider\Rules\Product\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="tier" xsi:type="array">
+                    <item name="class" xsi:type="string">Mirasvit\RewardsAdminUi\Ui\Earning\Form\Modifier\ProductTier</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Mirasvit\RewardsAdminUi\Ui\DataProvider\Rules\Cart\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="tier" xsi:type="array">
+                    <item name="class" xsi:type="string">Mirasvit\RewardsAdminUi\Ui\Earning\Form\Modifier\CartTier</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Mirasvit\RewardsAdminUi\Ui\DataProvider\Rules\Behavior\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="tier" xsi:type="array">
+                    <item name="class" xsi:type="string">Mirasvit\RewardsAdminUi\Ui\Earning\Form\Modifier\BehaviorTier</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Mirasvit\RewardsAdminUi\Ui\Tier\Form\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Mirasvit\RewardsAdminUi\Ui\DataProvider\Tier\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+    <type name="Mirasvit\RewardsAdminUi\Ui\Tier\Listing\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Mirasvit\RewardsAdminUi\Ui\DataProvider\Tier\Listing\Modifier\Pool</argument>
+        </arguments>
+    </type>
+    <type name="Mirasvit\RewardsAdminUi\Ui\Earning\Form\ProductDataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Mirasvit\RewardsAdminUi\Ui\DataProvider\Rules\Product\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+    <type name="Mirasvit\RewardsAdminUi\Ui\Earning\Form\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Mirasvit\RewardsAdminUi\Ui\DataProvider\Rules\Cart\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+    <type name="Mirasvit\RewardsAdminUi\Ui\Earning\Form\BehaviorDataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Mirasvit\RewardsAdminUi\Ui\DataProvider\Rules\Behavior\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+    <virtualType name="Mirasvit\RewardsAdminUi\Ui\Spending\DataProvider\Rules\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="tier" xsi:type="array">
+                    <item name="class" xsi:type="string">Mirasvit\RewardsAdminUi\Ui\Spending\Form\Modifier\Tier</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Customer\Ui\Component\DataProvider\Document">
+        <plugin name="add_rewards_balance_to_export" type="Mirasvit\RewardsAdminUi\Plugin\Customer\Component\DataProvider\Document\CustomAttributePlugin"/>
+        <plugin name="mst_add_tier_name_to_export" type="Mirasvit\RewardsAdminUi\Plugin\Customer\Component\DataProvider\Document\CustomTierAttributePlugin"/>
+    </type>
+    <type name="Mirasvit\RewardsAdminUi\Ui\Spending\Form\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Mirasvit\RewardsAdminUi\Ui\Spending\DataProvider\Rules\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+</config>

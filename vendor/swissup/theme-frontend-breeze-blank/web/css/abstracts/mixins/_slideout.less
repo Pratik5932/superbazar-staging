@@ -1,0 +1,62 @@
+.breeze-slideout {
+    & when (@critical) {
+        position: fixed;
+        visibility: hidden;
+    }
+
+    & when not (@critical) {
+        .left(0);
+        top: 0;
+        bottom: 0;
+        width: @96;
+        z-index: 850;
+        max-width: ~"calc(100vw - @{16})";
+        background: @z-layer__background;
+        color: @z-layer__color;
+        .modrtl(transform, translateX(-100%), translateX(100%));
+        overscroll-behavior: contain;
+        overflow: auto;
+        padding: @4;
+    }
+}
+
+.breeze-slideout-visible {
+    & when not (@critical) {
+        transform: translateX(0);
+        visibility: visible;
+    }
+}
+
+.breeze-slideout-overlay {
+    .breeze-overlay();
+}
+
+.breeze-slideout-overlay-visible {
+    .breeze-overlay-visible();
+}
+
+.breeze-slideout-close {
+    & when not (@critical) {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        position: fixed;
+        z-index: 811; // @see overlay
+        color: @base__background;
+        content: '';
+        width: @6;
+        height: @6;
+        top: @5;
+        .left(~"min(calc(@{96} + @{4-5}), calc(100vw - @{11}))"); // @see slideout width
+        .breeze-icon(@icon-x);
+        .modrtl(transform, translateX(-20px), translateX(20px));
+    }
+}
+.breeze-slideout-close-visible {
+    & when not (@critical) {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+        transform: translateX(0);
+    }
+}

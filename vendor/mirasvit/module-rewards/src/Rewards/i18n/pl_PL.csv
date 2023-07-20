@@ -1,0 +1,355 @@
+My Reward Points,Punkty lojalnościowe
+Checkout now and earn <b>%1</b> for this order.,Zamów teraz i otrzymaj <b>%1</b> za to zamówienie
+"Applies only to registered customers, may vary when logged in.",Dotyczy tylko zarejestrowanych klientów (może się różnić po zalogowaniu)
+Possible discount %1 %2,Dostępna zniżka %1 %2
+Earn %1 %2,Zdobądź %1 %2
+Grid,Siatka
+List,Lista
+All,Wszystkie
+Referral %1,Polecający %1
+Something went wrong while saving your subscription.,"Coś poszło nie tak, gdy zapisywaliśmy Twoją subskrybcję."
+We removed your subscription on expiring points notification.,Usunęliśmy subskrypcję powiadomień o wygasających punktach.
+Cannot apply points.,Nie można wykorzytać punktów.
+You've earned %1 for Facebook Like!,Otrzymałeś(aś) %1 za polubienie na Facebooku!
+You've earned %1 for Facebook Share!,Otrzymałeś(aś) %1 za udostępnienie na Facebooku!
+Facebook Like Points has been canceled,Punkty za polubienia na Facebooku zostały anulowane
+You've earned %1 for Google+!,Otrzymałeś(aś) %1 za Google+!
+G+1 Points has been canceled,Punkty za G+1 zostały anulowane
+You've earned %1 for Pin!,Otrzymałeś(aś) %1 za Pina!
+Invalid form key. Try again,Nieprawidłowy klucz. Spróbuj ponownie.
+Customer with email %1 has been already invited to our store,Klient posiadajacy e-mail %1 został już zaproszony do naszego sklepu
+Your invitations were sent. Thanks!,Twoje zaproszenia zostały wysłane. Dziękujemy!
+You've earned %1 for Tweet!,Otrzymałeś(aś) %1 za tweeta!
+You received %1 for signing up,Otrzymałeś(aś) %1 za rejestrację
+You received %1 for sending this product,Otrzymałeś(aś) %1 za wysłanie tego produktu
+You received %1 for sign up for newsletter,Otrzymałeś(aś) %1 za subskrybcję do newslettera
+You received %1 for sign up for push notifications,Otrzymałeś(aś) %1 za włączenie powiadomień typu Push
+You will receive %1 after approving of this tag,Otrzymasz %1 po zatwierdzeniu tego tagu
+You will receive %1 after approving of this review,Otrzymasz %1 po zatwierdzeniu recenzji
+You received %1 for sign up of referral customer.,Otrzymałeś(aś) %1 za rejestrację klienta poleconego
+You received %1 for order of referral customer.,Otrzymałeś(aś) %1 za zamówienie poleconej osoby
+Happy birthday! You received %1.,Wszystkiego najlepszego z okazji urodzin! Otrzymałeś(aś) %1
+You received %1 for joining the affiliate program.,Otrzymałeś(aś) %1 za przystąpienie do programu partnerskiego
+%1 were applied.,Wykorzystano %1
+Minimum number is %1.,Minimalna liczba to %1
+Maximum number is %1.,Maksymalna liczba to %1
+%1 was canceled.,%1 zostały anulowane.
+Cannot apply %1.,Nie można zastosować %1
+You can use the following variables:,Możesz użyć następujących zmiennych:
+Pattern,Wzór
+Attribute Value,Wartość atrybutu
+Default,Domyślnie
+Integer,Liczba całkowita
+Price,Cena
+Strip Tags,Znaczniki paskowe
+Primary Attributes,Podstawowe atrybuty
+Stock Attributes,Atrybuty stanu magazynowego
+Prices & Taxes,Ceny i podatki
+Images,Obrazy
+Custom Attributes,Atrybuty niestandardowe
+Mapping,Mapowanie
+Category,Kategoria
+Amasty Meta Tags,Znaczniki Amasty Meta
+Others Attributes,Inne atrybuty
+Flexible,Elastyczność
+Fixed,Stały
+Customer signs up in store,Klient rejestruje się w sklepie
+Customer places order,Klient składa zamówienie
+Customer refer a friend,Klient polecił przyjaciela
+Customer adds tag to a product,Klient dodaje znacznik do produktu
+Customer writes a product review,Klient pisze recenzję produktu
+Customer has a birthday,Klient ma urodziny
+Customer is inactive for long time,Klient jest nieaktywny przez długi czas
+Newsletter sign up,Subskrybcja newslettera
+Facebook Share,Udostępnienie na Facebooku
+Facebook Like,Polubienie na Facebooku
+Twitter Tweet,Tweet na Tweeterze
+Google+ Like,Polubienie na Google+
+Pinterest Pin,Pin na Pinterest
+Customer joins the affiliate program,Klient dołacza do programu partnerskiego
+Push Notifications sign up,Subskrypcja na aktywne powiadomienia typu Push
+Referred customer signs up in store,Polecony klient rejestruje się w sklepie
+Order from referred customer,Zamówienie od poleconego klienta
+Points to Currency,Punkty na walutę
+Currency to Points,Waluta na punkty
+Customer Account > My Reward Points,Konto Klienta > Moje punkty lojalnościowe
+Customer Account > My Referrals,Konto Klienta > Moje Polecenia
+Cart Page,Strona koszyka
+Message Sent,Wiadomość wysłana
+Signed Up,Zarejestrowany
+Made Order,Złożone zamówienie
+Visited by Referral Link,Odwiedzono link polecający
+Subtotal + Tax,Suma częściowa + podatek
+Subtotal + Tax + Shipping,Suma częściowa + podatek + dostawa
+Product Rule,Reguła produktu
+Cart Rule,Reguła koszyka
+Behavior Rule,Reguła zachowania
+Transaction #%1 is expired,Transakcja %1 wygasła
+Update the Product,Aktualizacja produktu
+Is Rewards Points used,Wykorzystano punkty lojalnościowe
+Coupon Used,Wykorzystano kupon rabatowy
+Coupon Code,Kod kuponu
+No,Nie
+Yes,Tak
+Conditions Combination,Połączenie warunków
+Product attribute combination,Połączenie atrybutów produktu
+Products subselection,Podselekcja produktów
+Conditions combination,Połączenie warunków
+Cart Attribute,Atrybut koszyka
+Customer,Klient
+Last 7-days Clicks,Kliknięcia za ostatnie 7 dni
+Last 7-days Orders,Zamówienia za ostatnie 7 dni
+Last 7-days Revenue,Dochody za ostatnie 7 dni
+Is Referee,Jest polecającym
+Is Referral,Jest poleconym
+Email,Email
+Group,Grupa
+Lifetime Sales,Wartość wszystkich złożonych zamówień
+Lifetime Spent Points,Łącznie wydane punkty
+Number of Orders,Liczba zamówień
+Is subscriber of newsletter,Czy subskrybuje newsletter
+Number of reviews,Liczba recenzji
+Number of referred friends signups,Liczba zarejestrowanych poleconych przyjaciół
+Number of referred friends orders,Liczba zamówień od poleconych przyjaciół
+Sum of referred friends orders,Łączna wartość zamówień poleconych przyjaciół
+Number of referrals who ordered at least once,"Liczba poleconych osób, które zamówiły co najmniej raz"
+Not registered,Niezarejestrowany
+Attribute Set,Zestaw atrybutów
+Quantity,Ilość
+Product Type,Rodzaj produktu
+Base Image,Obraz podstawowy
+Thumbnail,Miniaturka
+Small Image,Mały obraz
+Base Image Size (bytes),Rozmiar obrazu podstawowego (bajty)
+Thumbnail Size (bytes),Rozmiar miniaturki (bajty)
+Small Image Size (bytes),Rozmiar małego obrazu (bajty)
+PHP Condition,Warunek PHP
+Base Price,Cena podstawowa
+Final Price,Cena końcowa
+Special Price,Cena specjalna
+Open Chooser,Wybierz
+Referred: Group,Polecony: Grupa
+Referred: Lifetime Sales,Polecony: Wartość zamówień
+Referred: Number of Orders,Polecony: Liczba zamówień
+Referred: Is subscriber of newsletter,Polecony: Czy jest subskrybuje newsletter
+Referred: Number of reviews,Polecony: Liczba recenzji
+Please specify a website.,Proszę podać stronę internetową.
+Please specify a customer email.,Proszę podać adres e-mail klienta.
+We found an invalid value in a website column.,Znaleźliśmy nieprawidłową wartość w kolumnie strony internetowej.
+Please enter a valid email.,Proszę wpisać prawidłowy adres e-mail.
+"Please make sure attribute ""%1"" is not empty.","Upewnij się, że atrybut ""%1"" nie jest pusty."
+We can't find a customer who matches this email and website code.,"Nie możemy znaleźć klienta, do którego pasuje podany email i kod strony internetowej."
+-- Please Select --,-- Proszę wybrać --
+Discount Used,Zastosowano zniżkę
+Custom Product Attributes,Niestandardowe atrybuty produktu
+- Disable these emails -,- Wyłącz te emaile -
+Give X points to customer,Daj X punktów klientowi
+Give X points for every spent Y,Daj X punktów za każde wydane Y
+Give X points for every Z quantity,Daj X punktów za każdą ilość Z.
+"For every Y, give X points","Za każde Y, daj X punktów."
+Pending,Oczekuje
+Approved,Zatwierdzone
+Discarded,Usunięty
+You do not have permissions to create transactions. Please contact your site administrator.,Nie masz uprawnień do realizowania transakcji. Prosimy o kontakt z administratorem strony.
+%1 has been added.,%1 zostało dodane.
+%1 has been deducted.,%1 zostało odjęte.
+You earned %1 and spent %2 for this order.,W tym zamówieniu otrzymałeś %1 oraz wydałeś %2.
+You spent %1 for this order.,W tym zamówieniu wydałeś %1.
+You earned %1 for this order.,Za to zamówienie otrzymałeś %1.
+Earned points will be enrolled to your account after we finish processing your order.,"Będziesz mógł używać punktów, gdy Twoje zamówienie zostanie zrealizowane."
+Rewards error occurred on the server. Please try to place the order again.,"Wystąpił błąd podczas składania zamówienia, prosimy spróbować jeszcze raz."
+Earn at least %1 %2,Otrzymaj co najmniej %1 %2
+Reward Points,Punkty lojalnościowe
+Edit,Edytuj
+Back,Wróć
+Delete,Usuń
+Are you sure you want to do this?,Na pewno chcesz to zrobić?
+Reset,Resetuj
+Save and Continue Edit,Zapisz i kontynuuj edycję
+Save,Zapisz
+"Delete the record with ID ""${ $.$data.transaction_id }""","Usuń transakcję o ID ""${ $.$data.transaction_id }"""
+"Are you sure you wan't to delete the record with ID ""${ $.$data.transaction_id }""?","Czy na pewno chcesz usunąć transakcję o ID ""${ $.$data.transaction_id }""?"
+Points Summary,Podsumowanie Punktów
+To unsubscribe from points expiring notification click %1,Aby wyłączyć powiadomienia o wygasających punktach kliknij %1
+You have <b>%1</b> in your account.,Masz <b>%1</b> na swoim koncie.
+Transactions History,Historia transakcji
+ID,ID
+Comment,Komentarz
+Points,Punkty
+Created,Stworzone
+Expires,Wygasa
+There are no Transactions.,Jeszcze nie ma transakcji.
+Pending Transactions,Transakcje w toku
+Order,Zamówienie
+Status,Status
+Your points balance will expire in %1 days.,Twoje punkty wygasają za %1 dni.
+Visit My Reward Points Section,Odwiedź sekcję Moje punkty lojalnościowe
+Login to earn %1 for sharing!,"Zaloguj się, aby otrzymać %1 za udostępnienie!"
+Earn %1 for sharing!,Otrzymaj %1 za udostępnienie!
+Like this page and earn %1,Polub tę stronę i otrzymaj %1
+Share,Udostępnij
+Share this page and earn %1,Udostępnij tę stronę i otrzymaj %1
+Plus this page and earn %1,Dodaj tę stronę i otrzymaj %1
+Pin this page and earn %1,Zrób Pina tej strony i otrzymaj %1
+Refer Friends,Poleć znajomym
+Refer friend and earn %1. More friends more points!,Poleć znajomemu i otrzymaj %1. Więcej znajomych - więcej punktów!
+Tweet,Tweet
+Tweet this page and earn %1,Tweetuj tę stronę i otrzymaj %1
+Check this out!,Sprawdź to!
+You have <b>%1</b> available.,Masz dostępne <b>%1</b>.
+Enter amount of points to spend:,Wprowadź liczbę punktów do użycia:
+Use maximum %1,Możesz użyć maksymalnie %1
+Apply Points,Zastosuj Punkty
+Apply,Zastosuj
+Cancel Points,Anuluj Punkty
+Cancel,Anuluj
+Use %1,Wykorzystaj %1
+You Earn,Otrzymujesz
+You Spend,Wydajesz
+Discount amount,Zniżka
+Use Reward Points,Użyj punktów lojalnościowych
+This is a required field,Te pole jest wymagane
+Subscription to Points Expiration Notification,Powiadomienia o wygasających punktach
+Earning %1,Zdobywanie %1
+Buy to earn %1,Kup i otrzymaj %1
+You'll earn %1 for this item,Za ten przedmiot otrzymasz %1
+Share with Friends,Udostepnij znajomym
+Share the referral link in the social media and get points!,Udostępnij link polecający w mediach społecznościowych i zdobądź punkty!
+Tweet on Twitter,Tweet na Twitterze
+Your referral link:,Twój link polecający:
+Send Invitations,Wyślij zaproszenia
+Enter contacts of your friends to invite them.,"Wprowadź dane kontaktowe znajomych, aby ich zaprosić."
+Name,Imię
+Message,Wiadomość
+Referrals,Polecenia
+Referred by link,Polecony za pomocą linku
+There are no Referrals,Jeszcze nikt nie został polecony
+You have,Masz
+available.,dostępne.
+Use maximum,Wykorzystaj maksymalnie
+Enter amount of points to spend,Wprowadź liczbę punktów do wydania
+Use,Zastosuj
+Notification Rules' messages,Komunikaty powiadomień
+Template,Szablon
+Notification Rule Template,Szablon powiadomień
+My Referrals,Moje polecenia
+Referrals List,Lista poleceń
+today,dzisiaj
+ago,temu
+Cannot delete transaction with id %1,Nie można usunąć transakcji z id %1
+Expires in,Wygasa za
+How to earn,Jak zdobywać
+Spend points and receive discounts,Wykorzystuj punkty i otrzymuj zniżki
+Total number of referred friends: %1,Łączna liczba poleconych przyjaciół: %1
+Or you may send this link in your messages to anyone,Albo możesz wysłać ten link komukolwiek
+Your Transactions,Twoje transakcje
+My Points,Moje punkty
+Share & Save,Udostępniaj i oszczędzaj
+History,Historia
+in %1 %2,w %1 %2
+in %1 days,w %1 dni
+in %1 day,w %1 dzień
+%1 %2 ago,%1 %2 temu
+%1 days ago,%1 dni temu
+%1 day ago,%1 dzień temu
+How to earn points,Jak zdobywać punkty
+You have invited %1 friends,Zaprosiłeś/-łaś %1 przyjaciół.
+Share the referral link in the social media,Udostępnij link polecający w mediach społecznościowych
+You may send this link in your messages to anyone,Możesz wysłać ten link komukolwiek
+Page not found.,Strona nie została znaleziona.
+Customer tier up,Klient zdobywa kolejny poziom
+Customer tier down,Klient spada do niższego poziomu
+sum of earned points,suma zdobytych punktów
+sum of spent %1,suma wydanych %1
+Customer does not assign to website,Klient nie jest przypisany do strony internetowej
+Payment Method,Metoda płatności
+This tier is assign to %1 customer(s). Please reassign customer(s) to other tier.,Ten poziom jest przypisany do %1 klienta(ów). Prosimy o przeniesienie klienta(ów) na inny poziom .
+You Spend Points,Wydajesz punkty
+Spend Amount,Wydana Kwota
+Spend Minimum Points,Minimalnie punktów do wydania
+Spend Maximum Points,Maksymalnie punktów do wydania
+Cannot delete tier with id %1,Nie można usunąć poziomu z id %1
+"Unable to find tier for customer ""%1"". Please check tier configuration.","Nie można znaleźć poziomu klienta ""%1"";. Proszę sprawdzić konfigurację poziomu."
+Customer Earning Style,Styl zdobywania punktów
+Number of Points (X),Liczba punktów (X)
+Step (Y),Krok (Y)
+In base currency,W walucie podstawowej
+Quantity Step (Z),Ilość kroków (Z)
+Maximum number of earned points for one customer per day,Maksymalna liczba zdobytych punktów dla jednego klienta na dzień
+Set 0 to disable limit,"Ustaw 0, aby wyłączyć limit"
+Do not change,Nie zmieniaj
+Assign customer to Group,Przypisz klienta do grupy
+Earn Maximum,Zdobądź Maksymalnie
+Maximum Distributed Points,Maksymalna ilość rozprowadzonych punktów
+Tiers,Poziomy
+%1 for each $%2,%1 za każde $%2
+All Groups,Wszystkie grupy
+Actions,Działania
+Points spending style,Styl wydatkowania punktów
+For each spent X points,Za każde wydane X punktów
+Number of points.,Liczba punktów.
+Customer receive Y discount,Klient otrzymuje zniżkę Y
+You can enter amount in base currency or percent. e.g. 100 or 5%.,"Możesz wpisać kwotę w walucie podstawowej lub procentach, np. 100 lub 5%."
+You can enter amount of points or percent. e.g. 100 or 5%. Leave empty to disable.,"Możesz wprowadzić ilość punktów lub procentów, np. 100 lub 5%. Zostaw puste, aby wyłączyć."
+Spend minimum,Użyj co najmniej
+Spend maximum,Użyj maksymalnie
+Minimum sum of spent %1,Minimalna ilość wydanych %1
+Minimum points number to reach the tier,Minimalna liczba punktów do osiągnięcia poziomu
+"Delete the record with ID ""%1""","Usuń dane o ID ""%1"""
+"Are you sure you wan't to delete the record with ID ""%1""?","Jesteś pewien, że chcesz usunąć dane o ID ""%1""?"
+Anonymous visitor,Anonimowy odwiedzający
+"Your current tier is <a href=""#"" class=""open-popup""><b>%1</b></a>","Twój obecny poziom to <a href=""#"" class=""open-popup""><b>%1</b></a>"
+"Earn <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","Zdobądź <b>%1</b>, aby awansować do <a class=""open-popup""><b>%2</b></a>"
+"Spend <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","Wydaj <b>%1</b>, aby awansować do <a class=""open-popup""><b>%2</b></a>"
+in 1 day,w ciągu 1 dnia
+1 day ago,1 dzień temu
+Earn %1,Zdobądź %1
+Earned %1 for the order #%2.,Zarobione %1 za zamówienie #%2.
+Spent %1 for the order #%2.,Wydano %1 na zamówienie #%2.
+Restore spent %1 for the order #%2.,Przywróć wydane %1 na zamówienie #%2.
+Cancel earned %1 for the order #%2.,Anuluj zdobyte %1 za zamówienie #%2.
+"Refunded %1 (creditmemo #%2, order #%3).","Zwrócono %1 (creditmemo #%2, zamówienie #%3)."
+Will expire %1,Wygasa %1
+Expired,Wygasłe
+Active,Aktywne
+Points are expired,Punkty wygasły
+Will be ready for use %1,Możliwe do użycia %1
+We subscribed you on expiring points notification.,Będziemy Cię informować o wygasających punktach.
+Possible discount %1,Możliwa zniżka %1
+Subtotal,Suma częściowa
+Rewards Discount,Zniżka za punkty lojalnościowe
+Field 'Spend maximum' can not be less or equal then field 'Spend minimum',"Wartość pola ""Użyj maksymalnie"", nie może być mniejsza niż ""Użyj co najmniej"""
+Field 'For each spent X points' should be integer,Wartość pola „Za każde wydane X punktów” musi być liczbą całkowitą
+Rewards discount,Zniżka za punkty lojalnościowe
+Cannot delete rule with id %1,Nie można usunąć reguły o identyfikatorze %1
+Status Description,Opis
+"Checkout now and earn <b class='message-earn-points-label'>%1</b> for this order.","Zamów teraz i otrzymaj <b class='message-earn-points-label'>%1</b> za to zamówienie."
+"%1 were cancelled.","%1 zostały anulowane."
+"Customer creates RMA","Klient tworzy RMA"
+"Use Magento settings","Użyj ustawień Magento"
+"After Tax","Po odliczeniu podatku"
+"Additional Product Attribute","Dodatkowy atrybut produktu"
+"Additional Payment Method","Dodatkowa metoda płatności"
+Reasons,Powody
+Conditions,Warunki
+Resolutions,Uchwały
+Statuses,Statusy
+"Apply to items","Zastosuj do przedmiotów"
+"Apply to totals","Zastosuj do sum"
+"Rewards Refunded","Nagrody zwrócone"
+"Send notification before points expires (in days)","Wyślij powiadomienie przed wygaśnięciem punktów (za dni)"
+"Cancel the earned points after the order has been refunded","Anuluj zdobyte punkty po dokonaniu zwrotu pieniędzy za zamówienie"
+"Restore the points spent after the order has been refunded","Przywróć punkty wydane po zwrocie zamówienia"
+"Allow to display maximum number of possible points for configurable products.","Pozwól, aby wyświetlić maksymalną liczbę możliwych punktów dla produktów konfigurowalnych."
+"Send notification before points expires(in days)","Wyślij powiadomienie przed wygaśnięciem punktów (za dni)"
+"In determining tiers, take into account, it only lasts for N days","Przy określaniu poziomów należy wziąć pod uwagę, że trwa ono tylko przez N dni"
+"Show pending transactions in the customer's account","Pokaż oczekujące transakcje na koncie klienta"
+"Use this option to explain to your customer why the Rewards spending block isn't displaying in checkout","Skorzystaj z tej opcji, aby wyjaśnić klientowi, dlaczego blok wydatków Rewards nie jest wyświetlany w kasie"
+"If the theme overrides Magento way of including styles, this option will add extension's styles to the page","Jeśli motyw zastępuje sposób dołączania stylów Magento, ta opcja doda style rozszerzenia do strony"
+"Cannot apply %1. %2 %3","Nie można zastosować %1. %2 %3"
+"In some configuration, the method 'Apply to items' may have a slight error in calculation","W niektórych konfiguracjach metoda „Zastosuj do pozycji” może mieć niewielki błąd w obliczeniach"
+"For detailed explanation, see the <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>documentation</a>","Szczegółowe wyjaśnienia znajdują się w <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>dokumentacji</a>"
+"Minimum points number to reach each tier","Minimalna liczba punktów do osiągnięcia każdego poziomu"
+"Delete the record with ID %1","Usuń rekord o identyfikatorze _____"
+"Are you sure you want to delete the record with ID %1","Czy na pewno chcesz usunąć rekord o identyfikatorze _____"
+"To subscribe to points expiring and balance update notification click %1","Aby zasubskrybować punkty wygasające i powiadomienia o aktualizacji salda, kliknij _____"

@@ -1,0 +1,18 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Mirasvit\Rewards\Model\Config" type="Mirasvit\RewardsApi\Model\Config" />
+
+    <type name="Magento\Quote\Model\Quote\Address">
+        <plugin name="RewardsAddToTotals" type="\Mirasvit\RewardsApi\Plugin\WebApi\Quote\Model\Quote\Address\AddTotalsPlugin"
+                sortOrder="1" />
+    </type>
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="RewardsAddInfoToOrder" type="\Mirasvit\RewardsApi\Plugin\WebApi\Sales\Model\OrderRepository\RewardsToGetOrderPlugin"/>
+    </type>
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="RewardsAddInfoToOrderList" type="\Mirasvit\RewardsApi\Plugin\WebApi\Sales\Model\OrderRepository\RewardsToGetOrdersListPlugin"/>
+    </type>
+    <type name="Magento\Quote\Api\Data\PaymentInterface">
+        <plugin name="RewardsAddInfoToOrderList" type="\Mirasvit\RewardsApi\Plugin\WebApi\Quote\Api\Data\PaymentInterface\RewardsRefreshPlugin"/>
+    </type>
+</config>

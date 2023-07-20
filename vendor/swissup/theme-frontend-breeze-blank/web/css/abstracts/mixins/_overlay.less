@@ -1,0 +1,23 @@
+.breeze-overlay {
+    & when not (@critical) {
+        .transition();
+        inset: 0;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: fixed;
+        visibility: hidden;
+        content: '';
+        z-index: 810;
+        opacity: 0;
+        pointer-events: none;
+        background: @z-overlay__background;
+    }
+}
+
+.breeze-overlay-visible {
+    & when not (@critical) {
+        opacity: 1;
+        pointer-events: all;
+        visibility: visible;
+    }
+}

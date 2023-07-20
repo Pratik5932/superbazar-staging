@@ -1,0 +1,33 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Mirasvit\RewardsCustomerAccount\Block\Link $block
+ */
+?>
+<?php if ($block->getIsLoggedIn()) : ?>
+    <li class="link rewards mst-rewards-top-link" data-bind="scope: 'rewards'">
+        <a <?= $block->getLinkAttributes() ?>><?= $block->escapeHtml($block->getLabel()) ?>
+            <!-- ko if: rewards().amount -->
+            <div>
+                <span data-bind="html: rewards().amount" class="counter amount"></span>
+            </div>
+            <!-- /ko -->
+        </a>
+    </li>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "rewards": {
+                        "component": "Mirasvit_RewardsCheckout/js/view/rewards",
+                        "defaultValue": "<?= $block->escapeHtml($block->getValue()) ?>"
+                    }
+                }
+            }
+        }
+    }
+</script>

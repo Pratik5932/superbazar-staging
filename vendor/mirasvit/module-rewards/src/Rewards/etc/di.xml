@@ -1,0 +1,130 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+
+    <preference for="Mirasvit\Rewards\Api\Data\RewardsInterface" type="Mirasvit\Rewards\Model\Data\Rewards" />
+
+
+    <type name="Magento\SalesRule\Model\Validator">
+        <plugin name="RewardsRuleValidator" type="Mirasvit\Rewards\Plugin\SalesRuleValidator" sortOrder="10"/>
+    </type>
+    <!-- m2.4.4 -->
+    <type name="Magento\SalesRule\Model\Validator">
+        <plugin name="Mirasvit_Rewards::applyItemDiscountM244" type="Mirasvit\Rewards\Plugin\ApplyItemDiscountValidatorTotalsPlugin"/>
+    </type>
+    <!-- finish m2.4.4 -->
+    <type name="Magento\SalesRule\Model\Validator">
+        <plugin name="RewardsShippingDiscount" type="Mirasvit\Rewards\Plugin\Salesrule\Model\Validator\ApplyShippingDiscount" sortOrder="10"/>
+    </type>
+    <type name="Magento\Tax\Model\Config">
+        <plugin name="RewardsTaxCalculation" type="Mirasvit\Rewards\Plugin\TaxConfig" sortOrder="10"/>
+    </type>
+
+    <type name="Mirasvit\Rewards\Helper\Balance">
+        <plugin name="RewardsTierUpdate" type="Mirasvit\Rewards\Plugin\Balance\ChangePointsBalance" sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Sales\Api\OrderCustomerManagementInterface">
+        <plugin name="RewardsOrderCustomerManagement" type="Mirasvit\Rewards\Plugin\OrderCustomerManagement" sortOrder="1000"/>
+    </type>
+
+    <type name="\Magento\Tax\Model\Sales\Total\Quote\CommonTaxCollector">
+        <plugin name="AddRewardsDiscountBeforeTaxCalculations" type="\Mirasvit\Rewards\Plugin\Tax\Model\Sales\Total\Quote\CommonTaxCollector\AddRewardsDiscountPlugin" sortOrder="1" />
+    </type>
+
+    <type name="\Magento\Tax\Model\Sales\Total\Quote\CommonTaxCollector">
+        <plugin name="RewriteShippingDataObject" type="\Mirasvit\Rewards\Plugin\Tax\Model\Sales\Total\Quote\CommonTaxCollector\ShippingDataObject" sortOrder="1000" />
+    </type>
+
+    <type name="Magento\Customer\Model\Attribute">
+        <plugin name="customer_model_attribute" type="Mirasvit\Rewards\Plugin\Customer\Model\AttributePlugin" sortOrder="1000"/>
+    </type>
+
+    <type name="Magento\Payment\Gateway\Request\BuilderInterface">
+        <plugin name="RewardsAfterpayBuilderInterface" type="Mirasvit\Rewards\Plugin\AfterpayTransactionBuilder" sortOrder="1000"/>
+    </type>
+
+    <type name="StripeIntegration\Payments\Model\Stripe\Coupon">
+        <plugin name="RewardsStripeBillingInvoice" type="Mirasvit\Rewards\Plugin\StripeBillingInvoice" sortOrder="1000"/>
+    </type>
+
+    <virtualType name="Mirasvit\Rewards\Api\SearchCriteria\CollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor</item>
+                <item name="sorting" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\SortingProcessor</item>
+                <item name="pagination" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\PaginationProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+    <!--DATA-->
+    <preference for="Mirasvit\Rewards\Api\Data\TransactionInterface" type="Mirasvit\Rewards\Model\Transaction" />
+    <preference for="Mirasvit\Rewards\Api\Data\TierInterface" type="Mirasvit\Rewards\Model\Tier" />
+    <preference for="Mirasvit\Rewards\Api\Data\BalanceInterface" type="Mirasvit\Rewards\Model\Balance" />
+    <preference for="Mirasvit\Rewards\Api\Data\ProductPointsInterface" type="Mirasvit\RewardsApi\Model\Api\ProductPoints" />
+    <preference for="Mirasvit\Rewards\Api\Data\ProductPointsResponseInterface" type="Mirasvit\Rewards\Model\Api\ProductPointsResponse" />
+    <preference for="Mirasvit\Rewards\Api\Data\RefundInfoInterface" type="Mirasvit\Rewards\Model\RefundInfo" />
+    <preference for="Mirasvit\Rewards\Api\Data\RefundResponseInterface" type="Mirasvit\Rewards\Model\RefundResponse" />
+    <preference for="Mirasvit\Rewards\Api\Data\Refund\RefundResponseInterface" type="Mirasvit\Rewards\Model\Refund\RefundResponse" />
+
+    <preference for="Mirasvit\Rewards\Api\Data\StoreviewDataInterface" type="Mirasvit\Rewards\Model\Data\StoreviewData" />
+    <preference for="Mirasvit\Rewards\Api\Data\Earning\RuleInterface" type="Mirasvit\Rewards\Model\Earning\Data\Rule" />
+    <preference for="Mirasvit\Rewards\Api\Data\Earning\TierInterface" type="Mirasvit\Rewards\Model\Earning\Data\Tier" />
+    <preference for="Mirasvit\Rewards\Api\Data\Spending\RuleInterface" type="Mirasvit\Rewards\Model\Spending\Data\Rule" />
+    <preference for="Mirasvit\Rewards\Api\Data\Spending\TierInterface" type="Mirasvit\Rewards\Model\Spending\Data\Tier" />
+
+    <!--REPOSITORY-->
+    <preference for="Mirasvit\Rewards\Api\Repository\TransactionRepositoryInterface" type="Mirasvit\Rewards\Repository\TransactionRepository" />
+    <preference for="Mirasvit\Rewards\Api\Data\TransactionSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Mirasvit\Rewards\Api\Repository\TierRepositoryInterface" type="Mirasvit\Rewards\Repository\TierRepository" />
+    <preference for="Mirasvit\Rewards\Api\Data\TierSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Mirasvit\Rewards\Api\Repository\PurchaseRepositoryInterface" type="Mirasvit\Rewards\Repository\PurchaseRepository" />
+    <preference for="Mirasvit\Rewards\Api\Repository\RefundRepositoryInterface" type="Mirasvit\Rewards\Repository\RefundRepository" />
+
+    <preference for="Mirasvit\Rewards\Api\Repository\Earning\RuleRepositoryInterface" type="Mirasvit\Rewards\Repository\Earning\RuleRepository" />
+    <preference for="Mirasvit\Rewards\Api\Data\Earning\RuleSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Mirasvit\Rewards\Api\Repository\Spending\RuleRepositoryInterface" type="Mirasvit\Rewards\Repository\Spending\RuleRepository" />
+    <preference for="Mirasvit\Rewards\Api\Data\Spending\RuleSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+
+    <!--SERVICE-->
+    <preference for="Mirasvit\Rewards\Api\Service\Customer\TierInterface" type="Mirasvit\Rewards\Service\Customer\Tier" />
+    <preference for="Mirasvit\Rewards\Api\Service\Customer\Management\SearchInterface" type="Mirasvit\RewardsApi\Service\Customer\Management\Search" />
+    <preference for="Mirasvit\Rewards\Api\Service\Earning\RuleInterface" type="Mirasvit\Rewards\Service\Earning\Rule" />
+    <preference for="Mirasvit\Rewards\Api\Service\RefundServiceInterface" type="Mirasvit\Rewards\Service\RefundService" />
+
+
+    <!--COMMAND-->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="RewardsCronCommand" xsi:type="object">Mirasvit\Rewards\Console\Command\RewardsCronCommand</item>
+                <item name="UpdateTiersCommand" xsi:type="object">Mirasvit\Rewards\Console\Command\UpdateTiersCommand</item>
+                <item name="ActivateTransactionCommand" xsi:type="object">Mirasvit\Rewards\Console\Command\ActivateTransactionCommand</item>
+                <item name="RefreshReportStatistic" xsi:type="object">Mirasvit\Rewards\Console\Command\RefreshReportStatistic</item>
+                <item name="RemoveRewardPurchase" xsi:type="object">Mirasvit\Rewards\Console\Command\RemoveRewardPurchase</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--TESTS-->
+    <type name="Mirasvit\Tester\Model\RegistryInterface">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="earning_rules" xsi:type="string">Mirasvit\Rewards\Test\Codeception\Model\EarningRule</item>
+                <item name="spending_rules" xsi:type="string">Mirasvit\Rewards\Test\Codeception\Model\SpendingRule</item>
+                <item name="notification_rules" xsi:type="string">Mirasvit\Rewards\Test\Codeception\Model\NotificationRule</item>
+                <item name="tier" xsi:type="string">Mirasvit\Rewards\Test\Codeception\Model\Tier</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--Validator-->
+    <type name="Mirasvit\Core\Api\Service\ValidationServiceInterface">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="rewardsValidator" xsi:type="object">Mirasvit\Rewards\Service\ValidationService</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

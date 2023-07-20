@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="mirasvit_rewards_cron" instance="Mirasvit\Rewards\Model\Cron" method="run">
+            <schedule>* * * * *</schedule>
+        </job>
+    </group>
+    <group id="rewards_tier">
+        <job name="mirasvit_rewards_tier_cron" instance="Mirasvit\Rewards\Model\Cron\Tier" method="run">
+            <schedule>30 0 * * *</schedule>
+        </job>
+    </group>
+    <group id="rewards_transactions">
+        <job name="mirasvit_rewards_activate_transaction_cron" instance="Mirasvit\Rewards\Model\Cron\ActivateTransaction" method="run">
+            <schedule>0 */4 * * *</schedule>
+        </job>
+    </group>
+    <group id="rewards_report">
+        <job name="mirasvit_rewards_report_cron" instance="Mirasvit\Rewards\Model\Cron\Report" method="run">
+            <schedule>30 0 * * *</schedule>
+        </job>
+    </group>
+    <group id="rewards_purchase">
+        <job name="mirasvit_rewards_purchase_cron" instance="Mirasvit\Rewards\Model\Cron\Purchase" method="run">
+            <schedule>0 */4 * * *</schedule>
+        </job>
+    </group>
+</config>

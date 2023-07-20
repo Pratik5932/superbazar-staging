@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Html\Links" as="links" name="rewards.account.info.links" before="-">
+                <arguments>
+                    <argument name="css_class" xsi:type="string">items order-links rewards-links</argument>
+                </arguments>
+                <block class="Magento\Framework\View\Element\Html\Link\Current" name="sales.order.info.links.information">
+                    <arguments>
+                        <argument name="path" xsi:type="string">rewards/account</argument>
+                        <argument name="label" xsi:type="string" translate="true">My Points</argument>
+                    </arguments>
+                </block>
+                <block class="Mirasvit\RewardsCustomerAccount\Block\Account\Tab\Link\Share" name="sales.order.info.links.invoice">
+                    <arguments>
+                        <argument name="path" xsi:type="string">rewards/account/share</argument>
+                        <argument name="label" xsi:type="string" translate="true">Share &amp; Save</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Framework\View\Element\Html\Link\Current" name="sales.order.info.links.shipment"
+                        ifconfig="rewards/referral/is_active">
+                    <arguments>
+                        <argument name="path" xsi:type="string">rewards/account/referral</argument>
+                        <argument name="label" xsi:type="string" translate="true">My Referrals</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Framework\View\Element\Html\Link\Current" name="sales.order.info.links.creditmemo">
+                    <arguments>
+                        <argument name="path" xsi:type="string">rewards/account/history</argument>
+                        <argument name="label" xsi:type="string" translate="true">History</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

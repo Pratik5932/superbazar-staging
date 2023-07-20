@@ -1,4 +1,0 @@
-[24-Mar-2020 10:30:43 CST6CDT] PHP Fatal error:  Uncaught Error: Class 'Magento\Framework\Component\ComponentRegistrar' not found in /home/superbaz/public_html/backup/C4B/FreeProduct/registration.php:3
-Stack trace:
-#0 {main}
-  thrown in /home/superbaz/public_html/backup/C4B/FreeProduct/registration.php on line 3

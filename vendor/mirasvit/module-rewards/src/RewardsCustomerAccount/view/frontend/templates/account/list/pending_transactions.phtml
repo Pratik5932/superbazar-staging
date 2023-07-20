@@ -1,0 +1,44 @@
+<?php
+/** @var \Mirasvit\RewardsCustomerAccount\Block\Account\Listing\PendingTransactions $block */
+$collection = $block->getTransactionCollection();
+$lastOrder = $collection->getLastItem();
+?>
+
+<?php if ($collection->count()): ?>
+    <div class="block block-rewards-account-summary">
+        <div class="block-title">
+            <strong><?= __('Pending Transactions') ?></strong>
+        </div>
+
+        <div class="block-content">
+            <div class="table-wrapper orders-recent">
+                <table class="data-table table">
+                    <thead>
+                    <tr>
+                        <th><?= __('Order') ?></th>
+                        <th><?= __('Points') ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php $odd = 0 ?>
+                    <?php foreach ($collection as $order): ?>
+                        <tr class="<?= ++$odd % 2 ? 'odd' : 'even' ?> <?= $lastOrder == $order ? 'last' : '' ?>">
+                            <td data-th="<?= __('Order') ?>">
+                                <a href="<?= $block->getOrderUrl($order->getId()) ?>" target="__blank">
+                                    #<?= $order->getIncrementId() ?>
+                                </a>
+                            </td>
+                            <td data-th="<?= __('Points') ?>">
+                                <span class="yellow">+<?= $order->getAmount()?></span>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+                <?php if ($block->getPagerHtml()): ?>
+                    <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+                <?php endif ?>
+            </div>
+        </div>
+    </div>
+<?php endif ?>

@@ -1,1 +1,0 @@
-$ bin/magento module:enable C4B_FreeProduct

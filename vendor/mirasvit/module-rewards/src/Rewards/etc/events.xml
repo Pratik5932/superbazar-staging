@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+    <event name="sales_order_shipment_save_commit_after">
+        <observer name="mst_reward_model_observer_shipment" instance="\Mirasvit\Rewards\Observer\Order\OrderAfterShipmentSave"/>
+    </event>
+    <event name="adminhtml_sales_order_creditmemo_register_before">
+        <observer name="rewards_creditmemo_before" instance="Mirasvit\Rewards\Observer\Refund\CreditmemoRegisterBefore"/>
+    </event>
+    <event name="sales_order_creditmemo_refund">
+        <observer name="rewards_creditmemo_refund" instance="Mirasvit\Rewards\Observer\Refund\CreditmemoRefund"/>
+    </event>
+    <event name="sales_order_creditmemo_save_after">
+        <observer name="rewards_creditmemo_refund" instance="Mirasvit\Rewards\Observer\Refund\CreditmemoSaveAfter"/>
+    </event>
+
+
+    <event name="sales_order_load_after">
+        <observer name="credit" instance="Mirasvit\Rewards\Observer\Order\OrderLoadAfter"/>
+    </event>
+    <event name="sales_order_save_after">
+        <observer name="mst_rewards_model_order_save_after" instance="\Mirasvit\Rewards\Observer\Order\OrderSaveAfter"/>
+    </event>
+
+
+    <event name="email_invoice_set_template_vars_before">
+        <observer name="mirasvit_rewards_invoice_add_vars" instance="\Mirasvit\Rewards\Observer\AddVarsToEmail"/>
+    </event>
+    <event name="email_order_set_template_vars_before">
+        <observer name="mirasvit_rewards_order_add_vars" instance="\Mirasvit\Rewards\Observer\AddVarsToEmail"/>
+    </event>
+    <event name="email_creditmemo_set_template_vars_before">
+        <observer name="mirasvit_rewards_creditmemo_add_vars" instance="\Mirasvit\Rewards\Observer\AddVarsToEmail"/>
+    </event>
+    <event name="sales_quote_load_after">
+        <observer name="mst_rewards_model_sales_quote_load_after" instance="\Mirasvit\Rewards\Observer\Quote\QuoteLoadAfter"/>
+    </event>
+    <!-- backend save order -->
+    <event name="sales_quote_save_after">
+        <observer name="mst_rewards_model_sales_quote_save_after" instance="\Mirasvit\Rewards\Observer\AdminOrderQuoteAfterSave"/>
+    </event>
+
+    <event name="controller_action_predispatch">
+        <observer name="mst_rewards_controller_action_predispatch" instance="\Mirasvit\Rewards\Observer\RefreshPointsForItemSpend"/>
+    </event>
+</config>

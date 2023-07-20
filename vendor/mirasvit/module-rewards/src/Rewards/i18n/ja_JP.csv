@@ -1,0 +1,354 @@
+"My Reward Points",私の報酬ポイント
+"Checkout now and earn <b>%1</b> for this order.","今すぐチェックアウトし、この注文に対して<b>%1</b>を獲得して<b>ください</b> 。"
+"Applies only to registered customers, may vary when logged in.",登録済みのお客様のみに適用され、ログイン時に変更される場合があります。
+"Possible discount %1 %2","可能な割引%1 %2"
+"Earn %1 %2","%1 %2を獲得してください"
+Grid,グリッド
+List,リスト
+All,すべて
+"Referral %1",紹介%1
+"Something went wrong while saving your subscription.",定期購入の保存中に問題が発生しました。
+"We removed your subscription on expiring points notification.",有効期限が切れた時点で登録が解除されました。
+"Cannot apply points.",ポイントを適用できません。
+"You've earned %1 for Facebook Like!","あなたはFacebook Likeのために%1を獲得しました！"
+"You've earned %1 for Facebook Share!","あなたはFacebook Shareのために%1を獲得しました！"
+"Facebook Like Points has been canceled","Facebook Like Pointsがキャンセルされました"
+"You've earned %1 for Google+!",Google+で%1を獲得しました。
+"G+1 Points has been canceled","G + 1点がキャンセルされました"
+"You've earned %1 for Pin!",ピンのために%1を獲得しました！
+"Invalid form key. Try again",フォームキーが無効です。再試行する
+"Customer with email %1 has been already invited to our store",電子メール%1のお客様は、すでに当店に招待されています
+"Your invitations were sent. Thanks!",あなたの招待状が送られました。ありがとう！
+"You've earned %1 for Tweet!",あなたはTweetのために%1を獲得しました！
+"You received %1 for signing up",あなたはサインアップのために%1を受け取りました
+"You received %1 for sending this product",この製品を送るために%1を受け取った
+"You received %1 for sign up for newsletter",ニュースレターのサインアップのために%1を受け取った
+"You received %1 for sign up for push notifications",プッシュ通知にサインアップするために%1を受け取った
+"You will receive %1 after approving of this tag",このタグを承認した後、%1が届きます
+"You will receive %1 after approving of this review",あなたはこのレビューを承認した後に%1を受け取ります
+"You received %1 for sign up of referral customer.",紹介顧客のサインアップのために%1を受け取りました。
+"You received %1 for order of referral customer.",紹介顧客の注文には%1を受け取りました。
+"Happy birthday! You received %1.",お誕生日おめでとうございます！あなたは%1を受け取りました。
+"You received %1 for joining the affiliate program.",あなたはアフィリエイトプログラムに参加するために%1を受け取りました。
+"%1 was applied.",%1が適用されました。
+"Minimum number is %1.",最小数は%1です。
+"Maximum number is %1.",最大数は%1です。
+"%1 was canceled.",%1はキャンセルされました。
+"Cannot apply %1.",%1は適用できません。
+"You can use the following variables:",次の変数を使用できます。
+Pattern,パターン
+"Attribute Value",属性値
+Default,デフォルト
+Integer,整数
+Price,価格
+"Strip Tags",ストリップタグ
+"Primary Attributes",主属性
+"Stock Attributes",在庫属性
+"Prices & Taxes",価格と税金
+Images,イメージ
+"Custom Attributes",カスタム属性
+Mapping,マッピング
+Category,カテゴリー
+"Amasty Meta Tags",アマチュアメタタグ
+"Others Attributes",その他の属性
+Flexible,フレキシブル
+Fixed,一定
+"Customer signs up in store",顧客は店頭にサインアップする
+"Customer places order",顧客の注文
+"Customer refer a friend",顧客が友人を紹介する
+"Customer adds tag to a product",顧客が製品にタグを追加する
+"Customer writes a product review",顧客が製品レビューを書く
+"Customer has a birthday",お客様に誕生日があります
+"Customer is inactive for long time",顧客は長い間不活性である
+"Newsletter sign up",ニュースレターの登録
+"Facebook Share",Facebookでシェア
+"Facebook Like",Facebookのような
+"Twitter Tweet","Twitter Tweet"
+"Google+ Like",Google+のような
+"Pinterest Pin",ピンピン
+"Customer joins the affiliate program",顧客がアフィリエイトプログラムに参加する
+"Push Notifications sign up",プッシュ通知がサインアップする
+"Referred customer signs up in store",紹介された顧客は店頭にサインアップする
+"Order from referred customer",紹介された顧客からの注文
+"Points to Currency",通貨へのポイント
+"Currency to Points",ポイントへの通貨
+"Customer Account > My Reward Points",カスタマーアカウント&gt;私の報酬ポイント
+"Customer Account > My Referrals",顧客アカウント&gt;私の紹介
+"Cart Page",カートページ
+"Message Sent",メッセージが送信されました
+"Signed Up",サインアップ
+"Made Order",注文
+"Visited by Referral Link",紹介リンクにアクセスしました
+"Subtotal + Tax",小計+税
+"Subtotal + Tax + Shipping",小計+税+送料
+"Product Rule",プロダクトルール
+"Cart Rule",カートルール
+"Behavior Rule",行動規則
+"Transaction #%1 is expired",トランザクション＃%1は期限切れです
+"Update the Product",製品のアップデート
+"Is Rewards Points used",リワードポイントは使用されていますか？
+"Coupon Used",使用されたクーポン
+"Coupon Code",クーポンコード
+No,いいえ
+Yes,はい
+"Conditions Combination",条件の組み合わせ
+"Product attribute combination",商品属性の組み合わせ
+"Products subselection",製品の副選択
+"Conditions combination",条件の組み合わせ
+"Cart Attribute",カートの属性
+Customer,顧客
+"Last 7-days Clicks",過去7日間のクリック数
+"Last 7-days Orders",過去7日間の注文
+"Last 7-days Revenue",過去7日間の収入
+"Is Referee",審判です
+"Is Referral",紹介
+Email,Eメール
+Group,グループ
+"Lifetime Sales",生涯販売
+"Lifetime Spent Points",有効期限
+"Number of Orders",注文数
+"Is subscriber of newsletter",ニュースレターの購読者です
+"Number of reviews",レビュー数
+"Number of referred friends signups",参照された友人の登録数
+"Number of referred friends orders",参照された友人の注文数
+"Sum of referred friends orders",参照された友人の注文の合計
+"Number of referrals who ordered at least once",1回以上注文した紹介者の数
+"Not registered",未登録
+"Attribute Set",属性セット
+Quantity,量
+"Product Type",製品の種類
+"Base Image",ベースイメージ
+Thumbnail,サムネイル
+"Small Image",小さな画像
+"Base Image Size (bytes)",基本イメージサイズ（バイト）
+"Thumbnail Size (bytes)",サムネイルサイズ（バイト）
+"Small Image Size (bytes)",小さい画像サイズ（バイト）
+"PHP Condition",PHPの条件
+"Base Price",本体価格
+"Final Price",最終価格
+"Special Price",特別価格
+"Open Chooser",オープンセレクタ
+"Referred: Group",参照先：グループ
+"Referred: Lifetime Sales",紹介：生涯販売
+"Referred: Number of Orders",紹介：注文数
+"Referred: Is subscriber of newsletter",紹介：ニュースレターの購読者です
+"Referred: Number of reviews",紹介：レビュー数
+"Please specify a website.",ウェブサイトを指定してください。
+"Please specify a customer email.",顧客のメールアドレスを指定してください。
+"We found an invalid value in a website column.",ウェブサイトの列に無効な値が見つかりました。
+"Please enter a valid email.",正しいメールアドレスを入力してください。
+"Please make sure attribute ""%1"" is not empty.","属性 &quot;%1&quot;が空でないことを確認してください。"
+"We can't find a customer who matches this email and website code.",このメールとウェブサイトのコードに一致する顧客は見つかりません。
+"-- Please Select --","-  選んでください  -"
+"Discount Used",割引使用
+"Custom Product Attributes",カスタム商品属性
+"- Disable these emails -","- これらのメールを無効にする -"
+"Give X points to customer",顧客にXポイントを与える
+"Give X points for every spent Y",すべての使用済みYにXポイントを与える
+"Give X points for every Z quantity",すべてのZ量に対してX点を与える
+"For every Y, give X points",すべてのYについて、X点を与える
+Pending,保留中
+Approved,承認済み
+Discarded,破棄された
+"You do not have permissions to create transactions. Please contact your site administrator.",トランザクションを作成する権限がありません。サイト管理者に連絡してください。
+"%1 has been added.",%1が追加されました。
+"%1 has been deducted.",%1が差し引かれました。
+"You earned %1 and spent %2 for this order.",あなたはこの注文に対して%1を獲得し、%2を費やしました。
+"You spent %1 for this order.",あなたはこの注文のために%1を費やしました。
+"You earned %1 for this order.",この注文に対して%1を獲得しました。
+"Earned points will be enrolled to your account after we finish processing your order.",ご注文の処理が完了した後、獲得ポイントがお客様のアカウントに登録されます。
+"Rewards error occurred on the server. Please try to place the order again.",サーバー上で発生したリワードのエラー。もう一度注文してください。
+"Earn at least %1 %2","少なくとも%1 %2を獲得してください"
+"Reward Points",報酬ポイント
+Edit,編集
+Back,バック
+Delete,削除
+"Are you sure you want to do this?",これをやりたいですか？
+Reset,リセット
+"Save and Continue Edit",保存して編集を継続
+Save,セーブ
+"Points Summary",ポイント要約
+"To unsubscribe from points expiring notification click %1",通知の期限切れポイントからの退会をするには%1をクリックしてください
+"You have <b>%1</b> in your account.",あなたのアカウントには<b>%1</b>があります。
+"Transactions History",トランザクションの履歴
+ID,ID
+Comment,コメント
+Points,ポイント
+Created,作成した
+Expires,期限切れ
+"There are no Transactions.",トランザクションはありません。
+"Pending Transactions",保留中のトランザクション
+Order,注文
+Status,状態
+"Your points balance will expire in %1 days.",ポイント残高は__1日以内に期限切れになります。
+"Visit My Reward Points Section",マイリワードポイントセクションをご覧ください
+"Login to earn %1 for sharing!",共有するために%1を獲得するためにログインしてください！
+"Earn %1 for sharing!",共有するために%1を獲得してください！
+"Like this page and earn %1",このページのように%1を獲得する
+Share,シェア
+"Share this page and earn %1",このページを共有して%1を獲得する
+"Plus this page and earn %1",プラスこのページと%1を獲得
+"Pin this page and earn %1",このページを固定して%1を獲得する
+"Refer Friends",友達を参照
+"Refer friend and earn %1. More friends more points!",友人を紹介して%1を獲得する。友人より多くのポイント！
+Tweet,Tweet
+"Tweet this page and earn %1",このページをツイートして%1を獲得する
+"Check this out!",これをチェック！
+"You have <b>%1</b> available.",あなたは<b>%1が</b>利用可能です。
+"Enter amount of points to spend:",費やすポイント数を入力してください：
+"Use maximum %1",最大%1を使用する
+"Apply Points",ポイントの適用
+Apply,適用
+"Cancel Points",キャンセルポイント
+Cancel,キャンセル
+"Use %1",1を使用します__
+"You Earn",あなたは稼ぐ
+"You Spend",あなたが過ごす
+"Discount amount",割引額
+"Use Reward Points",報酬ポイントを使用する
+"This is a required field",これは必要項目です
+"Subscription to Points Expiration Notification",ポイント有効期限通知へのサブスクリプション
+"Earning %1",%1を獲得する
+"Buy to earn %1",購入して%1を獲得する
+"You'll earn %1 for this item",このアイテムには%1を獲得します
+"Share with Friends",友人たちと分ける
+"Share the referral link in the social media and get points!",ソーシャルメディアの紹介リンクを共有してポイントを取得してください！
+"Tweet on Twitter",TwitterでTweet
+"Your referral link:",あなたの紹介リンク：
+"Send Invitations",招待状を送る
+"Enter contacts of your friends to invite them.",招待する友人の連絡先を入力します。
+Name,名
+Message,メッセージ
+Referrals,紹介
+"Referred by link",リンクで参照される
+"There are no Referrals",紹介はありません
+"You have",あなたが持っている
+available.,利用可能です。
+"Use maximum",最大値を使用する
+"Enter amount of points to spend",費やすポイント数を入力してください
+Use,つかいます
+"Notification Rules' messages",通知ルールのメッセージ
+Template,テンプレート
+"Notification Rule Template",通知ルールテンプレート
+"My Referrals",私の紹介
+"Referrals List",リフェラルリスト
+today,今日
+ago,前
+"Cannot delete transaction with id %1",%1のIDを持つトランザクションを削除できません
+"Expires in",期限切れ
+"How to earn",獲得方法
+"Spend points and receive discounts",ポイントを使って割引を受ける
+"Total number of referred friends: %1",友人の総数：%1
+"Or you may send this link in your messages to anyone",または、あなたのメッセージにこのリンクを誰にでも送ることができます
+"Your Transactions",あなたの取引
+"My Points",私のポイント
+"Share & Save",共有して保存
+History,歴史
+"in %1 %2","%1 %2で"
+"in %1 days",__1日以内に
+"in %1 day",__1日以内に
+"%1 %2 ago","%1 %2前"
+"%1 days ago",%1日前
+"%1 day ago",__1日前
+"How to earn points",ポイントを獲得する方法
+"You have invited %1 friends",あなたは%1人の友達を招待しました
+"Share the referral link in the social media",ソーシャルメディアの紹介リンクを共有する
+"You may send this link in your messages to anyone",あなたはあなたのメッセージにこのリンクを誰にでも送ることができます
+"Page not found.",ページが見つかりません。
+"%1 were applied.",%1が適用されました。
+"Customer tier up",顧客層
+"Customer tier down",顧客階層
+"sum of earned points",得点の合計
+"sum of spent %1",使用済みの合計%1
+"Customer does not assign to website",顧客がウェブサイトに割り当てていない
+"Payment Method",支払方法
+"This tier is assign to %1 customer(s). Please reassign customer(s) to other tier.",この層は%1顧客に割り当てられます。お客様を他の階層に再割り当てしてください。
+"You Spend Points",あなたはポイントを使う
+"Spend Amount",支出額
+"Spend Minimum Points",最低限の支出
+"Spend Maximum Points",最大ポイントを使う
+"Cannot delete tier with id %1",%1のIDを持つ階層を削除できません
+"Unable to find tier for customer ""%1"". Please check tier configuration.","顧客 &quot;%1&quot;の階層を見つけることができません。ティア構成を確認してください。"
+"Customer Earning Style",顧客獲得スタイル
+"Number of Points (X)",ポイント数（X）
+"Step (Y)",ステップ（Y）
+"In base currency",基本通貨で
+"Quantity Step (Z)",数量ステップ（Z）
+"Maximum number of earned points for one customer per day",1人の1日の獲得ポイントの最大数
+"Set 0 to disable limit",制限を無効にするには0を設定します
+"Do not change",変えないで
+"Assign customer to Group",顧客をグループに割り当てる
+"Earn Maximum",最大値を得る
+"Maximum Distributed Points",最大分散点
+Tiers,第三の
+"%1 for each $%2","各$ %2について%1"
+"All Groups",すべてのグループ
+Actions,行動
+"Points spending style",ポイント消費スタイル
+"For each spent X points",使用済みXポイントごとに
+"Number of points.",ポイント数。
+"Customer receive Y discount",顧客はY割引を受け取る
+"You can enter amount in base currency or percent. e.g. 100 or 5%.",金額は基本通貨またはパーセントで入力できます。例えば100または5％である。
+"You can enter amount of points or percent. e.g. 100 or 5%. Leave empty to disable.",金額またはパーセントを入力することができます。例えば100または5％である。無効にするには空のままにします。
+"Spend minimum",最低限支出
+"Spend maximum",最大限支出
+"Minimum sum of spent %1",使用済みの最小合計%1
+"Minimum points number to reach the tier",ティアに到達するための最小ポイント数
+"Delete the record with ID ""%1""",ID「%1」のレコードを削除する
+"Are you sure you wan't to delete the record with ID ""%1""?",ID「%1」のレコードを削除することはできませんか？
+"Anonymous visitor",匿名の訪問者
+"Your current tier is <a href=""#"" class=""open-popup""><b>%1</b></a>","現在の階層は<a href=""#"" class=""open-popup""><b>%1です</b></a>"
+"Earn <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","てもらうこと<b>%1</b>獲得<a class=""open-popup""><b>%2</b></a>"
+"Spend <b>%1</b> to get to <a class=""open-popup""><b>%2</b></a>","<b>%2</b>に行くには<a class=""open-popup""><b>%1</b></a>を<a class=""open-popup""><b>費やす</b></a>"
+"in 1 day",1日で
+"1 day ago",1日前
+"Earn %1",%1を稼ぐ
+"Earned %1 for the order #%2.",注文#%2で%1を獲得しました。
+"Spent %1 for the order #%2.",注文#%2に%1を使いました。
+"Restore spent %1 for the order #%2.",復元は注文#%2に%1費やしました。
+"Cancel earned %1 for the order #%2.",注文#%2で獲得した%1をキャンセルします。
+"Refunded %1 (creditmemo #%2, order #%3).","%1を払い戻しました（creditmemo #%2、注文#%3）。"
+"Will expire %1",期限切れ%1
+Expired,期限切れ
+Active,アクティブ
+"Points are expired",ポイントは期限切れです
+"Will be ready for use %1",%1を使用する準備が整います
+"We subscribed you on expiring points notification.",ポイントの期限切れ通知を購読しました。
+"Possible discount %1",可能な割引%1
+Subtotal,小計
+"Rewards Discount",特典割引
+"Field 'Spend maximum' can not be less or equal then field 'Spend minimum'",フィールド「支出の最大」は、フィールド「支出の最小」以下にはできません
+"Field 'For each spent X points' should be integer",フィールド「使用済みXポイントごと」は整数でなければなりません
+"Rewards discount",報酬割引
+"Cannot delete rule with id %1","ID %1のルールを削除できません"
+"Status Description",ステータスの説明
+"Checkout now and earn <b class='message-earn-points-label'>%1</b> for this order.","今すぐチェックアウトして、この注文で<b class='message-earn-points-label'>%1</b>を獲得して<b class='message-earn-points-label'>ください</b> 。"
+"Cannot apply %1. %2 %3","%1を適用できません。 %2 %3"
+"%1 were cancelled.",%1はキャンセルされました。
+"Customer creates RMA",お客様がRMAを作成
+"Use Magento settings",Magentoの設定を使用する
+"After Tax",税後
+"Additional Product Attribute",追加の製品属性
+"Additional Payment Method",追加のお支払い方法
+Reasons,理由
+Conditions,条件
+Resolutions,決議
+Statuses,ステータス
+"Apply to items",アイテムに適用
+"Apply to totals",合計に適用
+"Rewards Refunded",払い戻された報酬
+"Send notification before points expires (in days)",ポイントが期限切れになる前に通知を送信します（日数）
+"Cancel the earned points after the order has been refunded",注文の払い戻し後に、獲得したポイントをキャンセルします
+"Restore the points spent after the order has been refunded",注文の払い戻し後に使用したポイントを復元する
+"Allow to display maximum number of possible points for configurable products.",構成可能な製品の可能なポイントの最大数を表示できるようにします。
+"Send notification before points expires(in days)",ポイントが期限切れになる前に通知を送信します（日数）
+"In determining tiers, take into account, it only lasts for N days",階層を決定する際には、考慮に入れてください、それはN日間しか持続しません
+"Show pending transactions in the customer's account",顧客のアカウントで保留中のトランザクションを表示します
+"Use this option to explain to your customer why the Rewards spending block isn't displaying in checkout",このオプションを使用して、リワードの支出ブロックがチェックアウトに表示されない理由を顧客に説明します
+"If the theme overrides Magento way of including styles, this option will add extension's styles to the page",テーマがスタイルを含めるMagentoの方法をオーバーライドする場合、このオプションは拡張のスタイルをページに追加します
+"In some configuration, the method 'Apply to items' may have a slight error in calculation",一部の構成では、「アイテムに適用」メソッドの計算でわずかなエラーが発生する場合があります
+"For detailed explanation, see the <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>documentation</a>","詳細な説明については、 <a href='http://docs.mirasvit.com/module-rewards/current/rules/custom' target='_blank'>ドキュメントを</a>参照してください"
+"Minimum points number to reach each tier",各層に到達するための最小ポイント数
+"Delete the record with ID %1",ID%1のレコードを削除します
+"Are you sure you want to delete the record with ID %1",ID%1のレコードを削除してもよろしいですか
+"To subscribe to points expiring and balance update notification click %1",有効期限が切れるポイントと残高更新通知をサブスクライブするには、%1をクリックします

@@ -1,0 +1,231 @@
+.breeze-input {
+    & when (@critical) {
+        outline: none;
+        position: relative;
+        padding: @input__padding;
+        width: 100%;
+
+        .lib-css(font-family, @input__font-family);
+        color: @input__color;
+        background: @input__background;
+        border: @input__border;
+        border-radius: @input__border-radius;
+        box-shadow: @input__shadow;
+
+        &:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+    }
+
+    & when not (@critical) {
+        &:focus,
+        &:focus-visible {
+            .lib-rgb(--input-bg, @input__focus__background-color);
+            .lib-rgb(--input-border-color, @input__focus__border-color);
+            --input-outline-color: var(--input-border-color);
+            --input-shadow-spread: @input__focus__shadow-spread;
+            outline: @input__focus__outline;
+            outline-offset: @input__focus__outline-offset;
+        }
+        &:-webkit-autofill {
+            -webkit-box-shadow: @input__shadow, 0 0 0 30px @muted__background inset;
+            -webkit-text-fill-color: @input__color;
+        }
+    }
+}
+
+.breeze-button {
+    & when (@critical) {
+        outline: none;
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: @1;
+
+        .lib-css(font-family, @button__font-family);
+        .lib-css(font-weight, @button__font-weight);
+        .lib-css(font-size, @button__font-size);
+        .lib-css(text-transform, @button__text-transform);
+        .lib-css(box-shadow, @button__shadow);
+
+        padding: @button__padding;
+        color: @button__color;
+        background: @button__background;
+        border: @button__border;
+        border-radius: @button__border-radius;
+        text-decoration: @button__text-decoration !important;
+        white-space: nowrap;
+
+        &:disabled,
+        &.disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+    }
+
+    & when not (@critical) {
+        .transition();
+
+        &:hover {
+            --button-bg-alpha: var(--button-hover-bg-alpha);
+            text-decoration: @button__hover__text-decoration !important;
+            .breeze-rgb(--button-color, @button__hover__text-color);
+            .breeze-rgb(--button-bg, @button__hover__background-color);
+            .breeze-rgb(--button-border-color, @button__hover__border-color);
+        }
+        &:focus-visible {
+            --button-border-alpha: 1;
+            .breeze-rgb(--button-color, @button__focus__text-color);
+            .breeze-rgb(--button-bg, @button__focus__background-color);
+            .breeze-rgb(--button-border-color, @button__focus__border-color);
+            z-index: 10;
+            outline: @button__focus__outline;
+            outline-offset: @button__focus__outline-offset;
+        }
+    }
+}
+
+.breeze-button-primary {
+    & when (@critical) {
+        --link-color: var(--button-color);
+        --link-alpha: 1;
+        .lib-css(text-shadow, @button__text-shadow);
+    }
+    & when not (@critical) {
+        &:hover {
+            .breeze-rgb(--button-color, @button-primary__hover__text-color);
+            .breeze-rgb(--button-bg, @button-primary__hover__background-color);
+            .breeze-rgb(--button-border-color, @button-primary__hover__border-color);
+        }
+    }
+}
+
+.breeze-button-secondary {
+    & when (@critical) {
+        --link-color: var(--button-color);
+        --link-alpha: 1;
+        --button-bg: var(--button-secondary-bg);
+        --button-color: var(--button-secondary-color);
+        --button-border-color: var(--button-secondary-border-color);
+    }
+    & when not (@critical) {
+        &:hover {
+            .breeze-rgb(--button-color, @button-secondary__hover__text-color);
+            .breeze-rgb(--button-bg, @button-secondary__hover__background-color);
+            .breeze-rgb(--button-border-color, @button-secondary__hover__border-color);
+        }
+    }
+}
+
+.breeze-button-link {
+    & when (@critical) {
+        --button-bg: transparent;
+        --button-border-color: transparent;
+        --button-color: var(--link-color);
+        text-decoration: @link__text-decoration !important;
+    }
+
+    & when not (@critical) {
+        &:hover {
+            text-decoration: @link__hover__text-decoration !important;
+            --button-bg: transparent;
+            --button-border-color: transparent;
+            --button-color: var(--link-color);
+        }
+    }
+}
+
+.breeze-button-ghost {
+    & when (@critical) {
+        --button-bg: var(--base-color);
+        --button-bg-alpha: 0;
+        --button-color: var(--base-color);
+        --button-border-color: var(--base-color);
+        --button-border-alpha: var(--base-alpha);
+        text-shadow: none;
+    }
+
+    & when not (@critical) {
+        &:hover {
+            --button-bg-alpha: .1;
+            --button-color: var(--base-color);
+        }
+    }
+}
+
+.breeze-button-reset {
+    --button-bg: var(--base-bg);
+    --button-border-color: var(--base-bg);
+    &:focus-visible {
+        .breeze-focus-ring();
+    }
+    padding: 0 !important;
+    background: transparent !important;
+    color: inherit !important;
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    font-size: inherit !important;
+    text-transform: inherit !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    .text-align(left);
+}
+.breeze-button-close {
+    .float(right);
+    .breeze-button-reset();
+    opacity: .7;
+    cursor: pointer;
+    &::before {
+        display: block;
+        content: '';
+        width: @6;
+        height: @6;
+        .breeze-icon(@icon-x);
+    }
+    span {
+        .breeze-sr-only();
+    }
+}
+.breeze-button-xs {
+    .lib-css(font-size, @button__xs__font-size);
+    .lib-css(line-height, @button__xs__line-height);
+    .lib-css(font-weight, @button__xs__font-weight);
+    .lib-css(padding, @button__xs__padding);
+}
+.breeze-button-sm {
+    .lib-css(font-size, @button__sm__font-size);
+    .lib-css(line-height, @button__sm__line-height);
+    .lib-css(font-weight, @button__sm__font-weight);
+    .lib-css(padding, @button__sm__padding);
+}
+.breeze-button-lg {
+    .lib-css(font-size, @button__lg__font-size);
+    .lib-css(line-height, @button__lg__line-height);
+    .lib-css(font-weight, @button__lg__font-weight);
+    .lib-css(padding, @button__lg__padding);
+}
+.breeze-button-xl {
+    .lib-css(font-size, @button__xl__font-size);
+    .lib-css(line-height, @button__xl__line-height);
+    .lib-css(font-weight, @button__xl__font-weight);
+    .lib-css(padding, @button__xl__padding);
+}
+
+.breeze-input-xs {
+    .breeze-text-xs();
+    padding: @1;
+    width: auto;
+    flex-grow: 0;
+}
+.breeze-input-lg {
+    .breeze-text-lg();
+    .lib-css(font-weight, @input__lg__font-weight);
+    .lib-css(padding, @input__lg__padding);
+}
+.breeze-input-xl {
+    .breeze-text-xl();
+    .lib-css(font-weight, @input__xl__font-weight);
+    .lib-css(padding, @input__xl__padding);
+}

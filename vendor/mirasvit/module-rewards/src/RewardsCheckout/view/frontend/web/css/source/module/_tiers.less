@@ -1,0 +1,138 @@
+.rewards-account__tiers {
+    margin-bottom: 3rem;
+
+    .tier-progress-bar {
+        @height: 1.1rem;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+        margin-left: 3rem;
+        margin-right: 3rem;
+        position: relative;
+
+        height: @height;
+        background: #ccc;
+        border-radius: 100px;
+
+        .points {
+            width: auto;
+            display: flex;
+            justify-content: space-between;
+
+            .tier-point {
+                width: 2rem;
+                height: 2rem;
+                background: #ccc;
+                border-radius: 100%;
+                margin-top: -.5rem;
+                position: relative;
+                z-index: 1;
+
+                &.closed {
+                    background: #fe5503;
+                }
+
+                .tier-logo {
+                    position: absolute;
+                    left: 50%;
+                    top: -6rem;
+                    color: #727272;
+                    margin-left: -1.5rem;
+                    width: 3rem;
+                    text-align: center;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                .label {
+                    position: absolute;
+                    left: 0;
+                    top: -3rem;
+                    color: #727272;
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                    margin-left: -4.5rem;
+                    width: 11rem;
+                    text-align: center;
+                    line-height: 1.2;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+
+                    &[data-description]:hover {
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
+
+                .number {
+                    position: absolute;
+                    left: 0;
+                    top: 2.5rem;
+                    margin-left: -3rem;
+                    width: 8rem;
+                    text-align: center;
+
+                    > span {
+                        display: inline-block;
+                        background: #fe5503;
+                        color: #fff;
+                        border-radius: 12px;
+                        font-size: 1.1rem;
+                        padding: 0.1rem .5rem;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+
+        .closers {
+            width: auto;
+            display: flex;
+            justify-content: space-between;
+
+            .closer {
+                position: absolute;
+                left: 0;
+                top: .3rem;
+                height: .5rem;
+                padding: 0 2px;
+                box-sizing: border-box;
+
+                .progress {
+                    height: .5rem;
+                    background: #fe5503;
+                }
+            }
+        }
+    }
+
+    .to-next {
+        margin-top: .5rem;
+        text-align: center;
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 0;
+
+        .open-popup {
+            color: #727272;
+            cursor: pointer;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .tier-progress-bar {
+        .tier-point {
+            .label, .number, .tier-logo {
+                display: none;
+            }
+
+            &:first-child, &:last-child {
+                .label, .number, .tier-logo {
+                    display: block;
+                }
+            }
+        }
+    }
+}
